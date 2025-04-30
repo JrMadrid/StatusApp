@@ -1,0 +1,11 @@
+# ASSETS
+
+Este directorio contiene todos los recursos estáticos del frontend que necesitan ser importados en el código.
+
+Propósito
+- Centralizar imágenes, íconos, fuentes u otros archivos de soporte visual.
+- Facilitar la organización de recursos no lógicos que forman parte de la interfaz.
+
+Notas
+- Se recomienda dividir el contenido en subdirectorios (`/images`, `/icons`, etc.).
+- Todos los archivos aquí pueden ser importados directamente en componentes o estilos.

@@ -1,0 +1,11 @@
+# CONNECTIONS
+
+Este directorio maneja las configuraciones de conexión hacia dispositivos externos.
+
+Descripción:
+- Configura y gestiona las conexiones a dispositivos UPS, iLO, biométricos y también realiza ping a las direcciones IP.
+- Implementa funciones para inicializar, validar y cerrar conexiones.
+
+Notas:
+- Cada tipo de dispositivo debe tener su propio módulo de conexión.
+- Las conexiones deben ser seguras y manejar errores adecuadamente.

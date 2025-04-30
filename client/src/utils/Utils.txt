@@ -1,0 +1,15 @@
+# UTILS
+
+Este directorio contiene funciones y herramientas auxiliares utilizadas en distintas partes del proyecto.
+
+Propósito
+- Centralizar utilidades reutilizables que no forman parte directa de la lógica de negocio ni de la interfaz de usuario.
+- Evitar duplicación de código, manteniendo funciones comunes en un solo lugar.
+
+Características
+- Puede incluir tanto funciones (.js) como componentes simples (.jsx) que sirvan como herramientas de apoyo.
+- El contenido de este directorio debe ser lo más desacoplado posible, sin depender directamente del estado de la aplicación o del contexto.
+
+Notas
+- Se recomienda mantener este directorio limpio y organizado.
+- Nombrar las funciones/utilidades de forma clara y descriptiva.

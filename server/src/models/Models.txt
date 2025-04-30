@@ -1,0 +1,11 @@
+# MODELS
+
+Este directorio contiene los modelos de datos y validaciones.
+
+Descripción:
+- Define la estructura de los datos que se utilizan en el sistema.
+- Implementa validaciones para comprobar la integridad de la información.
+
+Notas:
+- Seguir una estructura clara para definir modelos.
+- Validar los datos antes de procesarlos o almacenarlos en la base de datos.

@@ -1,0 +1,336 @@
+/* ESTILOS DE TABLAS */
+.cajapadre {
+    background-color: rgba(0, 0, 0, 0.600);
+    padding: 15px 15px 15px 15px;
+    border-radius: 8px;
+    min-width: 80vw;
+    max-width: 80vw;
+    box-shadow: 0 2px 100px rgba(11, 23, 50, 0.9);
+    text-align: center;
+    min-height: 85vh;
+    max-height: 85vh;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.cajapadre::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+.cajapadre::-webkit-scrollbar-thumb {
+    background-color: rgb(225, 166, 110);
+    border-radius: 4px;
+    border: 2px solid #1d244120;
+}
+
+.cajapadre::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(197, 229, 249);
+}
+
+.cajapadre::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
+.encabezados {
+    justify-content: center;
+    width: 70%;
+}
+
+.titular {
+    margin: 0 4vw;
+}
+
+.logos {
+    height: 45px;
+}
+
+.cajahijo {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+    max-height: 63vh;
+    min-height: 63vh;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.cajahijo::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.cajahijo::-webkit-scrollbar-thumb {
+    background-color: rgb(225, 166, 110);
+    border-radius: 4px;
+    border: 2px solid #1d244120;
+}
+
+.cajahijo::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(197, 229, 249);
+}
+
+.cajahijo::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
+.tablaLista {
+    padding: 2px 10px 0px 10px;
+    margin-left: 5px;
+    margin: auto;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.thLista {
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: system-ui;
+    background-color: rgb(0, 7, 22);
+    box-shadow: 0px 0px 2px #ffaf90 inset;
+}
+
+.thLista:hover {
+    color: #ffaf90;
+    box-shadow: 0px 0px 2px #0056b3 inset;
+    background-color: rgb(197, 229, 249);
+}
+
+.linklista {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #ffaf90;
+}
+
+.thLista:hover .linklista {
+    color: black;
+}
+
+.desconectar {
+    font-weight: bold;
+    font-family: system-ui;
+    color: #ffaf90;
+    border-radius: 5px;
+    background-color: rgb(0, 7, 22);
+    box-shadow: 0px 0px 2px #ffaf90 inset;
+    padding: 5px 10px 5px 10px;
+}
+
+.desconectar:hover {
+    color: black;
+    background-color: rgb(197, 229, 249);
+    box-shadow: 0px 0px 2px #0056b3 inset;
+}
+
+.cantidad {
+    padding: 1px 0 10px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: #ffaf90;
+    font-weight: lighter;
+}
+
+.tablaData {
+    padding: 10px 10px 5px 10px;
+    margin: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: whitesmoke;
+    text-align: center;
+    border-spacing: 0;
+}
+
+.select .ir {
+    border-radius: 100%;
+    padding: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #c59e75;
+    border: 2px solid rgb(11, 23, 50);
+}
+
+.select .ir:hover {
+    background-color: rgb(11, 23, 50);
+    border: 2px solid #c59e75;
+}
+
+.ping {
+    border-radius: 100%;
+    padding: 0;
+    height: 15px;
+    width: 15px;
+    background-color: rgb(11, 23, 50);
+    border: 2px solid #c59e75;
+}
+
+.ping:hover {
+    background-color: #c59e75;
+    border: 2px solid rgb(11, 23, 50);
+}
+
+.thData {
+    color: #ffaf90;
+    padding: 10px;
+    padding-top: 0;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    padding-top: 0;
+}
+
+.tdData {
+    height: 1rem;
+    font-family: system-ui;
+    font-size: large;
+    color: rgb(205, 205, 205);
+    text-align: center;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    padding: 5px;
+}
+
+.select:hover {
+    color: rgb(225, 166, 110);
+}
+
+.tdData.long-data {
+    max-width: 20vw;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.tdData.long-data::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.tdData.long-data::-webkit-scrollbar-thumb {
+    background-color: rgb(225, 166, 110);
+    border-radius: 4px;
+    border: 2px solid #1d244120;
+}
+
+.tdData.long-data::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(197, 229, 249);
+}
+
+.tdData.long-data::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
+
+.link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: whitesmoke;
+}
+
+.sunombre {
+    width: max-content;
+    min-width: 200px;
+}
+
+.funcion {
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    color: rgb(180, 180, 180);
+    font-size: 0.7rem;
+    padding: 0 10px 0 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0px 3px 0px 0px;
+}
+
+.pagination a {
+    margin: 0px 0px 6px 0px;
+    font-size: 1rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 5px;
+    display: block;
+    padding: 2px 10px 2px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.700);
+    text-decoration: none;
+    background-color: rgb(197, 229, 249);
+    color: #000000;
+}
+
+.pagination a:hover {
+    border: 1px solid black;
+    box-shadow: 0px 0px 10px rgb(0, 7, 22) inset;
+}
+
+li.active a {
+    color: #c59e75;
+    background-color: rgb(11, 23, 50);
+}
+
+.buscar {
+    background-color: rgb(197, 229, 249);
+    width: 45%;
+    margin-bottom: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.700);
+}
+
+p {
+    font-size: 1rem;
+}
+
+label {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.saves {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.save {
+    width: 100%;
+}
+
+.flechas {
+    font-size: 0.75rem;
+    margin-top: 3px;
+}
+
+.eject {
+    font-size: 1rem;
+    padding-top: 3px;
+}
+
+.pingi {
+    font-size: 1.6rem;
+    padding-top: 0px;
+    padding-bottom: 4px;
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+}
+
+.circuloir {
+    border-radius: 100%;
+    padding: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #c59e75;
+    border: 2px solid rgb(11, 23, 50);
+}
+
+.circuloir:hover {
+    background-color: rgb(11, 23, 50);
+    border: 2px solid #c59e75;
+}

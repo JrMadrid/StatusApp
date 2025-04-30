@@ -1,0 +1,71 @@
+/* ESTILOS DE BARRA DE NAVEGACIÓN */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    background-color: rgb(11, 23, 50);
+    padding: 5px 0;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.navbar li {
+    margin: 0px 30px 0px 30px;
+}
+
+.navbar li a {
+    color: rgb(197, 229, 249);
+    text-decoration: none;
+    padding: 5px 5px;
+}
+
+.navbar li a:hover {
+    color: #67bdf2;
+}
+
+
+.navbar li a.active {
+    color: #c59e75;
+}
+
+.close {
+    background-color: rgb(12, 100, 167);
+    color: whitesmoke !important;
+    top: 0;
+    right: 0;
+    position: fixed;
+}
+
+.close:hover {
+    background-color: black;
+    color: #c59e75 !important;
+
+}
+
+.usuario {
+    background-color: #00000050;
+    top: 0;
+    left: 0;
+    position: fixed;
+    color: #c59e75;
+    padding: 12px 10px 10px 10px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Franklin Gothic Medium';
+    font-size: small;
+}
+
+.tipo {
+    background-color: #00000050;
+    bottom: 0;
+    right: 7.5%;
+    position: absolute;
+    color: #c59e75;
+    padding: 13px 10px 11px 10px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Franklin Gothic Medium';
+    font-size: small;
+}

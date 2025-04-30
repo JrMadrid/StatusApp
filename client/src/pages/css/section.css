@@ -1,0 +1,9 @@
+/* ESTILOS PARA DIVIDIR LA PAGINA EN 2 SECCIONES */
+.display {
+    display: flex;
+}
+
+.section {
+    flex: 1;
+    margin: 5px;
+}

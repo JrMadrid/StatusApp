@@ -1,0 +1,11 @@
+# CONFIGS
+
+Este directorio contiene la configuración de variables de entorno.
+
+Descripción:
+- Se extraen valores definidos en el archivo `.env`.
+- Aquí se centralizan configuraciones generales del sistema como puertos, credenciales y rutas de acceso.
+
+Notas:
+- No almacenar credenciales directamente en el código.
+- Solo modificar si se añaden nuevas variables de entorno.

@@ -1,0 +1,18 @@
+# API
+
+Este directorio contiene la configuración y funciones relacionadas con la comunicación entre el frontend y el backend/API.
+
+connect.js
+- Función asíncrona que realiza solicitudes fetch a la API, incluyendo credenciales (como cookies) para autenticación o manejo de sesión. Se utiliza para obtener datos desde rutas específicas del backend.
+
+axiosConfig.js
+- Configura Axios para que incluya cookies automáticamente en todas las solicitudes (útil para sesiones con autenticación).
+- Esta configuración permite realizar peticiones CORS que requieren credenciales compartidas entre frontend y backend.
+
+Propósito general del directorio
+- Centralizar la lógica de conexión con la API.
+- Unificar configuraciones de red y facilitar el manejo de solicitudes HTTP desde distintos componentes del frontend.
+
+Notas
+- Las solicitudes que requieren autenticación deben usar axios o fetch desde aquí para garantizar el uso correcto de cookies.
+- Es buena práctica mantener las funciones de conexión desacopladas de los componentes React para facilitar el mantenimiento y las pruebas.

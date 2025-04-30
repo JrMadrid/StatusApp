@@ -1,0 +1,16 @@
+# PAGES
+
+Este directorio contiene los componentes que representan las diferentes páginas o vistas principales de la aplicación, generalmente asociadas a rutas específicas.​
+
+Propósito
+- Definir las vistas principales de la aplicación, cada una correspondiente a una ruta específica gestionada por el enrutador (por ejemplo, React Router).
+- Componer las páginas utilizando componentes reutilizables del directorio components.​
+
+Características
+- Cada página se encuentra en su propia carpeta, conteniendo archivos como .jsx.
+- Se recomienda mantener las páginas lo más limpias posible, delegando la mayor parte de la lógica a componentes hijos o hooks personalizados.​
+
+Notas
+- Nombrar las carpetas y archivos de las páginas utilizando Snake_Case para mantener la coherencia.
+- Si una página requiere componentes específicos que no se reutilizan en otras partes de la aplicación, pueden incluirse dentro de la carpeta de esa página.
+- Mantener una estructura clara y coherente facilita la navegación y el mantenimiento del código a medida que la aplicación crece.

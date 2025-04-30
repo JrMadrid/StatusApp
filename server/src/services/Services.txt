@@ -1,0 +1,12 @@
+# SERVICES
+
+Este directorio contiene la lógica de negocio de la aplicación, encargándose de interactuar con la base de datos y procesar los datos necesarios para los controladores.
+
+## Descripción:
+- Ejecuta consultas SQL utilizando parámetros para prevenir inyecciones SQL.
+- Contiene funciones que encapsulan la lógica de negocio, manteniendo los controladores delgados y enfocados en manejar las solicitudes y respuestas.
+- Facilita la reutilización de código y mejora la mantenibilidad del proyecto.
+
+## Notas:
+- Evita incluir lógica relacionada con la presentación o el manejo directo de las solicitudes HTTP.
+- Las funciones aquí deben ser independientes del framework utilizado, permitiendo su reutilización en diferentes contextos.

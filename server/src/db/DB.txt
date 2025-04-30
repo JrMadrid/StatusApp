@@ -1,0 +1,11 @@
+# DB
+
+Este directorio gestiona la conexión a la base de datos.
+
+Descripción:
+- Configura la conexión a la base de datos principal.
+- Contiene la base de datos de sesiones y cualquier configuración relacionada.
+
+Notas:
+- Asegurarse de manejar bien las reconexiones en caso de errores.
+- Mantener los datos sensibles fuera del repositorio (usar variables de entorno).

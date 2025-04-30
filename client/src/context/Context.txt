@@ -1,0 +1,15 @@
+# CONTEXT
+
+Este directorio contiene el contexto global de la aplicación, utilizado para compartir datos entre componentes de React sin necesidad de pasarlos manualmente a través de props.
+
+userContext.js
+- Define un UserContext que permite acceder al estado del usuario autenticado desde cualquier parte del frontend.
+-- Provee este estado mediante un UserProvider que debe envolver el componente raíz (o secciones donde se necesite acceder al usuario).
+
+Propósito general del directorio
+- Centralizar el manejo de estado global que necesita ser compartido entre varios componentes.
+- Evitar el uso excesivo de props y facilitar el acceso a información como usuario autenticado, preferencias o roles.
+
+Notas
+- Actualmente solo se maneja el contexto del usuario, pero aquí pueden añadirse más contextos (tema, idioma, sesión, etc.) si el proyecto crece.
+- Se recomienda envolver la app en el UserProvider desde el nivel más alto posible, como en App.js o main.jsx.

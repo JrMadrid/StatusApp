@@ -1,0 +1,17 @@
+# COMPONENTS
+
+Este directorio alberga los componentes reutilizables de la interfaz de usuario que se utilizan en diversas partes de la aplicación.​
+
+Propósito
+- Centralizar elementos de UI reutilizables como pantallas, formularios, tarjetas, paneles, entre otros.
+- Promover la reutilización de código y mantener una interfaz de usuario coherente en toda la aplicación.​
+
+Características
+- Cada componente se encuentra en su propia carpeta, conteniendo archivos como .jsx.
+- Los componentes deben ser lo más independientes posible, evitando dependencias directas con el estado global o rutas específicas.
+- Se pueden organizar en subcarpetas según su función o nivel de complejidad.​
+
+Notas
+- Nombrar los componentes utilizando Snake_Case para mantener la coherencia y facilitar su identificación.
+- Incluir documentación o comentarios que describan la funcionalidad y props esperadas de cada componente.
+- Evitar incluir lógica de negocio compleja dentro de los componentes; en su lugar, delegar dicha lógica a hooks o servicios externos.

@@ -1,0 +1,11 @@
+# CONTROLLERS
+
+Este directorio contiene los controladores de la aplicación.
+
+Descripción:
+- Define la lógica que maneja las solicitudes entrantes y las respuestas.
+- Cada controlador se comunica con los servicios y modelos correspondientes.
+
+Notas:
+- Mantener la lógica de negocio en los servicios, no en los controladores.
+- Cada controlador debe ser modular.

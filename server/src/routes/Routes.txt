@@ -1,0 +1,11 @@
+# ROUTES
+
+Este directorio contiene la definición de rutas de la aplicación.
+
+Descripción:
+- Asocia las rutas HTTP con los controladores correspondientes.
+- Organiza las rutas de manera modular para cada recurso o funcionalidad.
+
+Notas:
+- Mantener las rutas limpias y agrupadas por tipo de dispositivo o función.
+- Evitar lógica compleja en las rutas, solo manejar asignaciones.
