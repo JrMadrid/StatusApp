@@ -10,6 +10,11 @@ import '../css/navbar.css';
 export default function Navbar() {
     const user = useContext(UserContext);
 
+    function capitalizartexto(text) { // Poner en mayuscula la primera letra de cada palabra
+        const capitalizado = text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        return capitalizado
+    }
+
     /* Función para cerrar sesión */
     const Logout = async () => {
         return toast.promise(
@@ -34,14 +39,8 @@ export default function Navbar() {
                 },
             },
             {
-                style: {
-                    Width: '250px',
-                    Height: '25px',
-                },
-                success: {
-                    duration: 2500,
-                    icon: null,
-                },
+                style: { Width: '250px', Height: '25px', },
+                success: { duration: 2500, icon: null, },
             }
         );
     };
@@ -49,8 +48,7 @@ export default function Navbar() {
     return (
         <>
             <div className='navbar'>
-
-                {/* TODOS - INICIO DE SESIÓN */}
+                {/* SIN USUARIO - INICIO DE SESIÓN */}
                 {user && user.id === 0 && (
                     <>
                         <li>
@@ -61,13 +59,18 @@ export default function Navbar() {
                     </>
                 )}
 
+                {/* CON USUARIO - SESIÓN INICIADA*/}
+                {user && user.id !== 0 && (
+                    <>
+                        <li className='usuario'>
+                            {capitalizartexto(user.username)}
+                        </li>
+                    </>
+                )}
+
                 {/* SUPER ADMINISTRADOR & ADMINISTRADOR */}
                 {user && (user.id === 1 || user.id === 2) && (
                     <>
-                        <li className='usuario'>
-                            {user.username}
-                        </li>
-
                         {/* SUPER ADMINISTRADOR */}
                         {user && user.id === 1 && (
                             <li>
@@ -110,9 +113,6 @@ export default function Navbar() {
                 {/* APLICATIVO & GEOGRAFIA */}
                 {user && (user.id === 3 || user.id === 4) && (
                     <>
-                        <li className='usuario'>
-                            {user.username}
-                        </li>
                         <li>
                             <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/sucursales">
                                 Sucursales
@@ -147,8 +147,8 @@ export default function Navbar() {
                 {/* TODOS - FIN DE SESIÓN */}
                 {user && user.id !== 0 && (
                     <>
-                        <li>
-                            <NavLink className='close' onClick={Logout}>
+                        <li className='close'>
+                            <NavLink onClick={Logout} style={{ color: 'whitesmoke' }}>
                                 Cerrar Sesión
                             </NavLink>
                         </li>

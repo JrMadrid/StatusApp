@@ -9,7 +9,7 @@ import { ListPDF } from '../Listas/Lista_PDF.jsx';
 import { UserContext } from '../../context/UserContext';
 import ReactPaginate from 'react-paginate';
 import ping from './ping.jsx';
-import { FaEject, FaToolbox, FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { FaHouseUser, FaToolbox, FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { HiStatusOnline, HiExternalLink, HiDocumentDownload, HiEye } from "react-icons/hi";
 import logo from '../../imgs/LogoSoporte.png';
 import hn from '../../imgs/hn.png';
@@ -158,11 +158,11 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
-                                        <th className='thData eject'><FaEject /></th>
-                                        <th className='thData eject'><FaToolbox /></th>
+                                        <th className='thData eject' title='Sucursal' ><FaHouseUser /></th>
+                                        <th className='thData eject' title='Mantenimientos' ><FaToolbox /></th>
                                         <th className='thData'>Económico</th>
-                                        <th className='sunombre thData'>Canal</th>
-                                        <th className='sunombre thData'>Nombre</th>
+                                        <th className='thData'>Canal</th>
+                                        <th className='thData sunombre'>Nombre</th>
                                         {user && user.id === 3 && (
                                             <th className='thData'>Ing. Responsable</th>
                                         )}
@@ -176,10 +176,10 @@ const Paginador = (props) => {
                                                     <td className='tdData'><a href='/status' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'><a href='/mantes' onClick={() => { eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'>{item.economico}</td>
-                                                    <td className='sunombre tdData'>{item.canal}</td>
-                                                    <td className='sunombre tdData'>{item.nombre}</td>
+                                                    <td className='tdData'>{item.canal}</td>
+                                                    <td className='tdData'>{item.nombre}</td>
                                                     {user && user.id === 3 && (
-                                                        <td className='sunombre tdData'>{item.ingresponsable}</td>
+                                                        <td className='tdData long-data'>{item.ingresponsable}</td>
                                                     )}
                                                 </tr>
                                             )}
@@ -199,10 +199,10 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
-                                        <th className='thData pingi'><HiStatusOnline /></th>
-                                        <th className='thData pingi'><HiExternalLink /></th>
+                                        <th className='thData pingi' title='Ping' ><HiStatusOnline /></th>
+                                        <th className='thData pingi' title='Ir' ><HiExternalLink /></th>
                                         <th className='thData'>Dispositivo</th>
-                                        <th className='sunombre thData'>IP</th>
+                                        <th className='thData'>IP</th>
                                         <th className='thData'>Económico</th>
                                         <th className='thData'>Canal</th>
                                         <th className='sunombre thData'>Sucursal</th>
@@ -224,13 +224,13 @@ const Paginador = (props) => {
                                                     <a href={`https://${item.ip}`} target='_blank' rel="noreferrer" className='link select'><button className='ir'></button></a>
                                                 )}
                                             </td>
-                                            <td className='tdData'>{item.dispositivo}</td>
+                                            <td className='tdData long-data'>{item.dispositivo}</td>
                                             <td className='tdData'>{item.ip}</td>
                                             <td className='tdData'>{item.economico}</td>
                                             <td className='tdData'>{item.canal}</td>
                                             <td className='tdData'>{item.sucursal}</td>
-                                            {user && user.id === 3 && (
-                                                <td className='tdData'>{item.ingresponsable}</td>
+                                            {user && user.id === 3 && ( /* Solo para los de aplicativo */
+                                                <td className='tdData long-data'>{item.ingresponsable}</td>
                                             )}
                                         </tr>
                                     ))}
@@ -261,7 +261,7 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
-                                        <th className='thData eject'><FaToolbox /></th>
+                                        <th className='thData eject' title='Mantenimiento' ><FaToolbox /></th>
                                         <th className='thData'>Económico</th>
                                         {user && user.id === 3 && (
                                             <th className='thData'>Ing. Responsable</th>
@@ -280,7 +280,7 @@ const Paginador = (props) => {
                                                     <td className='tdData'><a href='/mantes' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'>{item.economico}</td>
                                                     {user && user.id === 3 && (
-                                                        <td className='tdData'>{item.ingresponsable}</td>
+                                                        <td className='tdData long-data'>{item.ingresponsable}</td>
                                                     )}
                                                     <td className='tdData'><FormatearFechaTabla fecha={item.festimada} /></td>
                                                     <td className='tdData'>
@@ -311,8 +311,8 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
-                                        <th className='thData eject' style={{ fontSize: '1.3rem' }}><HiDocumentDownload /></th>
-                                        <th className='thData eject' style={{ fontSize: '1.3rem' }}><HiEye /></th>
+                                        <th className='thData eject' title='Descarga directa' ><HiDocumentDownload /></th>
+                                        <th className='thData eject' title='Visualizar' ><HiEye /></th>
                                         <th className='thData'>Nombre</th>
                                         <th className='thData'>Descripción</th>
                                         <th className='thData'>ID</th>
@@ -323,8 +323,8 @@ const Paginador = (props) => {
                                         <tr key={item.id}>
                                             <td className='tdData'><button onClick={() => { props.eleccion(item.id, item.nombre) }} className='circuloir' ></button></td>
                                             <td className='tdData'><a href='manual' onClick={() => { props.ver(item.id) }} className='link select'><button className='ir'></button></a></td>
-                                            <td className='tdData long-data' style={{ maxWidth: '45vw' }}>{item.nombre}</td>
-                                            <td className='tdData long-data' style={{ maxWidth: '45vw' }}>{item.descripcion}</td>
+                                            <td className='tdData long-data' style={{ maxWidth: '30vw' }}>{item.nombre}</td>
+                                            <td className='tdData long-data' style={{ maxWidth: '30vw' }}>{item.descripcion}</td>
                                             <td className='tdData'>{item.id}</td>
                                         </tr>
                                     ))}
@@ -342,8 +342,8 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
-                                        <th className='thData eject' style={{ fontSize: '1.3rem' }}><HiDocumentDownload /></th>
-                                        <th className='thData eject' style={{ fontSize: '1.3rem' }}><HiEye /></th>
+                                        <th className='thData eject' title='Descarga directa' ><HiDocumentDownload /></th>
+                                        <th className='thData eject' title='Visualizar' ><HiEye /></th>
                                         <th className='thData'>Económico</th>
                                         <th className='thData'>Sucursal</th>
                                         <th className='thData'>Fecha Realizado</th>
@@ -364,10 +364,10 @@ const Paginador = (props) => {
                                             <td className='tdData'>{item.economico}</td>
                                             <td className='tdData'>{item.sucursal}</td>
                                             <td className='tdData'><FormatearFechaTabla fecha={item.fecharealizada} /></td>
-                                            <td className='tdData long-data' style={{ maxWidth: '45vw' }}>{item.nombre}</td>
+                                            <td className='tdData long-data' style={{ maxWidth: '30vw' }}>{item.nombre}</td>
                                             {user && (user.id === 1 || user.id === 2) && (
                                                 <>
-                                                    <td className='tdData' style={{ maxWidth: '45vw' }}>{item.ingresponsable}</td>
+                                                    <td className='tdData long-data'>{item.ingresponsable}</td>
                                                     <td className='tdData'>{item.id}</td>
                                                 </>
                                             )}
@@ -396,7 +396,7 @@ const Paginador = (props) => {
                                 <tbody>
                                     {itemsActuales.map(item => (
                                         <tr key={item.id}>
-                                            <td className='tdData'>{item.nickname}</td>
+                                            <td className='tdData long-data' >{item.nickname}</td>
                                             <td className='tdData long-data' style={{ overflowX: 'hidden' }}>{item.psw}</td>
                                             <td className='tdData'>{item.tipo}</td>
                                             <td className='tdData'>{item.id}</td>
@@ -416,8 +416,8 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
-                                        <th className='thData eject'><FaEject /></th>
-                                        <th className='thData eject'><FaToolbox /></th>
+                                        <th className='thData eject' title='Sucursal' ><FaHouseUser /></th>
+                                        <th className='thData eject' title='Mantenimientos' ><FaToolbox /></th>
                                         <th className='thData'>Económico</th>
                                         <th className='thData'>Canal</th>
                                         <th className='sunombre thData'>Nombre</th>
@@ -435,7 +435,7 @@ const Paginador = (props) => {
                                                     <td className='tdData'>{item.economico}</td>
                                                     <td className='tdData'>{item.canal}</td>
                                                     <td className='tdData'>{item.nombre}</td>
-                                                    <td className='tdData'>{item.ingresponsable}</td>
+                                                    <td className='tdData long-data'>{item.ingresponsable}</td>
                                                     <td className='tdData'>{item.id}</td>
                                                 </tr>
                                             )}
@@ -455,10 +455,10 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
-                                        <th className='thData pingi'><HiStatusOnline /></th>
-                                        <th className='thData pingi'><HiExternalLink /></th>
+                                        <th className='thData pingi' title='Ping' ><HiStatusOnline /></th>
+                                        <th className='thData pingi' title='Ir' ><HiExternalLink /></th>
                                         <th className='thData'>Dispositivo</th>
-                                        <th className='sunombre thData'>IP</th>
+                                        <th className='thData'>IP</th>
                                         <th className='thData'>Económico</th>
                                         <th className='thData'>Canal</th>
                                         <th className='sunombre thData'>Sucursal</th>
@@ -479,18 +479,21 @@ const Paginador = (props) => {
                                                     <a href={`https://${item.ip}`} target='_blank' rel="noreferrer" className='link select'><button className='ir'></button></a>
                                                 )}
                                             </td>
-                                            <td className='tdData'>{item.dispositivo}</td>
+                                            <td className='tdData long-data'>{item.dispositivo}</td>
                                             <td className='tdData'>{item.ip}</td>
                                             <td className='tdData'>{item.economico}</td>
                                             <td className='tdData'>{item.canal}</td>
                                             <td className='tdData'>{item.sucursal}</td>
-                                            <td className='tdData'>{item.ingresponsable}</td>
+                                            <td className='tdData long-data'>{item.ingresponsable}</td>
                                             <td className='tdData'>{item.id}</td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
-                            <table className='tablaLista'>
+                            <p className='cantidad'>Dispositivos: {props.cantidad}</p>
+                        </div>
+                        <div className='tablaLista'>
+                            <table>
                                 <thead>
                                     <tr>
                                         {props.listaDispositivos.map(item => (
@@ -503,7 +506,6 @@ const Paginador = (props) => {
                                     </tr>
                                 </thead>
                             </table>
-                            <p className='cantidad'>Dispositivos: {props.cantidad}</p>
                         </div>
                     </>
                 )}
@@ -515,7 +517,7 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
-                                        <th className='thData eject'><FaToolbox /></th>
+                                        <th className='thData eject' title='Mantenimiento' ><FaToolbox /></th>
                                         <th className='thData'>Económico</th>
                                         <th className='thData'>Ing. Responsable</th>
                                         <th className='thData'>Fecha Estimada</th>
@@ -531,7 +533,7 @@ const Paginador = (props) => {
                                                 <tr key={item.id}>
                                                     <td className='tdData'><a href='/mantes' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'>{item.economico}</td>
-                                                    <td className='tdData'>{item.ingresponsable}</td>
+                                                    <td className='tdData long-data'>{item.ingresponsable}</td>
                                                     <td className='tdData'><FormatearFechaTabla fecha={item.festimada} /></td>
                                                     <td className='tdData'>
                                                         {(item.frealizada && item.frealizada !== null && item.frealizada !== 'null' && item.frealizada !== 'Pendiente') && (

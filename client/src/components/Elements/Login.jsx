@@ -47,6 +47,7 @@ const LoginPanel = () => {
                         type="text"
                         id="nickname"
                         name="nickname"
+                        maxLength="50"
                         value={nickname}
                         onChange={(e) => setNickname(e.target.value)}
                         required
@@ -58,6 +59,7 @@ const LoginPanel = () => {
                         type="password"
                         id="psw"
                         name="psw"
+                        maxLength="50"
                         value={psw}
                         onChange={(e) => setPsw(e.target.value)}
                         required
