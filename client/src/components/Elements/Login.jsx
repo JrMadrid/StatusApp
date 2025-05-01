@@ -53,7 +53,7 @@ const LoginPanel = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="psw">Contraseñaaaaaaaa:</label>
+                    <label htmlFor="psw">Contraseña:</label>
                     <input
                         type="password"
                         id="psw"
