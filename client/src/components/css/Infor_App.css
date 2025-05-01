@@ -196,16 +196,41 @@
     margin-Top: 0px;
     text-align: center;
     font-size: 1.2vw;
+    max-width: 13vw;
+    max-height: 1.3rem;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.heading::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+.heading::-webkit-scrollbar-thumb {
+    background-color: rgb(225, 166, 110);
+    border-radius: 4px;
+    border: 2px solid #1d244120;
+}
+
+.heading::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(197, 229, 249);
+}
+
+.heading::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
 }
 
 .list {
     list-style: none;
     padding: 0;
     margin: 0;
-    min-height: 44vh;
-    max-height: 44vh;
+    width: 13vw;
+    min-height: 40vh;
+    max-height: 40vh;
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: red;
 }
 
 .list::-webkit-scrollbar {
@@ -226,7 +251,7 @@
 }
 
 .listItem {
-    padding: 3px 5px 2px 0px;
+    margin: 0px 0px 1px 0px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -238,11 +263,12 @@
     text-align: center;
     align-items: center;
     border-radius: 5px;
-    padding-bottom: 5px;
-    margin-left: 5px;
-    min-width: 9.5vw;
-    max-width: 9.5vw;
-    text-overflow: ellipsis;
+    min-width: 9vw;
+    max-width: 9vw;
+    max-height: 1.8rem;
+    overflow-x: auto;
+    overflow-y: auto;
+    background-color: blue;
 }
 
 .ListItemA:hover {
@@ -251,9 +277,7 @@
 
 .pings {
     margin: 0;
-    font-size: 1.5rem;
-    padding-top: 5px;
-    padding-bottom: 0px;
+    font-size: 1.1rem;
     color: rgb(175, 219, 246);
     min-width: 1.5vw;
     max-width: 1.5vw;
@@ -265,7 +289,7 @@
 
 .appi {
     color: rgb(175, 219, 246);
-    font-size: medium;
+    font-size: 0.8rem;
     font-family: 'Segoe UI';
     text-overflow: ellipsis;
 }
@@ -273,7 +297,6 @@
 .ListItemA:hover .appi {
     color: #ffaf90;
 }
-
 
 .logo {
     width: 100%;
