@@ -80,7 +80,7 @@
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 6px;
     text-align: center;
-    min-width: 80vw;
+    min-width: 79vw;
     max-width: 80vw;
     overflow-x: scroll;
 }
