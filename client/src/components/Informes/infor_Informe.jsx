@@ -57,7 +57,7 @@ export default function InfoInforme() {
     return (
         <>
             <div className="sidebar">
-                <h3 className="heading nombrelargo">{informeInfo.nombre}</h3>
+                <h3 className="heading nombrelargo" style={{ maxHeight: "none" }}>{informeInfo.nombre}</h3>
                 <div className="desccaja">
                     <p className="descman">{informeInfo.descripcion}</p>
                 </div>
@@ -74,10 +74,13 @@ export default function InfoInforme() {
                     {informeBlob ? (
                         <iframe
                             src={URL.createObjectURL(informeBlob)}
-                            width="100%"
-                            height="670px"
-                            title="PDF Viewer"
-                        ></iframe>
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                height: "100%",
+                                border: "none",
+                            }}
+                        />
                     ) : (
                         <h5>Espere un momento...</h5>
                     )}

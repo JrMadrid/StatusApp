@@ -177,7 +177,7 @@ const Paginador = (props) => {
                                                     <td className='tdData'><a href='/mantes' onClick={() => { eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'>{item.economico}</td>
                                                     <td className='tdData'>{item.canal}</td>
-                                                    <td className='tdData'>{item.nombre}</td>
+                                                    <td className='tdData long-data'>{item.nombre}</td>
                                                     {user && user.id === 3 && (
                                                         <td className='tdData long-data'>{item.ingresponsable}</td>
                                                     )}
@@ -227,8 +227,8 @@ const Paginador = (props) => {
                                             <td className='tdData long-data'>{item.dispositivo}</td>
                                             <td className='tdData'>{item.ip}</td>
                                             <td className='tdData'>{item.economico}</td>
-                                            <td className='tdData'>{item.canal}</td>
-                                            <td className='tdData'>{item.sucursal}</td>
+                                            <td className='tdData long-data'>{item.canal}</td>
+                                            <td className='tdData long-data'>{item.sucursal}</td>
                                             {user && user.id === 3 && ( /* Solo para los de aplicativo */
                                                 <td className='tdData long-data'>{item.ingresponsable}</td>
                                             )}
@@ -236,7 +236,10 @@ const Paginador = (props) => {
                                     ))}
                                 </tbody>
                             </table>
-                            <table className='tablaLista'>
+                            <p className='cantidad'>Dispositivos: {props.cantidad}</p>
+                        </div>
+                        <div className='tablaLista'>
+                            <table>
                                 <thead>
                                     <tr>
                                         {props.listaDispositivos.map(item => (
@@ -249,7 +252,6 @@ const Paginador = (props) => {
                                     </tr>
                                 </thead>
                             </table>
-                            <p className='cantidad'>Dispositivos: {props.cantidad}</p>
                         </div>
                     </>
                 )}
@@ -362,7 +364,7 @@ const Paginador = (props) => {
                                             <td className='tdData'><button onClick={() => { props.eleccion(item.id, item.nombre) }} className='circuloir' ></button></td>
                                             <td className='tdData'><a href='informe' onClick={() => { props.ver(item.id) }} className='link select'><button className='ir'></button></a></td>
                                             <td className='tdData'>{item.economico}</td>
-                                            <td className='tdData'>{item.sucursal}</td>
+                                            <td className='tdData long-data'>{item.sucursal}</td>
                                             <td className='tdData'><FormatearFechaTabla fecha={item.fecharealizada} /></td>
                                             <td className='tdData long-data' style={{ maxWidth: '30vw' }}>{item.nombre}</td>
                                             {user && (user.id === 1 || user.id === 2) && (
@@ -433,8 +435,8 @@ const Paginador = (props) => {
                                                     <td className='tdData'><a href='/status' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'><a href='/mantes' onClick={() => { eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'>{item.economico}</td>
-                                                    <td className='tdData'>{item.canal}</td>
-                                                    <td className='tdData'>{item.nombre}</td>
+                                                    <td className='tdData long-data'>{item.canal}</td>
+                                                    <td className='tdData long-data'>{item.nombre}</td>
                                                     <td className='tdData long-data'>{item.ingresponsable}</td>
                                                     <td className='tdData'>{item.id}</td>
                                                 </tr>
@@ -482,8 +484,8 @@ const Paginador = (props) => {
                                             <td className='tdData long-data'>{item.dispositivo}</td>
                                             <td className='tdData'>{item.ip}</td>
                                             <td className='tdData'>{item.economico}</td>
-                                            <td className='tdData'>{item.canal}</td>
-                                            <td className='tdData'>{item.sucursal}</td>
+                                            <td className='tdData long-data'>{item.canal}</td>
+                                            <td className='tdData long-data'>{item.sucursal}</td>
                                             <td className='tdData long-data'>{item.ingresponsable}</td>
                                             <td className='tdData'>{item.id}</td>
                                         </tr>

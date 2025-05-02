@@ -212,7 +212,7 @@
 }
 
 .tdData.long-data {
-    max-width: 12vw;
+    max-width: 10vw;
     overflow-x: auto;
     white-space: nowrap;
 }

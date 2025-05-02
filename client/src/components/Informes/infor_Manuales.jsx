@@ -57,7 +57,7 @@ export default function InfoManual() {
     return (
         <>
             <div className="sidebar">
-                <h3 className="heading nombrelargo">{manualInfo.nombre}</h3>
+                <h3 className="heading nombrelargo" style={{ maxHeight: "none" }}>{manualInfo.nombre}</h3>
                 <div className="desccaja">
                     <p className="descman">{manualInfo.descripcion}</p>
                 </div>
@@ -74,10 +74,14 @@ export default function InfoManual() {
                     {manualBlob ? (
                         <iframe
                             src={URL.createObjectURL(manualBlob)}
-                            width="100%"
-                            height="670px"
                             title="PDF Viewer"
-                        ></iframe>
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                height: "100%",
+                                border: "none",
+                            }}
+                        />
                     ) : (
                         <h5>Espere un momento...</h5>
                     )}

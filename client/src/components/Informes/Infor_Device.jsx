@@ -56,7 +56,7 @@ export default function InfoDevice() {
                 <h3 className='heading2'>Sucursales</h3>
                 <ul className='list2'>
                     {appslist.map((dispositivo, index) => (
-                        <li key={index} >
+                        <li className='listaElement' key={index} >
                             <a href={`#${dispositivo.economico}`} className={`listItem2 appi2 ${dispositivo?.ip.startsWith('000.') || dispositivo?.ip.startsWith('001.') ? 'sinip2' : ''}`} >
                                 <HiFastForward  style={{fontSize:'0.5rem'}}/>
                                 {dispositivo.economico}-{dispositivo.sucursal}
@@ -75,7 +75,7 @@ export default function InfoDevice() {
             <div>
                 <h2 className='titulo2'>Soporte Técnico Honduras</h2>
                 <div className='cajaInformacion2'>
-                    <h3 className='principal2'>{data[0]?.nombre || ""}</h3>
+                    <h3 className='principal2' style={{maxWidth:'79.5vw'}}>{data[0]?.nombre || ""}</h3>
                     <div className='informacion2'>
                         <br />
                         <table className='tablainfo2'>
@@ -84,8 +84,8 @@ export default function InfoDevice() {
                                     {content.map((dispositivo, index) => (
                                         <th className='principal2' key={index}>
                                             <section id={`${dispositivo.economico}`}>
-                                                <div>{dispositivo.economico}-{dispositivo.sucursal}</div>
-                                                <span className='appi'>{dispositivo.ingresponsable}</span>
+                                                <div className='itemName'>{dispositivo.economico}-{dispositivo.sucursal}</div>
+                                                <span className='appi iteming'>{dispositivo.ingresponsable}</span>
                                                 {!dispositivo.ip.startsWith('000.') && !dispositivo.ip.startsWith('001.') && (
                                                     <div className='grupo2'>
                                                         <span className='appi2listPing'><Pingdispo ip={dispositivo?.ip} /></span>
