@@ -74,6 +74,7 @@ export default function InfoInforme() {
                     {informeBlob ? (
                         <iframe
                             src={URL.createObjectURL(informeBlob)}
+                            title="PDF Viewer"
                             style={{
                                 display: "block",
                                 width: "100%",
