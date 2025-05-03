@@ -22,7 +22,7 @@ const PostApps = () => {
         setLoading(true);
         setMessage('');
         try {
-            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/apps/dispositivos/agregar`, formData);
+            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/dispositivos/agregar`, formData);
             setMessage(response.data.message || 'Dispositivo agregado exitosamente');
             window.location.reload(); 
         } catch (error) {

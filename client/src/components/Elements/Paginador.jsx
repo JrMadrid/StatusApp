@@ -8,7 +8,7 @@ import { ListExcel } from '../Listas/Lista_Excel.jsx';
 import { ListPDF } from '../Listas/Lista_PDF.jsx';
 import { UserContext } from '../../context/UserContext';
 import ReactPaginate from 'react-paginate';
-import ping from './ping.jsx';
+import ping from '../../utils/ping.jsx';
 import { FaHouseUser, FaToolbox, FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { HiStatusOnline, HiExternalLink, HiDocumentDownload, HiEye } from "react-icons/hi";
 import logo from '../../imgs/LogoSoporte.png';
@@ -119,7 +119,7 @@ const Paginador = (props) => {
     const itemsActuales = filtrarDatos.slice(desplazamiento, desplazamiento + itemsPorPagina);
 
     const eleccion = async (economico) => {
-        let url = `http://${process.env.REACT_APP_HOST}/mantes/numero/${economico}`;
+        let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/numero/${economico}`;
         try {
             const response = await fetchData(url)
             if (!response.ok) {

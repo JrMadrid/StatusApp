@@ -42,7 +42,7 @@ const AplicacionTable = () => {
     }, []);
 
     const eleccion = async (nombre) => {
-        let url = `http://${process.env.REACT_APP_HOST}/devices/dispositivo/${nombre} `;
+        let url = `http://${process.env.REACT_APP_HOST}/informe/devices/dispositivo/${nombre} `;
         try {
             const response = await fetchData(url)
 

@@ -9,7 +9,7 @@ const SelectApps = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        const url = `http://${process.env.REACT_APP_HOST}/apps/dispositivos`;
+        const url = `http://${process.env.REACT_APP_HOST}/panel/dispositivos`;
         const dispositivos = async () => {
             try {
                 const response = await fetchData(url);
@@ -42,7 +42,7 @@ const SelectApps = () => {
     }, []);
 
     const eleccion = async (nombre) => {
-        let url = `http://${process.env.REACT_APP_HOST}/devices/dispositivo/${nombre}`;
+        let url = `http://${process.env.REACT_APP_HOST}/informe/devices/dispositivo/${nombre}`;
         try {
             const response = await fetchData(url)
 

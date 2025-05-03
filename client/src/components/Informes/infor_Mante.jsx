@@ -21,7 +21,7 @@ export default function InfoMante() {
     useEffect(() => {
         const fechasr = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/mantes/fechas`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/mantes/fechas`;
                 const response = await fetchData(url);
 
                 if (!response.ok) {
@@ -44,7 +44,7 @@ export default function InfoMante() {
     useEffect(() => {
         const AllConstancias = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/mantes/constancias`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/mantes/constancias`;
                 const response = await fetchData(url);                
                 if (response.ok) {
                     const archivos = await response.json();
@@ -65,7 +65,7 @@ export default function InfoMante() {
             try {
                 const imageConstancia = document.getElementById('imageConstancia');
                 imageConstancia.innerHTML = '';
-                const url = `http://${process.env.REACT_APP_HOST}/mantes/sucursal/${fechasr}`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/mantes/sucursal/${fechasr}`;
                 const response = await fetchData(url);
 
                 if (!response.ok) { throw new Error('Error al obtener la imagen: ' + response.statusText); }

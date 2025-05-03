@@ -20,7 +20,7 @@ const DeleteApps = () => {
         setMessage('');
 
         try {
-            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/apps/dispositivos/eliminar`, formData);
+            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/dispositivos/eliminar`, formData);
             setMessage(response.data.message || 'Dispositivo eliminado exitosamente');
             window.location.reload(); 
         } catch (error) {

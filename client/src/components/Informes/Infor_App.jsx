@@ -1,6 +1,6 @@
 /* COMPONENTE DE INFORME -- SUCURSALES */
 import { React, useEffect, useState } from 'react'; 
-import Pingdispo from '../../utils/ping.jsx';
+import Pingdispo from '../Elements/ping.jsx';
 import { Toaster, toast } from 'react-hot-toast'; 
 import fetchData from '../../api/connect.js'; 
 import SelectedPDF from '../PDF/SelectedPDF.jsx'; 
@@ -25,7 +25,7 @@ export default function InfoApp() {
     useEffect(() => {
         const aplicaciones = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/status/aplicaciones`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/status/aplicaciones`;
                 const response = await fetchData(url);
 
                 if (!response.ok) {
@@ -63,7 +63,7 @@ export default function InfoApp() {
 
     const appData = async (ip) => {
         return toast.promise(
-            fetchData(`http://${process.env.REACT_APP_HOST}/status/aplicacion/${ip}`).then(response => {
+            fetchData(`http://${process.env.REACT_APP_HOST}/informe/status/aplicacion/${ip}`).then(response => {
                 if (!response.ok) {
                     throw new Error('Sin respuesta');
                 }
@@ -74,12 +74,12 @@ export default function InfoApp() {
                 success: (datos) => {
                     setContent(datos[0]);
 
-                    return <b>Datos cargados!</b>;
+                    return <b>¡Datos cargados!</b>;
                 },
                 error: (error) => {
                     console.error('Error consiguiendo los datos: ', error);
                     setContent('Error al cargar el contenido');
-                    return <b>Sin información, ocurrió un error!</b>;
+                    return <b>¡Ocurrió un error!</b>;
                 }
             }
         );
@@ -88,7 +88,7 @@ export default function InfoApp() {
     useEffect(() => {
         const dispositivos = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/status/dispositivos`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/status/dispositivos`;
                 const response = await fetchData(url);
 
                 if (!response.ok) {

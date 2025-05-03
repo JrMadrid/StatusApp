@@ -18,7 +18,7 @@ export default function Navbar() {
     /* Función para cerrar sesión */
     const Logout = async () => {
         return toast.promise(
-            fetchData(`http://${process.env.REACT_APP_HOST}/out`).then(async (response) => {
+            fetchData(`http://${process.env.REACT_APP_HOST}/auth/out`).then(async (response) => {
                 if (!response.ok) {
                     throw new Error('Sin respuesta');
                 }

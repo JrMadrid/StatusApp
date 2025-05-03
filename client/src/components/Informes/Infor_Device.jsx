@@ -1,7 +1,7 @@
 /* COMPONENTE DE INFORME -- DISPOSITIVOS */
 import { React, useEffect, useState } from 'react';
 import fetchData from '../../api/connect.js';
-import Pingdispo from '../../utils/ping.jsx';
+import Pingdispo from '../Elements/ping.jsx';
 import ALLPDF from '../../components/PDF/AllPDF.jsx'
 import { ListExcel } from '../Listas/Lista_Excel.jsx';
 import '../css/Infor_Device.css';
@@ -16,7 +16,7 @@ export default function InfoDevice() {
     useEffect(() => {
         const dispositivos = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/devices/dispositivos`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/devices/dispositivos`;
                 const response = await fetchData(url);
 
                 if (!response.ok) {
@@ -37,7 +37,7 @@ export default function InfoDevice() {
 
     const appData = async (dispo) => {
         try {
-            const response = await fetchData(`http://${process.env.REACT_APP_HOST}/devices/device/${dispo}`);
+            const response = await fetchData(`http://${process.env.REACT_APP_HOST}/informe/devices/device/${dispo}`);
             if (!response.ok) {
                 throw new Error('Sin respuesta');
             }

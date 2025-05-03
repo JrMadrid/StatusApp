@@ -8,7 +8,7 @@ const PanelBiometrico = (acceso) => {
 
     const comando = async (commandId) => {
         toast.promise(
-            axios.post(`http://${process.env.REACT_APP_HOST}/status/aplicacion/solicitud`, { id: commandId })
+            axios.post(`http://${process.env.REACT_APP_HOST}/informe/status/aplicacion/solicitud`, { id: commandId })
                 .then(response => {
                     if (response.status !== 200) {
                         throw new Error('Sin respuesta');
@@ -26,7 +26,7 @@ const PanelBiometrico = (acceso) => {
                     }
                 },
                 error: () => {
-                    return <b>Sin información, ocurrió un error!</b>;
+                    return <b>!Ocurrió un error!</b>;
                 },
             },
             {

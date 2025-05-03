@@ -9,7 +9,7 @@ const LoginPanel = () => {
     const [error, setError] = useState('');
 
     // URL del backend para hacer login
-    const ipLogin = `http://${process.env.REACT_APP_HOST}/login/user`;
+    const ipLogin = `http://${process.env.REACT_APP_HOST}/auth/login/user`;
 
     // Función para manejar el submit del formulario
     const handleSubmit = async (e) => {

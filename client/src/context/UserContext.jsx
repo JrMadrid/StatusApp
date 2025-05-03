@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => { // children es el componente que
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetchData(`http://${process.env.REACT_APP_HOST}/api/user`); 
+                const response = await fetchData(`http://${process.env.REACT_APP_HOST}/auth/api/user`); 
                 if (!response.ok) {
                     throw new Error('Sin respuesta');
                 }

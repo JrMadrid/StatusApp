@@ -1,6 +1,6 @@
 /* PANTALLA VACIA INFORMACION PARA INFORME DE SUCURSAL */
 import { React } from "react";
-import Pingdispo from "../../../utils/ping.jsx";
+import Pingdispo from "../../Elements/ping";
 import { HiExternalLink } from "react-icons/hi"
 export default function InfoAppMT(data) {
 

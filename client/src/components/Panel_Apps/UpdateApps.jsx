@@ -26,7 +26,7 @@ const UpdateApps = () => {
         setMessage('');
 
         try {
-            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/apps/dispositivos/actualizar`, formData);
+            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/dispositivos/actualizar`, formData);
             window.location.reload();
             setMessage(response.data.message || 'Dispositivo actualizado exitosamente');
         } catch (error) {
