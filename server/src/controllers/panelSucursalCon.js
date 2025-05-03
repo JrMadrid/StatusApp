@@ -146,12 +146,12 @@ const patchSucursal = async (req, res) => {
             await transaction.begin();
 
             const request = new sql.Request(transaction);
-            
+
             let query = '';
             if (updates.length !== 0) { // Si hay cambios
                 query = `UPDATE sucursales SET ${updates.join(', ')} WHERE economico = '${numeroE}'`;
             }
-            
+
             request.input('economico', sql.VarChar, economico);
             request.input('canal', sql.VarChar, canal);
             request.input('nombre', sql.VarChar, nombre);
@@ -247,7 +247,8 @@ const deleteSucursal = async (req, res) => {
             await request.query(`DELETE FROM sucursales WHERE economico = '${numeroE}'`); // Se elimina la sucursal
             await request.query(`DELETE FROM mantenimiento WHERE economico = '${numeroE}'`); // Se eliminan los mantenimientos de la sucursal
             await request.query(`DELETE FROM informes WHERE economico = '${numeroE}'`); // Se eliminan los informes de la sucursal
-            await request.query(`UPDATE dispositivos SET economico = '000000' FROM dispositivos WHERE economico = ${numeroE}`); // Sus dispositivos pasan a sucursal especial "Sin establecer"
+            await request.query(`DELETE FROM dispositivos WHERE economico = '${numeroE}' AND (ip LIKE '000.%' OR ip LIKE '001.%')`); // Se eliminan las ips de los dispositivos no validas de la sucursal
+            await request.query(`UPDATE dispositivos SET economico = '000000' FROM dispositivos WHERE economico = ${numeroE} AND (ip NOT LIKE '000.%' OR ip NOT LIKE '001.%')`); // Sus dispositivos pasan a sucursal especial "Sin establecer"
             await request.query('ALTER TABLE informes CHECK CONSTRAINT FK_informes_sucursales');
             await request.query('ALTER TABLE mantenimiento CHECK CONSTRAINT FK_mantenimiento_sucursales');
             await request.query('ALTER TABLE dispositivos CHECK CONSTRAINT fk_economico');
