@@ -1,7 +1,7 @@
 /* PAGINA DE INFORME -- DISPOSITIVOS */
 import { React, useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
-import InfoDevice from '../../components/Informes/Infor_Device.jsx';
+import InfoDispositivo from '../../components/Informes/Infor_Dispositivo.jsx';
 
 const DeviceInfo = () => {
     const user = useContext(UserContext);
@@ -10,7 +10,7 @@ const DeviceInfo = () => {
         <>
             {user && (user.id === 1 || user.id === 2 || user.id === 3 || user.id === 4) && ( // TODOS
                 <div>
-                    <InfoDevice />
+                    <InfoDispositivo />
                 </div>
             )}
         </>

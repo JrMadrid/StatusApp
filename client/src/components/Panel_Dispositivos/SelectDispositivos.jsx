@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import fetchData from '../../api/connect.js'; 
 import { Paginador } from '../Elements/Paginador.jsx';
 
-const SelectApps = () => {
+const SelectDispositivos = () => {
     const [data, setData] = useState([]);
     const [dispolist, setDispolist] = useState([]); 
     const [count, setCount] = useState(0);
@@ -13,9 +13,9 @@ const SelectApps = () => {
         const dispositivos = async () => {
             try {
                 const response = await fetchData(url);
-                const aplicaciones = await response.json();
-                setCount(aplicaciones.length)
-                setData(aplicaciones);
+                const dispositivos = await response.json();
+                setCount(dispositivos.length)
+                setData(dispositivos);
 
             } catch (error) {
                 console.error('Error consiguiendo los datos: ', error);
@@ -61,4 +61,4 @@ const SelectApps = () => {
     )
 };
 
-export default SelectApps;
+export default SelectDispositivos;

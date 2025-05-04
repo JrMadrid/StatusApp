@@ -1,20 +1,20 @@
 /* PAGINA DE INFORME -- SUCURSALES */
 import { React, useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
-import InfoApp from '../../components/Informes/Infor_App.jsx';
+import InfoSucursal from '../../components/Informes/Infor_Sucursal.jsx';
 
-const AppInfo = () => {
+const SucursalInfo = () => {
     const user = useContext(UserContext);
 
     return (
         <>
             {user && (user.id === 1 || user.id === 2 || user.id === 3 || user.id === 4) && ( // TODOS
                 <div>
-                    <InfoApp />
+                    <InfoSucursal />
                 </div>
             )}
         </>
     );
 };
 
-export default AppInfo;
+export default SucursalInfo;

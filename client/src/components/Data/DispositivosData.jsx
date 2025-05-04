@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import fetchData from '../../api/connect.js';
 import { Paginador } from '../Elements/Paginador.jsx';
 
-const AplicacionTable = () => {
-    const [data, setData] = useState([]); // Datos
-    const [dispolist, setDispolist] = useState([]); // Lista de dispositivos
+const DispositivoTable = () => {
+    const [data, setData] = useState([]);
+    const [dispolist, setDispolist] = useState([]);
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        const url = `http://${process.env.REACT_APP_HOST}/api/aplicaciones`;
+        const url = `http://${process.env.REACT_APP_HOST}/api/dispositivos`;
         const aplicaciones = async () => {
             try {
                 const response = await fetchData(url); 
@@ -56,9 +56,9 @@ const AplicacionTable = () => {
 
     return (
         <>
-            <Paginador tipo='aplicacion' titulo='DISPOSITIVOS' placeholder='Buscar por Dispositivo, IP, Económico, Canal, o Sucursal' data={data} eleccion={eleccion} excel='si' save='Dispositivos' cantidad={count} listaDispositivos={dispolist} />
+            <Paginador tipo='dispositivo' titulo='DISPOSITIVOS' placeholder='Buscar por Dispositivo, IP, Económico, Canal, o Sucursal' data={data} eleccion={eleccion} excel='si' save='Dispositivos' cantidad={count} listaDispositivos={dispolist} />
         </>
     );
 };
 
-export { AplicacionTable };
+export { DispositivoTable };

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from '../../api/axiosConfig'; 
 
-const DeleteApps = () => {
+const DeleteDispositivo = () => {
     const [formData, setFormData] = useState({
         id: ''
     });
@@ -49,4 +49,4 @@ const DeleteApps = () => {
     );
 };
 
-export default DeleteApps;
+export default DeleteDispositivo;

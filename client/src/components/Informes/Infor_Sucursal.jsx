@@ -11,10 +11,10 @@ import InfoAppMEDIUM from './screens/MEDIUMscreen.jsx';
 import InfoAppSMALL from './screens/SMALLscreen.jsx';
 import InfoAppMT from './screens/MTscreen.jsx';
 import '../css/Infor_App.css';
-import { HiExternalLink } from "react-icons/hi"
+import { HiExternalLink } from "react-icons/hi";
 import logoSoporte from '../../imgs/LogoSoporte.png';
 
-export default function InfoApp() {
+export default function InfoSucursal() {
     const [impre, SetImpre] = useState(false);
     const [impreE, SetImpreE] = useState(false);
     const [appslist, setAppslist] = useState([]);

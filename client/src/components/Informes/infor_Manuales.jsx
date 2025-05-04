@@ -12,7 +12,7 @@ export default function InfoManual() {
     useEffect(() => {
         const manualinfo = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/manuales/info`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/manuales/info`;
                 const response = await fetchData(url);
 
                 if (!response.ok) {
@@ -31,7 +31,7 @@ export default function InfoManual() {
     useEffect(() => {
         const manualar = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/manuales/manual`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/manuales/manual`;
                 const response = await fetchData(url);
 
                 if (!response.ok) { throw new Error('Sin respuesta'); }

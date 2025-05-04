@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from '../../api/axiosConfig'; 
 
-const PostApps = () => {
+const PostDispositivo = () => {
     const [formData, setFormData] = useState({
         ip: '',
         economico: '',
@@ -62,4 +62,4 @@ const PostApps = () => {
     );
 };
 
-export default PostApps;
+export default PostDispositivo;

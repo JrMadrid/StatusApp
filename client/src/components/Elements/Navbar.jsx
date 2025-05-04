@@ -119,7 +119,7 @@ export default function Navbar() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/aplicaciones">
+                            <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/dispositivos">
                                 Dispositivos
                             </NavLink>
                         </li>

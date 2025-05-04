@@ -2,13 +2,13 @@
 import { React, useEffect, useState } from 'react';
 import fetchData from '../../api/connect.js';
 import Pingdispo from '../Elements/ping.jsx';
-import ALLPDF from '../../components/PDF/AllPDF.jsx'
+import ALLPDF from '../PDF/AllPDF.jsx'
 import { ListExcel } from '../Listas/Lista_Excel.jsx';
 import '../css/Infor_Device.css';
 import logoSoporte from '../../imgs/LogoSoporte.png';
 import { HiExternalLink, HiFastForward } from "react-icons/hi";
 
-export default function InfoDevice() {
+export default function InfoDispositivo() {
     const [appslist, setAppslist] = useState([]);
     const [content, setContent] = useState([]);
     const [data, setData] = useState([]);

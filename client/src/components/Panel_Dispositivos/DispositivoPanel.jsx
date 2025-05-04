@@ -1,12 +1,12 @@
 /* COMPONENTE DE PANEL DE ADMINISTRACIÓN DE DISPOSITIVOS */
 import React, { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import PostApps from "./PostApps";
-import UpdateApps from "./UpdateApps";
-import DeleteApps from "./DeleteApps";
+import PostDispositivo from "./PostDispositivo";
+import UpdateDispositivo from "./UpdateDispositivo";
+import DeleteDispositivo from "./DeleteDispositivo";
 import './../css/panel.css';
 
-const AppsPanel = () => {
+const DispositivosPanel = () => {
     const user = useContext(UserContext);
 
     return (
@@ -15,9 +15,9 @@ const AppsPanel = () => {
                 <div className='cajamadre'>
                     <h3>Administración</h3>
                     <div className='cajahija'>
-                        <PostApps />
-                        <UpdateApps />
-                        <DeleteApps />
+                        <PostDispositivo />
+                        <UpdateDispositivo />
+                        <DeleteDispositivo />
                     </div >
                 </div >
             )}
@@ -25,4 +25,4 @@ const AppsPanel = () => {
     )
 };
 
-export default AppsPanel;
+export default DispositivosPanel;

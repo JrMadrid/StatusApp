@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from '../../api/axiosConfig'; 
 
-const UpdateApps = () => {
+const UpdateDispositivo = () => {
     const [formData, setFormData] = useState({
         economico: '',
         ip: '',
@@ -80,5 +80,5 @@ const UpdateApps = () => {
     );
 };
 
-export default UpdateApps;
+export default UpdateDispositivo;
 

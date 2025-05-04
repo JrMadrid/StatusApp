@@ -12,7 +12,7 @@ export default function InfoInforme() {
     useEffect(() => {
         const manualinfo = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/informes/info`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/informes/info`;
                 const response = await fetchData(url);
 
                 if (!response.ok) {
@@ -31,7 +31,7 @@ export default function InfoInforme() {
     useEffect(() => {
         const manualar = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/informes/informe`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/informes/informe`;
                 const response = await fetchData(url);
 
                 if (!response.ok) { throw new Error('Sin respuesta'); }

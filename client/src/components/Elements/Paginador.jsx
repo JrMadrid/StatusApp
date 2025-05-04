@@ -46,7 +46,7 @@ const Paginador = (props) => {
                 canal.includes(Busqueda.toLowerCase()) || nombre.includes(Busqueda.toLowerCase()) || economico.includes(Busqueda.toLowerCase()) || ingresponsable.includes(Busqueda.toLowerCase())
             );
         }
-        else if (props.tipo === 'dispositivos' || props.tipo === 'aplicacion') {
+        else if (props.tipo === 'dispositivos' || props.tipo === 'dispositivo') {
             if (item.ip.startsWith('000.')) {
                 item.ip = 'Sin inventario'
             }
@@ -193,7 +193,7 @@ const Paginador = (props) => {
                 )}
 
                 {/* APLICATIVO & GEOGRAFIA - DISPOSITIVOS */}
-                {user && (user.id === 3 || user.id === 4) && props.tipo === 'aplicacion' && (
+                {user && (user.id === 3 || user.id === 4) && props.tipo === 'dispositivo' && (
                     <>
                         <div className='cajahijo'>
                             <table className='tablaData'>
