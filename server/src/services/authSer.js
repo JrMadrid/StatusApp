@@ -23,4 +23,4 @@ export function definirTipoUsuario(session) {
     }
 
     return user;
-}
+};

@@ -14,20 +14,20 @@ const __dirname = path.dirname(__filename); // Obtiene el directorio del archivo
 
 /* Importar Routers */
 import authRou from './routes/authRou.js'; // Rutas de autenticación de usuarios
-import dataSucursalRou from './routes/dataSucursalRou.js'; // Rutas para ver los datos de las sucursales
-import dataAplicacionRou from './routes/dataDispositivoRou.js'; // Rutas para ver los datos de las dispositivos
-import dataMantenimientoRou from './routes/dataMantenimientoRou.js'; // Rutas para ver los datos de los mantenimientos
-import panelUserRou from './routes/panelUsersRou.js'; // Rutas para administrar usuarios
-import panelSucursalRou from './routes/panelSucursalRou.js' // Rutas para administrar sucursales
-import panelAppsRou from './routes/panelAppsRou.js'; // Rutas para administrar dispositivos
-import panelMantenimientoRou from './routes/panelMatenimientoRou.js'; // Rutas para administrar mantenimientos
-import panelManualesRou from './routes/panelManualesRou.js' // Rutas para administrar manuales
-import panelInformeRou from './routes/panelInformeRou.js'; // Rutas para administrar informes
-import AppInfoRou from './routes/AppInfoRou.js'; // Rutas de informe -- Sucursal
-import DeviceInfoRou from './routes/DeviceInfoRou.js'; // Rutas de informe -- Dispositivos
-import ManteInfoRou from './routes/ManteInfoRou.js'; // Rutas de informe -- Mantenimiento
-import ManualInfoRou from './routes/ManualInfoRou.js'; // Rutas de informe -- Manual
-import InformeInfoRou from './routes/InformeInfoRou.js'; // Rutas de informe -- Informes
+import dataSucursalRou from './routes/Data/dataSucursalRou.js'; // Rutas para ver los datos de las sucursales
+import dataDispositivosRou from './routes/Data/dataDispositivosRou.js'; // Rutas para ver los datos de las dispositivos
+import dataMantenimientoRou from './routes/Data/dataMantenimientoRou.js'; // Rutas para ver los datos de los mantenimientos
+import panelUserRou from './routes/Paneles/panelUsersRou.js'; // Rutas para administrar usuarios
+import panelSucursalRou from './routes/Paneles/panelSucursalRou.js' // Rutas para administrar sucursales
+import panelDispositivosRou from './routes/Paneles/panelDispositivosRou.js'; // Rutas para administrar dispositivos
+import panelMantenimientoRou from './routes/Paneles/panelMatenimientoRou.js'; // Rutas para administrar mantenimientos
+import panelManualesRou from './routes/Paneles/panelManualesRou.js' // Rutas para administrar manuales
+import panelInformeRou from './routes/Paneles/panelInformeRou.js'; // Rutas para administrar informes
+import SucursalInfoRou from './routes/Informes/SucursalInfoRou.js'; // Rutas de informe -- Sucursal
+import DispositivosInfoRou from './routes/Informes/DispositivosInfoRou.js'; // Rutas de informe -- Dispositivos
+import ManteInfoRou from './routes/Informes/ManteInfoRou.js'; // Rutas de informe -- Mantenimiento
+import ManualInfoRou from './routes/Informes/ManualInfoRou.js'; // Rutas de informe -- Manual
+import InformeInfoRou from './routes/Informes/InformeInfoRou.js'; // Rutas de informe -- Informes
 
 /* Manejo de errores globales */
 process.on('uncaughtException', (error) => { // Manejo de excepciones no controladas
@@ -75,21 +75,21 @@ app.use(session({
 app.use(express.static(path.join(__dirname, '../public'))); // Middleware para servir archivos estáticos desde el directorio 'public'
 
 /* Rutas */
-app.use('', authRou); // Rutas de autenticación de usuarios
+app.use('/auth', authRou); // Rutas de autenticación de usuarios
 app.use('/api', dataSucursalRou); // Rutas para ver los datos de las sucursales
-app.use('/api', dataAplicacionRou); // Rutas para ver los datos de las dispositivos
+app.use('/api', dataDispositivosRou); // Rutas para ver los datos de las dispositivos
 app.use('/api', dataMantenimientoRou); // Rutas para ver los datos de los mantenimientos
 app.use('/panel', panelUserRou); // Rutas para administrar usuarios
 app.use('/panel', panelSucursalRou);  // Rutas para administrar sucursales
-app.use('/apps', panelAppsRou); // Rutas para administrar dispositivos
+app.use('/panel', panelDispositivosRou); // Rutas para administrar dispositivos
 app.use('/panel', panelMantenimientoRou); // Rutas para administrar mantenimientos
 app.use('/panel', panelManualesRou); // Rutas para administrar manuales
 app.use('/panel', panelInformeRou); // Rutas para administrar informes
-app.use('/status', AppInfoRou); // Rutas de informe -- Sucursal
-app.use('/devices', DeviceInfoRou); // Rutas de informe -- Dispositivos
-app.use('/mantes', ManteInfoRou); // Rutas de informe -- Mantenimiento
-app.use('/manuales', ManualInfoRou); // Rutas de informe -- Manual
-app.use('/informes', InformeInfoRou); // Rutas de informe -- Informes
+app.use('/informe', SucursalInfoRou); // Rutas de informe -- Sucursal
+app.use('/informe', DispositivosInfoRou); // Rutas de informe -- Dispositivos
+app.use('/informe', ManteInfoRou); // Rutas de informe -- Mantenimiento
+app.use('/informe', ManualInfoRou); // Rutas de informe -- Manual
+app.use('/informe', InformeInfoRou); // Rutas de informe -- Informes
 // Ruta para manejar todas las peticiones que no coinciden con las rutas definidas anteriormente y servir el index.html
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'index.html')); // Envía el archivo 'index.html' como respuesta a cualquier ruta no definida
