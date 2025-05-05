@@ -1,5 +1,5 @@
 /* MODEL PARA VALIDAR DATOS DE INFORMES */
-import dbConnection from "../db/connection.js";
+import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Comprobar que existe la sucursal antes de cualquier operación con los informes */

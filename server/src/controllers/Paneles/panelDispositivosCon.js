@@ -2,7 +2,7 @@
 import dbConnection from '../../db/connection.js';
 import pingHost from '../../connection/PING.js';
 import sql from 'mssql';
-import { SucursalExiste, IpOcupada, comprobarID } from '../../models/dispositivosMod.js';
+import { SucursalExiste, IpOcupada, comprobarID } from '../../models/Paneles/dispositivosMod.js';
 
 // Pedimos los datos de los dispositivos
 const getDispositivos = async (req, res) => {

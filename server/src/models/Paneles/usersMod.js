@@ -1,5 +1,5 @@
 /* MODEL PARA VALIDAR DATOS DE USUARIOS */
-import dbConnection from "../db/connection.js";
+import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Evitar modificación del administrador */

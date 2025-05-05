@@ -1,5 +1,5 @@
 /* MODEL PARA VALIDAR DATOS DE SUCURSALES */
-import dbConnection from "../db/connection.js";
+import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Comprobar que el economico no esta ocupado */

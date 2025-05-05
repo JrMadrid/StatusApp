@@ -1,6 +1,6 @@
 /* CONTROLADORES DE LA INFORMACIÓN DE LOS MANTENIMIENTOS */
 import dbConnection from '../../db/connection.js';
-import { comprobarID, comprobarFechaRealizada, ConstanciaExiste, comprobarSuMantenimiento, ecoSucursal, nextFEstimada } from '../../models/mantenimientoMod.js';
+import { comprobarID, comprobarFechaRealizada, ConstanciaExiste, comprobarSuMantenimiento, ecoSucursal, nextFEstimada } from '../../models/Paneles/mantenimientoMod.js';
 import sql from 'mssql';
 
 // Pedimos los datos de los mantenimientos de las sucursales

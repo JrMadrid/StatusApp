@@ -1,5 +1,5 @@
 /* MODEL PARA VALIDAR DATOS DE MANUALES */
-import dbConnection from "../db/connection.js";
+import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Comprobar que ID del manual existe para corrobar ejecución */

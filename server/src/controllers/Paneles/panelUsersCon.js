@@ -1,6 +1,6 @@
 /* CONTROLADORES DE PANEL DE USUARIOS */
 import dbConnection from '../../db/connection.js';
-import { IDdelAdmin, NicknameOcupado, comprobarID, nombreResponsable } from '../../models/usersMod.js';
+import { IDdelAdmin, NicknameOcupado, comprobarID, nombreResponsable } from '../../models/Paneles/usersMod.js';
 import sql from 'mssql';
 import bcrypt from 'bcryptjs'; // bcrypt para encriptar la contraseña
 
