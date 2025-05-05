@@ -1,7 +1,7 @@
 /* CONTROLADORES DE PANEL DE INFORMES */
 import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
-import { SucursalExiste, comprobarID } from '../../models/Paneles/informeMod.js';
+import { SucursalExiste, comprobarID } from '../../models/Paneles/panelInformeMod.js';
 
 // Pedimos los datos de los informes
 const getInformes = async (req, res) => {

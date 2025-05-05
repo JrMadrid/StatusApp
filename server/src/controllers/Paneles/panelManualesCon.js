@@ -1,7 +1,7 @@
 /* CONTROLADORES DE PANEL DE MANUALES */
 import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
-import { comprobarID } from '../../models/Paneles/manualMod.js';
+import { comprobarID } from '../../models/Paneles/panelManualMod.js';
 
 // Pedimos los datos de los manuales
 const getManuales = async (req, res) => {

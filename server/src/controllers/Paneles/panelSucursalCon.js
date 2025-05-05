@@ -1,7 +1,7 @@
 /* CONTROLADORES DE PANEL DE SUCURSALES */
 import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
-import { EconomicoOcupado, comprobarID, Neconomico, IngResponsable } from '../../models/Paneles/sucursalMod.js';
+import { EconomicoOcupado, comprobarID, Neconomico, IngResponsable } from '../../models/Paneles/panelSucursalMod.js';
 import e from 'express';
 
 // Pedimos los datos de las sucursales

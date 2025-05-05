@@ -1,7 +1,7 @@
 /* CONTROLADORES DE PANEL DE MANTENIMIENTOS */
 import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
-import { SucursalExiste, comprobarFechaEstimada, comprobarID } from '../../models/Paneles/mantenimientoMod.js';
+import { SucursalExiste, comprobarFechaEstimada, comprobarID } from '../../models/Paneles/panelMantenimientoMod.js';
 
 // Pedimos los datos de los mantenimientos
 const getMantenimientos = async (req, res) => {
