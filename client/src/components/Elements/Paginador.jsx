@@ -8,7 +8,7 @@ import { ListExcel } from '../Listas/Lista_Excel.jsx';
 import { ListPDF } from '../Listas/Lista_PDF.jsx';
 import { UserContext } from '../../context/UserContext';
 import ReactPaginate from 'react-paginate';
-import ping from '../../tools/ping.jsx';
+import ping from '../../utils/ping.jsx';
 import { FaHouseUser, FaToolbox, FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { HiStatusOnline, HiExternalLink, HiDocumentDownload, HiEye } from "react-icons/hi";
 import logo from '../../imgs/LogoSoporte.png';
