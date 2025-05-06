@@ -4,7 +4,7 @@ import fetchData from '../../api/connect.js';
 import Pingdispo from '../Elements/ping.jsx';
 import ALLPDF from '../PDF/AllPDF.jsx'
 import { ListExcel } from '../Listas/Lista_Excel.jsx';
-import '../css/Infor_Device.css';
+import '../css/Infor_Dispositivo.css';
 import logoSoporte from '../../imgs/LogoSoporte.png';
 import { HiExternalLink, HiFastForward } from "react-icons/hi";
 

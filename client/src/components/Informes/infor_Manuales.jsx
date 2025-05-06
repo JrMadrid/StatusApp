@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';
 import logoSoporte from '../../imgs/LogoSoporte.png';
-import '../css/Infor_App.css';
+import '../css/Infor_Sucursal.css';
 
 export default function InfoManual() {
     const [manualInfo, setManualInfo] = useState({});

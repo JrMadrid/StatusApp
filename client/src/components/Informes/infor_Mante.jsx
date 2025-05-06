@@ -7,7 +7,7 @@ import PDFConstancia from '../PDF/ConstanciaPDF.jsx';
 import PDFConstancias from '../PDF/ConstanciasPDF.jsx';
 import JPGConstancia from '../PDF/ConstanciaJPG.jsx';
 import { ListExcel } from '../Listas/Lista_Excel.jsx';
-import '../css/Infor_App.css';
+import '../css/Infor_Sucursal.css';
 import logoSoporte from '../../imgs/LogoSoporte.png';
 
 export default function InfoMante() {

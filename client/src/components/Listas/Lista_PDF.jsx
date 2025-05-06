@@ -1,235 +1,133 @@
 /* COMPONENTE DE BOTON DESCARGAR LISTA EN PDF */
 import React, { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import pdfMake from 'pdfmake/build/pdfmake';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import { Toaster, toast } from 'react-hot-toast';
-import date from '../../utils/date.js'
-import imgBase64 from '../../utils/imgBase64.js'
-import '../css/listas.css'
+import date from '../../utils/date.js';
+import imgBase64 from '../../utils/imgBase64.js';
 import logo from '../../imgs/LogoSoporteBN.png';
 import hn from '../../imgs/hnBN.png';
+import '../css/listas.css';
 
-// pdfMake.vfs = pdfFonts.pdfMake.vfs; 
 function ListPDF(props) {
-
     const user = useContext(UserContext);
     const inge = user.username;
     const fecha = date();
-    const downloadPDF = async () => {
 
+    const downloadPDF = async () => {
+        const doc = new jsPDF();
         const logoBase64 = await imgBase64(logo);
         const hnBase64 = await imgBase64(hn);
+        let anchoColumna = 36;
+        
+        // Header con logos y título
+        doc.addImage(logoBase64, 'PNG', 20, 10, 15, 0); // doc.addImage(image, 'PNG', x, y, width, height);
+        doc.setFontSize(14);
+        doc.setFont(undefined, 'bold');
+        doc.text('Soporte Técnico Honduras', 105, 20, { align: 'center' });
+        doc.addImage(hnBase64, 'PNG', 170, 15, 20, 0);;
 
-        let tableBody;
-        let cantidadColumnas = [];
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(12);
+        doc.text(
+            user.id === 4 ? `${props.save} asignadas al ing.${inge}` : `${props.save}`,
+            doc.internal.pageSize.getWidth() / 2,
+            30,
+            { align: 'center' }
+        );
+
+        // Armar cabecera y cuerpo de la tabla
+        let columns = [], rows = [];
+
+        const sin = 'Sin información';
+        const data = props.data;
+
+        // Geografia -- Se omite ing.responsable ya que es el mismo
         if (props.save === 'Sucursales' && user.id === 4) {
-            cantidadColumnas = ['*', '*', '*']
-            tableBody = [
-                [
-                    { text: 'Económico', style: 'tableHeader' },
-                    { text: 'Canal', style: 'tableHeader' },
-                    { text: 'Nombre', style: 'tableHeader' },
-                ],
-                ...props.data.map(item => [
-                    { text: item.economico || 'Sin información' },
-                    { text: item.canal || 'Sin información' },
-                    { text: item.nombre || 'Sin información' },
-                ])
-            ];
-        } else if (props.save === 'Sucursales') {
-            cantidadColumnas = ['*', '*', '*', '*']
-            tableBody = [
-                [
-                    { text: 'Económico', style: 'tableHeader' },
-                    { text: 'Canal', style: 'tableHeader' },
-                    { text: 'Nombre', style: 'tableHeader' },
-                    { text: 'ing. Responsable', style: 'tableHeader' },
-                ],
-                ...props.data.map(item => [
-                    { text: item.economico || 'Sin información' },
-                    { text: item.canal || 'Sin información' },
-                    { text: item.nombre || 'Sin información' },
-                    { text: item.ingresponsable || 'Sin información' },
-                ])
-            ];
+            columns = ['Económico', 'Canal', 'Nombre'];
+            rows = data.map(item => [item.economico || sin, item.canal || sin, item.nombre || sin]);
+            anchoColumna = 60;
         } else if (props.save === 'Dispositivos' && user.id === 4) {
-            cantidadColumnas = ['*', '*', '*', '*']
-            tableBody = [
-                [
-                    { text: 'Dispositivo', style: 'tableHeader' },
-                    { text: 'IP', style: 'tableHeader' },
-                    { text: 'Económico', style: 'tableHeader' },
-                    { text: 'Canal - Sucursal', style: 'tableHeader' },
-                ],
-                ...props.data.map(item => [
-                    { text: item.dispositivo || 'Sin información' },
-                    { text: item.ip || 'Sin información' },
-                    { text: item.economico || 'Sin información' },
-                    { text: `${item.canal} - ${item.sucursal}` || 'Sin información' },
-                ])
-            ];
-        } else if (props.save === 'Dispositivos') {
-            cantidadColumnas = ['*', '*', '*', '*', '*']
-            tableBody = [
-                [
-                    { text: 'Dispositivo', style: 'tableHeader' },
-                    { text: 'IP', style: 'tableHeader' },
-                    { text: 'Económico', style: 'tableHeader' },
-                    { text: 'Canal - Sucursal', style: 'tableHeader' },
-                    { text: 'ing. Responsable', style: 'tableHeader' }
-                ],
-                ...props.data.map(item => [
-                    { text: item.dispositivo || 'Sin información' },
-                    { text: item.ip || 'Sin información' },
-                    { text: item.economico || 'Sin información' },
-                    { text: `${item.canal} - ${item.sucursal}` || 'Sin información' },
-                    { text: item.ingresponsable || 'Sin información' },
-                ])
-            ];
+            columns = ['Dispositivo', 'IP', 'Económico', 'Canal - Sucursal'];
+            rows = data.map(item => [item.dispositivo || sin, item.ip || sin, item.economico || sin, `${item.canal} - ${item.sucursal}` || sin]);
+            anchoColumna = 45;
         } else if (props.save === 'Mantenimientos' && user.id === 4) {
-            cantidadColumnas = ['*', '*', '*']
-            tableBody = [
-                [
-                    { text: 'Económico', style: 'tableHeader' },
-                    { text: 'Fecha Estimada', style: 'tableHeader' },
-                    { text: 'Fecha Realizado	', style: 'tableHeader' },
-                ],
-                ...props.data.map(item => [
-                    { text: item.economico || 'Sin información' },
-                    { text: item.festimada || 'Sin información' },
-                    { text: item.frealizada || 'Sin información' },
-                ])
-            ];
-        } else if (props.save === 'Mantenimientos') {
-            cantidadColumnas = ['*', '*', '*', '*']
-            tableBody = [
-                [
-                    { text: 'Económico', style: 'tableHeader' },
-                    { text: 'Ing. Responsable', style: 'tableHeader' },
-                    { text: 'Fecha Estimada', style: 'tableHeader' },
-                    { text: 'Fecha Realizado	', style: 'tableHeader' },
-                ],
-                ...props.data.map(item => [
-                    { text: item.economico || 'Sin información' },
-                    { text: item.ingresponsable || 'Sin información' },
-                    { text: item.festimada || 'Sin información' },
-                    { text: item.frealizada || 'Sin información' },
-                ])
-            ];
+            columns = ['Económico', 'Fecha Estimada', 'Fecha Realizado'];
+            rows = data.map(item => [item.economico || sin, item.festimada || sin, item.frealizada || sin]);
+            anchoColumna = 60;
         } else if (props.save === 'Informes' && user.id === 4) {
-            cantidadColumnas = ['*', '*', '*']
-            tableBody = [
-                [
-                    { text: 'Económico', style: 'tableHeader' },
-                    { text: 'Canal - Sucursal', style: 'tableHeader' },
-                    { text: 'Fecha Realizado', style: 'tableHeader' },
-                ],
-                ...props.data.map(item => [
-                    { text: item.economico || 'Sin información' },
-                    { text: `${item.canal} - ${item.sucursal}` || 'Sin información' },
-                    { text: item.fecharealizada || 'Sin información' },
-                ])
-            ];
+            columns = ['Económico', 'Canal - Sucursal', 'Fecha Realizado'];
+            rows = data.map(item => [item.economico || sin, `${item.canal} - ${item.sucursal}` || sin, item.fecharealizada || sin]);
+            anchoColumna = 60;
+        } 
+        // Todos los demas
+        else if (props.save === 'Sucursales') {
+            columns = ['Económico', 'Canal', 'Nombre', 'ing. Responsable'];
+            rows = data.map(item => [item.economico || sin, item.canal || sin, item.nombre || sin, item.ingresponsable || sin]);
+            anchoColumna = 45;
+        } else if (props.save === 'Dispositivos') {
+            columns = ['Dispositivo', 'IP', 'Económico', 'Canal - Sucursal', 'ing. Responsable'];
+            rows = data.map(item => [item.dispositivo || sin, item.ip || sin, item.economico || sin, `${item.canal} - ${item.sucursal}` || sin, item.ingresponsable || sin]);
+            anchoColumna = 36;
+        } else if (props.save === 'Mantenimientos') {
+            columns = ['Económico', 'Ing. Responsable', 'Fecha Estimada', 'Fecha Realizado'];
+            rows = data.map(item => [item.economico || sin, item.ingresponsable || sin, item.festimada || sin, item.frealizada || sin]);
+            anchoColumna = 45;
         } else if (props.save === 'Informes') {
-            cantidadColumnas = ['*', '*', '*', '*']
-            tableBody = [
-                [
-                    { text: 'Económico', style: 'tableHeader' },
-                    { text: 'Canal - Sucursal', style: 'tableHeader' },
-                    { text: 'Fecha Realizado', style: 'tableHeader' },
-                    { text: 'Ing. Responsable', style: 'tableHeader' }
-                ],
-                ...props.data.map(item => [
-                    { text: item.economico || 'Sin información' },
-                    { text: `${item.canal} - ${item.sucursal}` || 'Sin información' },
-                    { text: item.fecharealizada || 'Sin información' },
-                    { text: item.ingresponsable || 'Sin información' }
-                ])
-            ];
+            columns = ['Económico', 'Canal - Sucursal', 'Fecha Realizado', 'Ing. Responsable'];
+            rows = data.map(item => [item.economico || sin, `${item.canal} - ${item.sucursal}` || sin, item.fecharealizada || sin, item.ingresponsable || sin]);
+            anchoColumna = 45;
         }
 
-        const docDefinition = {
-            pageSize: 'A4',
-            content: [
-                {
-                    columns: [
-                        { image: logoBase64, width: 25, margin: [0, 0, 0, 0], alignment: 'left' },
-                        { text: 'Soporte Técnico Honduras', style: 'header', width: '*', alignment: 'center' },
-                        { image: hnBase64, width: 40, margin: [0, 0, 0, 0], alignment: 'right' },
-                    ],
-                    margin: [0, 0, 0, 5]
-                },
-                { text: user.id === 4 ? `${props.save} asignadas al ing. ${inge}` : `${props.save}`, style: 'subheader', width: '*', alignment: 'center' },
-                {
-                    table: {
-                        headerRows: 1,
-                        widths: cantidadColumnas,
-                        body: tableBody
-                    },
-                },
-                {
-                    columns: [
-                        { text: `${props.save}: ${props.cantidad}`, style: 'footer1' },
-                        { text: `Fecha de Generación: ${fecha}`, style: 'footer2' },
-                    ],
-                    margin: [0, 0, 0, 5]
-                },
-                { text: '', pageBreak: 'after' }
-            ],
+        // Generar tabla
+        autoTable(doc, {
+            startY: 35,
+            head: [columns],
+            body: rows,
             styles: {
-                header: {
-                    fontSize: 20,
-                    bold: true,
-                    margin: [0, 0, 0, 0]
-                },
-                subheader: {
-                    fontSize: 16,
-                    bold: true,
-                    margin: [0, 0, 0, 0]
-                },
-                text: {
-                    fontSize: 12,
-                    margin: [0, 0, 0, 10]
-                },
-                tableHeader: {
-                    fontSize: 12,
-                    bold: true,
-                    fillColor: '#f3f3f3'
-                },
-                footer1: {
-                    fontSize: 10,
-                    margin: [0, 10, 0, 0],
-                    alignment: 'left'
-                },
-                footer2: {
-                    fontSize: 10,
-                    margin: [0, 10, 0, 0],
-                    alignment: 'right'
-                }
+                fontSize: 9,
+                cellPadding: 2,
             },
-            pageMargins: [20, 40, 20, 40]
-        };
-        let tostada = `No hay información`
-        let guardado = `reporte.pdf`
-        if (props.save === 'Dispositivos' && props.data.length !== 0) {
-            guardado = user.id === 4 ? `Dispositivos-${inge}.pdf` : `Dispositivos.pdf`;
-            tostada = `Dispositivos`
+            headStyles: {
+                fillColor: [120, 120, 120],
+                textColor: 0,
+                fontStyle: 'bold'
+            },
+            columnStyles: columns.reduce((acc, _, idx) => {
+                acc[idx] = { cellWidth: anchoColumna };
+                return acc;
+            }, {}),
+            tableWidth: 'auto', // puedes usar también 'wrap' si ves que se estira mucho
+        });
+
+        // Pie de página
+        const finalY = doc.lastAutoTable.finalY + 10;
+        doc.setFontSize(10);
+        doc.text(`${props.save}: ${props.cantidad}`, 10, finalY);
+        doc.text(`Fecha de Generación: ${fecha}`, doc.internal.pageSize.getWidth() - 10, finalY, { align: 'right' });
+
+        // Nombre del archivo y notificación
+        let guardado = 'reporte.pdf';
+        let tostada = 'No hay información';
+
+        if (props.save === 'Dispositivos' && data.length) {
+            guardado = user.id === 4 ? `Dispositivos-${inge}.pdf` : 'Dispositivos.pdf';
+            tostada = 'Dispositivos';
+        } else if (props.save === 'Sucursales' && data.length) {
+            guardado = user.id === 4 ? `Sucursales-${inge}.pdf` : 'Sucursales.pdf';
+            tostada = 'Sucursales';
+        } else if (props.save === 'Mantenimientos' && data.length) {
+            guardado = user.id === 4 ? `Mantenimientos-${inge}.pdf` : 'Mantenimientos.pdf';
+            tostada = 'Mantenimientos';
+        } else if (props.save === 'Informes' && data.length) {
+            guardado = user.id === 4 ? `Informes-${inge}.pdf` : 'Informes.pdf';
+            tostada = 'Informes';
         }
-        else if (props.save === 'Sucursales' && props.data.length !== 0) {
-            guardado = user.id === 4 ? `Sucursales-${inge}.pdf` : `Sucursales.pdf`;
-            tostada = `Sucursales`
-        }
-        else if (props.save === 'Mantenimientos' && props.data.length !== 0) {
-            guardado = user.id === 4 ? `Mantenimientos-${inge}.pdf` : `Mantenimientos.pdf`;
-            tostada = `Mantenimientos`
-        }
-        else if (props.save === 'Informes' && props.data.length !== 0) {
-            guardado = user.id === 4 ? `Informes-${inge}.pdf` : `Informes.pdf`;
-            tostada = `Informes`
-        }
-        pdfMake.createPdf(docDefinition).download(guardado);
+
+        doc.save(guardado);
         toast(tostada, { position: 'bottom-right' });
-    }
+    };
 
     return (
         <>
@@ -237,6 +135,6 @@ function ListPDF(props) {
             <Toaster />
         </>
     );
-};
+}
 
 export { ListPDF };

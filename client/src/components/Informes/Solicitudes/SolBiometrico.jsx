@@ -2,7 +2,7 @@
 import { React } from "react";
 import { toast } from 'react-hot-toast';
 import axios from '../../../api/axiosConfig';
-import '../../css/Infor_App.css';
+import '../../css/Infor_Sucursal.css';
 
 const PanelBiometrico = (acceso) => {
 

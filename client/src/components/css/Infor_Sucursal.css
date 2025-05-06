@@ -124,13 +124,13 @@
 }
 
 .texto {
-    overflow-y: auto;
-    overflow-x: auto;
     padding: 0 10px;
     min-height: 50vh;
     max-height: 50vh;
-    min-width: 74.6vh;
-    max-width: 74.6vh;
+    overflow-y: auto;
+    min-width: 68.5vh;
+    max-width: 68.5vh;
+    overflow-x: auto;
 }
 
 .texto::-webkit-scrollbar {

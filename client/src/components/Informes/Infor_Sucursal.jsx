@@ -1,16 +1,16 @@
 /* COMPONENTE DE INFORME -- SUCURSALES */
-import { React, useEffect, useState } from 'react'; 
+import { React, useEffect, useState } from 'react';
 import Pingdispo from '../Elements/ping.jsx';
-import { Toaster, toast } from 'react-hot-toast'; 
-import fetchData from '../../api/connect.js'; 
-import SelectedPDF from '../PDF/SelectedPDF.jsx'; 
-import ALLPDF from '../PDF/AllPDF.jsx'; 
+import { Toaster, toast } from 'react-hot-toast';
+import fetchData from '../../api/connect.js';
+import SelectedPDF from '../PDF/SelectedPDF.jsx';
+import ALLPDF from '../PDF/AllPDF.jsx';
 import { ListExcel } from '../Listas/Lista_Excel.jsx';
 import InfoAppBIG from './screens/BIGscreen.jsx';
 import InfoAppMEDIUM from './screens/MEDIUMscreen.jsx';
 import InfoAppSMALL from './screens/SMALLscreen.jsx';
 import InfoAppMT from './screens/MTscreen.jsx';
-import '../css/Infor_App.css';
+import '../css/Infor_Sucursal.css';
 import { HiExternalLink } from "react-icons/hi";
 import logoSoporte from '../../imgs/LogoSoporte.png';
 
@@ -51,10 +51,10 @@ export default function InfoSucursal() {
             for (let i = 0; i < appslist.length; i++) {
                 if (appslist[i].nombre.startsWith('Laser') && !appslist[i].ip.startsWith('000.') && !appslist[i].ip.startsWith('001.')) {
                     hayImpresoras = true;
-                    break; 
+                    break;
                 }
             }
-            SetImpreE(hayImpresoras); 
+            SetImpreE(hayImpresoras);
         };
         if (appslist.length > 0) {
             checkImpresoras();
@@ -125,7 +125,7 @@ export default function InfoSucursal() {
                                             <a href={`#${index}`} className='appi'>{(dispositivo.ip.startsWith('000.') || dispositivo.ip.startsWith('001.')) ? '' : dispositivo.nombre}</a>
                                         </div>
                                         <div className='pings'>
-                                            <a className='appi2listExte' href={`https://${dispositivo?.ip}`} target='_blank' rel="noreferrer" ><HiExternalLink /></a>
+                                            <a className='appi2listExte' href={`https://${dispositivo?.ip}`} target='_blank' rel="noreferrer" ><HiExternalLink style={{ paddingTop: ' 0.1rem' }} /></a>
                                         </div>
                                     </li>
                                 </>
