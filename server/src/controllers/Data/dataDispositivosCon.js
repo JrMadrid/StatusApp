@@ -1,5 +1,5 @@
 /* CONTROLADRES DE LA INFORMACIÓN DE LOS DISPOSITIVOS */
-import { listarDispositivos, listarNombresDispositivos } from '../../services/Data/dispositivosSer.js';
+import { listarDispositivos, listarNombresDispositivos } from '../../services/Data/dataDispositivosSer.js';
 
 // Pedimos los datos de los dispositivos
 const getDispositivos = async (req, res) => {
