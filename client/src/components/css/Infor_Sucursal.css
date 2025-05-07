@@ -352,7 +352,6 @@
     color: rgb(175, 219, 246);
     font-size: 0.8rem;
     font-family: 'Segoe UI';
-    text-overflow: ellipsis;
 }
 
 .ListItemA:hover .appi {
