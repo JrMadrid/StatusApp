@@ -2,16 +2,24 @@
 // import dbConnection from '../../db/connection.js';
 import sql from 'mssql'
 const isMock = 'true'; // process.env.USE_MOCK accede al valor de la variable de entorno USE_MOCK. Si el valor es la cadena 'true', entonces isMock será true. Si no, será false.
-
-const { UPSssh: RealUPSssh, UPSHardware: RealUPSHardware, UPSDescripcion: RealUPSDescripcion, } = await import('../../connection/UPSssh.js');
-const { UPSssh: MockUPSssh, UPSHardware: MockUPSHardware, UPSDescripcion: MockUPSDescripcion, } = await import('../../mocks/UPSmock.js');
+// UPS
+const { UPSssh: RealUPSssh, UPSHardware: RealUPSHardware, UPSDescripcion: RealUPSDescripcion } = await import('../../connection/UPSssh.js');
+const { UPSssh: MockUPSssh, UPSHardware: MockUPSHardware, UPSDescripcion: MockUPSDescripcion } = await import('../../mocks/UPSmock.js');
 const UPSssh = isMock ? MockUPSssh : RealUPSssh;
 const UPSHardware = isMock ? MockUPSHardware : RealUPSHardware;
 const UPSDescripcion = isMock ? MockUPSDescripcion : RealUPSDescripcion;
 // import { UPSssh, UPSHardware, UPSDescripcion } from '../../connection/UPSssh.js';
-import { ILOssh, ILOHardware, ILODescripcion } from '../../connection/ILOssh.js';
-import { BIOMETRICOtcpip, BiometricoHardware } from '../../connection/BIOMETRICOtcpip.js';
-import { BIOMETRICOsolicitud } from '../../datos/Solicitudes/SolBiometricos.js';
+// import { ILOssh, ILOHardware, ILODescripcion } from '../../connection/ILOssh.js';
+// Biometrico
+const { BIOMETRICOtcpip: RealBIOMETRICOtcpip, BiometricoHardware: RealBiometricoHardware } = await import('../../connection/BIOMETRICOtcpip.js');
+const { BiometricoData: MockBIOMETRICOtcpip, Biometricohardware: MockBiometricoHardware } = await import('../../mocks/BIOMETRICOmock.js');
+const BIOMETRICOtcpip = isMock ? MockBIOMETRICOtcpip : RealBIOMETRICOtcpip;
+const BiometricoHardware = isMock ? MockBiometricoHardware : RealBiometricoHardware;
+// import { BIOMETRICOtcpip, BiometricoHardware } from '../../connection/BIOMETRICOtcpip.js';
+const { BIOMETRICOsolicitud: RealBIOMETRICOsolicitud } = await import('../../datos/Solicitudes/SolBiometricos.js');
+const { BIOMETRICOsolicitudMock: MockBIOMETRICOsolicitud } = await import('../../mocks/Simular/SimBiometrico.js');
+const BIOMETRICOsolicitud = isMock ? MockBIOMETRICOsolicitud : RealBIOMETRICOsolicitud;
+// import { BIOMETRICOsolicitud } from '../../datos/Solicitudes/SolBiometricos.js';
 
 // Pide el número económico
 const economico = async (req, res) => {
