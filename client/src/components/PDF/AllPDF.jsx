@@ -51,9 +51,10 @@ export default function ALLPDF(props) {
 
             y = topMargin;
 
-            // --- INGENIERO RESPONSABLE ---
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(14);
+            
+            // --- INGENIERO RESPONSABLE ---
             const ingText = (user.id === 4)
                 ? `Ing. ${user.username}`
                 : `Ingeniero responsable: ${item.ingresponsable}`;

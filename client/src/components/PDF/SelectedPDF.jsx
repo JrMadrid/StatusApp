@@ -58,18 +58,20 @@ export default function PDF(props) {
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(14);
 
-            if (user.id === 4) {
-                printTextWithAutoPageBreak([`Ing. ${user.username}`]);
-            } else {
-                printTextWithAutoPageBreak([`Ing. Responsable: ${props.ingresponsable}`]);
-            }
+            // --- INGENIERO RESPONSABLE ---
+            const ingText = (user.id === 4)
+                ? `Ing. ${user.username}`
+                : `Ingeniero responsable: ${props.ingresponsable}`;
+            const splitIng = doc.splitTextToSize(ingText, 180);
+            printTextWithAutoPageBreak(splitIng, 15);
 
-            const datosSucursal = [
-                `${props.economico || 'Económico'} ${props.sucursal || 'Sucursal'}`,
-                `${props.nombre || 'Nombre del dispositivo'} ${props.ip || 'IP del dispositivo'}`,
-            ];
-
-            printTextWithAutoPageBreak(datosSucursal);
+            // --- DATOS DE SUCURSAL ---
+            const sucursalLine = `${props.economico || 'Económico'} ${props.sucursal || 'Sucursal'}`;
+            const dispositivoLine = `${props.nombre || 'Nombre del dispositivo'} ${props.ip || 'IP del dispositivo'}`;
+            const splitSucursal = doc.splitTextToSize(sucursalLine, 180);
+            const splitDispositivo = doc.splitTextToSize(dispositivoLine, 180);
+            printTextWithAutoPageBreak(splitSucursal, 15);
+            printTextWithAutoPageBreak(splitDispositivo, 15);
 
             doc.setFont('helvetica', 'normal');
             doc.setFontSize(12);
@@ -109,7 +111,7 @@ export default function PDF(props) {
             // const totalPages = doc.internal.getNumberOfPages();
             // for (let i = 1; i <= totalPages; i++) {
             //     doc.setPage(i);
-                addFooter();
+            addFooter();
             // }
 
             const nombreArchivo = `${props.nombre}_${props.economico}.pdf`;
