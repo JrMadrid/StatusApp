@@ -1,7 +1,14 @@
 /* CONTROLADORES DE INFORME -- SUCURSAL */
 // import dbConnection from '../../db/connection.js';
 import sql from 'mssql'
-import { UPSssh, UPSHardware, UPSDescripcion } from '../../connection/UPSssh.js';
+const isMock = 'true'; // process.env.USE_MOCK accede al valor de la variable de entorno USE_MOCK. Si el valor es la cadena 'true', entonces isMock será true. Si no, será false.
+
+const { UPSssh: RealUPSssh, UPSHardware: RealUPSHardware, UPSDescripcion: RealUPSDescripcion, } = await import('../../connection/UPSssh.js');
+const { UPSssh: MockUPSssh, UPSHardware: MockUPSHardware, UPSDescripcion: MockUPSDescripcion, } = await import('../../mocks/UPSmock.js');
+const UPSssh = isMock ? MockUPSssh : RealUPSssh;
+const UPSHardware = isMock ? MockUPSHardware : RealUPSHardware;
+const UPSDescripcion = isMock ? MockUPSDescripcion : RealUPSDescripcion;
+// import { UPSssh, UPSHardware, UPSDescripcion } from '../../connection/UPSssh.js';
 import { ILOssh, ILOHardware, ILODescripcion } from '../../connection/ILOssh.js';
 import { BIOMETRICOtcpip, BiometricoHardware } from '../../connection/BIOMETRICOtcpip.js';
 import { BIOMETRICOsolicitud } from '../../datos/Solicitudes/SolBiometricos.js';
@@ -49,7 +56,7 @@ const aplicaciones = async (req, res) => {
 
         } catch (error) {
             console.error('Error :', error);
-        } 
+        }
     } else {
         res.redirect('')
     }
@@ -96,7 +103,7 @@ const info = async (req, res) => {
         } catch (error) {
             console.error('Error:', error);
             res.status(500).send("Error al obtener los datos");
-        } 
+        }
     } else {
         res.redirect('')
     }
@@ -165,7 +172,7 @@ const dispositivos = async (req, res) => {
         } catch (error) {
             console.error('Error:', error);
             res.status(500).send("Error al obtener los datos");
-        } 
+        }
     } else {
         res.redirect('')
     }
