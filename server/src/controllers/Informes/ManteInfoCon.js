@@ -1,5 +1,5 @@
 /* CONTROLADORES DE INFORME -- MANTENIMIENTO */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
 
 // Manda las fechas vinculadas al economico
@@ -26,7 +26,7 @@ const economico = async (req, res) => {
 const fechasr = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const economico = req.session.numeroMante;
 
             const query = 'SELECT mante.fecharealizada AS realizado, mante.economico AS economico, sucu.nombre AS sucursal, sucu.ingresponsable as ingresponsable FROM mantenimiento mante INNER JOIN sucursales sucu ON mante.economico = sucu.economico WHERE mante.economico = @economico ORDER BY mante.fecharealizada DESC';
@@ -59,7 +59,7 @@ const info = async (req, res) => {
         try {
             const fechasr = req.params.fechasr;
             if (fechasr && fechasr !== null && fechasr !== 'null') {
-                await dbConnection();
+                // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             
                 const economico = req.session.numeroMante;
 
@@ -97,7 +97,7 @@ const info = async (req, res) => {
 const infos = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const economico = req.session.numeroMante
 
             const constancias = await sql.query(`SELECT constancia FROM mantenimiento WHERE economico = '${economico}' AND constancia IS NOT NULL`);

@@ -1,11 +1,11 @@
 /* MODEL PARA VALIDAR DATOS DE MANUALES */
-import dbConnection from "../../db/connection.js";
+// import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Comprobar que ID del manual existe para corrobar ejecución */
 async function comprobarID(id) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
         const query = 'SELECT id FROM manuales WHERE id = @id';
         const request = new sql.Request();
         request.input('id', sql.VarChar, id);

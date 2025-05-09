@@ -1,11 +1,11 @@
 /* MODEL PARA VALIDAR DATOS DE INFORMES */
-import dbConnection from "../../db/connection.js";
+// import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Comprobar que existe la sucursal antes de cualquier operación con los informes */
 async function SucursalExiste(economico) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
         const query = 'SELECT economico FROM sucursales WHERE economico = @economico';
         const request = new sql.Request();
         request.input('economico', sql.VarChar, economico)
@@ -20,7 +20,7 @@ async function SucursalExiste(economico) {
 /* Comprobar que ID del informe existe para corrobar ejecución */
 async function comprobarID(id) {
     try {
-        await dbConnection()
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor
         const query = 'SELECT id FROM informes WHERE id = @id'
         const request = new sql.Request();
         request.input('id', sql.VarChar, id)

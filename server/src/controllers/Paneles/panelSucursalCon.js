@@ -1,5 +1,5 @@
 /* CONTROLADORES DE PANEL DE SUCURSALES */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
 import { EconomicoOcupado, comprobarID, Neconomico, IngResponsable } from '../../models/Paneles/panelSucursalMod.js';
 import e from 'express';
@@ -8,7 +8,7 @@ import e from 'express';
 const getSucursales = async (req, res) => {
     if (req.session.admin) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const result = await sql.query('SELECT id, economico, canal, nombre, ingresponsable FROM sucursales WHERE economico != 000000 ORDER BY canal ASC, nombre ASC');
             res.status(200).json(result.recordset);
         } catch (error) {
@@ -33,7 +33,7 @@ const postSucursal = async (req, res) => {
     }
     if (req.session.admin) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const { economico, canal, nombre, ingresponsable, rellenar } = req.body;
 
             let dispos;
@@ -91,7 +91,7 @@ const updateSucursal = async (req, res) => {
     if (req.session.admin) {
         let transaction;
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const { economico, canal, nombre, id, ingresponsable, rellenar } = req.body;
 
             const IdExiste = await comprobarID(id);
@@ -224,7 +224,7 @@ const deleteSucursal = async (req, res) => {
         let transaction;
         try {
 
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 
             const { id } = req.body;
 

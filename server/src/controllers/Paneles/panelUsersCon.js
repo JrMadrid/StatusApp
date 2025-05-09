@@ -1,5 +1,5 @@
 /* CONTROLADORES DE PANEL DE USUARIOS */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import { IDdelAdmin, NicknameOcupado, comprobarID, nombreResponsable } from '../../models/Paneles/panelUsersMod.js';
 import sql from 'mssql';
 import bcrypt from 'bcryptjs'; // bcrypt para encriptar la contraseña
@@ -7,7 +7,7 @@ import bcrypt from 'bcryptjs'; // bcrypt para encriptar la contraseña
 const getUsers = async (req, res) => {
     if (req.session.admin) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             let result = await sql.query('SELECT id, nickname, psw, tipo FROM users');
             res.status(200).json(result.recordset);
 
@@ -24,7 +24,7 @@ const getUsers = async (req, res) => {
 const postUser = async (req, res) => {
     if (req.session.admin) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             let isAdmin = 0;
             let { nickname, psw, tipo } = req.body;
             if (tipo === 'Administrador') {
@@ -71,7 +71,7 @@ const updateUser = async (req, res) => {
     if (req.session.admin) {
         let transaction;
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             let isAdmin;
             let { nickname, psw, id, tipo } = req.body;
 
@@ -168,7 +168,7 @@ const deleteUser = async (req, res) => {
     let transaction;
     if (req.session.admin) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const { id } = req.body;
 
             const IdExiste = await comprobarID(id);
@@ -219,7 +219,7 @@ const deleteUser = async (req, res) => {
 const logoutaAllUsers = async (req, res) => {
     if (req.session.admin) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             await sql.query('DELETE FROM Sessions');
 
         } catch (error) {

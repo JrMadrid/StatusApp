@@ -1,11 +1,11 @@
 /* MODEL PARA VALIDAR DATOS DE SUCURSALES */
-import dbConnection from "../../db/connection.js";
+// import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Comprobar que el economico no esta ocupado */
 async function EconomicoOcupado(economico) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
         const query = 'SELECT economico FROM sucursales WHERE economico = @economico';
         const request = new sql.Request();
         request.input('economico', sql.VarChar, economico);
@@ -20,7 +20,7 @@ async function EconomicoOcupado(economico) {
 /* Comprobar que ID de la sucursal existe para corrobar ejecución */
 async function comprobarID(id) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
         const query = 'SELECT id FROM sucursales WHERE id = @id';
         const request = new sql.Request();
         request.input('id', sql.VarChar, id)
@@ -35,7 +35,7 @@ async function comprobarID(id) {
 /* Conseguir el economico para transacción */
 async function Neconomico(id) {
     try {
-        await dbConnection()
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor
         const query = 'SELECT economico FROM sucursales WHERE id = @id'
         const request = new sql.Request();
         request.input('id', sql.VarChar, id)
@@ -50,7 +50,7 @@ async function Neconomico(id) {
 /* Comprobar que existe el ingresponsable */
 async function IngResponsable(ingresponsable) {
     try {
-        await dbConnection()
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor
         const query = 'SELECT nickname FROM users WHERE nickname = @ingresponsable'
         const request = new sql.Request();
         request.input('ingresponsable', sql.VarChar, ingresponsable)

@@ -1,6 +1,7 @@
 /* INICIAR EL SERVIDOR */
 import { connectToDatabase, syncStore } from './db/session.js';
-import app from "./app.js"; 
+import dbConnection from './db/connection.js';
+import app from "./app.js";
 import config from "./configs/APP_config.js"; // Importo la configuración con las credenciales y el puerto de la aplicación desde el archivo de configuración
 import debug from 'debug'; // Importamos la librería debug para el manejo de logs
 
@@ -18,7 +19,8 @@ if (process.env.NODE_ENV === 'development') {
 /* INICIAR EL SERVIDOR */
 const startServer = async () => { // Iniciamos el servidor
   try {
-    await connectToDatabase(); // Conectamos a la base de datos
+    await dbConnection(); // Conectamos a la base de datos principal
+    await connectToDatabase(); // Conectamos a la base de datos de sesiones
     await syncStore(); // Sincronizamos la tienda de sesiones
     app.listen(port, () => { // Iniciamos el servidor en el puerto definido
       console.log(`Servidor backend escuchando en ${host}:${port}`);

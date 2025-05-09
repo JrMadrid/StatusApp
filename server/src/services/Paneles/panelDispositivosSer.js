@@ -1,11 +1,11 @@
 /* SERVICIOS PARA VALIDAR DATOS DE DISPOSITIVOS */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
 import { SucursalExiste, IpOcupada, comprobarID } from '../../models/Paneles/panelDispositivosMod.js';
 
 /* Obtener todos los dispositivos registrados */
 export async function obtenerDispositivos() {
-    await dbConnection();
+    // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
     const query = `
         SELECT 
             dispo.nombre AS dispositivo,
@@ -31,7 +31,7 @@ export async function agregarDispositivo({ economico, ip, nombre, descripcion, g
     const esIpOcupada = await IpOcupada(ip);
     if (esIpOcupada) throw { code: 406, message: 'IP ocupada' };
 
-    await dbConnection();
+    // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
     const query = `
         INSERT INTO dispositivos (ip, economico, nombre, descripcion, general)
         VALUES (@ip, @economico, @nombre, @descripcion, @general)
@@ -83,7 +83,7 @@ export async function actualizarDispositivo(data) {
 
     if (!updates.length) throw { code: 400, message: 'Sin cambios válidos' };
 
-    await dbConnection();
+    // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
     const query = `UPDATE dispositivos SET ${updates.join(', ')} WHERE id = @id`;
     request.input('id', sql.Int, id);
     await request.query(query);
@@ -94,7 +94,7 @@ export async function eliminarDispositivo(id) {
     const idExiste = await comprobarID(id);
     if (!idExiste) throw { code: 404, message: 'ID no válido' };
 
-    await dbConnection();
+    // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
     const transaction = new sql.Transaction();
     await transaction.begin();
 

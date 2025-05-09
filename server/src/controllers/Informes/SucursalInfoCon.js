@@ -1,5 +1,5 @@
 /* CONTROLADORES DE INFORME -- SUCURSAL */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql'
 import { UPSssh, UPSHardware, UPSDescripcion } from '../../connection/UPSssh.js';
 import { ILOssh, ILOHardware, ILODescripcion } from '../../connection/ILOssh.js';
@@ -29,7 +29,7 @@ const economico = async (req, res) => {
 const aplicaciones = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            await dbConnection(); // Conecta a la base de datos
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor; // Conecta a la base de datos
             const economico = req.session.numero; // Recupera el número económico de la sesión
 
             // Consulta los dispositivos asociados al número económico
@@ -69,7 +69,7 @@ const info = async (req, res) => {
             const ip = req.params.ip; // Se obtiene la IP desde los parámetros de la URL
 
             req.session.aplicacionip = ip; // Guarda la IP en sesión
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 
             // Consulta el tipo de dispositivo asociado a la IP
             const dispositivo = (await sql.query(`SELECT nombre FROM dispositivos WHERE ip = '${ip}'`)).recordset[0].nombre;
@@ -83,7 +83,7 @@ const info = async (req, res) => {
                 sshInfo = await BIOMETRICOtcpip(ip);
             }
 
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 
             // Consulta información general y de la sucursal del dispositivo
             const dbInfo = await sql.query(`
@@ -118,7 +118,7 @@ const info = async (req, res) => {
 const dispositivos = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const economico = req.session.numero; // Obtiene el número económico de la sesión
 
             // Consulta todos los dispositivos válidos de la sucursal
@@ -151,7 +151,7 @@ const dispositivos = async (req, res) => {
                         }
                         // Conexiones futuras para ILO o Biometrico están comentadas
 
-                        await dbConnection();
+                        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
                         // Actualiza el campo "general" en la base de datos
                         await sql.query(`UPDATE dispositivos SET general = '${general}' WHERE ip = '${ip}'`);
                     }
@@ -167,7 +167,7 @@ const dispositivos = async (req, res) => {
                             descripcion = sshInfo.descripcion;
                         }
 
-                        await dbConnection();
+                        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
                         // Actualiza el campo "descripcion" en la base de datos
                         await sql.query(`UPDATE dispositivos SET descripcion = '${descripcion}' WHERE ip = '${ip}'`);
                     }

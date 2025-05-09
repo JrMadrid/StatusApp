@@ -1,5 +1,5 @@
 /* CONTROLADORES DE PANEL DE INFORMES */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
 import { SucursalExiste, comprobarID } from '../../models/Paneles/panelInformeMod.js';
 
@@ -7,7 +7,7 @@ import { SucursalExiste, comprobarID } from '../../models/Paneles/panelInformeMo
 const getInformes = async (req, res) => {
     if (req.session.hasOwnProperty('admin')) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const responsable = req.session.user;
             let result;
             if (req.session.tipo === 'Geografia') {
@@ -38,7 +38,7 @@ const postInforme = async (req, res) => {
             return;
         }
 
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 
         const query = 'INSERT INTO informes(nombre, descripcion, informe, fecharealizada, economico) VALUES (@nombre, @descripcion, CONVERT(VARBINARY(MAX), @informe), @fecharealizada, @economico)';
         const request = new sql.Request();
@@ -79,7 +79,7 @@ const deleteInforme = async (req, res) => {
                 res.status(404).json({ message: 'No se encontro el ID' });
                 return;
             }
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const query = 'DELETE FROM informes WHERE id = @id';
             const request = new sql.Request();
 
@@ -107,7 +107,7 @@ const Informe = async (req, res) => {
     if (req.session.hasOwnProperty('admin')) {
         try {
             const id = req.params.id
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const query = 'SELECT informe FROM informes WHERE id = @id';
             const request = new sql.Request();
             request.input('id', sql.VarChar, id);

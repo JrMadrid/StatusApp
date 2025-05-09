@@ -1,5 +1,5 @@
 /* CONTROLADORES DE PANEL DE MANUALES */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
 import { comprobarID } from '../../models/Paneles/panelManualMod.js';
 
@@ -7,7 +7,7 @@ import { comprobarID } from '../../models/Paneles/panelManualMod.js';
 const getManuales = async (req, res) => {
     if (req.session.hasOwnProperty('admin')) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             let result = await sql.query(`SELECT id, nombre, descripcion FROM manuales`);
             res.status(200).json(result.recordset);
         } catch (error) {
@@ -25,7 +25,7 @@ const postManual = async (req, res) => {
         const { descripcion = '', nombre = '', documento } = req.body;
         const manual = req.file.buffer;
 
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 
         const query = 'INSERT INTO manuales(nombre, descripcion, manual) VALUES (@nombre, @descripcion, CONVERT(VARBINARY(MAX), @manual))';
         const request = new sql.Request();
@@ -64,7 +64,7 @@ const deleteManual = async (req, res) => {
                 res.status(404).json({ message: 'No se encontro el ID' });
                 return;
             }
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const query = 'DELETE FROM manuales WHERE id = @id';
             const request = new sql.Request();
 
@@ -112,7 +112,7 @@ const updateManual = async (req, res) => {
             }
             const query = `UPDATE manuales SET ${updates.join(', ')} WHERE id = @id`;
 
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const request = new sql.Request();
 
             request.input('nombre', sql.VarChar, nombre);
@@ -141,7 +141,7 @@ const Manual = async (req, res) => {
     if (req.session.admin) {
         try {
             const id = req.params.id
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const query = 'SELECT manual FROM manuales WHERE id = @id';
             const request = new sql.Request();
             request.input('id', sql.VarChar, id);

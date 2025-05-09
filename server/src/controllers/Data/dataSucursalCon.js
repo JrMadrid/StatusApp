@@ -1,12 +1,12 @@
 /* CONTROLADORES DE LA INFORMACIÓN DE LAS SUCURSALES */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql'
 
 // Pedimos los datos de las sucursales
 const getSucursales = async (req, res) => { 
     if (req.session.hasOwnProperty('admin')) { // sI se ha validado el usuario
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const responsable = req.session.user;
             let result;
             if (req.session.tipo === 'Aplicativo') {

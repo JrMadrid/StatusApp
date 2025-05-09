@@ -1,5 +1,5 @@
 /* CONTROLADORES DE INFORME --  INFORMES */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql'
 
 // Pide el id del informe
@@ -25,7 +25,7 @@ const verid = async (req, res) => {
 const informeinfo = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const informeid = req.session.verinforme;
             let query = `SELECT nombre, descripcion FROM informes WHERE id = ${informeid}`;
             const request = new sql.Request();
@@ -53,7 +53,7 @@ const informeinfo = async (req, res) => {
 const informe = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const informeid = req.session.verinforme;
             let informeAr = await sql.query(`SELECT informe FROM informes WHERE id = ${informeid}`)
 

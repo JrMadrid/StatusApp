@@ -1,5 +1,5 @@
 /* CONTROLADORES DE PANEL DE MANTENIMIENTOS */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
 import { SucursalExiste, comprobarFechaEstimada, comprobarID } from '../../models/Paneles/panelMantenimientoMod.js';
 
@@ -7,7 +7,7 @@ import { SucursalExiste, comprobarFechaEstimada, comprobarID } from '../../model
 const getMantenimientos = async (req, res) => {
     if (req.session.admin) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const result = await sql.query('SELECT mant.id as id, sucu.economico as economico, sucu.canal as canal, sucu.nombre as sucursal, sucu.ingresponsable as ingresponsable, mant.fechaestimada as festimada, mant.fecharealizada as frealizada, mant.descripcion as descripcion FROM sucursales sucu INNER JOIN mantenimiento mant ON sucu.economico = mant.economico WHERE sucu.economico != 000000 ORDER BY sucu.canal ASC, sucu.nombre ASC, mant.fechaestimada DESC ');
             res.json(result.recordset);
         } catch (error) {
@@ -29,7 +29,7 @@ const getMantenimientos = async (req, res) => {
 const postMantenimientos = async (req, res) => {
     if (req.session.admin) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const { festimada, economico } = req.body;
             // Validar los campos
             const festimadamayor = await comprobarFechaEstimada(festimada);
@@ -77,7 +77,7 @@ const deleteMantenimiento = async (req, res) => {
                 res.status(404).json({ message: 'No se encontro el ID' });
                 return;
             }
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const query = 'DELETE FROM mantenimiento WHERE id = @id';
             const request = new sql.Request();
         

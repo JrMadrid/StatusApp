@@ -1,5 +1,5 @@
 /* CONTROLADORES DE INFORME -- MANUAL */
-import dbConnection from '../../db/connection.js';
+// import dbConnection from '../../db/connection.js';
 import sql from 'mssql'
 
 // Pide el id del manual
@@ -25,7 +25,7 @@ const verid = async (req, res) => {
 const manualinfo = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const manualid = req.session.vermanual;
             let query = `SELECT nombre, descripcion FROM manuales WHERE id = ${manualid}`;
             const request = new sql.Request();
@@ -53,7 +53,7 @@ const manualinfo = async (req, res) => {
 const manual = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            await dbConnection();
+            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const manualid = req.session.vermanual;
             let manualAr = await sql.query(`SELECT manual FROM manuales WHERE id = ${manualid}`)
 

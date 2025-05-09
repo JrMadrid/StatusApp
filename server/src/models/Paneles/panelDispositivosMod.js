@@ -1,11 +1,11 @@
 /* MODEL PARA VALIDAR DATOS DE DISPOSITIVOS */
-import dbConnection from "../../db/connection.js";
+// import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Comprobar que existe la sucursal antes de cualquier operación con los dispositivos */
 async function SucursalExiste(economico) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
         const query = 'SELECT economico FROM sucursales WHERE economico = @economico';
         const request = new sql.Request();
         request.input('economico', sql.VarChar, economico)
@@ -20,7 +20,7 @@ async function SucursalExiste(economico) {
 /* Comprobar que la ip del dispositivo no esta ocupada */
 async function IpOcupada(ip) {
     try {
-        await dbConnection()
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor
         const query = 'SELECT ip FROM dispositivos WHERE ip = @ip';
         const request = new sql.Request();
         request.input('ip', sql.VarChar, ip)
@@ -35,7 +35,7 @@ async function IpOcupada(ip) {
 /* Comprobar que ID del dispositivo existe para corrobar ejecución */
 async function comprobarID(id) {
     try {
-        await dbConnection()
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor
         const query = 'SELECT id FROM dispositivos WHERE id = @id';
         const request = new sql.Request();
         request.input('id', sql.VarChar, id)

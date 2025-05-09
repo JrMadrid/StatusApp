@@ -1,5 +1,5 @@
 /* MODEL PARA VALIDAR DATOS DE USUARIOS */
-import dbConnection from "../../db/connection.js";
+// import dbConnection from "../../db/connection.js";
 import sql from 'mssql';
 
 /* Evitar modificación del administrador */
@@ -10,7 +10,7 @@ async function IDdelAdmin(id) {
 /* Comprobar que el nickname no está ocupado */
 async function NicknameOcupado(nickname) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
         const query = 'SELECT nickname FROM users WHERE nickname = @nickname';
         const request = new sql.Request();
         request.input('nickname', sql.VarChar, nickname);
@@ -25,7 +25,7 @@ async function NicknameOcupado(nickname) {
 /* Comprobar que ID del usuario existe para corrobar ejecución */
 async function comprobarID(id) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
         const query = 'SELECT id FROM users WHERE id = @id';
         const request = new sql.Request();
         request.input('id', sql.VarChar, id);
@@ -40,7 +40,7 @@ async function comprobarID(id) {
 /* Conocer el nombre del ing. Responsable por su id*/
 async function nombreResponsable(id) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
         const query = 'SELECT nickname FROM users WHERE id = @id';
         const request = new sql.Request();
         request.input('id', sql.VarChar, id);

@@ -1,12 +1,12 @@
 /* MODEL DE AUTENTICACIÓN DE USUARIOS */
-import dbConnection from '../db/connection.js';
+// import dbConnection from '../db/connection.js';
 import bcrypt from 'bcryptjs'; // Encriptar datos
 import sql from 'mssql';
 
 /* Comprobar si el usuario existe o no en la base de datos */
 async function comprobarUsuario(nickname, psw) {
     try {
-        await dbConnection();
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 
         const query = 'SELECT nickname, psw, isAdmin, tipo FROM users WHERE nickname = @nickname';
         const request = new sql.Request();
