@@ -41,11 +41,5 @@ export const publicarConstancia = async ({ frealizada, descripcion, id, imagen, 
   } catch (error) {
     await transaction.rollback();
     throw { status: 500, message: 'Error en la transacción' };
-  } finally {
-    try {
-      await sql.close();
-    } catch (closeError) {
-      console.error('Error al cerrar la conexión:', closeError);
-    }
   }
 };

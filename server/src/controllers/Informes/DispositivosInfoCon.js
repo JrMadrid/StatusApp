@@ -33,13 +33,7 @@ const dispositivos = async (req, res) => {
         } catch (error) {
             console.error('Error :', error);
             res.status(500).send("Error al obtener los dispositivos");
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -57,13 +51,7 @@ const info = async (req, res) => {
         } catch (error) {
             console.error('Error:', error);
             res.status(500).send("Error al obtener los datos");
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }

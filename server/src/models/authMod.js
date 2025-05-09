@@ -41,13 +41,13 @@ async function comprobarUsuario(nickname, psw) {
     } catch (error) {
         console.error('Error al comprobar usuario:', error);
         throw error; // Lanzar el error para que se maneje en el controlador
-    } finally {
+    }/*  finally { // Ya no es necesario cerrar la conexión aquí ya que destruye el pool 
         try {
             await sql.close(); // Intenta cerrar la conexión a la base de datos
         } catch (closeError) {
             console.error('Error al cerrar la conexión:', closeError);
         }
-    }
+    } */
 }
 
 export { comprobarUsuario };

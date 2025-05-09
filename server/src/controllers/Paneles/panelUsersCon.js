@@ -54,13 +54,7 @@ const postUser = async (req, res) => {
         } catch (error) {
             console.error('Error agregando nuevos datos:', error);
             res.status(500).json({ message: 'Error agregando nuevos datos' });
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.status(403).json({ message: 'No autorizado' });
     }
@@ -151,13 +145,7 @@ const updateUser = async (req, res) => {
         } catch (error) {
             console.error('Error actualizando datos:', error);
             res.status(500).json({ message: 'Error actualizando datos' });
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -203,13 +191,7 @@ const deleteUser = async (req, res) => {
         } catch (error) {
             res.status(500).json({ message: 'Error eliminando datos' });
             console.error('Error eliminando datos:', error);
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }

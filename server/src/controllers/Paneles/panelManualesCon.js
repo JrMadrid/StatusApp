@@ -45,12 +45,6 @@ const postManual = async (req, res) => {
     } catch (error) {
         console.error('Error agregando nuevos datos:', error);
         res.status(500).json({ message: 'Error agregando nuevos datos' });
-    } finally {
-        try {
-            await sql.close();
-        } catch (closeError) {
-            console.error('Error al cerrar la conexión:', closeError);
-        }
     }
 };
 
@@ -75,13 +69,7 @@ const deleteManual = async (req, res) => {
         } catch (error) {
             res.status(500).json({ message: 'Error eliminando datos' });
             console.error('Error al eliminar los datos', error);
-        } finally {
-            try {
-                await sql.close();
-            } catch (errorError) {
-                console.error('Error al cerrar la conexión', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -123,13 +111,7 @@ const updateManual = async (req, res) => {
         } catch (error) {
             console.error('Error al actualizar los datos', error);
             res.status(500).json({ message: 'Error actualizando datos' });
-        } finally {
-            try {
-                await sql.close();
-            } catch (errorError) {
-                console.error('Error al cerrar la conexión', closeError);
-            }
-        }
+        } 
     }
     else {
         res.redirect('');
@@ -155,13 +137,7 @@ const Manual = async (req, res) => {
         } catch (error) {
             console.error('Error al comprobar el ID:', error);
             throw error;
-        } finally {
-            try {
-                await sql.close();
-            } catch (errorError) {
-                console.error('Error al cerrar la conexión', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }

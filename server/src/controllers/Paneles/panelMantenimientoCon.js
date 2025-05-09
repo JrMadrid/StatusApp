@@ -13,13 +13,7 @@ const getMantenimientos = async (req, res) => {
         } catch (error) {
             console.error('Error:', error);
             res.status(500).send("Error al obtener los datos");
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -55,13 +49,7 @@ const postMantenimientos = async (req, res) => {
         } catch (error) {
             console.error('Error agregando nuevos datos:', error);
             res.status(500).json({ message: 'Error agregando nuevos datos' });
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -88,13 +76,7 @@ const deleteMantenimiento = async (req, res) => {
         } catch (error) {
             res.status(500).json({ message: 'Error eliminando datos' });
             console.error('Error al eliminar los datos', error);
-        } finally {
-            try {
-                await sql.close();
-            } catch (errorError) {
-                console.error('Error al cerrar la conexión', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }

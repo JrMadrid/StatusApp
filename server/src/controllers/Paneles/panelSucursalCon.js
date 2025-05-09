@@ -14,13 +14,7 @@ const getSucursales = async (req, res) => {
         } catch (error) {
             console.error('Error:', error);
             res.status(500).send("Error al obtener los datos");
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -71,13 +65,7 @@ const postSucursal = async (req, res) => {
         } catch (error) {
             console.error('Error agregando nuevos datos:', error);
             res.status(500).json({ message: 'Error agregando nuevos datos' });
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -206,13 +194,7 @@ const updateSucursal = async (req, res) => {
             }
             console.error('Error actualizando datos:', error);
             res.status(500).json({ message: 'Error actualizando datos' });
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -269,13 +251,7 @@ const deleteSucursal = async (req, res) => {
             res.status(500).json({ message: 'Error eliminando datos' });
             console.error('Error eliminando datos:', error);
 
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }

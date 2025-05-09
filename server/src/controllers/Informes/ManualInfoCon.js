@@ -37,13 +37,7 @@ const manualinfo = async (req, res) => {
         } catch (error) {
             console.error('Error :', error);
 
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
@@ -71,13 +65,7 @@ const manual = async (req, res) => {
         } catch (error) {
             console.error('Error :', error);
 
-        } finally {
-            try {
-                await sql.close();
-            } catch (closeError) {
-                console.error('Error al cerrar la conexión:', closeError);
-            }
-        }
+        } 
     } else {
         res.redirect('');
     }
