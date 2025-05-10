@@ -1,17 +1,13 @@
 /* CONTROLADORES DE INFORME --  INFORMES */
-// import dbConnection from '../../db/connection.js';
-import sql from 'mssql'
+import { obtenerInfoInforme, obtenerArchivoInforme } from '../../services/Informes/InformeInfoSer.js';
 
 // Pide el id del informe
 const verid = async (req, res) => {
     try {
         if (req.session.admin != undefined) {
-            const verinformeid = req.params.id;
-            req.session.verinforme = verinformeid;
+            req.session.verinforme = req.params.id;
             req.session.save(err => {
-                if (err) {
-                    console.error('Error al guardar la sesión:', err);
-                }
+                if (err) console.error('Error al guardar la sesión:', err);
             });
         } else {
             res.redirect('');
@@ -25,19 +21,11 @@ const verid = async (req, res) => {
 const informeinfo = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
-            const informeid = req.session.verinforme;
-            let query = `SELECT nombre, descripcion FROM informes WHERE id = ${informeid}`;
-            const request = new sql.Request();
-
-            const informeinfo = await request.query(query);
-
-            return res.status(200).json(informeinfo.recordset);
-
+            const datos = await obtenerInfoInforme(req.session.verinforme);
+            res.status(200).json(datos);
         } catch (error) {
             console.error('Error :', error);
-
-        } 
+        }
     } else {
         res.redirect('');
     }
@@ -47,24 +35,18 @@ const informeinfo = async (req, res) => {
 const informe = async (req, res) => {
     if (req.session.admin != undefined) {
         try {
-            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
-            const informeid = req.session.verinforme;
-            let informeAr = await sql.query(`SELECT informe FROM informes WHERE id = ${informeid}`)
+            const result = await obtenerArchivoInforme(req.session.verinforme);
 
-            if (informeAr.recordset.length > 0) {
-                const archivo = informeAr.recordset[0].informe;
-            
-                res.set('Content-Type', 'application/pdf'); // Cambia el tipo de contenido a PDF
-                res.set('Content-Disposition', `inline; filename="informe.pdf"`); // Cambia el nombre del archivo a descargar
-                res.status(200).send(archivo);
-                
+            if (result.length > 0) {
+                res.set('Content-Type', 'application/pdf');
+                res.set('Content-Disposition', `inline; filename="informe.pdf"`);
+                res.status(200).send(result[0].informe);
             } else {
                 res.status(404).json({ message: 'Archivo no encontrado' });
             }
         } catch (error) {
             console.error('Error :', error);
-
-        } 
+        }
     } else {
         res.redirect('');
     }
