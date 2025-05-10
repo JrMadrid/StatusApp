@@ -1,4 +1,4 @@
-/* SERVICIOS DE INFORME --  INFORMES */
+/* SERVICIOS DE INFORME -- INFORMES */
 import { getInformeNombreDescripcion, getInformeArchivo } from '../../models/Informes/InformeInfoMod.js';
 
 export const obtenerInfoInforme = async (id) => {

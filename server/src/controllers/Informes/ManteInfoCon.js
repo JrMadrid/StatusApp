@@ -1,5 +1,4 @@
 /* CONTROLADORES DE INFORME -- MANTENIMIENTO */
-// import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
 
 // Manda las fechas vinculadas al economico

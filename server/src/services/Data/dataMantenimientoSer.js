@@ -6,8 +6,7 @@ import {
 } from '../../models/Data/dataMantenimientoMod.js';
 
 export const listarMantenimientos = async (responsable, tipo) => {
-  const result = await obtenerMantenimientos(responsable, tipo);
-  return result.recordset;
+  return await obtenerMantenimientos(responsable, tipo);
 }
 
 export const publicarConstancia = async ({ frealizada, descripcion, id, imagen, responsable }) => {

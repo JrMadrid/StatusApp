@@ -2,27 +2,28 @@
 import sql from 'mssql';
 export const obtenerMantenimientos = async (responsable, tipo) => {
 	const request = new sql.Request();
-
+	let query;
 	if (tipo === 'Aplicativo') {
-		return await request.query(`
+		query = `
 				SELECT mant.id as id, sucu.economico as economico, sucu.canal as canal, sucu.nombre as sucursal, sucu.ingresponsable as ingresponsable, 
 								mant.fechaestimada as festimada, mant.fecharealizada as frealizada,  mant.descripcion as descripcion
 				FROM sucursales sucu 
 				INNER JOIN mantenimiento mant ON sucu.economico = mant.economico 
 				WHERE sucu.economico != 000000 
 				ORDER BY sucu.canal ASC, sucu.nombre ASC, mant.fechaestimada DESC 
-      `);
+      `;
 	} else {
 		request.input('responsable', sql.VarChar, responsable);
-		return await request.query(`
+		query = `
 				SELECT mant.id as id, sucu.economico as economico, sucu.canal as canal, sucu.nombre as sucursal, sucu.ingresponsable as ingresponsable, 
 								mant.fechaestimada as festimada, mant.fecharealizada as frealizada, mant.descripcion as descripcion 
 				FROM sucursales sucu 
 				INNER JOIN mantenimiento mant ON sucu.economico = mant.economico 
 				WHERE sucu.economico != 000000 AND sucu.ingresponsable = @responsable 
 				ORDER BY sucu.canal ASC, sucu.nombre ASC, mant.fechaestimada DESC 
-      `);
+      `;
 	}
+	return (await request.query(query)).recordset;
 };
 
 export const actualizarMantenimientoConConstancia = async (transaction, datos) => {
