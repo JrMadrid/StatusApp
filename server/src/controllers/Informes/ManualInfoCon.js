@@ -1,5 +1,4 @@
 /* CONTROLADORES DE INFORME -- MANUAL */
-import sql from 'mssql'
 import { obtenerDatosManual, obtenerArchivoManual } from '../../services/Informes/ManualInfoSer.js';
 
 // Pide el id del manual
