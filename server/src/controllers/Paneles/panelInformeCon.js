@@ -1,7 +1,6 @@
 /* CONTROLADORES DE PANEL DE INFORMES */
 import sql from 'mssql';
-import { SucursalExiste, comprobarID } from '../../models/Paneles/panelInformeMod.js';
-import { obtenerInformes, SucursalExisteSer } from '../../services/Paneles/panelInformeSer.js';
+import { obtenerInformes, publicarInforme, eliminarInforme, archivoInforme } from '../../services/Paneles/panelInformeSer.js';
 
 // Pedimos los datos de los informes
 const getInformes = async (req, res) => {
@@ -9,7 +8,7 @@ const getInformes = async (req, res) => {
         try {
             const responsable = req.session.user;
             const tipo = req.session.tipo;
-            let informes = await obtenerInformes(tipo, responsable);            
+            let informes = await obtenerInformes(tipo, responsable);
             res.status(200).json(informes);
         } catch (error) {
             console.error('Error:', error);
@@ -26,26 +25,7 @@ const postInforme = async (req, res) => {
         const { descripcion = '', nombre = '', documento, frealizada, economico } = req.body;
         const informe = req.file.buffer;
 
-        const isEconomicoValid = await SucursalExisteSer(economico)
-        if (!isEconomicoValid) {
-            res.status(404).json({ message: 'No se encontro la sucursal (economico no valido)' });
-            return;
-        }
-
-        const query = 'INSERT INTO informes(nombre, descripcion, informe, fecharealizada, economico) VALUES (@nombre, @descripcion, CONVERT(VARBINARY(MAX), @informe), @fecharealizada, @economico)';
-        const request = new sql.Request();
-
-        request.input('informe', sql.VarBinary(sql.MAX), informe); // sql.VarBinary(sql.MAX) para el tamaño máximo de VARBINARY -- varbinary(max) sirve para almacenar archivos grandes
-        if (nombre.length === 0) {
-            request.input('nombre', sql.VarChar, documento.toString());
-        } else {
-            request.input('nombre', sql.VarChar, nombre);
-        }
-        request.input('descripcion', sql.VarChar, descripcion);
-        request.input('fecharealizada', sql.Date, frealizada);
-        request.input('economico', sql.VarChar, economico);
-
-        await request.query(query);
+        await publicarInforme(descripcion, nombre, documento, frealizada, economico, informe);
 
         res.status(200).json({ message: 'Informe agregado exitosamente' });
 
@@ -60,23 +40,12 @@ const deleteInforme = async (req, res) => {
     if (req.session.admin) {
         try {
             const { id } = req.body;
-            const IdExiste = await comprobarID(id)
-            if (!IdExiste) {
-                res.status(404).json({ message: 'No se encontro el ID' });
-                return;
-            }
-            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
-            const query = 'DELETE FROM informes WHERE id = @id';
-            const request = new sql.Request();
-
-            request.input('id', sql.Numeric, id);
-
-            await request.query(query);
+            await eliminarInforme(id);
             res.status(200).json({ message: 'Informe eliminado exitosamente' });
         } catch (error) {
-            res.status(500).json({ message: 'Error eliminando datos' });
+            res.status(error.status || 500).json({ message: error.message || 'Error agregando nuevos datos' });
             console.error('Error al eliminar los datos', error);
-        } 
+        }
     } else {
         res.redirect('');
     }
@@ -87,13 +56,10 @@ const Informe = async (req, res) => {
     if (req.session.hasOwnProperty('admin')) {
         try {
             const id = req.params.id
-            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
-            const query = 'SELECT informe FROM informes WHERE id = @id';
-            const request = new sql.Request();
-            request.input('id', sql.VarChar, id);
-            const resultado = await request.query(query);
-            if (resultado.recordset.length > 0) {
-                const archivo = resultado.recordset[0].informe;
+
+            const informe = await archivoInforme(id);
+            if (informe.length > 0) {
+                const archivo = informe[0].informe;
                 res.set('Content-Type', 'application/pdf'); // Cambia el tipo de contenido a PDF
                 res.set('Content-Disposition', `inline; filename="informe.pdf"`); // Cambia el nombre del archivo si es necesario
                 res.status(200).send(archivo);
@@ -101,7 +67,7 @@ const Informe = async (req, res) => {
         } catch (error) {
             console.error('Error al comprobar el ID:', error);
             throw error;
-        } 
+        }
     } else {
         res.redirect('');
     }
