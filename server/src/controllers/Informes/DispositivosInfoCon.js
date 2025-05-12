@@ -1,6 +1,5 @@
 /* CONTROLADORES DE INFORME -- DISPOSITIVOS */
 import { getDispositivosPorNombre, getInfoDispositivo } from '../../services/Informes/DispositivosInfoSer.js';
-import sql from 'mssql';
 
 // Pide el nombre
 const nombre = async (req, res) => {
