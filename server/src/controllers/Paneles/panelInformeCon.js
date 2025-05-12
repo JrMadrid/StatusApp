@@ -1,22 +1,16 @@
 /* CONTROLADORES DE PANEL DE INFORMES */
-// import dbConnection from '../../db/connection.js';
 import sql from 'mssql';
 import { SucursalExiste, comprobarID } from '../../models/Paneles/panelInformeMod.js';
+import { obtenerInformes, SucursalExisteSer } from '../../services/Paneles/panelInformeSer.js';
 
 // Pedimos los datos de los informes
 const getInformes = async (req, res) => {
     if (req.session.hasOwnProperty('admin')) {
         try {
-            // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
             const responsable = req.session.user;
-            let result;
-            if (req.session.tipo === 'Geografia') {
-                result = await sql.query(`SELECT infor.id AS id, infor.economico AS economico, sucu.canal as canal, sucu.nombre as sucursal, infor.fecharealizada AS fecharealizada, infor.nombre AS nombre, infor.descripcion AS descripcion FROM informes infor  INNER JOIN sucursales sucu ON sucu.economico = infor.economico WHERE sucu.ingresponsable = '${responsable}'  ORDER BY fecharealizada DESC`);
-            }
-            else {
-                result = await sql.query(`SELECT infor.id AS id, infor.economico AS economico, sucu.canal as canal, sucu.nombre as sucursal, infor.fecharealizada AS fecharealizada, infor.nombre AS nombre, infor.descripcion AS descripcion, sucu.ingresponsable as ingresponsable FROM informes infor INNER JOIN sucursales sucu ON sucu.economico = infor.economico ORDER BY infor.fecharealizada DESC`);
-            }
-            res.status(200).json(result.recordset);
+            const tipo = req.session.tipo;
+            let informes = await obtenerInformes(tipo, responsable);            
+            res.status(200).json(informes);
         } catch (error) {
             console.error('Error:', error);
             res.status(500).send("Error al obtener los datos");
@@ -32,13 +26,11 @@ const postInforme = async (req, res) => {
         const { descripcion = '', nombre = '', documento, frealizada, economico } = req.body;
         const informe = req.file.buffer;
 
-        const isEconomicoValid = await SucursalExiste(economico)
+        const isEconomicoValid = await SucursalExisteSer(economico)
         if (!isEconomicoValid) {
             res.status(404).json({ message: 'No se encontro la sucursal (economico no valido)' });
             return;
         }
-
-        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 
         const query = 'INSERT INTO informes(nombre, descripcion, informe, fecharealizada, economico) VALUES (@nombre, @descripcion, CONVERT(VARBINARY(MAX), @informe), @fecharealizada, @economico)';
         const request = new sql.Request();

@@ -1,5 +1,5 @@
 /* MODEL DE INFORME -- SUCURSAL */
-import sql from 'mssql'
+import sql from 'mssql';
 
 export const getDatosAplicaciones = async (economico) => {
   const request = new sql.Request();
