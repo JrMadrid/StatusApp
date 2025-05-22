@@ -24,6 +24,7 @@ export const fetchDispositivosByNombre = async (dispositivo, responsable, tipo) 
         ORDER BY sucu.canal ASC, sucu.nombre ASC
         `;
 	}
+
 	return (await request.query(query)).recordset;
 };
 
@@ -52,6 +53,6 @@ export const fetchInfoDispositivo = async (dispositivo, responsable, tipo) => {
 					ORDER BY sucu.canal ASC, sucu.nombre ASC
         `;
 	}
-	
+
 	return (await request.query(query)).recordset;
 };

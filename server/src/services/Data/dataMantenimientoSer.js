@@ -1,7 +1,6 @@
 /* SERVICIOS DE LA INFORMACIÓN DE LOS DISPOSITIVOS */
-import sql from 'mssql';
 import {
-  obtenerMantenimientos, actualizarMantenimientoConConstancia, insertarNuevaFechaEstimada,
+  obtenerMantenimientos, actualizarMantenimientoConConstancia,
   comprobarID, comprobarFechaRealizada, ConstanciaExiste, comprobarSuMantenimiento, ecoSucursal, nextFEstimada
 } from '../../models/Data/dataMantenimientoMod.js';
 
@@ -26,19 +25,9 @@ export const publicarConstancia = async ({ frealizada, descripcion, id, imagen, 
   const [yy] = frealizada.split('-');
   const siguiFEstimada = await nextFEstimada(frealizada);
 
-  const transaction = new sql.Transaction();
-  await transaction.begin();
-
   try {
-    await actualizarMantenimientoConConstancia(transaction, { frealizada, descripcion, imagen, id });
-
-    if (yy > '2024') {
-      await insertarNuevaFechaEstimada(transaction, siguiFEstimada, suSucursal);
-    }
-
-    await transaction.commit();
+    await actualizarMantenimientoConConstancia({ frealizada, descripcion, imagen, id, yy, siguiFEstimada, suSucursal });
   } catch (error) {
-    await transaction.rollback();
-    throw { status: 500, message: 'Error en la transacción' };
+    throw { status: 500, message: 'Error en la operación' };
   }
 };

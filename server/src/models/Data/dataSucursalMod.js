@@ -1,5 +1,6 @@
 /* MODEL DE LA INFORMACIÓN DE LAS SUCURSALES */
 import sql from 'mssql';
+
 export const obtenerSucursales = async (responsable, tipo) => {
   const request = new sql.Request();
   let query;

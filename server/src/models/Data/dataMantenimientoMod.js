@@ -1,5 +1,6 @@
 /* MODEL DE LA INFORMACIÓN DE LOS DISPOSITIVOS */
 import sql from 'mssql';
+
 export const obtenerMantenimientos = async (responsable, tipo) => {
 	const request = new sql.Request();
 	let query;
@@ -26,18 +27,32 @@ export const obtenerMantenimientos = async (responsable, tipo) => {
 	return (await request.query(query)).recordset;
 };
 
-export const actualizarMantenimientoConConstancia = async (transaction, datos) => {
-	const request = new sql.Request(transaction);
-	const query = `
-    UPDATE mantenimiento 
-    SET fecharealizada = @fecharealizada, constancia = @imagen, descripcion = @descripcion 
-    WHERE id = @id
-  `;
-	request.input('fecharealizada', sql.Date, datos.frealizada);
-	request.input('imagen', sql.VarBinary(sql.MAX), datos.imagen);
-	request.input('descripcion', sql.VarChar, datos.descripcion);
-	request.input('id', sql.Numeric, datos.id);
-	await request.query(query);
+export const actualizarMantenimientoConConstancia = async (datos) => {
+	const transaction = new sql.Transaction();
+	await transaction.begin();
+
+	try {
+		const request = new sql.Request(transaction);
+		const query = `
+		UPDATE mantenimiento 
+		SET fecharealizada = @fecharealizada, constancia = @imagen, descripcion = @descripcion 
+		WHERE id = @id
+		`;
+		request.input('fecharealizada', sql.Date, datos.frealizada);
+		request.input('imagen', sql.VarBinary(sql.MAX), datos.imagen);
+		request.input('descripcion', sql.VarChar, datos.descripcion);
+		request.input('id', sql.Numeric, datos.id);
+		await request.query(query);
+		
+		if (datos.yy > '2024') {
+			await insertarNuevaFechaEstimada(transaction, datos.siguiFEstimada, datos.suSucursal);
+		}
+
+		await transaction.commit();
+	} catch (error) {
+		await transaction.rollback();
+		throw error;
+	}
 };
 
 export const insertarNuevaFechaEstimada = async (transaction, fechaestimada, economico) => {
@@ -51,6 +66,7 @@ export const insertarNuevaFechaEstimada = async (transaction, fechaestimada, eco
 	await request.query(query);
 };
 
+/* Validaciones */
 /* Comprobar que ID del dispositivo existe para corrobar ejecución */
 async function comprobarID(id) {
 

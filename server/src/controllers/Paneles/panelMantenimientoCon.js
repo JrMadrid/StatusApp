@@ -1,5 +1,5 @@
 /* CONTROLADORES DE PANEL DE MANTENIMIENTOS */
-import { obtenerMantenimientos, eliminarMantenimiento } from '../../services/Paneles/panelMantenimientoSer.js';
+import { obtenerMantenimientos,publicarMantenimientos ,eliminarMantenimiento } from '../../services/Paneles/panelMantenimientoSer.js';
 
 // Pedimos los datos de los mantenimientos
 const getMantenimientos = async (req, res) => {

@@ -1,18 +1,15 @@
 /* MODEL PARA VALIDAR DATOS DE USUARIOS */
-import bcrypt from 'bcryptjs'; // bcrypt para encriptar la contraseña
 import sql from 'mssql';
 
 export const getUsers = async () => {
   const request = new sql.Request();
   let result = await request.query('SELECT id, nickname, psw, tipo FROM users');
+  
   return result.recordset;
 };
 
 // Agregamos un nuevo usuario
 export const postUser = async (nickname, psw, tipo, isAdmin) => {
-  psw = psw.trim(); // Eliminar espacios en blanco al inicio y al final
-  psw = await bcrypt.hash(psw, 12); // Encriptar la contraseña, el hash funciona como un algoritmo de encriptación que genera un hash de la contraseña, el 12 indica la complejidad del algoritmo
-
   const request = new sql.Request();
   request.input('nickname', sql.VarChar, nickname);
   request.input('psw', sql.VarChar, psw);
@@ -46,10 +43,11 @@ export const updateUser = async (nickname, psw, id, tipo) => {
       }
     }
   }
+
   if (psw.length !== 0) {
-    psw = await bcrypt.hash(psw, 12); // Encriptar la contraseña 
     updates.push('psw = @psw');
   }
+
   if (tipo.length !== 0) {
     if (Admin) {
       throw { status: 403, message: 'No se puede modificar super administrador' };

@@ -1,4 +1,4 @@
-/* SERVIDORES DE INFORME -- MANUAL */
+/* SERVICIOS DE INFORME -- MANUAL */
 import { getDatosManual, getManualArchivo } from "../../models/Informes/ManualInfoMod.js";
 
 export const obtenerDatosManual = async (manualid) => {
