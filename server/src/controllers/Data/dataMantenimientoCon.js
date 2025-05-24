@@ -3,7 +3,7 @@ import { listarMantenimientos, publicarConstancia } from '../../services/Data/da
 
 // Pedimos los datos de los mantenimientos de las sucursales
 const getMantenimientos = async (req, res) => { // if (!req.session?.admin) 
-	if (req.session.hasOwnProperty('admin')) {
+	// if (req.session.hasOwnProperty('admin')) {
 		try {
 			const responsable = req.session.user;
 			const tipo = req.session.tipo
@@ -14,9 +14,9 @@ const getMantenimientos = async (req, res) => { // if (!req.session?.admin)
 			console.error('Error:', error);
 			res.status(500).send("Error al obtener los datos");
 		}
-	} else {
-		res.redirect('')
-	}
+	// } else {
+	// 	res.redirect('')
+	// }
 };
 
 // Agregar constancia de mantenimiento

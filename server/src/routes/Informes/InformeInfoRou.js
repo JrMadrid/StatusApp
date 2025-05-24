@@ -1,5 +1,5 @@
 /* RUTAS DE INFORME -- INFORMES */
-import express from 'express'
+import express from 'express';
 import { methods as InformeInfoControllers } from '../../controllers/Informes/InformeInfoCon.js';
 const InformeInfoRou = express.Router(); // Crea un nuevo objeto Router que se puede usar para definir rutas
 

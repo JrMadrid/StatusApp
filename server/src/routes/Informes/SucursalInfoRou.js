@@ -1,5 +1,5 @@
 /* RUTAS DE INFORME -- SUCURSAL */
-import express from 'express'
+import express from 'express';
 import { methods as SucursalInfoControllers } from '../../controllers/Informes/SucursalInfoCon.js';
 const infoRou = express.Router(); // Crea un nuevo objeto Router que se puede usar para definir rutas
 

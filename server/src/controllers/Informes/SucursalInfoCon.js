@@ -24,7 +24,6 @@ const BIOMETRICOsolicitud = isMock ? MockBIOMETRICOsolicitud : RealBIOMETRICOsol
 // Pide el número económico
 const economico = async (req, res) => {
 	try {
-		if (req.session.admin != undefined) { // Verifica si hay sesión activa de administrador
 			const numero = req.params.economico; // Obtiene el número económico de la URL
 			req.session.numero = numero; // Guarda el número económico en la sesión
 			req.session.save(err => { // Guarda la sesión y maneja posibles errores
@@ -32,9 +31,6 @@ const economico = async (req, res) => {
 					console.error('Error al guardar la sesión:', err);
 				}
 			});
-		} else {
-			res.redirect(''); // Redirige si no hay sesión
-		}
 	} catch (error) {
 		console.error('Error :', error);
 	}
@@ -42,7 +38,6 @@ const economico = async (req, res) => {
 
 // Consulta y retorna los dispositivos registrados por número económico
 const aplicaciones = async (req, res) => {
-	if (req.session.admin != undefined) {
 		try {
 			// await dbConnection(); solo se inicia la conexion al arrancar el servidor; // Conecta a la base de datos
 			const economico = req.session.numero; // Recupera el número económico de la sesión
@@ -53,14 +48,10 @@ const aplicaciones = async (req, res) => {
 		} catch (error) {
 			console.error('Error :', error);
 		}
-	} else {
-		res.redirect('')
-	}
 };
 
 // Obtiene la información general de un dispositivo en específico por su IP
 const info = async (req, res) => {
-	if (req.session.admin != undefined) {
 		try {
 			let sshInfo; // Variable para almacenar la información que se obtenga vía SSH o TCP/IP
 			const ip = req.params.ip; // Se obtiene la IP desde los parámetros de la URL
@@ -90,14 +81,10 @@ const info = async (req, res) => {
 			console.error('Error:', error);
 			res.status(500).send("Error al obtener los datos");
 		}
-	} else {
-		res.redirect('')
-	}
 }
 
 // Recorre los dispositivos de una sucursal y actualiza la información si es necesario
 const dispositivos = async (req, res) => {
-	if (req.session.admin != undefined) {
 		try {
 			// await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 			const economico = req.session.numero; // Obtiene el número económico de la sesión
@@ -149,9 +136,6 @@ const dispositivos = async (req, res) => {
 			console.error('Error:', error);
 			res.status(500).send("Error al obtener los datos");
 		}
-	} else {
-		res.redirect('')
-	}
 };
 
 // Enviar solicitudes o comandos al biométrico

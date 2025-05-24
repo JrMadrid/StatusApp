@@ -3,7 +3,6 @@ import { listarDispositivos, listarNombresDispositivos } from '../../services/Da
 
 // Pedimos los datos de los dispositivos
 const getDispositivos = async (req, res) => {
-    if (req.session.admin !== undefined) {
         try {
             const responsable = req.session.user;
             const tipo = req.session.tipo;
@@ -13,14 +12,10 @@ const getDispositivos = async (req, res) => {
             console.error('Error:', error);
             res.status(500).send("Error al obtener los datos");
         }
-    } else {
-        res.redirect('');
-    }
 };
 
 // Pedimnos la lista de los dispositivos
 const getListaDispositivos = async (req, res) => {
-    if (req.session.admin !== undefined) {
         try {
             const responsable = req.session.user;
             const tipo = req.session.tipo;
@@ -30,9 +25,6 @@ const getListaDispositivos = async (req, res) => {
             console.error('Error:', error);
             res.status(500).send("Error al obtener los datos");
         }
-    } else {
-        res.redirect('');
-    }
 };
 
 export const methods = {
