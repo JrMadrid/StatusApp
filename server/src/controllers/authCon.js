@@ -1,4 +1,4 @@
-/* CONTROLADORES DE AUTENTICACIÓN DE USUARIOS*/
+/* CONTROLADORES DE AUTENTICACIÓN DE USUARIOS */
 import { loginService, definirTipoUsuario } from '../services/authSer.js';
 
 // Leer y comprobar el usuario
