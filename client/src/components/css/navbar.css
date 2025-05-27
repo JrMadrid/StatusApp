@@ -8,19 +8,20 @@
     justify-content: center;
     list-style-type: none;
     background-color: rgb(11, 23, 50);
-    padding: 5px 0;
+    padding: 0;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .navbar li {
-    margin: 0px 30px 0px 30px;
+    padding: 0.2rem 1rem;
 }
 
 .navbar li a {
     color: rgb(197, 229, 249);
     text-decoration: none;
-    padding: 5px 5px;
+    padding: 0px 0px;
+    font-size: 1rem;
 }
 
 .navbar li a:hover {
@@ -32,40 +33,38 @@
     color: #c59e75;
 }
 
+.usuario {
+    background-color: #0000008c;
+    color: #c59e75;
+    font-size: 1rem;
+    font-family: 'Franklin Gothic';
+    position: fixed;
+    left: 0;
+    max-width: 16vw;
+    overflow-x: hidden;
+}
+
+.tipo {
+    background-color: #0000008c;
+    color: #c59e75;
+    font-family: 'Franklin Gothic';
+    font-size: 1rem;
+    position: fixed;
+    right: 8vw;
+}
+
 .close {
     background-color: rgb(12, 100, 167);
-    color: whitesmoke !important;
-    top: 0;
-    right: 0;
+    font-size: 1rem;
+    min-width: 8vw;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center;
     position: fixed;
+    right: 0;
 }
 
 .close:hover {
     background-color: black;
-    color: #c59e75 !important;
-
-}
-
-.usuario {
-    background-color: #00000050;
-    top: 0;
-    left: 0;
-    position: fixed;
     color: #c59e75;
-    padding: 12px 10px 10px 10px;
-    margin: 0px 0px 0px 0px;
-    font-family: 'Franklin Gothic Medium';
-    font-size: small;
-}
-
-.tipo {
-    background-color: #00000050;
-    bottom: 0;
-    right: 7.5%;
-    position: absolute;
-    color: #c59e75;
-    padding: 13px 10px 11px 10px;
-    margin: 0px 0px 0px 0px;
-    font-family: 'Franklin Gothic Medium';
-    font-size: small;
 }

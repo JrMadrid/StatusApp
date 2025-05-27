@@ -24,7 +24,7 @@ const SelectMantenimientos = () => {
     }, []);
 
     const eleccion = async (economico) => {
-        let url = `http://${process.env.REACT_APP_HOST}/mantes/numero/${economico}`;
+        let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/numero/${economico}`;
         try {
             const response = await fetchData(url)
             if (!response.ok) {

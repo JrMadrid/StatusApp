@@ -1,9 +1,11 @@
 /* INICIAR EL SERVIDOR */
 import { connectToDatabase, syncStore } from './db/session.js';
-import app from "./app.js"; 
+import dbConnection from './db/connection.js';
+import app from "./app.js";
 import config from "./configs/APP_config.js"; // Importo la configuración con las credenciales y el puerto de la aplicación desde el archivo de configuración
 import debug from 'debug'; // Importamos la librería debug para el manejo de logs
 
+let server;
 const debugServer = debug('app:server'); // Creamos un objeto de depuración para el servidor
 const host = config.APPhost || 'localhost'; // Definimos el host del servidor, si no está definido en la configuración, usamos 'localhost' por defecto
 const port = config.APPport || 88; // Definimos el puerto del servidor, si no está definido en la configuración, usamos el puerto 88 por defecto
@@ -18,11 +20,14 @@ if (process.env.NODE_ENV === 'development') {
 /* INICIAR EL SERVIDOR */
 const startServer = async () => { // Iniciamos el servidor
   try {
-    await connectToDatabase(); // Conectamos a la base de datos
+    await dbConnection(); // Conectamos a la base de datos principal
+    await connectToDatabase(); // Conectamos a la base de datos de sesiones
     await syncStore(); // Sincronizamos la tienda de sesiones
-    app.listen(port, () => { // Iniciamos el servidor en el puerto definido
+    server = app.listen(port, () => { // Iniciamos el servidor en el puerto definido
       console.log(`Servidor backend escuchando en ${host}:${port}`);
     });
+    
+    
   } catch (err) {
     console.error('Error al iniciar el servidor:', err);
     process.exit(1); // Salimos del proceso con un código de error 1
@@ -30,3 +35,9 @@ const startServer = async () => { // Iniciamos el servidor
 };
 
 startServer(); // Llamamos a la función para iniciar el servidor
+
+/* Simular errores */
+// throw new Error('Error de prueba: excepción no controlada'); // Simular una excepción no controlada
+// Promise.reject('Error de prueba: promesa rechazada sin catch'); // Simular un rechazo no manejado
+
+export { server }; // Exportar el servidor para cerrarlo en errores globales

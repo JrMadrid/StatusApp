@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';
 import logoSoporte from '../../imgs/LogoSoporte.png';
-import '../css/Infor_App.css';
+import '../css/Infor_Sucursal.css';
 
 export default function InfoManual() {
     const [manualInfo, setManualInfo] = useState({});
@@ -12,7 +12,7 @@ export default function InfoManual() {
     useEffect(() => {
         const manualinfo = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/manuales/info`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/manuales/info`;
                 const response = await fetchData(url);
 
                 if (!response.ok) {
@@ -31,7 +31,7 @@ export default function InfoManual() {
     useEffect(() => {
         const manualar = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/manuales/manual`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/manuales/manual`;
                 const response = await fetchData(url);
 
                 if (!response.ok) { throw new Error('Sin respuesta'); }
@@ -57,7 +57,7 @@ export default function InfoManual() {
     return (
         <>
             <div className="sidebar">
-                <h3 className="heading nombrelargo">{manualInfo.nombre}</h3>
+                <h3 className="heading nombrelargo" style={{ maxHeight: "none" }}>{manualInfo.nombre}</h3>
                 <div className="desccaja">
                     <p className="descman">{manualInfo.descripcion}</p>
                 </div>
@@ -74,10 +74,14 @@ export default function InfoManual() {
                     {manualBlob ? (
                         <iframe
                             src={URL.createObjectURL(manualBlob)}
-                            width="100%"
-                            height="670px"
                             title="PDF Viewer"
-                        ></iframe>
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                height: "100%",
+                                border: "none",
+                            }}
+                        />
                     ) : (
                         <h5>Espere un momento...</h5>
                     )}

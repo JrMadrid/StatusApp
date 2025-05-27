@@ -6,10 +6,10 @@ import './App.css';
 /* Pages */
 import Iniciar from "./pages/Login.jsx";
 import Sucursales from './pages/Data/DataSucursales.jsx';
-import Aplicaciones from './pages/Data/DataAplicaciones.jsx';
+import Dispositivos from "./pages/Data/DataDispositivos.jsx";
 import Mantenimientos from "./pages/Data/DataMantenimientos.jsx";
-import AppInfo from './pages/Informes/App_Infor.jsx';
-import DeviceInfo from './pages/Informes/Device_Infor.jsx'
+import SucursalInfo from './pages/Informes/Sucursal_Infor.jsx';
+import DeviceInfo from './pages/Informes/Dispositivo_Infor.jsx'
 import ManteInfo from "./pages/Informes/Mante_Infor.jsx";
 import ManualInfo from "./pages/Informes/Manual_Infor.jsx";
 import InformeInfo from "./pages/Informes/Informe_Infor.jsx";
@@ -17,7 +17,7 @@ import InformeInfo from "./pages/Informes/Informe_Infor.jsx";
 import NotFoundPage from "./pages/NotFound.jsx";
 import PanUsers from './pages/Panels/PanelUsers.jsx'
 import PanSucursal from './pages/Panels/PanelSucursal.jsx';
-import PanelApp from './pages/Panels/PanelApp.jsx';
+import PanelApp from './pages/Panels/PanelDispositivo.jsx';
 import PanMantenimientos from "./pages/Panels/PanelMantenimiento.jsx";
 import PanManuales from "./pages/Panels/PanelManual.jsx";
 import Informes from "./pages/Panels/PanelInforme.jsx";
@@ -37,20 +37,20 @@ function App() {
                         {/* Aquí se definen las rutas de la aplicación */}
                         {/* Cada ruta tiene un componente asociado que se renderiza cuando la ruta coincide */}
                         <Route path="/" element={<Iniciar />} />
-                        <Route path="/status" element={<AppInfo />} />
-                        <Route path="/devices" element={<DeviceInfo />} />
-                        <Route path="/mantes" element={<ManteInfo />} />
-                        <Route path="/manual" element={<ManualInfo />} />
-                        <Route path="/informe" element={<InformeInfo />} />
                         <Route path="/sucursales" element={<Sucursales />} />
-                        <Route path="/aplicaciones" element={<Aplicaciones />} />
+                        <Route path="/dispositivos" element={<Dispositivos />} />
                         <Route path="/mantenimientos" element={<Mantenimientos />} />
-                        <Route path="/pansucursal" element={<PanSucursal />} />
                         <Route path="/panusers" element={<PanUsers />} />
+                        <Route path="/pansucursal" element={<PanSucursal />} />
                         <Route path="/panapps" element={<PanelApp />} />
                         <Route path="/panmantenimiento" element={<PanMantenimientos />} />
                         <Route path="/panmanuales" element={<PanManuales />} />
                         <Route path="/paninformes" element={<Informes />} />
+                        <Route path="/status" element={<SucursalInfo />} />
+                        <Route path="/devices" element={<DeviceInfo />} />
+                        <Route path="/mantes" element={<ManteInfo />} />
+                        <Route path="/manual" element={<ManualInfo />} />
+                        <Route path="/informe" element={<InformeInfo />} />
                         <Route path="*" element={<NotFoundPage />} /> {/* Ruta para manejar páginas no encontradas */}
                     </Route>
                 </Routes>

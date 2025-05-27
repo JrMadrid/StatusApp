@@ -47,7 +47,7 @@ const SelectInformes = () => {
         }
     }
     const ver = async (id) => {
-        let url = `http://${process.env.REACT_APP_HOST}/informes/verinforme/${id}`;
+        let url = `http://${process.env.REACT_APP_HOST}/informe/informes/verinforme/${id}`;
         try {
             const response = await fetchData(url)
 

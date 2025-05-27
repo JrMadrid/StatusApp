@@ -47,7 +47,7 @@ const SelectManuales = () => {
         }
     }
     const ver = async (id) => {
-        let url = `http://${process.env.REACT_APP_HOST}/manuales/vermanual/${id}`;
+        let url = `http://${process.env.REACT_APP_HOST}/informe/manuales/vermanual/${id}`;
         try {
             const response = await fetchData(url)
 

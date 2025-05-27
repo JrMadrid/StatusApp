@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';
 import logoSoporte from '../../imgs/LogoSoporte.png';
-import '../css/Infor_App.css';
+import '../css/Infor_Sucursal.css';
 
 export default function InfoInforme() {
     const [informeInfo, setInformeInfo] = useState({});
@@ -12,7 +12,7 @@ export default function InfoInforme() {
     useEffect(() => {
         const manualinfo = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/informes/info`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/informes/info`;
                 const response = await fetchData(url);
 
                 if (!response.ok) {
@@ -31,7 +31,7 @@ export default function InfoInforme() {
     useEffect(() => {
         const manualar = async () => {
             try {
-                const url = `http://${process.env.REACT_APP_HOST}/informes/informe`;
+                const url = `http://${process.env.REACT_APP_HOST}/informe/informes/informe`;
                 const response = await fetchData(url);
 
                 if (!response.ok) { throw new Error('Sin respuesta'); }
@@ -57,7 +57,7 @@ export default function InfoInforme() {
     return (
         <>
             <div className="sidebar">
-                <h3 className="heading nombrelargo">{informeInfo.nombre}</h3>
+                <h3 className="heading nombrelargo" style={{ maxHeight: "none" }}>{informeInfo.nombre}</h3>
                 <div className="desccaja">
                     <p className="descman">{informeInfo.descripcion}</p>
                 </div>
@@ -74,10 +74,14 @@ export default function InfoInforme() {
                     {informeBlob ? (
                         <iframe
                             src={URL.createObjectURL(informeBlob)}
-                            width="100%"
-                            height="670px"
                             title="PDF Viewer"
-                        ></iframe>
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                height: "100%",
+                                border: "none",
+                            }}
+                        />
                     ) : (
                         <h5>Espere un momento...</h5>
                     )}

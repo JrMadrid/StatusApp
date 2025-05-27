@@ -1,6 +1,6 @@
 /* PANTALLA VACIA INFORMACION PARA INFORME DE SUCURSAL */
 import { React } from "react";
-import Pingdispo from "../../../utils/ping.jsx";
+import Pingdispo from "../../Elements/ping";
 import { HiExternalLink } from "react-icons/hi"
 export default function InfoAppMT(data) {
 
@@ -15,13 +15,13 @@ export default function InfoAppMT(data) {
                                 <li className='listItemmt'>
                                     {!dispositivo.ip.startsWith('000.') && !dispositivo.ip.startsWith('001.') && dispositivo.nombre.startsWith('Laser') && (
                                         <>
-                                            <div className='pings'>
+                                            <div className='pings' style={{ fontSize: '1.5rem', paddingTop: '2px' }} >
                                                 <Pingdispo ip={dispositivo?.ip} />
                                             </div>
                                             <h4 className='principalmt' style={{ marginLeft: '1vw' }}>{dispositivo?.nombre || ""}</h4>
                                             <h4 className='principalmt' style={{ marginLeft: '1vw' }}>{dispositivo?.ip || ""}</h4>
                                             <div style={{ marginLeft: '1vw' }}>
-                                                <a href={`https://${dispositivo?.ip}`} target='_blank' rel="noreferrer" ><HiExternalLink className='externalmt' /></a >
+                                                <a href={`https://${dispositivo?.ip}`} target='_blank' rel="noreferrer" ><HiExternalLink className='externalmt' style={{ fontSize: '1.5rem' }} /></a >
                                             </div>
                                         </>
                                     )}
