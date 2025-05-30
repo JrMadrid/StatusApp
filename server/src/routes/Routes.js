@@ -40,6 +40,6 @@ export const Routes = (app) => {
   app.use('/informe', requireUserSession, InformeInfoRou); // Rutas de informe -- Informes
   // Ruta para manejar todas las peticiones que no coinciden con las rutas definidas anteriormente y servir el index.html
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'index.html')); // Envía el archivo 'index.html' como respuesta a cualquier ruta no definida
+    res.sendFile(path.join(__dirname, '../../public', 'index.html')); // Envía el archivo 'index.html' como respuesta a cualquier ruta no definida
   });
 }
