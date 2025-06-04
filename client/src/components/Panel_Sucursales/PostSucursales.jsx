@@ -1,6 +1,6 @@
 /* PANEL DE ADMINISTRACIÓN DE SUCURSALES -- CREAR */
 import React, { useState } from 'react';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 
 const PostSucursales = () => {
     const [formData, setFormData] = useState({
@@ -63,7 +63,9 @@ const PostSucursales = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>

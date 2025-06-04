@@ -59,7 +59,7 @@ const PostInforme = () => {
         DatosParaEnviar.append('frealizada', formData.frealizada);
         DatosParaEnviar.append('nombre', formData.nombre);
         DatosParaEnviar.append('descripcion', formData.descripcion);
-        DatosParaEnviar.append('documento', documento);        
+        DatosParaEnviar.append('documento', documento);
         try {
             const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/informes/agregar`, DatosParaEnviar, {
                 headers: {
@@ -92,10 +92,10 @@ const PostInforme = () => {
                     <label htmlFor="economico" style={{ marginTop: '5px' }}><span className='ReAgregar'>*</span>Económico:</label>
                     <input type="text" id="economico" name="economico" maxLength="6" minLength="6" required placeholder='Número económico' title="6 caracteres numéricos" value={formData.economico} onChange={cambio} />
                     <label htmlFor="frealizada"><span className='ReAgregar'>*</span>Fecha Realizado: </label>
-                    <input type="date" id="frealizada" name="frealizada" value={formData.frealizada} onChange={cambio} required style={{marginBottom:'4px'}}/>
+                    <input type="date" id="frealizada" name="frealizada" value={formData.frealizada} onChange={cambio} required style={{ marginBottom: '4px' }} />
                     <p className="paviso">Mes/Dia/Año</p>
                     <label htmlFor="nombre">Nombre: </label>
-                    <input type="text" id="nombre" name="nombre" maxLength="100" placeholder="Nombre del informe (Opcional)" value={formData.nombre} onChange={cambio} style={{marginBottom:'4px'}}/>
+                    <input type="text" id="nombre" name="nombre" maxLength="100" placeholder="Nombre del informe (Opcional)" value={formData.nombre} onChange={cambio} style={{ marginBottom: '4px' }} />
                     <p className='paviso'>Se puede tomar directo del documento</p>
                     <label htmlFor="descripcion" style={{ marginTop: '5px' }}>Descripción:</label>
                     <textarea className='textarea' style={{ marginTop: '5px' }} id="descripcion" name="descripcion" maxLength="100" placeholder="Descripción del informe (Opcional)" title="100 Caracteres máximos" value={formData.descripcion} onChange={cambio} rows={4} />
@@ -104,7 +104,9 @@ const PostInforme = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>

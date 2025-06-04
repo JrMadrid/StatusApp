@@ -1,6 +1,6 @@
 /* PANEL DE ADMINISTRACIÓN DE DISPOSITIVOS -- ACTUALIZAR */
 import React, { useState } from 'react';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 
 const UpdateDispositivo = () => {
     const [formData, setFormData] = useState({
@@ -73,7 +73,9 @@ const UpdateDispositivo = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>

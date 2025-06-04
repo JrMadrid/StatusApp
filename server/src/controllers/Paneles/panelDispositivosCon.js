@@ -1,6 +1,6 @@
 /* CONTROLADORES DE PANEL DE DISPOSITIVOS */
 import { obtenerDispositivos, agregarDispositivo, actualizarDispositivo, eliminarDispositivo } from '../../services/Paneles/panelDispositivosSer.js';
-import { SchemaCrearDispositivo } from '../../validators/Paneles/panelDispositivosVal.js';
+import { SchemaCrearDispositivo, SchemaActualizarDispositivo, SchemaEliminarDispositivo } from '../../validators/Paneles/panelDispositivosVal.js';
 import pingHost from '../../connection/PING.js';
 
 /* Pedimos los datos de los dispositivos */
@@ -18,7 +18,6 @@ const getDispositivos = async (req, res) => {
 const postDispositivo = async (req, res) => {
 	try {
 		// 1. Validar el body con Joi
-		// const { error } = SchemaCrearDispositivo.validate(req.body, { abortEarly: false }); // .validate sirve para validar el objeto y devuelve un objeto con error si hay problemas; abortEarly: false para obtener todos los errores, no solo el primero
 		const { error } = SchemaCrearDispositivo.validate(req.body, { abortEarly: false }); // .validate sirve para validar el objeto y devuelve un objeto con error si hay problemas; abortEarly: false para obtener todos los errores, no solo el primero
 
 		// 2. Si hay errores, devolverlos al frontend
@@ -45,6 +44,15 @@ const postDispositivo = async (req, res) => {
 /* Actualizamos un dispositivo */
 const updateDispositivo = async (req, res) => {
 	try {
+		// Validar el cuerpo del request con Joi
+		const { error } = SchemaActualizarDispositivo.validate(req.body, { abortEarly: false });
+
+		if (error) {
+			// Si hay errores, los unimos en un solo mensaje
+			const mensajes = error.details.map(err => err.message).join('\n');
+			return res.status(400).json({ message: mensajes });
+		}
+
 		await actualizarDispositivo(req.body);
 		res.status(200).json({ message: 'Dispositivo actualizado exitosamente' });
 	} catch (error) {
@@ -56,6 +64,15 @@ const updateDispositivo = async (req, res) => {
 /* Eliminamos un dispositivo */
 const deleteDispositivo = async (req, res) => {
 	try {
+		// Validar el cuerpo del request con Joi
+		const { error } = SchemaEliminarDispositivo.validate(req.body, { abortEarly: false });
+
+		if (error) {
+			// Si hay errores, los unimos en un solo mensaje
+			const mensajes = error.details.map(err => err.message).join('\n');
+			return res.status(400).json({ message: mensajes });
+		}
+
 		await eliminarDispositivo(req.body.id);
 		res.status(200).json({ message: 'Dispositivo eliminado exitosamente' });
 	} catch (error) {

@@ -96,7 +96,9 @@ const PostManual = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>
