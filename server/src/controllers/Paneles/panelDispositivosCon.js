@@ -24,7 +24,7 @@ const postDispositivo = async (req, res) => {
 		// 2. Si hay errores, devolverlos al frontend
 		if (error) {
 			const erroresUnidos = error.details.map(err => err.message).join('\n'); // Unimos todos los mensajes de error en un solo string, separados por saltos de línea
-			console.log(error.details.map(e => e.type));
+			// console.log(error.details.map(e => e.type)); // Esto imprime los tipos de error
 			return res.status(400).json({ message: erroresUnidos });
 		}
 

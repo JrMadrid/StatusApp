@@ -1,13 +1,13 @@
 /* PANEL DE ADMINISTRACIÓN DE DISPOSITIVOS -- CREAR */
 import React, { useState } from 'react';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 
 const PostDispositivo = () => {
     const [formData, setFormData] = useState({
         ip: '',
         economico: '',
         nombre: '',
-        descripcion: ''    
+        descripcion: ''
     });
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ const PostDispositivo = () => {
         try {
             const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/dispositivos/agregar`, formData);
             setMessage(response.data.message || 'Dispositivo agregado exitosamente');
-            window.location.reload(); 
+            window.location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al agregar el dispositivo');
         } finally {
@@ -55,7 +55,9 @@ const PostDispositivo = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>
