@@ -9,7 +9,7 @@ const SelectMantenimientos = () => {
 
     useEffect(() => {
         const url = `http://${process.env.REACT_APP_HOST}/panel/mantenimientos`;
-        const sucursales = async () => {
+        const mantenimientos = async () => {
             try {
                 const response = await fetchData(url);
                 const mantenimientos = await response.json();
@@ -20,7 +20,7 @@ const SelectMantenimientos = () => {
             }
         };
 
-        sucursales();
+        mantenimientos();
     }, []);
 
     const eleccion = async (economico) => {

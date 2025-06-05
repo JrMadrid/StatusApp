@@ -16,6 +16,10 @@ const getMantenimientos = async (req, res) => {
 const postMantenimientos = async (req, res) => {
     try {
         const { festimada, economico } = req.body;
+        console.log('req.body');
+        console.log(req.body);
+        console.log('2');
+        
         await publicarMantenimientos(festimada, economico);
 
         res.status(200).json({ message: 'Mantenimiento agregado exitosamente' });

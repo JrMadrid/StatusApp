@@ -1,7 +1,7 @@
 /* MODEL PARA VALIDAR DATOS DE INFORMES */
 import sql from 'mssql';
 
-export const getInformes = async (tipo, responsable) => {
+export const getInformes = async (tipo, responsable) => {        
     let query;
     let request = new sql.Request();
     request.input('responsable', sql.VarChar, responsable);

@@ -2,7 +2,7 @@
 import { obtenerInformes, publicarInforme, eliminarInforme, archivoInforme } from '../../services/Paneles/panelInformeSer.js';
 
 // Pedimos los datos de los informes
-const getInformes = async (req, res) => {
+const getInformes = async (req, res) => {        
     try {
         const responsable = req.session.user;
         const tipo = req.session.tipo;
@@ -14,9 +14,9 @@ const getInformes = async (req, res) => {
     }
 };
 
-// Agregamos un nuevo informe
+// Agregamos un nuevo informe -- Geografia
 const postInforme = async (req, res) => {
-    try {
+    try {        
         const { descripcion = '', nombre = '', documento, frealizada, economico } = req.body;
         const informe = req.file.buffer;
 
@@ -30,7 +30,7 @@ const postInforme = async (req, res) => {
     }
 };
 
-// Eliminamos un informe
+// Eliminamos un informe -- Administradores
 const deleteInforme = async (req, res) => {
     try {
         const { id } = req.body;
@@ -48,8 +48,6 @@ const Informe = async (req, res) => {
         const id = req.params.id
 
         const informe = await archivoInforme(id);
-        console.log('informe');
-        console.log(informe);
 
         if (informe.length > 0) {
             const archivo = informe[0].informe;

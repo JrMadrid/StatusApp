@@ -9,7 +9,7 @@ const SelectInformes = () => {
 
     useEffect(() => {
         const url = `http://${process.env.REACT_APP_HOST}/panel/informes`;
-        const sucursales = async () => {
+        const informes = async () => {
             try {
                 const response = await fetchData(url);
                 const informes = await response.json();
@@ -20,7 +20,7 @@ const SelectInformes = () => {
             }
         };
 
-        sucursales();
+        informes();
     }, []);
 
     const eleccion = async (id, nombre = 'Informe') => {

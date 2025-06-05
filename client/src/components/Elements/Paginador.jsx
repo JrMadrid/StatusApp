@@ -306,8 +306,8 @@ const Paginador = (props) => {
                     </>
                 )}
 
-                {/* TODOS- MANUALES */}
-                {user && props.tipo === 'manuales' && (
+                {/* TODOS - MANUALES */}
+                {user && (user.id === 1 || user.id === 2 || user.id === 3 || user.id === 4) && props.tipo === 'manuales' && (
                     <>
                         <div className='cajahijo'>
                             <table className='tablaData'>
@@ -337,8 +337,8 @@ const Paginador = (props) => {
                     </>
                 )}
 
-                {/* TODOS- INFORMES */}
-                {user && props.tipo === 'informes' && (
+                {/* TODOS - INFORMES */}
+                {user && (user.id === 1 || user.id === 2 || user.id === 3 || user.id === 4) && props.tipo === 'informes' && (
                     <>
                         <div className='cajahijo'>
                             <table className='tablaData'>

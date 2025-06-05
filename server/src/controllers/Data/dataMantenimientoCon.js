@@ -15,7 +15,7 @@ const getMantenimientos = async (req, res) => { // if (!req.session?.admin)
 			res.status(500).send("Error al obtener los datos");
 		}
 	// } else {
-	// 	res.redirect('')
+	// 	res.redirect('/')
 	// }
 };
 
