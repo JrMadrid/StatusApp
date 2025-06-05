@@ -1,8 +1,9 @@
 /* CONTROLADORES DE PANEL DE INFORMES */
 import { obtenerInformes, publicarInforme, eliminarInforme, archivoInforme } from '../../services/Paneles/panelInformeSer.js';
+import { SchemaAgregarInforme, SchemaEliminarInforme } from '../../validators/Paneles/panelInformeVal.js';
 
 // Pedimos los datos de los informes
-const getInformes = async (req, res) => {        
+const getInformes = async (req, res) => {
     try {
         const responsable = req.session.user;
         const tipo = req.session.tipo;
@@ -16,9 +17,15 @@ const getInformes = async (req, res) => {
 
 // Agregamos un nuevo informe -- Geografia
 const postInforme = async (req, res) => {
-    try {        
+    try {
         const { descripcion = '', nombre = '', documento, frealizada, economico } = req.body;
         const informe = req.file.buffer;
+
+        const { error } = SchemaAgregarInforme.validate(req.body, { abortEarly: false });
+        if (error) {
+            const erroresUnidos = error.details.map(err => err.message).join('\n');
+            return res.status(400).json({ message: erroresUnidos });
+        }
 
         await publicarInforme(descripcion, nombre, documento, frealizada, economico, informe);
 
@@ -34,6 +41,13 @@ const postInforme = async (req, res) => {
 const deleteInforme = async (req, res) => {
     try {
         const { id } = req.body;
+
+        const { error } = SchemaEliminarInforme.validate(req.body, { abortEarly: false });
+        if (error) {
+            const erroresUnidos = error.details.map(err => err.message).join('\n');
+            return res.status(400).json({ message: erroresUnidos });
+        }
+
         await eliminarInforme(id);
         res.status(200).json({ message: 'Informe eliminado exitosamente' });
     } catch (error) {

@@ -39,4 +39,21 @@ const SchemaAgregarInforme = Joi.object({
 
 });
 
-export default SchemaAgregarInforme;
+/* Esquema de validación para eliminar un informe */
+const SchemaEliminarInforme = Joi.object({
+
+  // Campo obligatorio 'id'
+  id: Joi.number() // Debe ser un número
+    .integer() // Solo enteros
+    .min(1) // Mínimo: 1
+    .required() // No puede faltar
+    .messages({
+      'any.required': 'El ID es obligatorio.',
+      'number.base': 'El ID debe ser un número.',
+      'number.min': 'El ID debe ser mayor a cero.',
+      'number.integer': 'El ID debe ser un número entero.'
+    })
+
+});
+
+export { SchemaAgregarInforme, SchemaEliminarInforme };
