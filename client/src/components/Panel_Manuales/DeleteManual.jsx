@@ -37,7 +37,7 @@ const DeleteManuales = () => {
                 <form onSubmit={eliminar}>
                     <div className="delete">
                         <label htmlFor="id"><span className='ReEliminar'>*</span>ID: </label>
-                        <input type="text" id="id" name="id" maxLength="5" placeholder='Elemento que eliminará' title='ID' min='2' pattern='\d{1,5}' value={formData.id} onChange={cambio} required />
+                        <input type="number" id="id" name="id" maxLength="5" placeholder='Elemento que eliminará' title='ID' min='1' pattern='\d{1,5}' value={formData.id} onChange={cambio} required />
                         <button type="submit" disabled={loading}>Eliminar</button>
                     </div>
                 </form>

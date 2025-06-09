@@ -44,7 +44,7 @@ const PostManual = () => {
                     <textarea className='textarea' style={{ marginTop: '5px' }} id="descripcion" name="descripcion" maxLength="100" placeholder="Descripción del manual (Opcional)" title="100 Caracteres máximos" value={formData.descripcion} onChange={cambio} rows={4} />
                     <div className='update'>
                         <label htmlFor="id"><span className='ReActualizar'>*</span>ID:</label>
-                        <input type="text" id="id" name="id" maxLength="5" required placeholder='Elemento que actualizará' title="Elemento que actualizará" value={formData.id} onChange={cambio} />
+                        <input type="number" id="id" name="id" maxLength="5" required placeholder='Elemento que actualizará' title="Elemento que actualizará" value={formData.id} onChange={cambio} />
                         <button type="submit" disabled={loading}>Actualizar</button>
                     </div>
                 </form>

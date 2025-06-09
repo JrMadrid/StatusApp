@@ -68,7 +68,7 @@ const UpdateDispositivo = () => {
                     <p className='paviso'>Reiniciará los datos alojados en la base de datos (Descripción y General)</p>
                     <div className="update">
                         <label htmlFor="id"><span className='ReActualizar'>*</span>ID:</label>
-                        <input type="number" id="id" name="id" maxLength="5" placeholder='Elemento que eliminará' title='ID' min='1' pattern='\d{1,5}' required onChange={cambio} value={formData.id} />
+                        <input type="number" id="id" name="id" maxLength="5" placeholder='Elemento que actualizara' title='Elemento que actualizara' min='1' pattern='\d{1,5}' required onChange={cambio} value={formData.id} />
                         <button type="submit" disabled={loading}>Actualizar</button>
                     </div>
                 </form>
