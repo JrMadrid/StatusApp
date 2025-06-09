@@ -1,0 +1,43 @@
+-- CREAR TABLA DE SUCURSALES
+
+USE [statusApps]
+GO
+
+/****** Object:  Table [dbo].[sucursales] ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[sucursales](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[canal] [varchar](30) NOT NULL,
+	[nombre] [varchar](50) NOT NULL,
+	[economico] [varchar](6) NOT NULL,
+	[ingresponsable] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK__sucursal__3213E83FBCDF8441] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [uq_economico] UNIQUE NONCLUSTERED 
+(
+	[economico] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[sucursales]  WITH NOCHECK ADD  CONSTRAINT [FK_ingresponsable] FOREIGN KEY([ingresponsable])
+REFERENCES [dbo].[users] ([nickname])
+GO
+
+ALTER TABLE [dbo].[sucursales] CHECK CONSTRAINT [FK_ingresponsable]
+GO
+
+
+-- DATO ESPECIAL
+
+
+
+-- REINICIAR EL ID
+DBCC CHECKIDENT ('sucursales', RESEED, 1);

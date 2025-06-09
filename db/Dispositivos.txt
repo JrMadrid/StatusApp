@@ -1,0 +1,40 @@
+-- CREAR TABLA DE DISPOSITIVOS
+
+USE [statusApps]
+GO
+
+/****** Object:  Table [dbo].[dispositivos] ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[dispositivos](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[ip] [varchar](15) NOT NULL,
+	[economico] [varchar](6) NOT NULL,
+	[nombre] [varchar](75) NOT NULL,
+	[descripcion] [varchar](100) NULL,
+	[general] [varchar](max) NULL,
+ CONSTRAINT [PK__disposit__3213E83F68BC0466] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ__disposit__DC50E69961D4C4EA] UNIQUE NONCLUSTERED 
+(
+	[ip] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[dispositivos]  WITH NOCHECK ADD  CONSTRAINT [fk_economico] FOREIGN KEY([economico])
+REFERENCES [dbo].[sucursales] ([economico])
+GO
+
+ALTER TABLE [dbo].[dispositivos] CHECK CONSTRAINT [fk_economico]
+GO
+
+
+-- REINICIAR EL ID
+DBCC CHECKIDENT ('dispositivos', RESEED, 0);

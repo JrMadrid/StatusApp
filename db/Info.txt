@@ -1,0 +1,27 @@
+-- CREAR TABLA DE INFORMACION DE DISPOSITIVOS
+
+USE [statusApps]
+GO
+
+/****** Object:  Table [dbo].[info] ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[info](
+	[ip] [varchar](15) NOT NULL,
+	[informacion] [varchar](max) NOT NULL,
+	[evealtos] [varchar](max) NULL,
+	[evemedios] [varchar](max) NULL,
+	[evebajos] [varchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[info]  WITH NOCHECK ADD  CONSTRAINT [FK_info_dispositivos] FOREIGN KEY([ip])
+REFERENCES [dbo].[dispositivos] ([ip])
+GO
+
+ALTER TABLE [dbo].[info] CHECK CONSTRAINT [FK_info_dispositivos]
+GO

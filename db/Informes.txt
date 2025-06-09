@@ -1,0 +1,38 @@
+-- CREAR TABLA DE INFORMES
+
+USE [statusApps]
+GO
+
+/****** Object:  Table [dbo].[informes] ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[informes](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[economico] [varchar](6) NOT NULL,
+	[fecharealizada] [date] NOT NULL,
+	[nombre] [varchar](100) NOT NULL,
+	[descripcion] [varchar](100) NULL,
+	[informe] [varbinary](max) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[informes]  WITH NOCHECK ADD  CONSTRAINT [FK_informes_sucursales] FOREIGN KEY([economico])
+REFERENCES [dbo].[sucursales] ([economico])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[informes] CHECK CONSTRAINT [FK_informes_sucursales]
+GO
+
+
+-- REINICIAR EL ID
+DBCC CHECKIDENT ('informes', RESEED, 0);

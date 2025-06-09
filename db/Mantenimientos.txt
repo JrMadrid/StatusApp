@@ -1,0 +1,45 @@
+-- CREAR TABLA DE MANTENIMIENTOS 
+
+USE [statusApps]
+GO
+
+/****** Object:  Table [dbo].[mantenimiento] ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[mantenimiento](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[fechaestimada] [date] NOT NULL,
+	[fecharealizada] [date] NULL,
+	[economico] [varchar](6) NOT NULL,
+	[constancia] [varbinary](max) NULL,
+	[descripcion] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[mantenimiento] ADD  CONSTRAINT [DF_fechaestimada]  DEFAULT ('2000-01-01') FOR [fechaestimada]
+GO
+
+ALTER TABLE [dbo].[mantenimiento] ADD  DEFAULT ('000000') FOR [economico]
+GO
+
+ALTER TABLE [dbo].[mantenimiento]  WITH NOCHECK ADD  CONSTRAINT [FK_mantenimiento_sucursales] FOREIGN KEY([economico])
+REFERENCES [dbo].[sucursales] ([economico])
+GO
+
+ALTER TABLE [dbo].[mantenimiento] CHECK CONSTRAINT [FK_mantenimiento_sucursales]
+GO
+
+
+-- DATO ESPECIAL
+
+
+-- REINICIAR EL ID
+DBCC CHECKIDENT ('mantenimientos', RESEED, 0);
