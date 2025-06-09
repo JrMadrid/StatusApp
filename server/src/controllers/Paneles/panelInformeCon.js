@@ -20,20 +20,22 @@ const postInforme = async (req, res) => {
     try {
         const { descripcion = '', nombre = '', documento, frealizada, economico } = req.body;
         const informe = req.file.buffer;
+        console.log(req.session);
+        
 
         const { error } = SchemaAgregarInforme.validate(req.body, { abortEarly: false });
         if (error) {
             const erroresUnidos = error.details.map(err => err.message).join('\n');
             return res.status(400).json({ message: erroresUnidos });
         }
-
-        await publicarInforme(descripcion, nombre, documento, frealizada, economico, informe);
+        const ingeniero = req.session.user;
+        await publicarInforme(descripcion, nombre, documento, frealizada, economico, informe, ingeniero);
 
         res.status(200).json({ message: 'Informe agregado exitosamente' });
 
     } catch (error) {
         console.error('Error agregando nuevos datos:', error);
-        res.status(500).json({ message: 'Error agregando nuevos datos' });
+        res.status(error.status || 500).json({ message: error.message || 'Error agregando nuevos datos' });
     }
 };
 

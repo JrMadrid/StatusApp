@@ -1,5 +1,6 @@
 /* CONTROLADORES DE PANEL DE SUCURSALES */
 import { obtenerSucursales, agregarSucursal, actualizarSucursal, eliminarSucursal } from '../../services/Paneles/panelSucursalSer.js';
+import { SchemaCrearSucursal, SchemaActualizarSucursal, SchemaEliminarSucursal } from '../../validators/Paneles/panelSucursalVar.js';
 
 // Pedimos los datos de las sucursales
 const getSucursales = async (req, res) => {
@@ -17,6 +18,13 @@ const getSucursales = async (req, res) => {
 const postSucursal = async (req, res) => {
 	try {
 		const { economico, canal, nombre, ingresponsable, rellenar } = req.body;
+
+		const { error/* , value */ } = SchemaCrearSucursal.validate(req.body, { abortEarly: false });
+		if (error) {
+			const mensajes = error.details.map(err => err.message).join('\n');
+			return res.status(400).json({ message: mensajes });
+		}
+
 		await agregarSucursal(economico, canal, nombre, ingresponsable, rellenar);
 
 		res.status(200).json({ message: 'Sucursal agregado exitosamente' });
@@ -31,6 +39,13 @@ const updateSucursal = async (req, res) => {
 	try {
 		const { economico, canal, nombre, id, ingresponsable, rellenar } = req.body;
 
+		const { error } = SchemaActualizarSucursal.validate(req.body, { abortEarly: false });
+
+		if (error) {
+			const mensajes = error.details.map(err => err.message).join('\n');
+			return res.status(400).json({ message: mensajes });
+		}
+
 		await actualizarSucursal(economico, canal, nombre, id, ingresponsable, rellenar);
 		res.status(200).json({ message: 'Sucursal actualizado exitosamente' });
 
@@ -44,6 +59,12 @@ const updateSucursal = async (req, res) => {
 const deleteSucursal = async (req, res) => {
 	try {
 		const { id } = req.body;
+		const { error } = SchemaEliminarSucursal.validate(req.body, { abortEarly: false });
+		if (error) {
+			const mensajes = error.details.map(err => err.message).join('\n');
+			return res.status(400).json({ message: mensajes });
+		}
+
 		await eliminarSucursal(id);
 
 		res.status(200).json({ message: 'Sucursal eliminada exitosamente' });

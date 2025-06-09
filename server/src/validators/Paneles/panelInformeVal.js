@@ -29,6 +29,14 @@ const SchemaAgregarInforme = Joi.object({
       'string.max': 'El nombre del informe no puede superar los 100 caracteres.'
     }),
 
+  // Campo 'documento'
+  documento: Joi.string() // Cadena de texto
+    .max(100) // Máximo 100 caracteres
+    .allow('') // Opcional: puede enviarse vacío
+    .messages({
+      'string.max': 'El nombre del informe no puede superar los 100 caracteres.'
+    }),
+
   // Campo 'descripcion'
   descripcion: Joi.string() // Cadena de texto
     .max(100) // Máximo 100 caracteres
