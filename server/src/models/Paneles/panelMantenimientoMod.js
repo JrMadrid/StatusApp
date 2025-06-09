@@ -41,7 +41,7 @@ async function SucursalExiste(economico) {
 
 /* Comprobar que fecha estimada es mayor a 01/Enero/2024 */
 async function comprobarFechaEstimada(festimada) {
-    try {
+    try {        
         return '2024-01-01' < festimada;
     } catch (error) {
         console.error('Error al ejecutar:', error);

@@ -1,7 +1,7 @@
 /* MODEL PARA VALIDAR DATOS DE INFORMES */
 import sql from 'mssql';
 
-export const getInformes = async (tipo, responsable) => {
+export const getInformes = async (tipo, responsable) => {        
     let query;
     let request = new sql.Request();
     request.input('responsable', sql.VarChar, responsable);
@@ -57,14 +57,32 @@ export const informeArchivo = async (id) => {
     return resultado.recordset;
 }
 
+/* Validaciones */
 /* Comprobar que existe la sucursal antes de cualquier operación con los informes */
 async function SucursalExiste(economico) {
     try {
         // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
-        const query = 'SELECT economico FROM sucursales WHERE economico = @economico';
+        const query = 'SELECT economico FROM sucursales WHERE economico = @economico';        
         const request = new sql.Request();
         request.input('economico', sql.VarChar, economico)
         const resultado = await request.query(query);
+        return resultado.recordset.length > 0;
+    } catch (error) {
+        console.error('Error al comprobar la sucursal:', error);
+        throw error;
+    }
+}
+
+/* Comprobar que existe la sucursal le pertenezca a ese usuario */
+async function SucursalPerteneciente(economico, ingeniero) {
+    try {
+        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
+        const query = 'SELECT economico FROM sucursales WHERE economico = @economico AND ingresponsable = @usuario';
+        const request = new sql.Request();
+        request.input('economico', sql.VarChar, economico)
+        request.input('usuario', sql.VarChar, ingeniero)
+        const resultado = await request.query(query);
+        
         return resultado.recordset.length > 0;
     } catch (error) {
         console.error('Error al comprobar la sucursal:', error);
@@ -87,4 +105,4 @@ async function comprobarID(id) {
     }
 }
 
-export { SucursalExiste, comprobarID };
+export { SucursalExiste, comprobarID, SucursalPerteneciente };

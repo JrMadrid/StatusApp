@@ -1,6 +1,6 @@
 /* PANEL DE ADMINISTRACIÓN DE USUARIOS -- CREAR */
 import React, { useState } from 'react';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 
 const PostUsers = () => {
     const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const PostUsers = () => {
     const cambio = (e) => {
         const { name, value, type, checked } = e.target;
         if (type === 'checkbox') {
-            
+
             setFormData(prevFormData => ({
                 ...prevFormData,
                 [name]: checked ? 1 : 0
@@ -27,7 +27,7 @@ const PostUsers = () => {
         }
     };
 
-    
+
     const Agregar = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -35,7 +35,7 @@ const PostUsers = () => {
         try {
             const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/users/agregar`, formData);
             setMessage(response.data.message || 'Usuario agregado exitosamente');
-            window.location.reload(); 
+            window.location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al agregar el usuario');
         } finally {
@@ -63,7 +63,9 @@ const PostUsers = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>

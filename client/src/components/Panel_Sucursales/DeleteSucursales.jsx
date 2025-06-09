@@ -1,6 +1,6 @@
 /* PANEL DE ADMINISTRACIÓN DE SUCURSALES -- ELIMINAR */
 import React, { useState } from 'react';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 const DeleteSucursales = () => {
     const [formData, setFormData] = useState({
         id: ''
@@ -42,7 +42,9 @@ const DeleteSucursales = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>

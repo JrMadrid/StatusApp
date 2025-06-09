@@ -1,7 +1,7 @@
 /* PANEL DE ADMINISTRACIÓN DE USUARIOS -- ELIMINAR */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 
 const DeleteUsers = () => {
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const DeleteUsers = () => {
         try {
             const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/users/eliminar`, formData);
             setMessage(response.data.message || 'Usuario eliminado exitosamente');
-            window.location.reload(); 
+            window.location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al eliminar el usuario');
         } finally {
@@ -53,7 +53,9 @@ const DeleteUsers = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
             <div className='caja'>

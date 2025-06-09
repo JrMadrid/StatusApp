@@ -19,16 +19,8 @@ const PostMantenimientos = () => {
         setLoading(true);
         setMessage('');
 
-        const DatosParaEnviar = new FormData();
-        DatosParaEnviar.append('festimada', formData.festimada);
-        DatosParaEnviar.append('economico', formData.economico);
-
         try {
-            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/mantenimientos/agregar`, DatosParaEnviar, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/mantenimientos/agregar`, formData);
             setMessage(response.data.message || 'Mantenimiento agregado exitosamente');
             window.location.reload();
         } catch (error) {
@@ -53,7 +45,9 @@ const PostMantenimientos = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div >
         </>

@@ -1,5 +1,6 @@
 /* CONTROLADORES DE PANEL DE INFORMES */
 import { obtenerInformes, publicarInforme, eliminarInforme, archivoInforme } from '../../services/Paneles/panelInformeSer.js';
+import { SchemaAgregarInforme, SchemaEliminarInforme } from '../../validators/Paneles/panelInformeVal.js';
 
 // Pedimos los datos de los informes
 const getInformes = async (req, res) => {
@@ -14,26 +15,41 @@ const getInformes = async (req, res) => {
     }
 };
 
-// Agregamos un nuevo informe
+// Agregamos un nuevo informe -- Geografia
 const postInforme = async (req, res) => {
     try {
         const { descripcion = '', nombre = '', documento, frealizada, economico } = req.body;
         const informe = req.file.buffer;
+        console.log(req.session);
+        
 
-        await publicarInforme(descripcion, nombre, documento, frealizada, economico, informe);
+        const { error } = SchemaAgregarInforme.validate(req.body, { abortEarly: false });
+        if (error) {
+            const erroresUnidos = error.details.map(err => err.message).join('\n');
+            return res.status(400).json({ message: erroresUnidos });
+        }
+        const ingeniero = req.session.user;
+        await publicarInforme(descripcion, nombre, documento, frealizada, economico, informe, ingeniero);
 
         res.status(200).json({ message: 'Informe agregado exitosamente' });
 
     } catch (error) {
         console.error('Error agregando nuevos datos:', error);
-        res.status(500).json({ message: 'Error agregando nuevos datos' });
+        res.status(error.status || 500).json({ message: error.message || 'Error agregando nuevos datos' });
     }
 };
 
-// Eliminamos un informe
+// Eliminamos un informe -- Administradores
 const deleteInforme = async (req, res) => {
     try {
         const { id } = req.body;
+
+        const { error } = SchemaEliminarInforme.validate(req.body, { abortEarly: false });
+        if (error) {
+            const erroresUnidos = error.details.map(err => err.message).join('\n');
+            return res.status(400).json({ message: erroresUnidos });
+        }
+
         await eliminarInforme(id);
         res.status(200).json({ message: 'Informe eliminado exitosamente' });
     } catch (error) {
@@ -48,8 +64,6 @@ const Informe = async (req, res) => {
         const id = req.params.id
 
         const informe = await archivoInforme(id);
-        console.log('informe');
-        console.log(informe);
 
         if (informe.length > 0) {
             const archivo = informe[0].informe;

@@ -1,6 +1,6 @@
 /* PANEL DE ADMINISTRACIÓN DE MATENIMIENTOS -- ELIMINAR */
 import React, { useState } from 'react';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 
 const DeleteMantenimientos = () => {
     const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ const DeleteMantenimientos = () => {
         try {
             const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/mantenimientos/eliminar`, formData);
             setMessage(response.data.message || 'Mantenimiento eliminado exitosamente');
-            window.location.reload(); 
+            window.location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al eliminar el mantenimiento');
         } finally {
@@ -42,7 +42,9 @@ const DeleteMantenimientos = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>

@@ -7,6 +7,7 @@ export const obtenerMantenimientos = async () => {
 
 export const publicarMantenimientos = async (festimada, economico) => {
   const festimadamayor = await comprobarFechaEstimada(festimada);
+  
   if (!festimadamayor) {
     throw { status: 400, message: 'Fecha estimada menor a 01/Enero/2024' };
   }

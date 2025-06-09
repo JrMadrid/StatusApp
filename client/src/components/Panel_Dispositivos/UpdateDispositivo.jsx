@@ -1,6 +1,6 @@
 /* PANEL DE ADMINISTRACIÓN DE DISPOSITIVOS -- ACTUALIZAR */
 import React, { useState } from 'react';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 
 const UpdateDispositivo = () => {
     const [formData, setFormData] = useState({
@@ -68,12 +68,14 @@ const UpdateDispositivo = () => {
                     <p className='paviso'>Reiniciará los datos alojados en la base de datos (Descripción y General)</p>
                     <div className="update">
                         <label htmlFor="id"><span className='ReActualizar'>*</span>ID:</label>
-                        <input type="number" id="id" name="id" maxLength="5" placeholder='Elemento que eliminará' title='ID' min='1' pattern='\d{1,5}' required onChange={cambio} value={formData.id} />
+                        <input type="number" id="id" name="id" maxLength="5" placeholder='Elemento que actualizara' title='Elemento que actualizara' min='1' pattern='\d{1,5}' required onChange={cambio} value={formData.id} />
                         <button type="submit" disabled={loading}>Actualizar</button>
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>

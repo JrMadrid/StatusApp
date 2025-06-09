@@ -1,5 +1,6 @@
 /* CONTROLADORES DE PANEL DE MANUALES */
 import { obtenerManuales, publicarManual, eliminarManual, actualizarManual, manualArchivo } from '../../services/Paneles/panelManualSer.js';
+import { SchemaAgregarManual, schemaActualizarManual, SchemaEliminarManual } from '../../validators/Paneles/panelManualesVal.js';
 
 // Pedimos los datos de los manuales
 const getManuales = async (req, res) => {
@@ -17,24 +18,19 @@ const postManual = async (req, res) => {
 	try {
 		const { descripcion = '', nombre = '', documento } = req.body;
 		const manual = req.file.buffer;
+
+		const { error } = SchemaAgregarManual.validate(req.body, { abortEarly: false })
+		if (error) {
+			const erroresUnidos = error.details.map(err => err.message).join('\n');
+			res.status(400).json({ message: erroresUnidos })
+		}
+
 		await publicarManual(descripcion, nombre, documento, manual);
 		res.status(200).json({ message: 'Manual agregado exitosamente' });
 
 	} catch (error) {
 		console.error('Error agregando nuevos datos:', error);
-		res.status(500).json({ message: 'Error agregando nuevos datos' });
-	}
-};
-
-// Eliminamos un manual
-const deleteManual = async (req, res) => {
-	try {
-		const { id } = req.body;
-		await eliminarManual(id);
-		res.status(200).json({ message: 'Manual eliminado exitosamente' });
-	} catch (error) {
-		res.status(500).json({ message: 'Error eliminando datos' });
-		console.error('Error al eliminar los datos', error);
+		res.status(error.status || 500).json({ message: error.message || 'Error agregando nuevos datos' }); // Responder con falla
 	}
 };
 
@@ -42,11 +38,34 @@ const deleteManual = async (req, res) => {
 const updateManual = async (req, res) => {
 	try {
 		const { nombre, descripcion, id } = req.body;
+
+		const { error } = schemaActualizarManual.validate(req.body, { abortEarly: false })
+		if (error) {
+			const erroresUnidos = error.details.map(err => err.message).join('\n');
+			res.status(400).json({ message: erroresUnidos })
+		}
 		await actualizarManual(nombre, descripcion, id);
 		res.status(200).json({ message: 'Manual actualizado exitosamente' });
 	} catch (error) {
 		console.error('Error al actualizar los datos', error);
 		res.status(error.status || 500).json({ message: error.message || 'Error actualizando datos' });
+	}
+};
+
+// Eliminamos un manual
+const deleteManual = async (req, res) => {
+	try {
+		const { id } = req.body;
+		const { error } = SchemaEliminarManual.validate(req.body, { abortEarly: false })
+		if (error) {
+			const erroresUnidos = error.details.map(err => err.message).join('\n');
+			res.status(400).json({ message: erroresUnidos })
+		}
+		await eliminarManual(id);
+		res.status(200).json({ message: 'Manual eliminado exitosamente' });
+	} catch (error) {
+		console.error('Error al eliminar los datos', error);
+		res.status(error.status || 500).json({ message: error.message || 'Error eliminando datos' });
 	}
 };
 

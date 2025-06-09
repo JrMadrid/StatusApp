@@ -1,6 +1,6 @@
 /* PANEL DE ADMINISTRACIÓN DE SUCURSALES -- ACTUALIZAR */
 import React, { useState } from 'react';
-import axios from '../../api/axiosConfig'; 
+import axios from '../../api/axiosConfig';
 
 const UpdateSucursales = () => {
     const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const UpdateSucursales = () => {
         try {
             const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/sucursales/actualizar`, formData);
             setMessage(response.data.message || 'Sucursal actualizada exitosamente');
-            window.location.reload(); 
+            window.location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al actualizar la sucursal');
         } finally {
@@ -68,7 +68,9 @@ const UpdateSucursales = () => {
                     </div>
                 </form>
                 <div className='avisos'>
-                    {message && <p>{message}</p>}
+                    {message && message.split('\n').map((linea, i) => (
+                        <p key={i}>{linea}</p>
+                    ))}
                 </div>
             </div>
         </>
