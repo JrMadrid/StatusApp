@@ -1,6 +1,6 @@
 -- CREAR TABLA DE USUARIOS
 
-USE [statusApps]
+USE [statusAppsPro]
 GO
 
 /****** Object:  Table [dbo].[users] ******/
@@ -32,7 +32,20 @@ GO
 
 
 -- DATO ESPECIAL
+USE [statusAppsPro]
+GO
 
+INSERT INTO [dbo].[users]
+           ([nickname]
+           ,[psw]
+           ,[isAdmin]
+           ,[tipo])
+     VALUES
+           ('Jefe'
+           ,'jefe'
+           ,1
+           ,'Super Administrador')
+GO
 
 
 -- REINICIAR EL ID

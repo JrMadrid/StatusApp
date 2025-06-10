@@ -1,6 +1,6 @@
 -- CREAR TABLA DE DISPOSITIVOS
 
-USE [statusApps]
+USE [statusAppsPro]
 GO
 
 /****** Object:  Table [dbo].[dispositivos] ******/

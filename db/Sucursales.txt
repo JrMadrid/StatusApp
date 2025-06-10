@@ -1,6 +1,6 @@
 -- CREAR TABLA DE SUCURSALES
 
-USE [statusApps]
+USE [statusAppsPro]
 GO
 
 /****** Object:  Table [dbo].[sucursales] ******/
@@ -36,7 +36,20 @@ GO
 
 
 -- DATO ESPECIAL
+USE [statusAppsPro]
+GO
 
+INSERT INTO [dbo].[sucursales]
+           ([canal]
+           ,[nombre]
+           ,[economico]
+           ,[ingresponsable])
+     VALUES
+           ('--'
+           ,'Sin establecer'
+           ,'000000'
+           ,'Jefe')
+GO
 
 
 -- REINICIAR EL ID

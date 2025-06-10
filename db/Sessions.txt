@@ -1,6 +1,6 @@
 -- CREAR TABLA DE SESIONES
 
-USE [statusApps]
+USE [statusAppsPro]
 GO
 
 /****** Object:  Table [dbo].[Sessions] ******/

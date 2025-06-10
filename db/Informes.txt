@@ -1,6 +1,6 @@
 -- CREAR TABLA DE INFORMES
 
-USE [statusApps]
+USE [statusAppsPro]
 GO
 
 /****** Object:  Table [dbo].[informes] ******/

@@ -1,6 +1,6 @@
 -- CREAR TABLA DE MANUALES
 
-USE [statusApps]
+USE [statusAppsPro]
 GO
 
 /****** Object:  Table [dbo].[manuales] ******/

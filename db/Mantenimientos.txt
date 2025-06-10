@@ -1,6 +1,6 @@
 -- CREAR TABLA DE MANTENIMIENTOS 
 
-USE [statusApps]
+USE [statusAppsPro]
 GO
 
 /****** Object:  Table [dbo].[mantenimiento] ******/
@@ -39,7 +39,7 @@ GO
 
 
 -- DATO ESPECIAL
-
+-- Documentos de 2024 o mas antiguos son considerados historicos y no generan nuevos mantenimientos estimados.
 
 -- REINICIAR EL ID
 DBCC CHECKIDENT ('mantenimientos', RESEED, 0);
