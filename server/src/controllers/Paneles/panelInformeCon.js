@@ -19,9 +19,7 @@ const getInformes = async (req, res) => {
 const postInforme = async (req, res) => {
     try {
         const { descripcion = '', nombre = '', documento, frealizada, economico } = req.body;
-        const informe = req.file.buffer;
-        console.log(req.session);
-        
+        const informe = req.file.buffer;        
 
         const { error } = SchemaAgregarInforme.validate(req.body, { abortEarly: false });
         if (error) {

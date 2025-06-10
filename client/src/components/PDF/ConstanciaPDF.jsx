@@ -81,8 +81,6 @@ export default function PDFConstancia({ imageBlob, eco, title = 'Reporte de Mant
         };
 
         const filename = `${title.replace(/\s+/g, '_')}_${eco}_${fechacons}.pdf`; // Generar un nombre de archivo basado en el título
-        console.log('filename');
-        console.log(filename);
         
         pdfMake.createPdf(docDefinition).download(filename); // Descargar el PDF generado
         toast(`Mantenimiento PDF ${fechacons}`, { position: 'bottom-right' });
