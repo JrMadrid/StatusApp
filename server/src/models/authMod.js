@@ -28,7 +28,8 @@ async function comprobarUsuario(nickname, psw) {
 					}
 				});
 			});
-
+			// const inicio = true // Saltar validación
+			// if (inicio) {
 			if (valid) {
 				return { usuario, admon, tipo, error: null }; // Retorna el usuario y el estado de administrador
 			} else {
