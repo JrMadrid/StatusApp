@@ -106,7 +106,7 @@ export const deleteUser = async (id, ingResponsable) => {
 
   await request.query('ALTER TABLE sucursales NOCHECK CONSTRAINT FK_ingresponsable');
 
-  await request.query(`UPDATE sucursales SET ingresponsable = 'Joel Herrera' FROM sucursales WHERE ingresponsable = @ingResponsable`);
+  await request.query(`UPDATE sucursales SET ingresponsable = 'Jefe' FROM sucursales WHERE ingresponsable = @ingResponsable`);
   await request.query(query);
 
   await request.query('ALTER TABLE sucursales CHECK CONSTRAINT FK_ingresponsable');
