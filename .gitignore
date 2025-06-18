@@ -1,17 +1,17 @@
 # Frontend
 /client/node_modules
 /client/build
-/client/config
-/client/public
-/client/scripts
-/client/.env
+# /client/config
+# /client/public
+# /client/scripts
+# /client/.env
 
 # Backend
 /server/node_modules
-/server/public
+# /server/public
 /server/dist
 /server/src/logs/.*
-/server/.env
+# /server/.env
 
 # DB
 # /db/*
@@ -19,7 +19,7 @@
 # docs
 # docs/*
 
-.gitignore
+# .gitignore
 
 # Logs
 *.log
