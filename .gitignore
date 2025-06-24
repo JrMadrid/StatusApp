@@ -4,14 +4,14 @@
 # /client/config
 # /client/public
 # /client/scripts
-# /client/.env
+/client/.env
 
 # Backend
 /server/node_modules
 # /server/public
 /server/dist
 /server/src/logs/.*
-# /server/.env
+/server/.env
 
 # DB
 # /db/*
