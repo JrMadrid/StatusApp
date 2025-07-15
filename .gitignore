@@ -19,8 +19,6 @@
 # docs
 # docs/*
 
-# .gitignore
-
 # Logs
 *.log
 npm-debug.log*
