@@ -8,7 +8,7 @@
 
 # Backend
 /server/node_modules
-# /server/public
+/server/public
 /server/dist
 /server/src/logs/.*
 /server/.env
@@ -18,8 +18,6 @@
 
 # docs
 # docs/*
-
-# .gitignore
 
 # Logs
 *.log
