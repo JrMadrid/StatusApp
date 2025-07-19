@@ -1,20 +1,20 @@
-/* PAGINA DE INFORME -- INFORMES */
+/* PAGINA DE INFORME -- MANUALES */
 import { React, useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
-import InfoInforme from '../../components/Informes/infor_Informe.jsx';
+import InfoManual from '../../components/Informativas/infor_Manual.jsx';
 
-const InformeInfo = () => {
+const ManualInfo = () => {
     const user = useContext(UserContext);
 
     return (
         <>
             {user && (user.id === 1 || user.id === 2 || user.id === 3 || user.id === 4) && ( // TODOS
                 <div>
-                    <InfoInforme />
+                    <InfoManual />
                 </div>
             )}
         </>
     );
 };
 
-export default InformeInfo;
+export default ManualInfo;

@@ -5,16 +5,18 @@ import { BrowserRouter as Router, Route, Routes, Outlet, useLocation } from 'rea
 import './App.css';
 /* Pages */
 import Iniciar from "./pages/Login.jsx";
-import Sucursales from './pages/Data/DataSucursales.jsx';
+import NotFoundPage from "./pages/NotFound.jsx";
+// Data
+import Sucursales from './pages/Data/DataSucursal.jsx';
 import Dispositivos from "./pages/Data/DataDispositivos.jsx";
 import Mantenimientos from "./pages/Data/DataMantenimientos.jsx";
-import SucursalInfo from './pages/Informes/Sucursal_Infor.jsx';
-import DeviceInfo from './pages/Informes/Dispositivo_Infor.jsx'
-import ManteInfo from "./pages/Informes/Mante_Infor.jsx";
-import ManualInfo from "./pages/Informes/Manual_Infor.jsx";
-import InformeInfo from "./pages/Informes/Informe_Infor.jsx";
-/* Pages panels */
-import NotFoundPage from "./pages/NotFound.jsx";
+// Informativas
+import SucursalInfo from './pages/Informativas/Sucursal_Infor.jsx';
+import DeviceInfo from './pages/Informativas/Dispositivos_Infor.jsx'
+import ManteInfo from "./pages/Informativas/Mantenimientos_Infor.jsx";
+import ManualInfo from "./pages/Informativas/Manual_Infor.jsx";
+import InformeInfo from "./pages/Informativas/Informe_Infor.jsx";
+// Paneles
 import PanUsers from './pages/Panels/PanelUsers.jsx'
 import PanSucursal from './pages/Panels/PanelSucursal.jsx';
 import PanelApp from './pages/Panels/PanelDispositivo.jsx';

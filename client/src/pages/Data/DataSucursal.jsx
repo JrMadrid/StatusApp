@@ -1,6 +1,6 @@
 /* PAGINA DE TABLA DE SUCURSALES PARA APLICATIVO Y GEOGRAFIA */
 import { useContext } from 'react';
-import { SucursalTable } from '../../components/Data/SucursalesData.jsx';
+import { SucursalTable } from '../../components/Data/SucursalData.jsx';
 import { UserContext } from '../../context/UserContext.jsx';
 
 const Sucursales = () => {

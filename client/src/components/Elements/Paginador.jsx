@@ -9,7 +9,7 @@ import { ListPDF } from '../Listas/Lista_PDF.jsx';
 import { UserContext } from '../../context/UserContext';
 import ReactPaginate from 'react-paginate';
 import ping from '../../utils/ping.jsx';
-import { FaHouseUser, FaToolbox, FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { FaAddressCard, FaHouseUser, FaToolbox, FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { HiStatusOnline, HiExternalLink, HiDocumentDownload, HiEye } from "react-icons/hi";
 import logo from '../../imgs/LogoSoporte.png';
 import hn from '../../imgs/hn.png';
@@ -389,6 +389,7 @@ const Paginador = (props) => {
                             <table className='tablaData'>
                                 <thead>
                                     <tr>
+                                        <th className='thData eject' title='Usuario' ><FaAddressCard /></th>
                                         <th className='thData'>Nombre</th>
                                         <th className='sunombre thData'>Contraseña</th>
                                         <th className='sunombre thData'>Usuario</th>
@@ -398,6 +399,7 @@ const Paginador = (props) => {
                                 <tbody>
                                     {itemsActuales.map(item => (
                                         <tr key={item.id}>
+                                            <td className='tdData'><a href='/users' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                             <td className='tdData long-data' >{item.nickname}</td>
                                             <td className='tdData long-data' style={{ overflowX: 'hidden' }}>{item.psw}</td>
                                             <td className='tdData'>{item.tipo}</td>
