@@ -1,6 +1,6 @@
-/* RUTAS DE INFORME -- INFORMES */
+/* RUTAS DE INFORMATIVA -- INFORMES */
 import express from 'express';
-import { methods as InformeInfoControllers } from '../../controllers/Informes/InformeInfoCon.js';
+import { methods as InformeInfoControllers } from '../../controllers/Informativas/InformeInfoCon.js';
 const InformeInfoRou = express.Router(); // Crea un nuevo objeto Router que se puede usar para definir rutas
 
 InformeInfoRou.get('/informes/verinforme/:id', InformeInfoControllers.verid); // Pide el id del informe --/informe/informes/verinforme/:id

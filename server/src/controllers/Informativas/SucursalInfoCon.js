@@ -1,5 +1,5 @@
-/* CONTROLADORES DE INFORME -- SUCURSAL */
-import { obtenerDatosAplicaciones, nombreDispositivoXIP, informationGneralDispositivo, dispositiosValidos, actualizarInformacionGeneral, actualizarInformacionDescripcion } from '../../services/Informes/SucursalInfoSer.js';
+/* CONTROLADORES DE INFORMATIVA -- SUCURSAL */
+import { obtenerDatosAplicaciones, nombreDispositivoXIP, informationGneralDispositivo, dispositiosValidos, actualizarInformacionGeneral, actualizarInformacionDescripcion } from '../../services/Informativas/SucursalInfoSer.js';
 const isMock = 'true'; // process.env.USE_MOCK accede al valor de la variable de entorno USE_MOCK. Si el valor es la cadena 'true', entonces isMock será true. Si no, será false.
 // UPS
 const { UPSssh: RealUPSssh, UPSHardware: RealUPSHardware, UPSDescripcion: RealUPSDescripcion } = await import('../../connection/UPSssh.js');

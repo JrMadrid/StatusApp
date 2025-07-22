@@ -399,7 +399,7 @@ const Paginador = (props) => {
                                 <tbody>
                                     {itemsActuales.map(item => (
                                         <tr key={item.id}>
-                                            <td className='tdData'><a href='/users' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
+                                            <td className='tdData'><a href='/users' onClick={() => { props.eleccion(item.nickname) }} className='link select'><button className='ir'></button></a></td>
                                             <td className='tdData long-data' >{item.nickname}</td>
                                             <td className='tdData long-data' style={{ overflowX: 'hidden' }}>{item.psw}</td>
                                             <td className='tdData'>{item.tipo}</td>

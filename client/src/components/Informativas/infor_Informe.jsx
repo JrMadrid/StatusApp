@@ -1,4 +1,4 @@
-/* COMPONENTE DE INFORME -- INFORMES */
+/* COMPONENTE DE INFORMATIVA -- INFORMES */
 import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';

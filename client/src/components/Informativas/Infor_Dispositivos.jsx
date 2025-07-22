@@ -1,4 +1,4 @@
-/* COMPONENTE DE INFORME -- DISPOSITIVOS */
+/* COMPONENTE DE INFORMATIVA -- DISPOSITIVOS */
 import { React, useEffect, useState } from 'react';
 import fetchData from '../../api/connect.js';
 import Pingdispo from '../Elements/ping.jsx';

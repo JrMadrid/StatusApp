@@ -1,4 +1,4 @@
-/* PAGINA DE INFORME -- MANUALES */
+/* PAGINA DE INFORMATIVA -- MANUALES */
 import { React, useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import InfoManual from '../../components/Informativas/infor_Manual.jsx';

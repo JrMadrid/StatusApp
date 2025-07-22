@@ -1,5 +1,5 @@
-/* SERVICIOS DE INFORME -- MANTENIMIENTO */
-import { fechasRealizadas, getMantenimientoArchivo, getMantenimientosArchivos } from "../../models/Informes/ManteInfoMod.js";
+/* SERVICIOS DE INFORMATIVA -- MANTENIMIENTO */
+import { fechasRealizadas, getMantenimientoArchivo, getMantenimientosArchivos } from "../../models/Informativas/ManteInfoMod.js";
 
 export const fechasMantenimientosRealizados = async (economico) => {
   return await fechasRealizadas(economico);

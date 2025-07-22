@@ -1,4 +1,4 @@
-/* MODEL DE INFORME -- MANUAL */
+/* MODEL DE INFORMATIVA -- MANUAL */
 import sql from 'mssql';
 
 export const getDatosManual = async (manualid) => {

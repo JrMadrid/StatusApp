@@ -1,5 +1,5 @@
-/* CONTROLADORES DE INFORME -- MANTENIMIENTO */
-import { fechasMantenimientosRealizados, obtenerArchivoMantenimiento, obtenerArchivosMantenimientos } from '../../services/Informes/ManteInfoSer.js';
+/* CONTROLADORES DE INFORMATIVA -- MANTENIMIENTO */
+import { fechasMantenimientosRealizados, obtenerArchivoMantenimiento, obtenerArchivosMantenimientos } from '../../services/Informativas/ManteInfoSer.js';
 
 // Manda las fechas vinculadas al economico
 const economico = async (req, res) => {

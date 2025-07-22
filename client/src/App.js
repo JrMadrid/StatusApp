@@ -1,5 +1,4 @@
 /* DEFINE LA ESTRUCTURA Y LA LÓGICA PRINCIPAL DE LA APLICACIÓN */
-import React from "react";
 import { BrowserRouter as Router, Route, Routes, Outlet, useLocation } from 'react-router-dom'; // Importar componentes y hooks de "react-router-dom" para manejar el enrutamiento de la aplicación. el browserRouter es un componente que utiliza la API de History del navegador para mantener la UI sincronizada con la URL. El Route es un componente que se utiliza para definir una ruta en la aplicación, y el Routes es un contenedor para todos los Route. El Outlet es un componente que se utiliza para renderizar los componentes hijos de una ruta anidada. useLocation es un hook que devuelve la ubicación actual de la aplicación, lo que permite acceder a la URL actual y otros detalles relacionados con la ubicación.
 // import { createBrowserHistory } from 'history'; // Importar "createBrowserHistory" para crear un historial de navegación.
 import './App.css';
@@ -11,9 +10,10 @@ import Sucursales from './pages/Data/DataSucursal.jsx';
 import Dispositivos from "./pages/Data/DataDispositivos.jsx";
 import Mantenimientos from "./pages/Data/DataMantenimientos.jsx";
 // Informativas
+// import UsuarioInfo from './pages/Informativas/Usuario_Infor.jsx';
 import SucursalInfo from './pages/Informativas/Sucursal_Infor.jsx';
-import DeviceInfo from './pages/Informativas/Dispositivos_Infor.jsx'
-import ManteInfo from "./pages/Informativas/Mantenimientos_Infor.jsx";
+import DispositivosInfo from './pages/Informativas/Dispositivos_Infor.jsx'
+import MantenimientosInfo from "./pages/Informativas/Mantenimientos_Infor.jsx";
 import ManualInfo from "./pages/Informativas/Manual_Infor.jsx";
 import InformeInfo from "./pages/Informativas/Informe_Infor.jsx";
 // Paneles
@@ -48,9 +48,10 @@ function App() {
                         <Route path="/panmantenimiento" element={<PanMantenimientos />} />
                         <Route path="/panmanuales" element={<PanManuales />} />
                         <Route path="/paninformes" element={<Informes />} />
+                        {/* <Route path="/users" element={<UsuarioInfo />} /> */}
                         <Route path="/status" element={<SucursalInfo />} />
-                        <Route path="/devices" element={<DeviceInfo />} />
-                        <Route path="/mantes" element={<ManteInfo />} />
+                        <Route path="/devices" element={<DispositivosInfo />} />
+                        <Route path="/mantes" element={<MantenimientosInfo />} />
                         <Route path="/manual" element={<ManualInfo />} />
                         <Route path="/informe" element={<InformeInfo />} />
                         <Route path="*" element={<NotFoundPage />} /> {/* Ruta para manejar páginas no encontradas */}

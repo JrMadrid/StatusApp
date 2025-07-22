@@ -1,6 +1,6 @@
-/* RUTAS DE INFORME -- MANUAL */
+/* RUTAS DE INFORMATIVA -- MANUAL */
 import express from 'express'
-import { methods as ManualInfoControllers } from '../../controllers/Informes/ManualInfoCon.js';
+import { methods as ManualInfoControllers } from '../../controllers/Informativas/ManualInfoCon.js';
 const ManualInfoRou = express.Router(); // Crea un nuevo objeto Router que se puede usar para definir rutas
 
 ManualInfoRou.get('/manuales/vermanual/:id', ManualInfoControllers.verid); // Pide el id del manual -- /informe/manuales/vermanual/:id

@@ -1,4 +1,4 @@
-/* MODEL DE INFORME -- DISPOSITIVOS */
+/* MODEL DE INFORMATIVA -- DISPOSITIVOS */
 import sql from 'mssql';
 
 // Consulta los dispositivos por nombre y responsable (si aplica)

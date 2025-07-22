@@ -1,5 +1,5 @@
-/* SERVICIOS DE INFORME -- MANUAL */
-import { getDatosManual, getManualArchivo } from "../../models/Informes/ManualInfoMod.js";
+/* SERVICIOS DE INFORMATIVA -- MANUAL */
+import { getDatosManual, getManualArchivo } from "../../models/Informativas/ManualInfoMod.js";
 
 export const obtenerDatosManual = async (manualid) => {
   return await getDatosManual(manualid);

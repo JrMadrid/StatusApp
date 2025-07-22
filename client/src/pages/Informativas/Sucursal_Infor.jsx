@@ -1,4 +1,4 @@
-/* PAGINA DE INFORME -- SUCURSALES */
+/* PAGINA DE INFORMATIVA -- SUCURSALES */
 import { React, useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import InfoSucursal from '../../components/Informativas/Infor_Sucursal.jsx';

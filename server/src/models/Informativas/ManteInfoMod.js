@@ -1,4 +1,4 @@
-/* MODEL DE INFORME -- MANTENIMIENTO */
+/* MODEL DE INFORMATIVA -- MANTENIMIENTO */
 import sql from 'mssql';
 
 export const fechasRealizadas = async (economico) => {

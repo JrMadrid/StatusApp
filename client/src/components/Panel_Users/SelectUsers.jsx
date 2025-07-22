@@ -24,9 +24,21 @@ const SelectUsers = () => {
         usuarios();
     }, []);
 
+    const eleccion = async (nickname) => {
+        let url = `http://${process.env.REACT_APP_HOST}/informe/users/usuario/${nickname}`;
+        try {
+            const response = await fetchData(url);
+            if (!response.ok) {
+                throw new Error("Sin respuesta");
+            }
+        } catch (error) {
+            console.error('Error consiguiendo los datos', error);
+        }
+    }
+
     return (
         <>
-            <Paginador tipo='usuarios' titulo='USUARIOS' placeholder='Buscar por Nombre o Usuario' data={data} cantidad={count} />
+            <Paginador tipo='usuarios' titulo='USUARIOS' placeholder='Buscar por Nombre o Usuario' data={data} eleccion={eleccion} cantidad={count} />
         </>
     );
 };

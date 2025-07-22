@@ -1,5 +1,5 @@
-/* CONTROLADORES DE INFORME --  INFORMES */
-import { obtenerInfoInforme, obtenerArchivoInforme } from '../../services/Informes/InformeInfoSer.js';
+/* CONTROLADORES DE INFORMATIVA --  INFORMES */
+import { obtenerInfoInforme, obtenerArchivoInforme } from '../../services/Informativas/InformeInfoSer.js';
 
 // Pide el id del informe
 const verid = async (req, res) => {

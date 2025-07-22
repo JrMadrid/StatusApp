@@ -1,4 +1,4 @@
-/* MODEL DE INFORME -- SUCURSAL */
+/* MODEL DE INFORMATIVA -- SUCURSAL */
 import sql from 'mssql';
 
 export const getDatosAplicaciones = async (economico) => {

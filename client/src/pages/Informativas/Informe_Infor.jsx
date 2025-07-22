@@ -1,4 +1,4 @@
-/* PAGINA DE INFORME -- INFORMES */
+/* PAGINA DE INFORMATIVA -- INFORMES */
 import { React, useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import InfoInforme from '../../components/Informativas/infor_Informe.jsx';

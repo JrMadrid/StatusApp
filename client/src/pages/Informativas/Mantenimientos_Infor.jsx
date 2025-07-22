@@ -1,9 +1,9 @@
-/* PAGINA DE INFORME -- MANTENIMIENTOS */
+/* PAGINA DE INFORMATIVA -- MANTENIMIENTOS */
 import { React, useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import InfoMante from "../../components/Informativas/infor_Mantenimientos.jsx";
 
-const ManteInfo = () => {
+const MantenimientosInfo = () => {
     const user = useContext(UserContext);
 
     return (
@@ -17,4 +17,4 @@ const ManteInfo = () => {
     );
 };
 
-export default ManteInfo;
+export default MantenimientosInfo;

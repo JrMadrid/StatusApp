@@ -1,4 +1,4 @@
-/* MODEL DE INFORME -- INFORMES */
+/* MODEL DE INFORMATIVA -- INFORMES */
 import sql from 'mssql';
 
 export const getInformeNombreDescripcion = async (id) => {

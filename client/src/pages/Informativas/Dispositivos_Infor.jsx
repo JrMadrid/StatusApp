@@ -1,9 +1,9 @@
-/* PAGINA DE INFORME -- DISPOSITIVOS */
+/* PAGINA DE INFORMATIVA -- DISPOSITIVOS */
 import { React, useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import InfoDispositivo from '../../components/Informativas/Infor_Dispositivos.jsx';
 
-const DeviceInfo = () => {
+const DispositivosInfo = () => {
     const user = useContext(UserContext);
 
     return (
@@ -17,4 +17,4 @@ const DeviceInfo = () => {
     );
 };
 
-export default DeviceInfo;
+export default DispositivosInfo;

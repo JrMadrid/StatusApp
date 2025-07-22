@@ -1,4 +1,4 @@
-/* COMPONENTE DE INFORME -- SUCURSALES */
+/* COMPONENTE DE INFORMATIVA -- SUCURSALES */
 import { React, useEffect, useState } from 'react';
 import Pingdispo from '../Elements/ping.jsx';
 import { Toaster, toast } from 'react-hot-toast';

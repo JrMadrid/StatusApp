@@ -1,5 +1,5 @@
-/* CONTROLADORES DE INFORME -- DISPOSITIVOS */
-import { getDispositivosPorNombre, getInfoDispositivo } from '../../services/Informes/DispositivosInfoSer.js';
+/* CONTROLADORES DE INFORMATIVA -- DISPOSITIVOS */
+import { getDispositivosPorNombre, getInfoDispositivo } from '../../services/Informativas/DispositivosInfoSer.js';
 
 // Pide el nombre
 const nombre = async (req, res) => {

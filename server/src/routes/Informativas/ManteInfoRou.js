@@ -1,6 +1,6 @@
-/* RUTAS DE INFORME -- MANTENIMIENTO */
+/* RUTAS DE INFORMATIVA -- MANTENIMIENTO */
 import express from 'express';
-import ManteInfoControllers from '../../controllers/Informes/ManteInfoCon.js';
+import ManteInfoControllers from '../../controllers/Informativas/ManteInfoCon.js';
 const ManteInfoRou = express.Router(); // Crea un nuevo objeto Router que se puede usar para definir rutas
 
 ManteInfoRou.get('/mantes/numero/:economico', ManteInfoControllers.economico); // Pide el número economico -- /informe/mantes/numero/:economico

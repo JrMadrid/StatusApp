@@ -1,5 +1,5 @@
-/* CONTROLADORES DE INFORME -- MANUAL */
-import { obtenerDatosManual, obtenerArchivoManual } from '../../services/Informes/ManualInfoSer.js';
+/* CONTROLADORES DE INFORMATIVA -- MANUAL */
+import { obtenerDatosManual, obtenerArchivoManual } from '../../services/Informativas/ManualInfoSer.js';
 
 // Pide el id del manual
 const verid = async (req, res) => {

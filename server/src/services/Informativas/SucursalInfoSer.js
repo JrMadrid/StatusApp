@@ -1,5 +1,5 @@
-/* SERVICIOS DE INFORME -- SUCURSAL */
-import { getDatosAplicaciones, dispositivoIP, infoGeneralDispositivo, dispositivosSucursal, actualizarGeneral, actualizarDescripcion } from "../../models/Informes/SucursalInfoMod.js";
+/* SERVICIOS DE INFORMATIVA -- SUCURSAL */
+import { getDatosAplicaciones, dispositivoIP, infoGeneralDispositivo, dispositivosSucursal, actualizarGeneral, actualizarDescripcion } from "../../models/Informativas/SucursalInfoMod.js";
 
 export const obtenerDatosAplicaciones = async (economico) => {
   return await getDatosAplicaciones(economico);
