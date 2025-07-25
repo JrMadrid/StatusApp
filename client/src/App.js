@@ -10,7 +10,7 @@ import Sucursales from './pages/Data/DataSucursal.jsx';
 import Dispositivos from "./pages/Data/DataDispositivos.jsx";
 import Mantenimientos from "./pages/Data/DataMantenimientos.jsx";
 // Informativas
-// import UsuarioInfo from './pages/Informativas/Usuario_Infor.jsx';
+import UsuarioInfo from './pages/Informativas/Usuario_Infor.jsx';
 import SucursalInfo from './pages/Informativas/Sucursal_Infor.jsx';
 import DispositivosInfo from './pages/Informativas/Dispositivos_Infor.jsx'
 import MantenimientosInfo from "./pages/Informativas/Mantenimientos_Infor.jsx";
@@ -48,7 +48,7 @@ function App() {
                         <Route path="/panmantenimiento" element={<PanMantenimientos />} />
                         <Route path="/panmanuales" element={<PanManuales />} />
                         <Route path="/paninformes" element={<Informes />} />
-                        {/* <Route path="/users" element={<UsuarioInfo />} /> */}
+                        <Route path="/users" element={<UsuarioInfo />} />
                         <Route path="/status" element={<SucursalInfo />} />
                         <Route path="/devices" element={<DispositivosInfo />} />
                         <Route path="/mantes" element={<MantenimientosInfo />} />

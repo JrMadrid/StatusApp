@@ -1,4 +1,5 @@
 /* CONTROLADORES DE INFORMATIVA -- USUARIO */
+import { obtenerListaUsuarios } from "../../services/Informativas/UsuarioInfoSer.js";
 
 // Pide el nombre del usuario
 const nickname = async (req, res) => {
@@ -13,8 +14,18 @@ const nickname = async (req, res) => {
   } catch (error) {
     console.error('Error :', error);
   }
+};
+
+// Pide la lista de usuarios
+const listaUsuarios = async (req, res) => {
+  try {
+    const lista = await obtenerListaUsuarios();
+    return res.json(lista)
+  } catch (error) {
+    console.error('Error :', error);
+  }
 }
 
 export const methods = {
-  nickname
+  nickname, listaUsuarios
 }

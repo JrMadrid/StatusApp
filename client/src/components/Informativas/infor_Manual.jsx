@@ -1,4 +1,4 @@
-/* COMPONENTE DE INFORMATIVA -- MANUALES */
+/* COMPONENTE DE INFORMATIVA -- MANUAL */
 import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';

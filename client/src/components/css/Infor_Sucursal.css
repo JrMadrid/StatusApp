@@ -1,4 +1,4 @@
-/* ESTILOS DE INFORMATIVA -- SUCURSALES */
+/* ESTILOS DE INFORMATIVA -- SUCURSAL */
 .titulo {
     position: fixed;
     top: 5%;
@@ -245,7 +245,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 13vw;
+    width: 12.5vw;
     min-height: 40vh;
     max-height: 40vh;
     overflow-y: auto;
@@ -310,6 +310,7 @@
     min-width: 9vw;
     max-width: 9vw;
     max-height: 1.8rem;
+    padding-bottom: 0.2rem;
     overflow-x: auto;
     overflow-y: auto;
     margin-bottom: 1px;
