@@ -16,7 +16,7 @@ import panelDispositivosRou from './Paneles/panelDispositivosRou.js'; // Rutas p
 import panelMantenimientoRou from './Paneles/panelMatenimientoRou.js'; // Rutas para administrar mantenimientos
 import panelManualesRou from './Paneles/panelManualesRou.js' // Rutas para administrar manuales
 import panelInformeRou from './Paneles/panelInformeRou.js'; // Rutas para administrar informes
-import UsuarioInfoRou from './Informativas/UsuarioInfoRou.js'; // Rutas de informativa -- Sucursal
+import UsuarioInfoRou from './Informativas/UsuarioInfoRou.js'; // Rutas de informativa -- Usuario
 import SucursalInfoRou from './Informativas/SucursalInfoRou.js'; // Rutas de informativa -- Sucursal
 import DispositivosInfoRou from './Informativas/DispositivosInfoRou.js'; // Rutas de informativa -- Dispositivos
 import ManteInfoRou from './Informativas/ManteInfoRou.js'; // Rutas de informativa -- Mantenimiento

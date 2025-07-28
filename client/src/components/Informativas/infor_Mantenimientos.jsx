@@ -16,7 +16,47 @@ export default function InfoMante() {
     const [imageBlob, setImageBlob] = useState(null);
     const [consfecha, setConsFecha] = useState('')
     const [constancias, setConstancias] = useState([]);
-    const [eco, setEco] = useState('')
+    const [eco, setEco] = useState('');
+
+    useEffect(() => {
+        const seleccionado = async () => {
+            try {
+                const imageConstancia = document.getElementById('imageConstancia');
+                imageConstancia.innerHTML = '';
+                let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/fecha`;
+                const response = await fetchData(url);
+
+                if (!response.ok) { throw new Error('Error al obtener la imagen: ' + response.statusText); }
+
+                const imageBlob = await response.blob();
+
+                if (imageBlob.size === 0) {
+                    setImageBlob(null);
+                    imageConstancia.innerHTML = '<h5>Sin constancia<h5/>';
+                    throw new Error('La respuesta no entrega una imagen');
+                }
+                setImageBlob(imageBlob);
+                if (!imageBlob.type.startsWith('image/')) {
+                    throw new Error('La respuesta no es una imagen válida');
+                }
+
+                const imageUrl = window.URL.createObjectURL(imageBlob);
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = 'Imagen asociada al mantenimiento';
+                img.style.maxWidth = '100%';
+
+                if (imageConstancia) {
+                    imageConstancia.appendChild(img);
+                } else {
+                    console.error('Contenedor de imagen no encontrado');
+                }
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+        seleccionado();
+    }, []);
 
     useEffect(() => {
         const fechasr = async () => {
@@ -45,7 +85,7 @@ export default function InfoMante() {
         const AllConstancias = async () => {
             try {
                 const url = `http://${process.env.REACT_APP_HOST}/informe/mantes/constancias`;
-                const response = await fetchData(url);                
+                const response = await fetchData(url);
                 if (response.ok) {
                     const archivos = await response.json();
                     setConstancias(archivos);

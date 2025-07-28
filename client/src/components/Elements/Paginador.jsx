@@ -279,7 +279,11 @@ const Paginador = (props) => {
                                         <>
                                             {!item.economico.startsWith('000000') && (
                                                 <tr key={item.id}>
-                                                    <td className='tdData'><a href='/mantes' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
+                                                    <td className='tdData'>
+                                                        {(item.frealizada && item.frealizada !== null && item.frealizada !== 'null' && item.frealizada !== 'Pendiente') && (
+                                                            <a href='/mantes' onClick={() => { props.eleccion(item.economico, item.id) }} className='link select'><button className='ir'></button></a>
+                                                        )}
+                                                    </td>
                                                     <td className='tdData'>{item.economico}</td>
                                                     {user && user.id === 3 && (
                                                         <td className='tdData long-data'>{item.ingresponsable}</td>

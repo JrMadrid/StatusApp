@@ -1,11 +1,15 @@
 /* CONTROLADORES DE INFORMATIVA -- MANTENIMIENTO */
-import { fechasMantenimientosRealizados, obtenerArchivoMantenimiento, obtenerArchivosMantenimientos } from '../../services/Informativas/ManteInfoSer.js';
+import { fechaMantenimientoSeleccionado, fechasMantenimientosRealizados, obtenerArchivoMantenimiento, obtenerArchivosMantenimientos } from '../../services/Informativas/ManteInfoSer.js';
 
-// Manda las fechas vinculadas al economico
+// Manda las fechas vinculadas al economico y 
 const economico = async (req, res) => {
 	try {
 		const numero = req.params.economico;
+		const id = req.params.id;
+
 		req.session.numeroMante = numero;
+		req.session.numeroManteid = id;
+
 		req.session.save(err => {
 			if (err) {
 				console.error('Error al guardar el numero economico:', err);
@@ -16,10 +20,26 @@ const economico = async (req, res) => {
 	}
 };
 
+// Manda el documento del mantemiento seleccionado
+const mantenimientoSeleccionado = async (req, res) => {
+	try {
+		const id = req.session.numeroManteid;
+		const mantenimiento = await fechaMantenimientoSeleccionado(id);
+		res.set('Content-Type', 'image/jpeg'); // Cambia el tipo de contenido a JPEG
+		res.set('Content-Disposition', `inline; filename="constancia.jpg"`); // Cambia el nombre del archivo a descargar
+		res.status(200).send(mantenimiento);
+
+	} catch (error) {
+		console.error('Error :', error);
+	}
+}
+
 // Manda las fechas vinculadas al economico
 const fechasr = async (req, res) => {
 	try {
 		const economico = req.session.numeroMante;
+		const id = req.session.numeroManteid;
+
 		const fechasr = await fechasMantenimientosRealizados(economico)
 
 		return res.status(200).json(fechasr);
@@ -37,7 +57,6 @@ const info = async (req, res) => {
 		if (fechasr && fechasr !== null && fechasr !== 'null') {
 			const economico = req.session.numeroMante;
 			const constanciaArchivo = await obtenerArchivoMantenimiento(fechasr, economico);
-
 			res.set('Content-Type', 'image/jpeg'); // Cambia el tipo de contenido a JPEG
 			res.set('Content-Disposition', `inline; filename="constancia.jpg"`); // Cambia el nombre del archivo a descargar
 			res.status(200).send(constanciaArchivo);
@@ -66,5 +85,5 @@ const infos = async (req, res) => {
 };
 
 export default {
-	economico, fechasr, info, infos
+	economico, mantenimientoSeleccionado, fechasr, info, infos
 };

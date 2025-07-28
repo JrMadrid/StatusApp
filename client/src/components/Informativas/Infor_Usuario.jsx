@@ -20,7 +20,6 @@ export default function InfoUsuario() {
                 const lista = await response.json();
 
                 setUserslist(lista);
-                console.log(userslist)
 
             } catch (error) {
                 console.error('Error consiguiendo los datos: ', error);
@@ -40,6 +39,56 @@ export default function InfoUsuario() {
                 <ul className='list' style={{ textAlign: 'center' }}>
                     {userslist.map((usuarios, index) => (
                         <>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
+                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
+                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
+                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
+                                </div>
+                            </li>
                             <li key={index} className='listItem' style={{ display: 'inline-block' }}>
                                 <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
                                     <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>

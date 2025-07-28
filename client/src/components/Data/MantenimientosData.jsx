@@ -26,8 +26,8 @@ const MantenimientoTable = () => {
         mantenimientos();
     }, []);
 
-    const eleccion = async (economico) => {
-        let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/numero/${economico}`;
+    const eleccion = async (economico, id) => {
+        let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/numero/${economico}/${id}`;
         try {
             const response = await fetchData(url)
             if (!response.ok) {
