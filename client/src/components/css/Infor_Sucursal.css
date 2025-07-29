@@ -338,6 +338,38 @@
     background-color: rgb(0, 7, 22);
 }
 
+.seleccionado {
+    box-shadow: 0px 0px 2px #ffaf90 inset;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    min-width: 9vw;
+    max-width: 9vw;
+    max-height: 1.8rem;
+    padding-bottom: 0.2rem;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin-bottom: 1px;
+}
+
+.seleccionado::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+.seleccionado::-webkit-scrollbar-thumb {
+    background-color: #ffaf90;
+    border-radius: 4px;
+}
+
+.seleccionado::-webkit-scrollbar-thumb:hover {
+    background-color: #ffaf90;
+}
+
+.seleccionado::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
 .pings {
     margin: 0;
     font-size: 1.1rem;
@@ -352,6 +384,12 @@
 
 .appi {
     color: rgb(175, 219, 246);
+    font-size: 0.8rem;
+    font-family: 'Segoe UI';
+}
+
+.appiSeleccionado {
+    color: #ffaf90;
     font-size: 0.8rem;
     font-family: 'Segoe UI';
 }

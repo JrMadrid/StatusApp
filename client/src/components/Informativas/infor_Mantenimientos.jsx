@@ -13,6 +13,7 @@ import logoSoporte from '../../imgs/LogoSoporte.png';
 export default function InfoMante() {
     const [appslist, setAppslist] = useState([]);
     const [appshead, setAppshead] = useState([]);
+    const [idSeleccionado, setIdSeleccionado] = useState(0);
     const [imageBlob, setImageBlob] = useState(null);
     const [consfecha, setConsFecha] = useState('')
     const [constancias, setConstancias] = useState([]);
@@ -23,6 +24,7 @@ export default function InfoMante() {
         if (idGuardado === 0) return;
         const seleccionado = async () => {
             try {
+                setIdSeleccionado(idGuardado);
                 const imageConstancia = document.getElementById('imageConstancia');
                 imageConstancia.innerHTML = '';
                 let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/fecha`;
@@ -104,7 +106,7 @@ export default function InfoMante() {
         AllConstancias();
     }, []);
 
-    const appData = async (fechasr) => {
+    const appData = async (fechasr) => {        
         if (fechasr && fechasr !== null && fechasr !== 'null') {
             try {
                 const imageConstancia = document.getElementById('imageConstancia');
@@ -161,9 +163,8 @@ export default function InfoMante() {
                         <>
                             {(fecha.realizado && fecha.realizado !== null && fecha.realizado !== 'null') && (
                                 <li key={index} className='listItem'>
-                                    {/* <div className='ListItemA' style={{ minWidth: '12vw', maxWidth: '12vw' }} onClick={(e) => { e.preventDefault(); appData(`${fecha.realizado}`); }}> */}
-                                    <div className='ListItemA' style={{ minWidth: '12vw', maxWidth: '12vw' }} onClick={(e) => { e.preventDefault(); appData(`${fecha.realizado}`); }}>
-                                        <a href={`#${index}`} className='appi'><FormatearFechaTabla fecha={fecha.realizado} /></a>
+                                    <div className={fecha.id?.toString() !== idSeleccionado ? 'ListItemA' : 'seleccionado'} style={{ minWidth: '12vw', maxWidth: '12vw' }} onClick={(e) => { e.preventDefault(); setIdSeleccionado(fecha.id?.toString()); appData(`${fecha.realizado}`); }}>
+                                        <a href={`#${index}`} className={fecha.id?.toString() !== idSeleccionado ? 'appi' : 'appiSeleccionado'}><FormatearFechaTabla fecha={fecha.realizado} /></a>
                                     </div>
                                 </li>
                             )}
