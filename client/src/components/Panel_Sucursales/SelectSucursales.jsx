@@ -33,11 +33,24 @@ const SelectSucursales = () => {
         } catch (error) {
             console.error('Error consiguiendo los datos: ', error);
         }
-    }
+    };
+
+    const seleccion = async (economico, id) => {
+        let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/numero/${economico}/${id}`;
+        localStorage.setItem('idMantenimiento', id); // guarda el ID
+        try {
+            const response = await fetchData(url)
+            if (!response.ok) {
+                throw new Error('Sin respuesta')
+            }
+        } catch (error) {
+            console.error('Error consiguiendo los datos: ', error);
+        }
+    };
 
     return (
         <>
-            <Paginador tipo='sucursales' titulo='SUCURSALES' placeholder='Buscar por Número económico, Canal,  Nombre o ing.Responsable' data={data} eleccion={eleccion} excel='si' save='Sucursales' cantidad={count} />
+            <Paginador tipo='sucursales' titulo='SUCURSALES' placeholder='Buscar por Número económico, Canal,  Nombre o ing.Responsable' data={data} eleccion={eleccion} seleccion={seleccion} excel='si' save='Sucursales' cantidad={count} />
         </>
     );
 };

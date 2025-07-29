@@ -309,10 +309,10 @@
     border-radius: 5px;
     min-width: 9vw;
     max-width: 9vw;
-    max-height: 1.8rem;
+    max-height: 2rem;
     padding-bottom: 0.2rem;
     overflow-x: auto;
-    overflow-y: auto;
+    overflow-y: hidden;
     margin-bottom: 1px;
 }
 
@@ -339,16 +339,16 @@
 }
 
 .seleccionado {
-    box-shadow: 0px 0px 2px #ffaf90 inset;
+    box-shadow: 0px 0px 5px #ffaf90 inset;
     text-align: center;
     align-items: center;
     border-radius: 5px;
     min-width: 9vw;
     max-width: 9vw;
-    max-height: 1.8rem;
+    max-height: 2rem;
     padding-bottom: 0.2rem;
     overflow-x: auto;
-    overflow-y: auto;
+    overflow-y: hidden;
     margin-bottom: 1px;
 }
 
