@@ -118,8 +118,9 @@ const Paginador = (props) => {
     const desplazamiento = PaginaActual * itemsPorPagina;
     const itemsActuales = filtrarDatos.slice(desplazamiento, desplazamiento + itemsPorPagina);
 
-    const eleccion = async (economico) => {
-        let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/numero/${economico}`;
+    const eleccion = async (economico, id) => {
+        let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/numero/${economico}/${id}`;
+        localStorage.setItem('idMantenimiento', id); // guarda el ID
         try {
             const response = await fetchData(url)
             if (!response.ok) {
@@ -174,7 +175,7 @@ const Paginador = (props) => {
                                             {!item.economico.startsWith('000000') && (
                                                 <tr key={item.id}>
                                                     <td className='tdData'><a href='/status' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
-                                                    <td className='tdData'><a href='/mantes' onClick={() => { eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
+                                                    <td className='tdData'><a href='/mantes' onClick={() => { eleccion(item.economico, 0) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'>{item.economico}</td>
                                                     <td className='tdData'>{item.canal}</td>
                                                     <td className='tdData long-data'>{item.nombre}</td>
@@ -439,7 +440,7 @@ const Paginador = (props) => {
                                             {!item.economico.startsWith('000000') && (
                                                 <tr key={item.id}>
                                                     <td className='tdData'><a href='/status' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
-                                                    <td className='tdData'><a href='/mantes' onClick={() => { eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
+                                                    <td className='tdData'><a href='/mantes' onClick={() => { eleccion(item.economico, 0) }} className='link select'><button className='ir'></button></a></td>
                                                     <td className='tdData'>{item.economico}</td>
                                                     <td className='tdData long-data'>{item.canal}</td>
                                                     <td className='tdData long-data'>{item.nombre}</td>
@@ -539,7 +540,12 @@ const Paginador = (props) => {
                                         <>
                                             {!item.economico.startsWith('000000') && (
                                                 <tr key={item.id}>
-                                                    <td className='tdData'><a href='/mantes' onClick={() => { props.eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
+                                                    <td className='tdData'>
+                                                        {(item.frealizada && item.frealizada !== null && item.frealizada !== 'null' && item.frealizada !== 'Pendiente') && (
+                                                            <a href='/mantes' onClick={() => { props.eleccion(item.economico, item.id) }} className='link select'><button className='ir'></button></a>
+                                                        )}
+                                                    </td>
+
                                                     <td className='tdData'>{item.economico}</td>
                                                     <td className='tdData long-data'>{item.ingresponsable}</td>
                                                     <td className='tdData'><FormatearFechaTabla fecha={item.festimada} /></td>

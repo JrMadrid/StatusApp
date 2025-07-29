@@ -6,7 +6,7 @@ const economico = async (req, res) => {
 	try {
 		const numero = req.params.economico;
 		const id = req.params.id;
-
+		
 		req.session.numeroMante = numero;
 		req.session.numeroManteid = id;
 
@@ -38,8 +38,6 @@ const mantenimientoSeleccionado = async (req, res) => {
 const fechasr = async (req, res) => {
 	try {
 		const economico = req.session.numeroMante;
-		const id = req.session.numeroManteid;
-
 		const fechasr = await fechasMantenimientosRealizados(economico)
 
 		return res.status(200).json(fechasr);

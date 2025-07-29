@@ -19,6 +19,8 @@ export default function InfoMante() {
     const [eco, setEco] = useState('');
 
     useEffect(() => {
+        const idGuardado = localStorage.getItem('idMantenimiento');
+        if (idGuardado === 0) return;
         const seleccionado = async () => {
             try {
                 const imageConstancia = document.getElementById('imageConstancia');
@@ -39,6 +41,8 @@ export default function InfoMante() {
                 if (!imageBlob.type.startsWith('image/')) {
                     throw new Error('La respuesta no es una imagen válida');
                 }
+                // Aquí ya usamos el id, ahora lo podemos borrar:
+                localStorage.removeItem('idMantenimiento');
 
                 const imageUrl = window.URL.createObjectURL(imageBlob);
                 const img = document.createElement('img');
@@ -157,6 +161,7 @@ export default function InfoMante() {
                         <>
                             {(fecha.realizado && fecha.realizado !== null && fecha.realizado !== 'null') && (
                                 <li key={index} className='listItem'>
+                                    {/* <div className='ListItemA' style={{ minWidth: '12vw', maxWidth: '12vw' }} onClick={(e) => { e.preventDefault(); appData(`${fecha.realizado}`); }}> */}
                                     <div className='ListItemA' style={{ minWidth: '12vw', maxWidth: '12vw' }} onClick={(e) => { e.preventDefault(); appData(`${fecha.realizado}`); }}>
                                         <a href={`#${index}`} className='appi'><FormatearFechaTabla fecha={fecha.realizado} /></a>
                                     </div>

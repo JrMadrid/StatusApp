@@ -13,7 +13,7 @@ export const fechaSeleccionada = async (id) => {
 export const fechasRealizadas = async (economico) => {
   const request = new sql.Request();
   request.input('economico', sql.VarChar, economico)
-  const result = await request.query(`SELECT mante.fecharealizada AS realizado, mante.economico AS economico, sucu.nombre AS sucursal, sucu.ingresponsable as ingresponsable FROM mantenimiento mante INNER JOIN sucursales sucu ON mante.economico = sucu.economico WHERE mante.economico = @economico ORDER BY mante.fecharealizada DESC`);
+  const result = await request.query(`SELECT mante.id as id, mante.fecharealizada AS realizado, mante.economico AS economico, sucu.nombre AS sucursal, sucu.ingresponsable as ingresponsable FROM mantenimiento mante INNER JOIN sucursales sucu ON mante.economico = sucu.economico WHERE mante.economico = @economico ORDER BY mante.fecharealizada DESC`);
   
   return result.recordset;
 };

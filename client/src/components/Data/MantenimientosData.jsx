@@ -28,6 +28,7 @@ const MantenimientoTable = () => {
 
     const eleccion = async (economico, id) => {
         let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/numero/${economico}/${id}`;
+        localStorage.setItem('idMantenimiento', id); // guarda el ID
         try {
             const response = await fetchData(url)
             if (!response.ok) {

@@ -11,9 +11,9 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root')); // Se crea un root de React y se renderiza el componente App dentro de él.
 // Este root se conecta al elemento del DOM con id 'root'.
 root.render(
-  // <React.StrictMode> {/* Modo estricto de React para detectar problemas potenciales */}
+  <React.StrictMode> {/* Modo estricto de React para detectar problemas potenciales */}
     <App />
-  // </React.StrictMode>
+  </React.StrictMode>
 );
 
 reportWebVitals(); // Se mide el rendimiento de la aplicación y se envían los resultados a un servicio de análisis.
