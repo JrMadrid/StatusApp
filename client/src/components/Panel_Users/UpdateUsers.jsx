@@ -1,8 +1,8 @@
 /* PANEL DE ADMINISTRACIÓN DE USUARIOS -- ACTUALIZAR */
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from '../../api/axiosConfig';
 
-const UpdateUsers = ({ userId }) => {
+const UpdateUsers = () => {
     const [formData, setFormData] = useState({
         id: '',
         nickname: '',
@@ -11,27 +11,6 @@ const UpdateUsers = ({ userId }) => {
     });
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get(`http://${process.env.REACT_APP_HOST}/panel/users/${userId}`);
-                const user = response.data;
-                setFormData({
-                    id: user.id,
-                    nickname: user.nickname,
-                    psw: user.psw,
-                    isAdmin: user.admin ? 'true' : 'false'
-                });
-            } catch (error) {
-                setMessage('Error al cargar los datos del usuario');
-            }
-        };
-
-        if (userId) {
-            fetchUserData();
-        }
-    }, [userId]);
 
     const cambio = (e) => {
         const { name, value, type, checked } = e.target;

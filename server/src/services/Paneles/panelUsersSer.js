@@ -35,11 +35,16 @@ export const actualizarUser = async (nickname, psw, id, tipo) => {
     throw { status: 404, message: 'No se encontró el ID' };
   }
 
+  const EsNicknameOcupado = await NicknameOcupado(nickname);
+  if (EsNicknameOcupado) {
+    throw { status: 409, message: 'El Nickname definido ya existe en la base de datos.' };
+  };
+
   await updateUser(nickname, psw, id, tipo);
 };
 
 // Eliminamos un usuario
-export const eliminarUser = async (id) => {
+export const eliminarUser = async (id, Super) => {
 
   const IdExiste = await comprobarID(id);
   if (!IdExiste) {
@@ -52,7 +57,7 @@ export const eliminarUser = async (id) => {
   }
   const ingResponsable = await nombreResponsable(id);
 
-  await deleteUser(id, ingResponsable);
+  await deleteUser(id, ingResponsable, Super);
 }
 
 // Cerramos la sesión de todos los usuarios

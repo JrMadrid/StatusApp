@@ -33,62 +33,10 @@ export default function InfoUsuario() {
         <>
             <div className='sidebar'>
                 <h3 className='heading'></h3>
-                <h3 className='heading'></h3>
-                <h3 className='heading'></h3>
-                <h3 className='principal'>Usuarios</h3>
+                <h3 className='principal'>Personal</h3>
                 <ul className='list' style={{ textAlign: 'center' }}>
                     {userslist.map((usuarios, index) => (
                         <>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
-                            <li key={index} className='listItem' style={{ display: 'inline-block' }}>
-                                <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
-                                    <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
-                                </div>
-                            </li>
                             <li key={index} className='listItem' style={{ display: 'inline-block' }}>
                                 <div className='ListItemA' onClick={(e) => { e.preventDefault(); }}>
                                     <a href={`#${index}`} className='appi' >{usuarios.nickname}</a>
@@ -106,6 +54,19 @@ export default function InfoUsuario() {
             </div >
             <div>
                 <h2 className='titulo'>Soporte Técnico Honduras</h2>
+
+
+
+                <div className='cajaInformacion'>
+                    <div className='informacion'>
+                        <h4 className='principal'>Información del personal</h4>
+
+
+                    </div>
+                </div>
+
+
+
 
             </div>
             <Toaster toastOptions={{ className: 'noti' }} />

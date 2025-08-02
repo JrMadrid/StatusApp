@@ -59,7 +59,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
 	try {
 		const { id } = req.body;
-
+		const Super = req.session.user; // Nickname del Super Administrador para las sucursales del ing.Responsable eliminado
 		const { error } = SchemaEliminarUsuario.validate(req.body, { abortEarly: false });
 
 		if (error) {
@@ -67,7 +67,7 @@ const deleteUser = async (req, res) => {
 			return res.status(400).json({ message: mensajes });
 		}
 
-		await eliminarUser(id);
+		await eliminarUser(id, Super);
 		res.status(200).json({ message: 'Usuario eliminado exitosamente' });
 
 	} catch (error) {
