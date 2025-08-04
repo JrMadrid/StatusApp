@@ -6,8 +6,6 @@ import sql from 'mssql';
 /* Comprobar si el usuario existe o no en la base de datos */
 async function comprobarUsuario(nickname, psw) {
 	try {
-		// await dbConnection(); solo se inicia la conexion al arrancar el servidor;
-
 		const query = 'SELECT nickname, psw, isAdmin, tipo FROM users WHERE nickname = @nickname';
 		const request = new sql.Request();
 		request.input('nickname', sql.VarChar, nickname);
@@ -50,4 +48,18 @@ async function comprobarUsuario(nickname, psw) {
     } */
 }
 
-export { comprobarUsuario };
+/* Validaciones */
+// Comprobar que el usuario esta activo
+const comprobarActivo = async (nickname) => {
+	try {
+		const query = `SELECT activo FROM personal WHERE nickname = @nickname`;
+		const request = new sql.Request();
+		request.input('nickname', sql.VarChar, nickname);
+		const resultado = await request.query(query);		
+		return resultado.recordset[0].activo;
+	} catch (error) {
+		console.error('Error al comprobar si es valido:', error);
+		throw error; // Re-lanza el error para ser manejado por el consumidor
+	}
+}
+export { comprobarUsuario, comprobarActivo };

@@ -1,9 +1,14 @@
 /* SERVICIOS DE AUTENTICACIÓN DE USUARIOS*/
-import { comprobarUsuario } from '../models/authMod.js';
+import { comprobarUsuario, comprobarActivo } from '../models/authMod.js';
 
 export async function loginService(nickname, psw) {
-    const result = await comprobarUsuario(nickname, psw);
-    return result;
+    const validez = await comprobarActivo(nickname);
+    if (validez) {
+        const result = await comprobarUsuario(nickname, psw);
+        return result;
+    } else {
+        return { error : "Su acceso es inválido"}
+    }
 }
 
 export function definirTipoUsuario(session) {
