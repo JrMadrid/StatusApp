@@ -1,5 +1,5 @@
 /* PANTALLA PEQUEÑA INFORMACION PARA INFORME DE SUCURSAL */
-import React from "react";
+
 
 export default function InfoAppSMALL(content) {
     return (

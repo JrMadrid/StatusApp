@@ -1,5 +1,5 @@
 /* COMPONENTE QUE GUARDA EN PDF TODA LA INFORMACION */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { Toaster, toast } from 'react-hot-toast';
 import jsPDF from 'jspdf';

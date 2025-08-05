@@ -1,5 +1,5 @@
 /* FUNCIÓN DE PING */
-import React from "react";
+
 import fetchData from "../api/connect";
 import { toast } from 'react-hot-toast';
 

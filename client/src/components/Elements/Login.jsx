@@ -1,5 +1,5 @@
 /* COMPONENTE DE ELEMENTO DE INICIO DE SESIÓN */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from '../../api/axiosConfig'; // Importa la configuración personalizada
 import '../css/login.css';
 

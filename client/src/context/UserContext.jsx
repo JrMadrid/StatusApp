@@ -1,5 +1,5 @@
 /* CONTEXT DE USUARIO */
-import React, { createContext, useState, useEffect } from 'react'; // createContext: crea un contexto para compartir datos entre componentes funciona como un store global
+import { createContext, useState, useEffect } from 'react'; // createContext: crea un contexto para compartir datos entre componentes funciona como un store global
 import fetchData from '../api/connect';
 
 /* Crea el context */

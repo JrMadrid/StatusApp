@@ -1,5 +1,5 @@
 /* PAGINA DE INFORMATIVA -- USUARIO */
-import { React, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import InfoUsuario from '../../components/Informativas/Infor_Usuario.jsx';
 

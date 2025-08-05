@@ -1,5 +1,5 @@
 /* COMPONENTE DE ELEMENTO DE BARRA DE NAVEGACIÓN */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { NavLink } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';

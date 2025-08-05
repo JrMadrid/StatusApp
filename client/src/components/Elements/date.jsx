@@ -1,5 +1,5 @@
 /* COMPONENTE DE ELEMENTO DE FORMATO DE FECHA */
-import React from 'react';
+
 
 // Función para limpiar el formato de la fecha para dejar solo dias, mes y año
 function FormatearFecha(fechaISO) {

@@ -1,5 +1,5 @@
 /* PAGINA DE INFORMATIVA -- MANTENIMIENTOS */
-import { React, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import InfoMante from "../../components/Informativas/infor_Mantenimientos.jsx";
 

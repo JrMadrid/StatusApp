@@ -1,5 +1,5 @@
 /* COMPONENTE DE PANEL DE ADMINISTRACIÓN DE DISPOSITIVOS */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import PostDispositivo from "./PostDispositivo";
 import UpdateDispositivo from "./UpdateDispositivo";

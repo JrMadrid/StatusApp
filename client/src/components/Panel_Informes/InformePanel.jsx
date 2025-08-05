@@ -1,5 +1,5 @@
 /* COMPONENTE DE PANEL DE ADMINISTRACIÓN DE INFORMES */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import PostInforme from './PostInforme';
 import DeleteInforme from './DeleteInforme';

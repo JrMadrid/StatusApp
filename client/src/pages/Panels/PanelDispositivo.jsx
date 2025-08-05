@@ -1,5 +1,5 @@
 /* PAGINA DE PANEL DE ADMINISTRACIÓN DE DISPOSITIVOS */
-import { React, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from '../../context/UserContext.jsx';
 import SelectDispositivos from '../../components/Panel_Dispositivos/SelectDispositivos.jsx';
 import DispositivosPanel from '../../components/Panel_Dispositivos/DispositivoPanel.jsx'; 

@@ -1,5 +1,5 @@
 /* COMPONENTE DE PANEL DE ADMINISTRACIÓN DE USUARIOS */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import PostUsers from "./PostUsers";
 import UpdateUsers from "./UpdateUsers";

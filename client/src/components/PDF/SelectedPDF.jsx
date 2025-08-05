@@ -1,5 +1,5 @@
 /* COMPONENTE QUE GUARDA EN PDF LA INFORMACION SELECCIONADA */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import jsPDF from 'jspdf';
 import { Toaster, toast } from 'react-hot-toast';

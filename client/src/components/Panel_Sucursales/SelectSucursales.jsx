@@ -1,5 +1,5 @@
 /* PANEL DE ADMINISTRACIÓN DE SUCURSALES -- VISUALIZAR */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import fetchData from '../../api/connect.js'; 
 import { Paginador } from '../Elements/Paginador.jsx';
 

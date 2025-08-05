@@ -1,5 +1,5 @@
 /* PANEL DE ADMINISTRACIÓN DE MANUALES -- ELIMINAR */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from '../../api/axiosConfig';
 
 const DeleteManuales = () => {

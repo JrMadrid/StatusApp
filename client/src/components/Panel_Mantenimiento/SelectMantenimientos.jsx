@@ -1,5 +1,5 @@
 /* PANEL DE ADMINISTRACIÓN DE MANTENIMIENTOS -- VISUALIZAR */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import fetchData from '../../api/connect.js'; 
 import { Paginador } from '../Elements/Paginador.jsx';
 

@@ -1,5 +1,5 @@
 /* COMPONENTE ICONO DE PING */
-import { React } from "react";
+
 import ping from "../../utils/ping";
 import { HiStatusOnline } from "react-icons/hi";
 

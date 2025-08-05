@@ -1,5 +1,5 @@
 /* COMPONENTE DE TABLA DE DISPOSITIVOS PARA APLICATIVO Y GEOGRAFIA */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import fetchData from '../../api/connect.js';
 import { Paginador } from '../Elements/Paginador.jsx';
 

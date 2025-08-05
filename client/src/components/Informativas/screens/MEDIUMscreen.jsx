@@ -1,5 +1,4 @@
 /* PANTALLA MEDIANA INFORMACION PARA INFORME DE SUCURSAL */
-import React from "react";
 import PanelBiometrico from "../Solicitudes/SolBiometrico";
 
 export default function InfoAppMEDIUM(content) {

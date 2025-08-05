@@ -1,5 +1,5 @@
 /* PAGINA DE TABLA DE MANTENIMIENTOS PARA APLICATIVO Y GEOGRAFIA */
-import { React, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import { MantenimientoTable } from '../../components/Data/MantenimientosData.jsx';
 import ConstanciaPanel from '../../components/Panel_Mantenimiento/ConstanciaPanel.jsx';

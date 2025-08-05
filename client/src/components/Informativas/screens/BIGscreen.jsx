@@ -1,6 +1,4 @@
 /* PANTALLA GRANDE INFORMACION PARA INFORME DE SUCURSAL */
-import React from 'react'; 
-
 export default function InfoAppBIG(content) {
     
     return (
