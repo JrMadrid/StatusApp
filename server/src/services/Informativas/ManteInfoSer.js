@@ -18,7 +18,6 @@ export const fechasMantenimientosRealizados = async (economico) => {
 
 export const obtenerArchivoMantenimiento = async (fechasr, economico) => {
   const constanciasArchivo = await getMantenimientoArchivo(fechasr, economico);
-
   if (constanciasArchivo.length > 0) {
     const archivo = constanciasArchivo[0].constancia;
 

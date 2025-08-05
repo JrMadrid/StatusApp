@@ -27,11 +27,12 @@ export const infoGeneralDispositivo = async (ip) => {
   request.input('ip', sql.VarChar, ip); // Inyecta el valor a la consulta
   const infoGeneral = await request.query(`
     SELECT sucu.nombre AS sucursal, sucu.economico AS economico, sucu.ingresponsable as ingresponsable, 
-    dispo.nombre AS nombre, dispo.descripcion AS descripcion, dispo.ip as ip, dispo.general as general 
+      dispo.nombre AS nombre, dispo.descripcion AS descripcion, dispo.ip as ip, dispo.general as general 
     FROM sucursales sucu 
     INNER JOIN dispositivos dispo ON sucu.economico = dispo.economico 
       WHERE dispo.ip = @ip
       `);
+      
   return infoGeneral.recordset[0]
 };
 

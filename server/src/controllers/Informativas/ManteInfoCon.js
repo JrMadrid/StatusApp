@@ -6,7 +6,7 @@ const economico = async (req, res) => {
 	try {
 		const numero = req.params.economico;
 		const id = req.params.id;
-		
+
 		req.session.numeroMante = numero;
 		req.session.numeroManteid = id;
 
@@ -24,6 +24,8 @@ const economico = async (req, res) => {
 const mantenimientoSeleccionado = async (req, res) => {
 	try {
 		const id = req.session.numeroManteid;
+		if (id === '0') { return; }
+	
 		const mantenimiento = await fechaMantenimientoSeleccionado(id);
 		res.set('Content-Type', 'image/jpeg'); // Cambia el tipo de contenido a JPEG
 		res.set('Content-Disposition', `inline; filename="constancia.jpg"`); // Cambia el nombre del archivo a descargar

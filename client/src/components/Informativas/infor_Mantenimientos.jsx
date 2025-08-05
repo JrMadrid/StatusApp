@@ -1,5 +1,5 @@
 /* COMPONENTE DE INFORMATIVA -- MANTENIMIENTOS */
-import { React, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';
 import { FormatearFechaTabla } from '../Elements/date.jsx';
@@ -21,7 +21,8 @@ export default function InfoMante() {
 
     useEffect(() => {
         const idGuardado = localStorage.getItem('idMantenimiento');
-        if (idGuardado === 0) return;
+        if (idGuardado === '0') { return; };
+
         const seleccionado = async () => {
             try {
                 setIdSeleccionado(idGuardado);
@@ -106,7 +107,7 @@ export default function InfoMante() {
         AllConstancias();
     }, []);
 
-    const appData = async (fechasr) => {        
+    const appData = async (fechasr) => {
         if (fechasr && fechasr !== null && fechasr !== 'null') {
             try {
                 const imageConstancia = document.getElementById('imageConstancia');
