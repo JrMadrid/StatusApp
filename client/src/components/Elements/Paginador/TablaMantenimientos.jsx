@@ -1,6 +1,6 @@
 /* COMPONENTE DE ELEMENTO DE PAGINACIÓN -- MANTENIMIENTOS */
 import { FormatearFechaTabla } from '../date.jsx';
-import { FaToolbox } from "react-icons/fa";
+import { FaTools } from "react-icons/fa";
 
 const TablaMantenimientos = ({ data, eleccion, cantidad }) => {
     return (
@@ -8,7 +8,7 @@ const TablaMantenimientos = ({ data, eleccion, cantidad }) => {
             <table className='tablaData'>
                 <thead>
                     <tr>
-                        <th className='thData eject' title='Mantenimiento' ><FaToolbox /></th>
+                        <th className='thData eject' title='Mantenimiento' ><FaTools /></th>
                         <th className='thData'>Económico</th>
                         <th className='thData'>Ing. Responsable</th>
                         <th className='thData'>Fecha Estimada</th>

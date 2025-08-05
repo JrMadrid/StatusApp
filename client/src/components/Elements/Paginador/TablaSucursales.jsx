@@ -1,5 +1,5 @@
 /* COMPONENTE DE ELEMENTO DE PAGINACIÓN -- SUCURSALES */
-import { FaHouseUser, FaToolbox } from 'react-icons/fa';
+import { FaStoreAlt, FaRegListAlt, FaTools } from 'react-icons/fa';
 
 const TablaSucursales = ({ data, eleccion, seleccion, cantidad }) => {
     return (
@@ -7,8 +7,9 @@ const TablaSucursales = ({ data, eleccion, seleccion, cantidad }) => {
             <table className='tablaData'>
                 <thead>
                     <tr>
-                        <th className='thData eject' title='Sucursal' ><FaHouseUser /></th>
-                        <th className='thData eject' title='Mantenimientos' ><FaToolbox /></th>
+                        <th className='thData eject' title='Dispositivos por sucursal' ><FaStoreAlt /></th>
+                        <th className='thData eject' title='Dispositivos por sucursal' ><FaRegListAlt /></th>
+                        <th className='thData eject' title='Mantenimientos' ><FaTools /></th>
                         <th className='thData'>Económico</th>
                         <th className='thData'>Canal</th>
                         <th className='sunombre thData'>Nombre</th>
@@ -21,6 +22,7 @@ const TablaSucursales = ({ data, eleccion, seleccion, cantidad }) => {
                         <>
                             {!item.economico.startsWith('000000') && (
                                 <tr key={item.id}>
+                                    <td></td>
                                     <td className='tdData'><a href='/status' onClick={() => { eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
                                     <td className='tdData'><a href='/mantes' onClick={() => { seleccion(item.economico, 0) }} className='link select'><button className='ir'></button></a></td>
                                     <td className='tdData'>{item.economico}</td>
