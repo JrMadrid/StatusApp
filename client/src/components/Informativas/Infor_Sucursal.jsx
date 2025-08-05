@@ -1,5 +1,5 @@
 /* COMPONENTE DE INFORMATIVA -- SUCURSAL */
-import { React, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Pingdispo from '../Elements/ping.jsx';
 import { Toaster, toast } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';
@@ -16,6 +16,7 @@ import logoSoporte from '../../imgs/LogoSoporte.png';
 
 export default function InfoSucursal() {
     const [impre, SetImpre] = useState(false);
+    const [dispositivoIp, SetDispositivoIp] = useState('');
     const [impreE, SetImpreE] = useState(false);
     const [appslist, setAppslist] = useState([]);
     const [appshead, setAppshead] = useState([]);
@@ -62,6 +63,7 @@ export default function InfoSucursal() {
     }, [appslist]);
 
     const appData = async (ip) => {
+        SetDispositivoIp(ip);
         return toast.promise(
             fetchData(`http://${process.env.REACT_APP_HOST}/informe/status/aplicacion/${ip}`).then(response => {
                 if (!response.ok) {
@@ -121,8 +123,8 @@ export default function InfoSucursal() {
                                         <div className='pings'>
                                             <Pingdispo ip={dispositivo.ip} />
                                         </div>
-                                        <div className='ListItemA' onClick={(e) => { e.preventDefault(); appData(`${dispositivo.ip}`); SetImpre(false) }}>
-                                            <a href={`#${index}`} className='appi'>{(dispositivo.ip.startsWith('000.') || dispositivo.ip.startsWith('001.')) ? '' : dispositivo.nombre}</a>
+                                        <div className={dispositivo.ip !== dispositivoIp ? 'ListItemA' : 'seleccionado'} onClick={(e) => { e.preventDefault(); appData(`${dispositivo.ip}`); SetImpre(false) }}>
+                                            <a href={`#${index}`} className={dispositivo.ip !== dispositivoIp ? 'appi' : 'appiSeleccionado'}>{(dispositivo.ip.startsWith('000.') || dispositivo.ip.startsWith('001.')) ? '' : dispositivo.nombre}</a>
                                         </div>
                                         <div className='pings'>
                                             <a className='appi2listExte' href={`https://${dispositivo?.ip}`} target='_blank' rel="noreferrer" ><HiExternalLink style={{ paddingTop: ' 0.1rem' }} /></a>

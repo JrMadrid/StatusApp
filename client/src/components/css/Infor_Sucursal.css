@@ -129,8 +129,8 @@
     min-height: 50vh;
     max-height: 50vh;
     overflow-y: auto;
-    min-width: 68.5vh;
-    max-width: 68.5vh;
+    /* min-width: 68.5vh;
+    max-width: 68.5vh; */
     overflow-x: auto;
 }
 
@@ -909,4 +909,124 @@
 
 .contenedorManual::-webkit-scrollbar-track {
     background-color: rgb(0, 7, 22);
+}
+
+/* INFORMACION USUARIO */
+.informacionesUsuario {
+    display: flex;
+}
+
+.inforPerfil {
+    flex: 1;
+    color: whitesmoke;
+    font-family: sans-serif;
+    max-height: 17vw;
+    width: 19vw;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.inforPerfil::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+.inforPerfil::-webkit-scrollbar-thumb {
+    background-color: #124885;
+    border-radius: 4px;
+}
+
+.inforPerfil::-webkit-scrollbar-thumb:hover {
+    background-color: #ffaf90;
+}
+
+.inforPerfil::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
+.fotoPerfil {
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.perfilFoto {
+    width: 15vw;
+    padding: 0.9vw 0vw;
+    border-radius: 50%;
+}
+
+.editIcon {
+    color: #ffc9b4;
+    font-size: 0.9rem;
+}
+
+.editIcon:hover {
+    color: rgb(175, 219, 246);
+}
+
+.datosTipo {
+    color: rgb(175, 219, 246);
+    padding: 2px 0.4vw;
+}
+
+.datosPersonal {
+    font-size: 1.2rem;
+    text-align: left;
+    padding: 2px 0.4vw;
+}
+
+.inforDescripcion {
+    height: 17vw;
+    max-height: 17vw;
+    overflow: auto;
+}
+
+.inforDescripcion::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+.inforDescripcion::-webkit-scrollbar-thumb {
+    background-color: #124885;
+    border-radius: 4px;
+}
+
+.inforDescripcion::-webkit-scrollbar-thumb:hover {
+    background-color: #ffaf90;
+}
+
+.inforDescripcion::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
+.btnConfirmar {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btnConfirmar:hover {
+    background-color: #45a049;
+}
+
+.btnCancelar {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btnCancelar:hover {
+    background-color: #c0392b;
 }

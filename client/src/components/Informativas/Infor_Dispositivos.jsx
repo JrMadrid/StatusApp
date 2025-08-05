@@ -1,5 +1,5 @@
 /* COMPONENTE DE INFORMATIVA -- DISPOSITIVOS */
-import { React, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import fetchData from '../../api/connect.js';
 import Pingdispo from '../Elements/ping.jsx';
 import ALLPDF from '../PDF/AllPDF.jsx'
@@ -10,6 +10,7 @@ import { HiExternalLink, HiFastForward } from "react-icons/hi";
 
 export default function InfoDispositivo() {
     const [appslist, setAppslist] = useState([]);
+    const [dispositivoId, setDispositivoId] = useState('');
     const [content, setContent] = useState([]);
     const [data, setData] = useState([]);
 
@@ -57,8 +58,8 @@ export default function InfoDispositivo() {
                 <ul className='list2'>
                     {appslist.map((dispositivo, index) => (
                         <li className='listaElement' key={index} >
-                            <a href={`#${dispositivo.economico}`} className={`listItem2 appi2 ${dispositivo?.ip.startsWith('000.') || dispositivo?.ip.startsWith('001.') ? 'sinip2' : ''}`} >
-                                <HiFastForward  style={{fontSize:'0.5rem'}}/>
+                            <a href={`#${dispositivo.id}`} onClick={() => setDispositivoId(dispositivo.id?.toString())} className={`listItem2 ${dispositivo?.ip.startsWith('000.') || dispositivo?.ip.startsWith('001.') ? 'sinip2' : ''} ${dispositivo.id?.toString() !== dispositivoId ? 'appi2' : 'appi2Seleccionado'}`} >
+                                <HiFastForward style={{ fontSize: '0.5rem' }} />
                                 {dispositivo.economico}-{dispositivo.sucursal}
                             </a>
                         </li>
@@ -75,7 +76,7 @@ export default function InfoDispositivo() {
             <div>
                 <h2 className='titulo2'>Soporte Técnico Honduras</h2>
                 <div className='cajaInformacion2'>
-                    <h3 className='principal2' style={{maxWidth:'79.5vw'}}>{data[0]?.nombre || ""}</h3>
+                    <h3 className='principal2' style={{ maxWidth: '79.5vw' }}>{data[0]?.nombre || ""}</h3>
                     <div className='informacion2'>
                         <br />
                         <table className='tablainfo2'>
@@ -83,7 +84,7 @@ export default function InfoDispositivo() {
                                 <tr>
                                     {content.map((dispositivo, index) => (
                                         <th className='principal2' key={index}>
-                                            <section id={`${dispositivo.economico}`}>
+                                            <section id={`${dispositivo.id}`}>
                                                 <div className='itemName'>{dispositivo.economico}-{dispositivo.sucursal}</div>
                                                 <span className='appi iteming'>{dispositivo.ingresponsable}</span>
                                                 {!dispositivo.ip.startsWith('000.') && !dispositivo.ip.startsWith('001.') && (
@@ -119,7 +120,7 @@ export default function InfoDispositivo() {
                             <tbody>
                                 <tr>
                                     {content.map((dispositivo, index) => (
-                                        <td className='infor2 texto2' key={index}>
+                                        <td className={`infor2 texto2 ${dispositivo?.id.toString() === dispositivoId ? 'texto2MarcoSeleccionado' : 'texto2Marco'}`} key={index}>
                                             <section className="descripcion-section">
                                                 <div className='descripcion2'>{dispositivo?.descripcion || ''}</div>
                                                 <div className='log2' dangerouslySetInnerHTML={{ __html: dispositivo?.general?.replace(/\n/g, '<br />') || '' }} />
