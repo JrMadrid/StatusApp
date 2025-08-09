@@ -42,7 +42,7 @@ export const updateUser = async (nickname, psw, id, tipo) => {
     updates.push('nickname = @nickname');
     if (nickname.length !== 0) {
       const idrequest = new sql.Request();
-      nick = (await idrequest.query(`select nickname from users where id = ${id}`)).recordset[0].nickname;
+      nick = (await idrequest.query(`SELECT nickname FROM users WHERE id = ${id}`)).recordset[0].nickname;
     }
   }
 

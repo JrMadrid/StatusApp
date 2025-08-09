@@ -14,8 +14,11 @@ const login = async (req, res) => {
 		req.session.admin = admon;
 		req.session.user = usuario;
 		req.session.login = req.session.user ? true : false; // Se ha iniciado sesión correctamente		
-		
+
 		req.session.tipo = tipo.trim();
+		if (tipo !== "Super Administrador") {
+			req.session.perfil = usuario;
+		}
 
 		req.session.save(err => {
 			if (err) {
