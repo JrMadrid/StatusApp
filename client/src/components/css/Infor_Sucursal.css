@@ -245,6 +245,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: center !important;
     width: 12.5vw;
     min-height: 40vh;
     max-height: 40vh;
@@ -952,9 +953,9 @@
 }
 
 .perfilFoto {
-    width: 15vw;
-    padding: 0.9vw 0vw;
-    border-radius: 50%;
+    width: 13vw;
+    /* padding: 0.9vw 0vw; */
+    border-radius: 5%;
 }
 
 .editIcon {
@@ -1029,4 +1030,21 @@
 
 .btnCancelar:hover {
     background-color: #c0392b;
+}
+
+.subirFotoPerfil {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    width: 95%;
+    color: black;
+    font-weight: lighter;
+    padding: 0.2rem 1rem;
+    background-color: rgb(197, 229, 249);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.activoono {
+    vertical-align: middle;
+    padding-bottom: 0.3rem;
 }

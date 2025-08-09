@@ -8,7 +8,7 @@ const UsuarioInfo = () => {
 
     return (
         <>
-            {user && (user.id === 1) && ( // SUPER ADMINISTRADOR
+            {user && (user.id !== 0) && (
                 <div>
                     <InfoUsuario />
                 </div>

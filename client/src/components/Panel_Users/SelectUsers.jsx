@@ -1,5 +1,5 @@
 /* PANEL DE ADMINISTRACIÓN DE USUARIOS -- VISUALIZAR */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import fetchData from '../../api/connect.js';
 import { Paginador } from '../Elements/Paginador.jsx';
 
@@ -26,6 +26,7 @@ const SelectUsers = () => {
 
     const eleccion = async (nickname) => {
         let url = `http://${process.env.REACT_APP_HOST}/informe/users/usuario/${nickname}`;
+        localStorage.setItem('nicknamePersonal', nickname); // guarda el nickname
         try {
             const response = await fetchData(url);
             if (!response.ok) {
@@ -34,7 +35,7 @@ const SelectUsers = () => {
         } catch (error) {
             console.error('Error consiguiendo los datos', error);
         }
-    }
+    };
 
     return (
         <>
