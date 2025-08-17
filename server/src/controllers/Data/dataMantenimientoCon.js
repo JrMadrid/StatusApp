@@ -2,22 +2,17 @@
 import { listarMantenimientos, publicarConstancia } from '../../services/Data/dataMantenimientoSer.js';
 import { SchemaAgregarConstanciaMantenimiento } from '../../validators/Data/dataMantenimientoVal.js';
 
-// Pedimos los datos de los mantenimientos de las sucursales
-const getMantenimientos = async (req, res) => { // if (!req.session?.admin) 
-	// if (req.session.hasOwnProperty('admin')) {
+// Pedir los datos de los mantenimientos
+const getMantenimientos = async (req, res) => {
 	try {
 		const responsable = req.session.user;
 		const tipo = req.session.tipo
-		let result;
-		result = await listarMantenimientos(responsable, tipo)
+		const result = await listarMantenimientos(responsable, tipo);
 		res.status(200).json(result);
 	} catch (error) {
-		console.error('Error:', error);
-		res.status(500).send("Error al obtener los datos");
+		console.error('Error: // Pedir los datos de los mantenimientos, ', error);
+		res.status(error?.code || 500).json({ message: error?.message || 'Error con los mantenimientos' });
 	}
-	// } else {
-	// 	res.redirect('/')
-	// }
 };
 
 // Agregar constancia de mantenimiento
@@ -34,15 +29,12 @@ const postConstancia = async (req, res) => {
 		}
 
 		await publicarConstancia({ frealizada, descripcion, id, imagen, responsable })
-
 		res.status(200).json({ message: 'Mantenimiento agregado exitosamente' }); // Responder con éxito
 
 	} catch (error) {
-		console.error('Error agregando nuevos datos:', error);
-		res.status(error.status || 500).json({ message: error.message || 'Error agregando nuevos datos' }); // Responder con falla
+		console.error('Error: // Agregar constancia de mantenimiento, ', error);
+		res.status(error?.code || 500).json({ message: error?.message || 'Error agregando nuevo mantenimiento' }); // Responder con falla
 	}
-}
-
-export const methods = {
-	getMantenimientos, postConstancia
 };
+
+export const methods = { getMantenimientos, postConstancia };

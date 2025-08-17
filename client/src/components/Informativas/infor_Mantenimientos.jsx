@@ -1,6 +1,6 @@
 /* COMPONENTE DE INFORMATIVA -- MANTENIMIENTOS */
 import { useEffect, useState } from 'react';
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';
 import { FormatearFechaTabla } from '../Elements/date.jsx';
 import PDFConstancia from '../PDF/ConstanciaPDF.jsx';
@@ -19,6 +19,7 @@ export default function InfoMante() {
     const [constancias, setConstancias] = useState([]);
     const [eco, setEco] = useState('');
 
+    // Mandar el documento del mantenimiento seleccionado
     useEffect(() => {
         const idGuardado = localStorage.getItem('idMantenimiento');
         if (idGuardado === '0') { return; };
@@ -30,11 +31,12 @@ export default function InfoMante() {
                 imageConstancia.innerHTML = '';
                 let url = `http://${process.env.REACT_APP_HOST}/informe/mantes/fecha`;
                 const response = await fetchData(url);
-
-                if (!response.ok) { throw new Error('Error al obtener la imagen: ' + response.statusText); }
-
+                if (!response) throw new Error('Sin constancia');
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Lo sentimos, ocurrió un problema');
+                }
                 const imageBlob = await response.blob();
-
                 if (imageBlob.size === 0) {
                     setImageBlob(null);
                     imageConstancia.innerHTML = '<h5>Sin constancia<h5/>';
@@ -59,54 +61,39 @@ export default function InfoMante() {
                     console.error('Contenedor de imagen no encontrado');
                 }
             } catch (error) {
-                console.error(error.message);
+                console.error(' Error: // Mandar el documento del mantenimiento seleccionado, ', error);
+                toast.error(error.message || 'Error con el documento');
             }
         }
         seleccionado();
     }, []);
 
+    // Mandar las fechas vinculadas al economico
     useEffect(() => {
         const fechasr = async () => {
             try {
                 const url = `http://${process.env.REACT_APP_HOST}/informe/mantes/fechas`;
                 const response = await fetchData(url);
-
-                if (!response.ok) {
-                    throw new Error('Sin respuesta');
-                }
                 const lista = await response.json();
+                if (!response.ok) {
+                    throw new Error(lista.message || 'Lo sentimos, ocurrió un problema');
+                }
+
                 setEco(lista[0].economico);
 
                 setAppslist(lista);
                 setAppshead(lista[0])
 
             } catch (error) {
-                console.error('Error consiguiendo los datos: ', error);
+                console.error('Error: // Mandar las fechas vinculadas al economico, ', error);
+                toast.error(error.message || 'Error con las fechas');
             }
         };
 
         fechasr();
     }, []);
 
-    useEffect(() => {
-        const AllConstancias = async () => {
-            try {
-                const url = `http://${process.env.REACT_APP_HOST}/informe/mantes/constancias`;
-                const response = await fetchData(url);
-                if (response.ok) {
-                    const archivos = await response.json();
-                    setConstancias(archivos);
-                } else {
-                    console.error('No se pudieron cargar las imágenes');
-                }
-            } catch (error) {
-                console.error('Error consiguiendo los datos: ', error);
-            }
-        };
-
-        AllConstancias();
-    }, []);
-
+    // Mandar el archivo de la constancia de la fecha seleccionada
     const appData = async (fechasr) => {
         if (fechasr && fechasr !== null && fechasr !== 'null') {
             try {
@@ -114,8 +101,11 @@ export default function InfoMante() {
                 imageConstancia.innerHTML = '';
                 const url = `http://${process.env.REACT_APP_HOST}/informe/mantes/sucursal/${fechasr}`;
                 const response = await fetchData(url);
-
-                if (!response.ok) { throw new Error('Error al obtener la imagen: ' + response.statusText); }
+                if (!response) throw new Error('Sin constancia');
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Lo sentimos, ocurrió un problema');
+                }
 
                 const imageBlob = await response.blob();
 
@@ -144,13 +134,36 @@ export default function InfoMante() {
                     console.error('Contenedor de imagen no encontrado');
                 }
             } catch (error) {
-                console.error(error.message);
+                console.error('Error: // Mandar el archivo de la constancia de la fecha seleccionada, ', error);
+                toast.error(error.message || 'Error con la constancia');
             }
         }
         else {
             alert('Fecha no valida')
         }
     };
+
+    // Mandar todas las constancias
+    useEffect(() => {
+        const AllConstancias = async () => {
+            try {
+                const url = `http://${process.env.REACT_APP_HOST}/informe/mantes/constancias`;
+                const response = await fetchData(url);
+                if (!response) throw new Error('Sin constancias');
+                const archivos = await response.json();
+                if (!response.ok) {
+                    throw new Error(archivos.message || 'Lo sentimos, ocurrió un problema');
+                }
+                setConstancias(archivos);
+
+            } catch (error) {
+                console.error('Error: // Mandar todas las constancias, ', error);
+                toast.error(error.message || 'Error con las constancias');
+            }
+        };
+
+        AllConstancias();
+    }, []);
 
     return (
         <>

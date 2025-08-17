@@ -14,6 +14,7 @@ const DeleteInforme = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    // Eliminar un informe
     const eliminar = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -25,6 +26,7 @@ const DeleteInforme = () => {
             window.location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al eliminar el informe');
+            console.error('Error: // Eliminar un informe, ',error);
         } finally {
             setLoading(false);
         }

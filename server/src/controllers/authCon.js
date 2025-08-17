@@ -8,7 +8,7 @@ const login = async (req, res) => {
 		const { usuario, admon, tipo, error } = await loginService(nickname, psw);
 
 		if (error) {
-			return res.status(401).send({ error });
+			return res.status(401).json({ error });
 		}
 
 		req.session.admin = admon;
@@ -23,22 +23,24 @@ const login = async (req, res) => {
 		req.session.save(err => {
 			if (err) {
 				console.error('Error al guardar la sesión:', err);
-				return res.status(500).send({ error: 'Error al guardar sesión' });
+				return res.status(500).json({ error: 'Error al guardar sesión' });
 			}
-			res.status(200).send({ admin: admon });
+			res.status(200).json({ admin: admon });
 		});
 
 	} catch (error) {
-		console.error('Error en login:', error);
-		res.status(500).send({ error: 'Error en login' });
+		console.error('Error:  // Leer y comprobar el usuario, ', error);
+		res.status(500).json({ error: 'Error en login' });
 	}
 };
 
+// Definir el tipo de usuario
 const user = async (req, res) => {
 	const userInfo = definirTipoUsuario(req.session);
-	res.json(userInfo);
+	res.status(200).json(userInfo);
 };
 
+// Cerrar sesión
 const logout = async (req, res) => {
 	console.log('Sesión destruida');
 	await req.session.destroy();

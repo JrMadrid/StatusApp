@@ -7,19 +7,19 @@ const LoginPanel = () => {
     const [nickname, setNickname] = useState('');
     const [psw, setPsw] = useState('');
     const [error, setError] = useState('');
-
+    
     // URL del backend para hacer login
     const ipLogin = `http://${process.env.REACT_APP_HOST}/auth/login/user`;
-
+    
     // Función para manejar el submit del formulario
-    const handleSubmit = async (e) => {
+    // Leer y comprobar el usuario
+    const iniciarSesion = async (e) => {
         e.preventDefault(); // Evita el comportamiento por defecto del formulario
 
         const body = {
             nickname,
             psw
         };
-
         try {
             const response = await axios.post(ipLogin, body);
 
@@ -32,7 +32,7 @@ const LoginPanel = () => {
         } catch (error) {
             if (error.response) {
                 setError(error.response.data.error);
-                console.error('Error durante el login:', error.response.data.error);
+                console.error('Error: // Leer y comprobar el usuario, ', error.response.data.error);
             }
         }
     };
@@ -40,7 +40,7 @@ const LoginPanel = () => {
     return (
         <div className="loginpanel">
             <h3>Iniciar Sesión</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={iniciarSesion}>
                 <div className="form-group">
                     <label htmlFor="nickname">Usuario:</label>
                     <input

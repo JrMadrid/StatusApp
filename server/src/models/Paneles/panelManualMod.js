@@ -1,15 +1,14 @@
 /* MODEL PARA VALIDAR DATOS DE MANUALES */
 import sql from 'mssql';
 
-// Pedimos los datos de los manuales
+// Pedir los datos de los manuales
 export const getManuales = async () => {
 	const request = new sql.Request();
 	let result = await request.query(`SELECT id, nombre, descripcion FROM manuales`);
-
 	return result.recordset;
 };
 
-// Agregamos un nuevo manual
+// Agregar un nuevo manual
 export const postManuales = async (descripcion, nombre, documento, manual) => {
 	const request = new sql.Request();
 	request.input('manual', sql.VarBinary(sql.MAX), manual); // sql.VarBinary(sql.MAX) para el tamaño máximo de VARBINARY -- varbinary(max) sirve para almacenar archivos grandes
@@ -19,20 +18,10 @@ export const postManuales = async (descripcion, nombre, documento, manual) => {
 		request.input('nombre', sql.VarChar, nombre);
 	}
 	request.input('descripcion', sql.VarChar, descripcion);
-	const query = 'INSERT INTO manuales(nombre, descripcion, manual) VALUES (@nombre, @descripcion, CONVERT(VARBINARY(MAX), @manual))';
-
-	await request.query(query);
+	await request.query(`INSERT INTO manuales(nombre, descripcion, manual) VALUES (@nombre, @descripcion, CONVERT(VARBINARY(MAX), @manual))`);
 };
 
-// Eliminamos un manual
-export const deleteManual = async (id) => {
-	const request = new sql.Request();
-	request.input('id', sql.Numeric, id);
-	const query = 'DELETE FROM manuales WHERE id = @id';
-	await request.query(query);
-};
-
-// Actualizamos un manual
+// Actualizar un manual
 export const updateManual = async (nombre, descripcion, id) => {
 	const request = new sql.Request();
 	request.input('nombre', sql.VarChar, nombre);
@@ -47,20 +36,24 @@ export const updateManual = async (nombre, descripcion, id) => {
 		updates.push('descripcion = @descripcion');
 	}
 	if (updates.length === 0) {
-		throw { status: 404, message: 'No hay datos para actualizar' };
+		throw { code: 404, message: 'No hay datos para actualizar' };
 	}
-	const query = `UPDATE manuales SET ${updates.join(', ')} WHERE id = @id`;
-
-	await request.query(query);
+	await request.query(`UPDATE manuales SET ${updates.join(', ')} WHERE id = @id`);
 };
 
-// Pedimos el manual en formato PDF
+// Eliminar un manual
+export const deleteManual = async (id) => {
+	const request = new sql.Request();
+	request.input('id', sql.Numeric, id);
+	await request.query('DELETE FROM manuales WHERE id = @id');
+};
+
+// Pedir el manual en formato PDF
 export const Manual = async (id) => {
 	const request = new sql.Request();
-	request.input('id', sql.VarChar, id);
-	const query = 'SELECT manual FROM manuales WHERE id = @id';
-	const resultado = await request.query(query);
-	return resultado.recordset;
+	request.input('id', sql.Int, id);
+	const resultado = await request.query('SELECT manual FROM manuales WHERE id = @id');
+	return resultado.recordset[0];
 };
 
 /* Validaciones */
@@ -74,7 +67,6 @@ async function comprobarID(id) {
 		return resultado.recordset.length > 0;
 	} catch (error) {
 		console.error('Error al comprobar el ID:', error);
-		throw error;
 	}
 }
 

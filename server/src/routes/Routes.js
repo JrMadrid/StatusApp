@@ -7,15 +7,18 @@ const __filename = fileURLToPath(import.meta.url); // Convierte la URL del archi
 const __dirname = path.dirname(__filename); // Obtiene el directorio del archivo actual
 
 import authRou from './authRou.js'; // Rutas de autenticación de usuarios
+/* Data */
 import dataSucursalRou from './Data/dataSucursalRou.js'; // Rutas para ver los datos de las sucursales
 import dataDispositivosRou from './Data/dataDispositivosRou.js'; // Rutas para ver los datos de las dispositivos
 import dataMantenimientoRou from './Data/dataMantenimientoRou.js'; // Rutas para ver los datos de los mantenimientos
+/* Paneles de administracion */
 import panelUserRou from './Paneles/panelUsersRou.js'; // Rutas para administrar usuarios
 import panelSucursalRou from './Paneles/panelSucursalRou.js' // Rutas para administrar sucursales
 import panelDispositivosRou from './Paneles/panelDispositivosRou.js'; // Rutas para administrar dispositivos
 import panelMantenimientoRou from './Paneles/panelMatenimientoRou.js'; // Rutas para administrar mantenimientos
 import panelManualesRou from './Paneles/panelManualesRou.js' // Rutas para administrar manuales
 import panelInformeRou from './Paneles/panelInformeRou.js'; // Rutas para administrar informes
+/* Paginas Informativas */
 import UsuarioInfoRou from './Informativas/UsuarioInfoRou.js'; // Rutas de informativa -- Usuario
 import SucursalInfoRou from './Informativas/SucursalInfoRou.js'; // Rutas de informativa -- Sucursal
 import DispositivosInfoRou from './Informativas/DispositivosInfoRou.js'; // Rutas de informativa -- Dispositivos

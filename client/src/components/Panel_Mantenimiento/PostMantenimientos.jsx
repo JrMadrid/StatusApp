@@ -14,17 +14,19 @@ const PostMantenimientos = () => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
+
+    // Agregar un nuevo mantenimiento
     const Agregar = async (e) => {
         e.preventDefault();
         setLoading(true);
         setMessage('');
-
         try {
             const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/mantenimientos/agregar`, formData);
             setMessage(response.data.message || 'Mantenimiento agregado exitosamente');
             window.location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al agregar el mantenimiento');
+            console.error("Error: // Agregar un nuevo mantenimiento, ");
         } finally {
             setLoading(false);
         }

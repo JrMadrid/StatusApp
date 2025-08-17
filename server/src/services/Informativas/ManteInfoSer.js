@@ -1,32 +1,22 @@
 /* SERVICIOS DE INFORMATIVA -- MANTENIMIENTO */
 import { fechaSeleccionada, fechasRealizadas, getMantenimientoArchivo, getMantenimientosArchivos } from "../../models/Informativas/ManteInfoMod.js";
 
+// Mandar el documento del mantemiento seleccionado
 export const fechaMantenimientoSeleccionado = async (id) => {
-  const constanciasArchivo = await fechaSeleccionada(id);
-  if (constanciasArchivo.length > 0) {
-    const archivo = constanciasArchivo[0].constancia;
+  return await fechaSeleccionada(id);
+};
 
-    return archivo;
-  } else {
-    throw { status: 404, message: 'Archivo no encontrado' };
-  }
-}
-
+// Mandar las fechas vinculadas al economico
 export const fechasMantenimientosRealizados = async (economico) => {
   return await fechasRealizadas(economico);
 };
 
+// Mandar el archivo de la constancia de la fecha seleccionada
 export const obtenerArchivoMantenimiento = async (fechasr, economico) => {
-  const constanciasArchivo = await getMantenimientoArchivo(fechasr, economico);
-  if (constanciasArchivo.length > 0) {
-    const archivo = constanciasArchivo[0].constancia;
-
-    return archivo;
-  } else {
-    throw { status: 404, message: 'Archivo no encontrado' };
-  }
+  return await getMantenimientoArchivo(fechasr, economico);
 };
 
+// Mandar todas las constancias
 export const obtenerArchivosMantenimientos = async (economico) => {
   const constanciasArchivos = await getMantenimientosArchivos(economico);
 
@@ -35,8 +25,7 @@ export const obtenerArchivosMantenimientos = async (economico) => {
       return item.constancia;
     })
     return archivos;
-
   } else {
-    throw { status: 404, message: 'Archivos no encontrados' };
+    throw { code: 404, message: 'Mantenimientos no encontrados' };
   }
 };

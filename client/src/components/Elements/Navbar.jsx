@@ -69,6 +69,15 @@ export default function Navbar() {
                     </>
                 )}
 
+                {/* ADMINISTRADOR, APLICATIVO & GEOGRAFIA */}
+                {user && (user.id === 2 || user.id === 3 || user.id === 4) && (
+                    <li>
+                        <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/users">
+                            <FaRegUserCircle />
+                        </NavLink>
+                    </li>
+                )}
+
                 {/* SUPER ADMINISTRADOR & ADMINISTRADOR */}
                 {user && (user.id === 1 || user.id === 2) && (
                     <>
@@ -109,15 +118,6 @@ export default function Navbar() {
                             {user.tipo}
                         </li>
                     </>
-                )}
-
-                {/* ADMINISTRADOR, APLICATIVO & GEOGRAFIA */}
-                {user && (user.id === 2 || user.id === 3 || user.id === 4) && (
-                    <li>
-                        <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/users">
-                        <FaRegUserCircle />
-                        </NavLink>
-                    </li>
                 )}
 
                 {/* APLICATIVO & GEOGRAFIA */}

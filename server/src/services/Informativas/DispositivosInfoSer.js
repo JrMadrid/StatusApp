@@ -1,12 +1,12 @@
 /* SERVICIOS DE INFORMATIVA -- DISPOSITIVOS */
-import { fetchDispositivosByNombre, fetchInfoDispositivo } from '../../models/Informativas/DispositivosInfoMod.js';
+import { obtenerDispositivosNombre, obtenerInfoDispositivos } from '../../models/Informativas/DispositivosInfoMod.js';
 
-// Servicio para obtener dispositivos por nombre
-export const getDispositivosPorNombre = async (dispositivo, responsable, tipo) => {
-	return await fetchDispositivosByNombre(dispositivo, responsable, tipo);
+// Mandar los dispositivos con ese nombre
+export const dispositivosNombre = async (dispositivo, responsable, tipo) => {
+	return await obtenerDispositivosNombre(dispositivo, responsable, tipo);
 };
 
-// Servicio para obtener info detallada de dispositivos
-export const getInfoDispositivo = async (dispositivo, responsable, tipo) => {
-	return await fetchInfoDispositivo(dispositivo, responsable, tipo);
+// Pedir los datos de los dispositivos
+export const infoDispositivo = async (dispositivo, responsable, tipo) => {
+	return await obtenerInfoDispositivos(dispositivo, responsable, tipo);
 };

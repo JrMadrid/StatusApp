@@ -3,52 +3,54 @@ import { useState } from 'react';
 import axios from '../../api/axiosConfig';
 
 const DeleteManuales = () => {
-    const [formData, setFormData] = useState({
-        id: ''
-    });
-    const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false);
+	const [formData, setFormData] = useState({
+		id: ''
+	});
+	const [message, setMessage] = useState('');
+	const [loading, setLoading] = useState(false);
 
-    const cambio = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+	const cambio = (e) => {
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+	};
 
-    const eliminar = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setMessage('');
+	// Eliminar un manual
+	const eliminar = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+		setMessage('');
 
-        try {
-            const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/manuales/eliminar`, formData);
-            setMessage(response.data.message || 'Manual eliminado exitosamente');
-            window.location.reload();
-        } catch (error) {
-            setMessage(error.response?.data?.message || 'Error al eliminar el manual');
-        } finally {
-            setLoading(false);
-        }
-    };
+		try {
+			const response = await axios.post(`http://${process.env.REACT_APP_HOST}/panel/manuales/eliminar`, formData);
+			setMessage(response.data.message || 'Manual eliminado exitosamente');
+			window.location.reload();
+		} catch (error) {
+			setMessage(error.response?.data?.message || 'Error al eliminar el manual');
+			console.error('Error: // Eliminar un manual, ', error);
+		} finally {
+			setLoading(false);
+		}
+	};
 
-    return (
-        <>
-            <div className='caja eliminar'>
-                <h5>Eliminar</h5>
-                <form onSubmit={eliminar}>
-                    <div className="delete">
-                        <label htmlFor="id"><span className='ReEliminar'>*</span>ID: </label>
-                        <input type="number" id="id" name="id" maxLength="5" placeholder='Elemento que eliminará' title='ID' min='1' pattern='\d{1,5}' value={formData.id} onChange={cambio} required />
-                        <button type="submit" disabled={loading}>Eliminar</button>
-                    </div>
-                </form>
-                <div className='avisos'>
-                    {message && message.split('\n').map((linea, i) => (
-                        <p key={i}>{linea}</p>
-                    ))}
-                </div>
-            </div>
-        </>
-    );
+	return (
+		<>
+			<div className='caja eliminar'>
+				<h5>Eliminar</h5>
+				<form onSubmit={eliminar}>
+					<div className="delete">
+						<label htmlFor="id"><span className='ReEliminar'>*</span>ID: </label>
+						<input type="number" id="id" name="id" maxLength="5" placeholder='Elemento que eliminará' title='ID' min='1' pattern='\d{1,5}' value={formData.id} onChange={cambio} required />
+						<button type="submit" disabled={loading}>Eliminar</button>
+					</div>
+				</form>
+				<div className='avisos'>
+					{message && message.split('\n').map((linea, i) => (
+						<p key={i}>{linea}</p>
+					))}
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default DeleteManuales;

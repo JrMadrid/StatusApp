@@ -3,14 +3,14 @@
 import fetchData from "../api/connect";
 import { toast } from 'react-hot-toast';
 
-// Manda ip para ping
+// Hacer ping a la ip
 const ping = async (ip) => {
     toast.promise(
         fetchData(`http://${process.env.REACT_APP_HOST}/panel/ping/${ip}`).then(async (response) => {
-            if (!response.ok) {
-                throw new Error('Sin respuesta');
-            }
             const silbato = await response.json();
+            if (!response.ok) {
+                throw new Error(silbato.message || 'Lo sentimos, ocurrió un problema');
+            }
             return silbato.silbido;
         }),
         {

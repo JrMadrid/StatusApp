@@ -1,16 +1,13 @@
 /* SERVICIOS DE AUTENTICACIÓN DE USUARIOS*/
 import { comprobarUsuario, comprobarActivo } from '../models/authMod.js';
 
+// Leer y comprobar el usuario
 export async function loginService(nickname, psw) {
-    const validez = await comprobarActivo(nickname);
-    if (validez) {
-        const result = await comprobarUsuario(nickname, psw);
-        return result;
-    } else {
-        return { error : "Su acceso es inválido"}
-    }
+    if (!await comprobarActivo(nickname)) { throw { code: 403, message: "Su acceso es inválido" } }
+    return await comprobarUsuario(nickname, psw);
 }
 
+// Definir el tipo de usuario
 export function definirTipoUsuario(session) {
     const user = {
         username: session.user,
@@ -18,7 +15,6 @@ export function definirTipoUsuario(session) {
         tipo: session.tipo,
         id: 0
     };
-
     if (session.admin == undefined) return user;
 
     if (session.admin === true) {

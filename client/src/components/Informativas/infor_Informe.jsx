@@ -34,7 +34,10 @@ export default function InfoInforme() {
                 const url = `http://${process.env.REACT_APP_HOST}/informe/informes/informe`;
                 const response = await fetchData(url);
 
-                if (!response.ok) { throw new Error('Sin respuesta'); }
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Lo sentimos, ocurrió un problema');
+                }
 
                 const manualBlob = await response.blob();
 

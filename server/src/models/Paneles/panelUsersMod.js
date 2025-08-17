@@ -1,6 +1,7 @@
 /* MODEL PARA VALIDAR DATOS DE USUARIOS */
 import sql from 'mssql';
 
+// Pedir los datos de los usuarios
 export const getUsers = async () => {
   const request = new sql.Request();
   let result = await request.query('SELECT id, nickname, psw, tipo FROM users');
@@ -8,7 +9,7 @@ export const getUsers = async () => {
   return result.recordset;
 };
 
-// Agregamos un nuevo usuario
+// Agregar un nuevo usuario
 export const postUser = async (nickname, psw, tipo, isAdmin) => {
   let transactionCrearPersonal;
   transactionCrearPersonal = new sql.Transaction();
@@ -27,7 +28,7 @@ export const postUser = async (nickname, psw, tipo, isAdmin) => {
   await transactionCrearPersonal.commit();
 };
 
-// Actualizamos un usuario
+// Actualizar un usuario
 export const updateUser = async (nickname, psw, id, tipo) => {
   let transactionPersonalyingResponsable;
   let isAdmin;
@@ -52,7 +53,7 @@ export const updateUser = async (nickname, psw, id, tipo) => {
 
   if (tipo.length !== 0) {
     if (Admin) {
-      throw { status: 403, message: 'No se puede modificar super administrador' };
+      throw { code: 403, message: 'No se puede modificar super administrador' };
     }
     else {
       tipo === 'Administrador' ? isAdmin = 1 : isAdmin = 0;
@@ -62,7 +63,7 @@ export const updateUser = async (nickname, psw, id, tipo) => {
     updates.push('isAdmin = @isAdmin')
   }
   if (updates.length === 0) {
-    throw { status: 400, message: 'No hay datos para actualizar' };
+    throw { code: 400, message: 'No hay datos para actualizar' };
   }
 
   transactionPersonalyingResponsable = new sql.Transaction();
@@ -91,7 +92,7 @@ export const updateUser = async (nickname, psw, id, tipo) => {
   await transactionPersonalyingResponsable.commit();
 };
 
-// Eliminamos un usuario
+// Eliminar un usuario
 export const deleteUser = async (id, ingResponsable, Super) => {
   let transactionPersonalyingResponsable;
 
@@ -117,7 +118,7 @@ export const deleteUser = async (id, ingResponsable, Super) => {
   await transactionPersonalyingResponsable.commit();
 };
 
-// Cerramos la sesión de todos los usuarios
+// Cerrar la sesión de todos los usuarios
 export const logoutaAllUsers = async () => {
   await sql.query('DELETE FROM Sessions');
 };
@@ -131,7 +132,6 @@ async function IDdelAdmin(id) {
 /* Comprobar que el nickname no está ocupado */
 async function NicknameOcupado(nickname) {
   try {
-    // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
     const query = 'SELECT nickname FROM users WHERE nickname = @nickname';
     const request = new sql.Request();
     request.input('nickname', sql.VarChar, nickname);
@@ -139,14 +139,12 @@ async function NicknameOcupado(nickname) {
     return resultado.recordset.length > 0; // Devuelve `true` si el nickname existe, `false` si no
   } catch (error) {
     console.error('Error al comprobar el nickname:', error);
-    throw error; // Re-lanza el error para ser manejado por el consumidor
   }
 };
 
 /* Comprobar que ID del usuario existe para corrobar ejecución */
 async function comprobarID(id) {
   try {
-    // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
     const query = 'SELECT id FROM users WHERE id = @id';
     const request = new sql.Request();
     request.input('id', sql.VarChar, id);
@@ -154,14 +152,12 @@ async function comprobarID(id) {
     return resultado.recordset.length > 0; // Devuelve `true` si el ID existe, `false` si no
   } catch (error) {
     console.error('Error al comprobar el ID:', error);
-    throw error; // Re-lanza el error para ser manejado por el consumidor
   }
 }
 
 /* Conocer el nombre del ing. Responsable por su id*/
 async function nombreResponsable(id) {
   try {
-    // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
     const query = 'SELECT nickname FROM users WHERE id = @id';
     const request = new sql.Request();
     request.input('id', sql.VarChar, id);
@@ -169,7 +165,6 @@ async function nombreResponsable(id) {
     return resultado.recordset[0].nickname;
   } catch (error) {
     console.error('Error: ', error);
-    throw error; // Re-lanza el error para ser manejado por el consumidor
   }
 }
 

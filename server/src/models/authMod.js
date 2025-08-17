@@ -1,5 +1,4 @@
 /* MODEL DE AUTENTICACIÓN DE USUARIOS */
-// import dbConnection from '../db/connection.js';
 import bcrypt from 'bcryptjs'; // Encriptar datos
 import sql from 'mssql';
 
@@ -27,7 +26,7 @@ async function comprobarUsuario(nickname, psw) {
 				});
 			});
 			// const inicio = true // Saltar validación
-			// if (inicio) {
+			// if (inicio) { // Saltar validación
 			if (valid) {
 				return { usuario, admon, tipo, error: null }; // Retorna el usuario y el estado de administrador
 			} else {
@@ -38,15 +37,8 @@ async function comprobarUsuario(nickname, psw) {
 		}
 	} catch (error) {
 		console.error('Error al comprobar usuario:', error);
-		throw error; // Lanzar el error para que se maneje en el controlador
-	}/*  finally { // Ya no es necesario cerrar la conexión aquí ya que destruye el pool 
-        try {
-            await sql.close(); // Intenta cerrar la conexión a la base de datos
-        } catch (closeError) {
-            console.error('Error al cerrar la conexión:', closeError);
-        }
-    } */
-}
+	}
+};
 
 /* Validaciones */
 // Comprobar que el usuario esta activo
@@ -55,11 +47,11 @@ const comprobarActivo = async (nickname) => {
 		const query = `SELECT activo FROM personal WHERE nickname = @nickname`;
 		const request = new sql.Request();
 		request.input('nickname', sql.VarChar, nickname);
-		const resultado = await request.query(query);		
+		const resultado = await request.query(query);
 		return resultado.recordset[0].activo;
 	} catch (error) {
 		console.error('Error al comprobar si es valido:', error);
-		throw error; // Re-lanza el error para ser manejado por el consumidor
 	}
-}
+};
+
 export { comprobarUsuario, comprobarActivo };

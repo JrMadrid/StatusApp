@@ -1,17 +1,12 @@
 /* SERVICIOS DE INFORMATIVA -- MANUAL */
 import { getDatosManual, getManualArchivo } from "../../models/Informativas/ManualInfoMod.js";
 
+// Mandar los datos del manual
 export const obtenerDatosManual = async (manualid) => {
   return await getDatosManual(manualid);
 };
 
+// Mandar el manual
 export const obtenerArchivoManual = async (manualid) => {
-  const manualArchivo = await getManualArchivo(manualid);
-  if (manualArchivo.length > 0) {
-    const archivo = manualArchivo[0].manual;
-
-    return (archivo);
-  } else {
-    throw { status: 404, message: 'Archivo no encontrado' };
-  }
+  return await getManualArchivo(manualid);
 };

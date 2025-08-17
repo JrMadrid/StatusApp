@@ -12,351 +12,373 @@ import logoSoporte from '../../imgs/LogoSoporte.png';
 import profile from '../../imgs/profile.png';
 
 export default function InfoUsuario() {
-    const user = useContext(UserContext);
+	const user = useContext(UserContext);
 
-    const [userslist, setUserslist] = useState([]);
-    const [nicknameGuardado, setNicknameGuardado] = useState('');
-    const [userDatosSeleccionado, setUserDatosSeleccionado] = useState({});
-    const [userFotoSeleccionado, setUserFotoSeleccionado] = useState(null);
-    const [imagenPerfil, setImagenPerfil] = useState(profile);
-    const [editar, setEditar] = useState(null);
-    const [valorTemporal, setValorTemporal] = useState('');
+	const [userslist, setUserslist] = useState([]);
+	const [nicknameGuardado, setNicknameGuardado] = useState('');
+	const [userDatosSeleccionado, setUserDatosSeleccionado] = useState({});
+	const [userFotoSeleccionado, setUserFotoSeleccionado] = useState(null);
+	const [imagenPerfil, setImagenPerfil] = useState(profile);
+	const [editar, setEditar] = useState(null);
+	const [valorTemporal, setValorTemporal] = useState('');
 
-    useEffect(() => {
-        const listaUsuarios = async () => {
-            try {
-                const url = `http://${process.env.REACT_APP_HOST}/informe/users/lista/nombres`;
-                const response = await fetchData(url);
-                if (!response.ok) throw new Error('Sin respuesta');
-                const lista = await response.json();
-                setUserslist(lista);
-            } catch (error) {
-                console.error('Error consiguiendo los datos: ', error);
-            }
-        };
-        listaUsuarios();
-    }, []);
+	// Pedir la lista de usuarios
+	useEffect(() => {
+		const listaUsuarios = async () => {
+			try {
+				const url = `http://${process.env.REACT_APP_HOST}/informe/users/lista/nombres`;
+				const response = await fetchData(url);
+				const lista = await response.json();
+				if (!response.ok) {
+					throw new Error(lista.message || 'Lo sentimos, ocurrió un problema');
+				}
+				setUserslist(lista);
+			} catch (error) {
+				console.error(' Error: // Pedir la lista de usuarios, ', error);
+				toast.error(error.message || 'Error con la lista del personal');
+			}
+		};
+		listaUsuarios();
+	}, []);
 
-    useEffect(() => {
-        const nickGuardado = localStorage.getItem('nicknamePersonal');
-        setNicknameGuardado(nickGuardado);
-        const DatosSeleccionado = async () => {
-            try {
-                const url = `http://${process.env.REACT_APP_HOST}/informe/users/datos/usuario`;
-                const response = await fetchData(url);
-                if (!response.ok) throw new Error('Sin respuesta');
-                const seleccionado = await response.json();
-                setUserDatosSeleccionado(seleccionado);
-                localStorage.removeItem('nicknamePersonal');
-            } catch (error) {
-                console.error('Error consiguiendo los datos: ', error);
-            }
-        };
-        DatosSeleccionado();
-    }, []);
+	// Pedir los datos del personal seleccionado
+	useEffect(() => {
+		const nickGuardado = localStorage.getItem('nicknamePersonal');
+		setNicknameGuardado(nickGuardado);
+		const DatosSeleccionado = async () => {
+			try {
+				const url = `http://${process.env.REACT_APP_HOST}/informe/users/datos/usuario`;
+				const response = await fetchData(url);
+				const seleccionado = await response.json();
+				if (!response.ok) {
+					throw new Error(seleccionado.message || 'Lo sentimos, ocurrió un problema');
+				}
+				setUserDatosSeleccionado(seleccionado);
+				localStorage.removeItem('nicknamePersonal');
+			} catch (error) {
+				console.error('Error: // Pedir los datos del personal seleccionado, ', error);
+				toast.error(error.message || 'Error con los datos del personal');
+			}
+		};
+		DatosSeleccionado();
+	}, []);
 
-    useEffect(() => {
-        const nickGuardado = localStorage.getItem('nicknamePersonal');
-        setNicknameGuardado(nickGuardado);
+	// Pedir la foto del personal seleccionado
+	useEffect(() => {
+		const nickGuardado = localStorage.getItem('nicknamePersonal');
+		setNicknameGuardado(nickGuardado);
 
-        const FotoSeleccionado = async () => {
-            try {
-                const url = `http://${process.env.REACT_APP_HOST}/informe/users/foto/usuario`;
-                const response = await fetchData(url);
+		const FotoSeleccionado = async () => {
+			try {
+				const url = `http://${process.env.REACT_APP_HOST}/informe/users/foto/usuario`;
+				const response = await fetchData(url);
+				if (!response) throw new Error('Sin foto');
+				if (!response.ok) {
+					const errorData = await response.json();
+					throw new Error(errorData.message || 'Lo sentimos, ocurrió un problema');
+				}
 
-                if (!response) throw new Error('No se recibió respuesta del servidor');
-                if (!response.ok) throw new Error('Sin respuesta OK de la imagen del personal');
+				const imageBlob = await response.blob();
+				if (imageBlob.size === 0) throw new Error('La respuesta no entrega una imagen');
+				if (!imageBlob.type.startsWith('image/')) throw new Error('La respuesta no es una imagen válida');
 
-                const imageBlob = await response.blob();
+				const imageUrl = window.URL.createObjectURL(imageBlob);
+				setImagenPerfil(imageUrl)
+				localStorage.removeItem('nicknamePersonal');
+			} catch (error) {
+				console.error('Error: // Pedir la foto del personal seleccionado, ', error);
+				toast.error(error.message || 'Error la foto del personal');
+			}
+		};
 
-                if (imageBlob.size === 0) throw new Error('La respuesta no entrega una imagen');
-                if (!imageBlob.type.startsWith('image/')) throw new Error('La respuesta no es una imagen válida');
+		FotoSeleccionado();
 
-                const imageUrl = window.URL.createObjectURL(imageBlob);
-                setImagenPerfil(imageUrl)
+		// Opcional: limpieza del URL creado para liberar memoria cuando el componente se desmonte o imagenPerfil cambie
+		// return () => {
+		//     if (imagenPerfil) {
+		//         window.URL.revokeObjectURL(imagenPerfil);
+		//     }
+		// };
+	}, []);
 
+	// Pedir los datos del personal seleccionado en seleccion
+	const seleccion = async (nickname) => {
+		setEditar(null);
+		let url = `http://${process.env.REACT_APP_HOST}/informe/users/datos/seleccion/${nickname}`;
+		try {
+			const response = await fetchData(url);
+			const seleccionado = await response.json();
+			if (!response.ok) {
+				throw new Error(seleccionado.message || 'Lo sentimos, ocurrió un problema');
+			}
+			setUserDatosSeleccionado(seleccionado);
+		} catch (error) {
+			console.error('Error: // Pedir los datos del personal seleccionado en seleccion, ', error);
+			toast.error(error.message || 'Error con los datos del personal');
+		}
+	};
 
-                localStorage.removeItem('nicknamePersonal');
-            } catch (error) {
-                console.error('Error consiguiendo los datos:', error.message || error);
-            }
-        };
+	// Pedir la foto del personal seleccionado en seleccion
+	const seleccionFoto = async (nickname) => {
+		setUserFotoSeleccionado(null);
+		setImagenPerfil(profile);
+		try {
+			const url = `http://${process.env.REACT_APP_HOST}/informe/users/foto/seleccion/${nickname}`;
+			const response = await fetchData(url);
+			if (!response) throw new Error('Sin foto');
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(errorData.message || 'Lo sentimos, ocurrió un problema');
+			}
 
-        FotoSeleccionado();
+			const imageBlob = await response.blob();
 
-        // Opcional: limpieza del URL creado para liberar memoria cuando el componente se desmonte o imagenPerfil cambie
-        // return () => {
-        //     if (imagenPerfil) {
-        //         window.URL.revokeObjectURL(imagenPerfil);
-        //     }
-        // };
-    }, []);
+			if (imageBlob.size === 0) throw new Error('La respuesta no entrega una imagen');
+			if (!imageBlob.type.startsWith('image/')) throw new Error('La respuesta no es una imagen válida');
 
-    const seleccion = async (nickname) => {
-        setEditar(null);
-        let url = `http://${process.env.REACT_APP_HOST}/informe/users/datos/seleccion/${nickname}`;
-        try {
-            const response = await fetchData(url);
-            if (!response.ok) throw new Error("Sin respuesta");
-            const seleccionado = await response.json();
-            setUserDatosSeleccionado(seleccionado);
-        } catch (error) {
-            console.error('Error consiguiendo los datos', error);
-        }
-    };
+			const imageUrl = window.URL.createObjectURL(imageBlob);
+			setImagenPerfil(imageUrl)
+		} catch (error) {
+			console.error('Error: // Pedir la foto del personal seleccionado en seleccion, ', error);
+			toast.error(error.message || 'Error con la foto del personal');
+		}
+	};
 
-    const seleccionFoto = async (nickname) => {
-        setUserFotoSeleccionado(null);
-        setImagenPerfil(profile);
-        let url = `http://${process.env.REACT_APP_HOST}/informe/users/foto/seleccion/${nickname}`;
-        try {
-            const response = await fetchData(url);
-            if (!response.ok) throw new Error("Sin respuesta");
+	const ediccion = (propiedad) => {
+		if (!propiedad) return;
+		setEditar(propiedad);
+		setValorTemporal(userDatosSeleccionado?.[propiedad] || '');
+	};
 
-            const imageBlob = await response.blob();
+	const cancelarEdicion = () => {
+		setEditar(null);
+		setValorTemporal('');
+	};
 
-            if (imageBlob.size === 0) throw new Error('La respuesta no entrega una imagen');
-            if (!imageBlob.type.startsWith('image/')) throw new Error('La respuesta no es una imagen válida');
+	// Editar los datos del personal
+	const guardarCambio = async () => {
+		if (!editar) return;
+		const campo = editar;
+		setEditar(null);
 
-            const imageUrl = window.URL.createObjectURL(imageBlob);
-            setImagenPerfil(imageUrl)
-        } catch (error) {
-            console.error('Error consiguiendo los datos', error);
-        }
-    };
+		if (campo === 'foto') {
+			await subirFoto(valorTemporal); // función separada solo para foto
+			return;
+		}
 
-    const ediccion = (propiedad) => {
-        if (!propiedad) return;
-        setEditar(propiedad);
-        setValorTemporal(userDatosSeleccionado?.[propiedad] || '');
-    };
+		const url = `http://${process.env.REACT_APP_HOST}/informe/users/datos/guardar/${campo}`;
+		try {
+			const response = await axios.post(url, {
+				valor: valorTemporal,
+				id: userDatosSeleccionado.id
+			});
+			setUserDatosSeleccionado(prev => ({
+				...prev,
+				[campo]: valorTemporal,
+			}));
 
-    const cancelarEdicion = () => {
-        setEditar(null);
-        setValorTemporal('');
-    };
+			toast.success(response?.data?.message || 'Cambio guardado');
+		} catch (error) {
+			console.error('Error: // Editar los datos del personal, ', error);
+			toast.error(error.response?.data?.message || 'Error al guardar el cambio');
+		}
+	};
 
-    const guardarCambio = async () => {
-        if (!editar) return;
-        const campo = editar;
-        setEditar(null);
+	// Editar la foto del personal
+	const subirFoto = async (archivo) => {
+		if (!archivo) {
+			toast.error("Ningún archivo seleccionado.");
+			return;
+		}
 
-        if (campo === 'foto') {
-            await subirFoto(valorTemporal); // función separada solo para foto
-            return;
-        }
+		const tiposPermitidos = ["image/png", "image/jpeg"];
+		const maxSizeMB = 2;
 
-        const url = `http://${process.env.REACT_APP_HOST}/informe/users/datos/guardar/${campo}`;
-        try {
-            await axios.post(url, {
-                valor: valorTemporal,
-                id: userDatosSeleccionado.id
-            });
+		if (!tiposPermitidos.includes(archivo.type)) {
+			toast.error("Solo se permiten imágenes PNG o JPG.");
+			return;
+		}
 
-            setUserDatosSeleccionado(prev => ({
-                ...prev,
-                [campo]: valorTemporal,
-            }));
+		if (archivo.size > maxSizeMB * 3000 * 3000) {
+			toast.error(`La imagen no debe pesar más de ${maxSizeMB}MB.`);
+			return;
+		}
 
-            toast.success('Cambio guardado');
-        } catch (error) {
-            console.error('Error al guardar:', error);
-            toast.error('Error al guardar el cambio');
-        }
-    };
+		const formData = new FormData();
+		formData.append("foto", archivo);
+		formData.append("id", userDatosSeleccionado.id);
 
-    const subirFoto = async (archivo) => {
-        if (!archivo) {
-            toast.error("Ningún archivo seleccionado.");
-            return;
-        }
+		// Actualizar solo la imagen mostrada
+		setUserFotoSeleccionado(prev => ({
+			...prev,
+			foto: URL.createObjectURL(archivo),
+		}));
 
-        const tiposPermitidos = ["image/png", "image/jpeg"];
-        const maxSizeMB = 2;
-
-        if (!tiposPermitidos.includes(archivo.type)) {
-            toast.error("Solo se permiten imágenes PNG o JPG.");
-            return;
-        }
-
-        if (archivo.size > maxSizeMB * 3000 * 3000) {
-            toast.error(`La imagen no debe pesar más de ${maxSizeMB}MB.`);
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("foto", archivo);
-        formData.append("id", userDatosSeleccionado.id);
-
-        // Actualizar solo la imagen mostrada
-        setUserFotoSeleccionado(prev => ({
-            ...prev,
-            foto: URL.createObjectURL(archivo),
-        }));
-
-        try {
-            const res = await axios.post(`http://${process.env.REACT_APP_HOST}/informe/users/guardar/foto`, formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
+		try {
+			await axios.post(`http://${process.env.REACT_APP_HOST}/informe/users/guardar/foto`, formData, {
+				headers: { "Content-Type": "multipart/form-data" },
+			});
 
 
-            toast.success("Foto actualizada correctamente");
-        } catch (error) {
-            console.error("Error al subir la foto", error);
-            toast.error("Error al subir la foto");
-        }
-    };
+			toast.success("Foto actualizada correctamente");
+		} catch (error) {
+			console.error('Error: // Editar la foto del personal, ', error);
+			toast.error(error.response?.data?.message || "Error al subir la foto");
+		}
+	};
 
-    const renderInput = (campo) => {
-        switch (campo) {
-            case 'cedula':
-                return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} pattern="\d{4}-\d{4}-\d{5}" placeholder="1234-5678-90123" maxLength={15} autoFocus />;
-            case 'localidad':
-            case 'grado_academico':
-            case 'puesto':
-            case 'nombre':
-                return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={100} autoFocus />;
-            case 'descripcion':
-                return <textarea value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={3000} rows={4} autoFocus />;
-            case 'fecha_nacimiento':
-            case 'fecha_contratacion':
-                return <input style={{ height: '0.5rem' }} type="date" max={new Date().toISOString().split('T')[0]} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} autoFocus />;
-            case 'sexo':
-                return (
-                    <select value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} autoFocus>
-                        <option value="">Seleccionar</option>
-                        <option value="M">Masculino</option>
-                        <option value="H">Femenino</option>
-                    </select>
-                );
-            case 'activo':
-                return (
-                    <select value={valorTemporal ? 'true' : 'false'} onChange={(e) => setValorTemporal(e.target.value === 'true')} autoFocus                  >
-                        <option value="true">Activo</option>
-                        <option value="false">Inactivo</option>
-                    </select>
-                );
-            case 'foto':
-                return (
-                    <>
-                        <label htmlFor="fotoperfil" className='subirFotoPerfil'>Subir Foto</label>
-                        <input id="fotoperfil" type="file" accept=".png, .jpg, .jpeg" onChange={(e) => setValorTemporal(e.target.files[0])} autoFocus style={{ display: 'none' }} />
-                    </>
-                );
-            default:
-                return <input value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} autoFocus />;
-        }
-    };
+	const renderInput = (campo) => {
+		switch (campo) {
+			case 'cedula':
+				return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} pattern="\d{4}-\d{4}-\d{5}" placeholder="1234-5678-90123" maxLength={15} autoFocus />;
+			case 'localidad':
+			case 'grado_academico':
+			case 'puesto':
+			case 'nombre':
+				return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={100} autoFocus />;
+			case 'descripcion':
+				return <textarea value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={3000} rows={4} autoFocus />;
+			case 'fecha_nacimiento':
+			case 'fecha_contratacion':
+				return <input style={{ height: '0.5rem' }} type="date" max={new Date().toISOString().split('T')[0]} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} autoFocus />;
+			case 'sexo':
+				return (
+					<select value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} autoFocus>
+						<option value="">Seleccionar</option>
+						<option value="M">Masculino</option>
+						<option value="H">Femenino</option>
+					</select>
+				);
+			case 'activo':
+				return (
+					<select value={valorTemporal ? 'true' : 'false'} onChange={(e) => setValorTemporal(e.target.value === 'true')} autoFocus                  >
+						<option value="true">Activo</option>
+						<option value="false">Inactivo</option>
+					</select>
+				);
+			case 'foto':
+				return (
+					<>
+						<label htmlFor="fotoperfil" className='subirFotoPerfil'>Subir Foto</label>
+						<input id="fotoperfil" type="file" accept=".png, .jpg, .jpeg" onChange={(e) => setValorTemporal(e.target.files[0])} autoFocus style={{ display: 'none' }} />
+					</>
+				);
+			default:
+				return <input value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} autoFocus />;
+		}
+	};
 
-    const renderCampo = (campo, label) => {
-        const valorActual = userDatosSeleccionado?.[campo];
-        let contenido = valorActual;
+	const renderCampo = (campo, label) => {
+		const valorActual = userDatosSeleccionado?.[campo];
+		let contenido = valorActual;
 
-        if (campo === 'activo') {
-            contenido = valorActual ? <><FaUserCheck className='activoono' style={{ color: 'green' }} /> </> : <><FaUserTimes className='activoono' style={{ color: 'red' }} /> </>;
-        } else if (campo.includes('fecha') && valorActual) {
-            contenido = fechaFomatoSQL(valorActual);
-        }
+		if (campo === 'activo') {
+			contenido = valorActual ? <><FaUserCheck className='activoono' style={{ color: 'green' }} /> </> : <><FaUserTimes className='activoono' style={{ color: 'red' }} /> </>;
+		} else if (campo.includes('fecha') && valorActual) {
+			contenido = fechaFomatoSQL(valorActual);
+		}
 
-        return (
-            <h5 className={`datosPersonal campo-${campo}`}>
-                <span className='datosTipo'>
-                    {campo === 'foto' ? (
-                        <>
-                            <FaRegEdit className='editIcon' onClick={() => ediccion(campo)} />
-                        </>
-                    ) : (
-                        <>
-                            <FaRegEdit className='editIcon' onClick={() => ediccion(campo)} />
-                            {` ${label}`}:{' '}
-                        </>
-                    )}
-                </span>
-                {editar === campo ? (
-                    <span style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                        {renderInput(campo)}
-                        <button onClick={guardarCambio} className='btnConfirmar'>
-                            <FaCheck />
-                        </button>
-                        <button onClick={cancelarEdicion} className='btnCancelar'>
-                            <FaTimes />
-                        </button>
-                    </span>
-                ) : (
-                    <>
-                        {campo === 'foto' ? (
-                            <span></span>
-                        ) : (
-                            <span>{contenido || `N/D ${campo}`}</span>
-                        )}
-                    </>
-                )}
-            </h5>
-        );
-    };
+		return (
+			<h5 className={`datosPersonal campo-${campo}`}>
+				<span className='datosTipo'>
+					{campo === 'foto' ? (
+						<>
+							<FaRegEdit className='editIcon' onClick={() => ediccion(campo)} />
+						</>
+					) : (
+						<>
+							<FaRegEdit className='editIcon' onClick={() => ediccion(campo)} />
+							{` ${label}`}:{' '}
+						</>
+					)}
+				</span>
+				{editar === campo ? (
+					<span style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+						{renderInput(campo)}
+						<button onClick={guardarCambio} className='btnConfirmar'>
+							<FaCheck />
+						</button>
+						<button onClick={cancelarEdicion} className='btnCancelar'>
+							<FaTimes />
+						</button>
+					</span>
+				) : (
+					<>
+						{campo === 'foto' ? (
+							<span></span>
+						) : (
+							<span>{contenido || `N/D ${campo}`}</span>
+						)}
+					</>
+				)}
+			</h5>
+		);
+	};
 
-    return (
-        <>
-            <div className='sidebar'>
-                <h3 className='heading'>Personal</h3>
-                <ul className='list'>
-                    {userslist.map((usuarios, index) => (
-                        <li key={index} className='listItem'>
-                            <div className={usuarios.nickname?.toString() !== nicknameGuardado ? 'ListItemA' : 'seleccionado'} style={{ marginLeft: '1.75vw' }} onClick={(e) => { e.preventDefault(); setNicknameGuardado(usuarios.nickname); seleccion(usuarios.nickname); seleccionFoto(usuarios.nickname); }} >
-                                <a href={`#${index}`} className={usuarios.nickname?.toString() !== nicknameGuardado ? 'appi' : 'appiSeleccionado'}>
-                                    {usuarios.nickname}
-                                </a>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-                <br />
-                <br />
-                <div className='logodiv'>
-                    <img src={logoSoporte} className='logo' alt="Logo de Soporte" />
-                </div>
-            </div >
-            <div>
-                <h2 className='titulo'>Soporte Técnico Honduras</h2>
-                <div className='cajaInformacion' style={{ height: '58vh' }}>
-                    <h4 className='principal'>{userDatosSeleccionado?.nickname || "Usuario"}</h4>
-                    <div className='informacion' style={{ minHeight: '32vw', maxHeight: '34vw' }}>
-                        <div className='informacionesUsuario'>
-                            <div className='inforPerfil'>
-                                {renderCampo('foto', 'Foto')}
-                                <div className='fotoPerfil'>
-                                    {imagenPerfil && (
-                                        <img src={userFotoSeleccionado?.foto || imagenPerfil} className='perfilFoto' alt="Foto de perfil" />
-                                    )}
-                                </div>
-                            </div>
-                            <div className='inforPerfil'>
-                                {renderCampo('nombre', 'Nombre')}
-                                {renderCampo('cedula', 'Cédula')}
-                                {renderCampo('localidad', 'Localidad')}
-                            </div>
-                            <div className='inforPerfil'>
-                                {renderCampo('fecha_nacimiento', 'Nacimiento')}
-                                {renderCampo('grado_academico', 'Grado Académico')}
-                                {renderCampo('sexo', 'Sexo')}
-                            </div>
-                            <div className='inforPerfil'>
-                                {renderCampo('fecha_contratacion', 'Contratación')}
-                                {renderCampo('puesto', 'Puesto')}
-                                {user && user.id === 1 && (
-                                    <>
-                                        {renderCampo('activo', 'Activo')}
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                        <div className='inforDescripcion'>
-                            {renderCampo('descripcion', 'Descripción')}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Toaster toastOptions={{ className: 'noti' }} />
-        </>
-    );
+	return (
+		<>
+			<div className='sidebar'>
+				<h3 className='heading'>Personal</h3>
+				<ul className='list'>
+					{userslist.map((usuarios, index) => (
+						<li key={index} className='listItem'>
+							<div className={usuarios.nickname?.toString() !== nicknameGuardado ? 'ListItemA' : 'seleccionado'} style={{ marginLeft: '1.75vw' }} onClick={(e) => { e.preventDefault(); setNicknameGuardado(usuarios.nickname); seleccion(usuarios.nickname); seleccionFoto(usuarios.nickname); }} >
+								<a href={`#${index}`} className={usuarios.nickname?.toString() !== nicknameGuardado ? 'appi' : 'appiSeleccionado'}>
+									{usuarios.nickname}
+								</a>
+							</div>
+						</li>
+					))}
+				</ul>
+				<br />
+				<br />
+				<div className='logodiv'>
+					<img src={logoSoporte} className='logo' alt="Logo de Soporte" />
+				</div>
+			</div >
+			<div>
+				<h2 className='titulo'>Soporte Técnico Honduras</h2>
+				<div className='cajaInformacion' style={{ height: '58vh' }}>
+					<h4 className='principal'>{userDatosSeleccionado?.nickname || "Usuario"}</h4>
+					<div className='informacion' style={{ minHeight: '32vw', maxHeight: '34vw' }}>
+						<div className='informacionesUsuario'>
+							<div className='inforPerfil'>
+								{renderCampo('foto', 'Foto')}
+								<div className='fotoPerfil'>
+									{imagenPerfil && (
+										<img src={userFotoSeleccionado?.foto || imagenPerfil} className='perfilFoto' alt="Foto de perfil" />
+									)}
+								</div>
+							</div>
+							<div className='inforPerfil'>
+								{renderCampo('nombre', 'Nombre')}
+								{renderCampo('cedula', 'Cédula')}
+								{renderCampo('localidad', 'Localidad')}
+								{renderCampo('telefono', 'Telefono')}
+							</div>
+							<div className='inforPerfil'>
+								{renderCampo('fecha_nacimiento', 'Nacimiento')}
+								{/* Edad */}
+								{renderCampo('sexo', 'Sexo')}
+							</div>
+							<div className='inforPerfil'>
+								{renderCampo('grado_academico', 'Grado Académico')}
+								{renderCampo('fecha_contratacion', 'Contratación')}
+								{renderCampo('puesto', 'Puesto')}
+								{user && (user.id === 1 && userDatosSeleccionado?.id !== 1) && (
+									<>
+										{renderCampo('activo', 'Activo')}
+									</>
+								)}
+							</div>
+						</div>
+						<div className='inforDescripcion'>
+							{renderCampo('descripcion', 'Descripción')}
+						</div>
+					</div>
+				</div>
+			</div>
+			<Toaster toastOptions={{ className: 'noti' }} />
+		</>
+	);
 };
