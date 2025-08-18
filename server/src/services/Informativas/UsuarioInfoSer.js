@@ -18,11 +18,14 @@ export const obtenerFotoSeleccionado = async (seleccionado) => {
 
 // Editar los datos del personal
 export const editarDatosPersonal = async (propiedadEditar, propiedadEditada, id) => {
-  if (await desactivarSuper(id)) { throw { code: 403, message: 'No se puede desactivar al super administrador' }; }
+  if (propiedadEditar === 'activo') {
+    if (await desactivarSuper(id)) { throw { code: 403, message: 'No se puede desactivar al super administrador' }; }
+  }
+
   await editDataPersonal(propiedadEditar, propiedadEditada, id);
-}
+};
 
 // Editar la foto del personal
 export const editarFotoPersonal = async (foto, id) => {
   await editFotoPersonal(foto, id);
-}
+};

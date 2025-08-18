@@ -36,7 +36,7 @@ export const getFotoSeleccionado = async (seleccionado) => {
 };
 
 // Editar los datos del personal
-export const editDataPersonal = async (propiedadEditar, propiedadEditada, id) => {
+export const editDataPersonal = async (propiedadEditar, propiedadEditada, id) => {  
   const request = new sql.Request();
   request.input('id', sql.Numeric, id);
   await request.query(`

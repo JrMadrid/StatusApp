@@ -6,6 +6,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import fetchData from '../../api/connect';
 import axios from '../../api/axiosConfig';
 import fechaFomatoSQL from '../../utils/formatoFecha.js';
+import calcularEdad from '../../utils/edad.js';
 import '../css/Infor_Sucursal.css';
 import { FaRegEdit, FaCheck, FaTimes, FaUserCheck, FaUserTimes } from 'react-icons/fa';
 import logoSoporte from '../../imgs/LogoSoporte.png';
@@ -19,26 +20,29 @@ export default function InfoUsuario() {
 	const [userDatosSeleccionado, setUserDatosSeleccionado] = useState({});
 	const [userFotoSeleccionado, setUserFotoSeleccionado] = useState(null);
 	const [imagenPerfil, setImagenPerfil] = useState(profile);
+	const [edad, setEdad] = useState(0);
 	const [editar, setEditar] = useState(null);
 	const [valorTemporal, setValorTemporal] = useState('');
 
 	// Pedir la lista de usuarios
 	useEffect(() => {
-		const listaUsuarios = async () => {
-			try {
-				const url = `http://${process.env.REACT_APP_HOST}/informe/users/lista/nombres`;
-				const response = await fetchData(url);
-				const lista = await response.json();
-				if (!response.ok) {
-					throw new Error(lista.message || 'Lo sentimos, ocurrió un problema');
+		if (user.id === 1) {
+			const listaUsuarios = async () => {
+				try {
+					const url = `http://${process.env.REACT_APP_HOST}/informe/users/lista/nombres`;
+					const response = await fetchData(url);
+					const lista = await response.json();
+					if (!response.ok) {
+						throw new Error(lista.message || 'Lo sentimos, ocurrió un problema');
+					}
+					setUserslist(lista);
+				} catch (error) {
+					console.error(' Error: // Pedir la lista de usuarios, ', error);
+					toast.error(error.message || 'Error con la lista del personal');
 				}
-				setUserslist(lista);
-			} catch (error) {
-				console.error(' Error: // Pedir la lista de usuarios, ', error);
-				toast.error(error.message || 'Error con la lista del personal');
-			}
+			};
+			listaUsuarios();
 		};
-		listaUsuarios();
 	}, []);
 
 	// Pedir los datos del personal seleccionado
@@ -54,7 +58,8 @@ export default function InfoUsuario() {
 					throw new Error(seleccionado.message || 'Lo sentimos, ocurrió un problema');
 				}
 				setUserDatosSeleccionado(seleccionado);
-				localStorage.removeItem('nicknamePersonal');
+				setEdad(calcularEdad(seleccionado?.fecha_nacimiento));
+				// localStorage.removeItem('nicknamePersonal');
 			} catch (error) {
 				console.error('Error: // Pedir los datos del personal seleccionado, ', error);
 				toast.error(error.message || 'Error con los datos del personal');
@@ -84,7 +89,7 @@ export default function InfoUsuario() {
 
 				const imageUrl = window.URL.createObjectURL(imageBlob);
 				setImagenPerfil(imageUrl)
-				localStorage.removeItem('nicknamePersonal');
+				// localStorage.removeItem('nicknamePersonal');
 			} catch (error) {
 				console.error('Error: // Pedir la foto del personal seleccionado, ', error);
 				toast.error(error.message || 'Error la foto del personal');
@@ -111,6 +116,7 @@ export default function InfoUsuario() {
 			if (!response.ok) {
 				throw new Error(seleccionado.message || 'Lo sentimos, ocurrió un problema');
 			}
+			setEdad(calcularEdad(seleccionado?.fecha_nacimiento))
 			setUserDatosSeleccionado(seleccionado);
 		} catch (error) {
 			console.error('Error: // Pedir los datos del personal seleccionado en seleccion, ', error);
@@ -172,6 +178,9 @@ export default function InfoUsuario() {
 				valor: valorTemporal,
 				id: userDatosSeleccionado.id
 			});
+			if (campo === 'fecha_nacimiento') {
+				setEdad(calcularEdad(valorTemporal));
+			}
 			setUserDatosSeleccionado(prev => ({
 				...prev,
 				[campo]: valorTemporal,
@@ -219,7 +228,6 @@ export default function InfoUsuario() {
 				headers: { "Content-Type": "multipart/form-data" },
 			});
 
-
 			toast.success("Foto actualizada correctamente");
 		} catch (error) {
 			console.error('Error: // Editar la foto del personal, ', error);
@@ -234,10 +242,13 @@ export default function InfoUsuario() {
 			case 'localidad':
 			case 'grado_academico':
 			case 'puesto':
-			case 'nombre':
 				return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={100} autoFocus />;
+			case 'nombre':
+				return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={200} autoFocus />;
+			case 'telefono':
+				return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={20} autoFocus />;
 			case 'descripcion':
-				return <textarea value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={3000} rows={4} autoFocus />;
+				return <textarea value={valorTemporal} style={{ width: '100%', height: '12rem' }} onChange={(e) => setValorTemporal(e.target.value)} maxLength={3000} rows={4} autoFocus />;
 			case 'fecha_nacimiento':
 			case 'fecha_contratacion':
 				return <input style={{ height: '0.5rem' }} type="date" max={new Date().toISOString().split('T')[0]} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} autoFocus />;
@@ -246,7 +257,7 @@ export default function InfoUsuario() {
 					<select value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} autoFocus>
 						<option value="">Seleccionar</option>
 						<option value="M">Masculino</option>
-						<option value="H">Femenino</option>
+						<option value="F">Femenino</option>
 					</select>
 				);
 			case 'activo':
@@ -277,7 +288,9 @@ export default function InfoUsuario() {
 		} else if (campo.includes('fecha') && valorActual) {
 			contenido = fechaFomatoSQL(valorActual);
 		}
-
+		else if (valorActual && campo === 'sexo') {
+			contenido = (valorActual === 'F') ? 'Femenino' : 'Masculino';
+		}
 		return (
 			<h5 className={`datosPersonal campo-${campo}`}>
 				<span className='datosTipo'>
@@ -307,7 +320,7 @@ export default function InfoUsuario() {
 						{campo === 'foto' ? (
 							<span></span>
 						) : (
-							<span>{contenido || `N/D ${campo}`}</span>
+							<span>{contenido || `Sin registrar`}</span>
 						)}
 					</>
 				)}
@@ -358,11 +371,11 @@ export default function InfoUsuario() {
 							</div>
 							<div className='inforPerfil'>
 								{renderCampo('fecha_nacimiento', 'Nacimiento')}
-								{/* Edad */}
+								<h5 className='edad' >Edad: <span style={{ color: 'whitesmoke' }}>{edad} años</span></h5>
 								{renderCampo('sexo', 'Sexo')}
+								{renderCampo('grado_academico', 'Grado Académico')}
 							</div>
 							<div className='inforPerfil'>
-								{renderCampo('grado_academico', 'Grado Académico')}
 								{renderCampo('fecha_contratacion', 'Contratación')}
 								{renderCampo('puesto', 'Puesto')}
 								{user && (user.id === 1 && userDatosSeleccionado?.id !== 1) && (
@@ -378,7 +391,7 @@ export default function InfoUsuario() {
 					</div>
 				</div>
 			</div>
-			<Toaster toastOptions={{ className: 'noti' }} />
+			<Toaster toastOptions={{ className: 'noti', duration: 750 }} />
 		</>
 	);
 };

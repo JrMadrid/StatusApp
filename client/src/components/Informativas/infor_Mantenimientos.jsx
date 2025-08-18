@@ -47,7 +47,7 @@ export default function InfoMante() {
                     throw new Error('La respuesta no es una imagen válida');
                 }
                 // Aquí ya usamos el id, ahora lo podemos borrar:
-                localStorage.removeItem('idMantenimiento');
+                // localStorage.removeItem('idMantenimiento');
 
                 const imageUrl = window.URL.createObjectURL(imageBlob);
                 const img = document.createElement('img');

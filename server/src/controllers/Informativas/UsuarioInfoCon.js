@@ -1,6 +1,6 @@
 /* CONTROLADORES DE INFORMATIVA -- USUARIO */
 import { obtenerListaUsuarios, obtenerDatosSeleccionado, editarDatosPersonal, editarFotoPersonal, obtenerFotoSeleccionado } from "../../services/Informativas/UsuarioInfoSer.js";
-
+import { userSchema } from "../../validators/Informativas/UsuarioInfoVal.js";
 // Pedir el nombre del usuario
 const nickname = async (req, res) => {
   try {
@@ -27,11 +27,11 @@ const getlistaUsuarios = async (req, res) => {
       return res.status(200).json(lista)
     } catch (error) {
       console.error('Error: // Pedir la lista de usuarios, ', error);
+      return res.status(error?.code || 500).json({ message: error?.message || 'Error al obtener los usuarios' });
     }
   }
   else {
-    console.error('Error: // Pedir la lista de usuarios, ', error);
-    return res.status(error?.code || 500).json({ message: error?.message || 'Error al obtener los usuarios' });
+    return res.sendStatus(401);
   }
 };
 
@@ -106,11 +106,18 @@ const updateDatos = async (req, res) => {
   try {
     const propiedadEditar = req.params.editar;
     const { valor: propiedadEditada, id } = req.body;
+
+    const validar = { [propiedadEditar]: propiedadEditada, id };
+    const { error } = userSchema.validate(validar, { abortEarly: false });
+    if (error) {
+      const mensajes = error.details.map(err => err.message).join('\n');
+      return res.status(400).json({ message: mensajes });
+    }
     await editarDatosPersonal(propiedadEditar, propiedadEditada, id);
-    return res.sendStatus(200); // res.status(200).json({ ok: true });
+    return res.status(200).json({ ok: true, message: `Cambio correcto de ${propiedadEditar}` });
   } catch (error) {
     console.error('Error: // Editar los datos del personal, ', error);
-    res.status(error?.code || 500).json({ message: error?.message || 'Error editando usuario' });
+    res.status(error?.code || 500).json({ message: error?.message || 'Error editando personal' });
   }
 };
 

@@ -1048,3 +1048,9 @@
     vertical-align: middle;
     padding-bottom: 0.3rem;
 }
+
+.edad {
+    color: rgb(175, 219, 246);
+    text-align: left;
+    padding-left: 2rem;
+}
