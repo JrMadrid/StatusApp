@@ -1,6 +1,22 @@
 /* CONTROLADORES DE AUTENTICACIÓN DE USUARIOS */
 import { loginService, definirTipoUsuario } from '../services/authSer.js';
 
+// Verificar si ya tiene sesión activa
+const check = async (req, res) => {
+	try {
+		// req.session.user debería haberse creado al hacer login
+		if (req.session?.user) {
+			return res.status(200).json({ admin: req.session?.admin });
+		} else {
+			// No hay sesión activa
+			return res.sendStatus(401);
+		}
+	} catch (error) {
+		console.error("Error verificando sesión:", error);
+		return res.sendStatus(500);
+	}
+};
+
 // Leer y comprobar el usuario
 const login = async (req, res) => {
 	try {
@@ -44,4 +60,4 @@ const logout = async (req, res) => {
 	res.status(200).json(cierre);
 };
 
-export const methods = { login, logout, user };
+export const methods = { check, login, logout, user };

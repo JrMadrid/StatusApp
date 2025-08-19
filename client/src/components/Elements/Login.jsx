@@ -1,5 +1,5 @@
 /* COMPONENTE DE ELEMENTO DE INICIO DE SESIÓN */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from '../../api/axiosConfig'; // Importa la configuración personalizada
 import '../css/login.css';
 
@@ -8,10 +8,28 @@ const LoginPanel = () => {
     const [psw, setPsw] = useState('');
     const [error, setError] = useState('');
 
-    // URL del backend para hacer login
-    const ipLogin = `http://${process.env.REACT_APP_HOST}/auth/login/user`;
+    // Verificar si ya tiene sesión activa
+    useEffect(() => {
+        const verificarSesion = async () => {
+            try {
+                const ipCheck = `http://${process.env.REACT_APP_HOST}/auth/check`;
+                const response = await axios.get(ipCheck);
 
-    // Función para manejar el submit del formulario
+                // Si hay sesión activa, redirigir según el tipo de usuario
+                if (response.data.admin) {
+                    window.location.href = '/pansucursal';
+                } else {
+                    window.location.href = '/sucursales';
+                }
+            } catch (error) {
+                // Si falla, no pasa nada, se queda en login
+                console.log("No hay sesión activa");
+            }
+        };
+
+        verificarSesion();
+    }, []);
+
     // Leer y comprobar el usuario
     const iniciarSesion = async (e) => {
         e.preventDefault(); // Evita el comportamiento por defecto del formulario
@@ -21,6 +39,8 @@ const LoginPanel = () => {
             psw
         };
         try {
+            // URL del backend para hacer login
+            const ipLogin = `http://${process.env.REACT_APP_HOST}/auth/login/user`;
             const response = await axios.post(ipLogin, body);
 
             // Si el login es exitoso, redirigir según el tipo de usuario
