@@ -1,5 +1,5 @@
 /* CONTROLADORES DE PANEL DE USUARIOS */
-import { obtenerUsers, agregarUser, actualizarUser, eliminarUser, sacarAllUsers } from '../../services/Paneles/panelUsersSer.js';
+import { obtenerUsers, agregarUser, actualizarUser, eliminarUser, sacarAllUsers, desactivarAllUsers, activarAllUsers } from '../../services/Paneles/panelUsersSer.js';
 import { SchemaCrearUsuario, SchemaActualizarUsuario, SchemaEliminarUsuario } from '../../validators/Paneles/PanelUsersVal.js';
 
 // Pedir los datos de los usuarios
@@ -81,4 +81,26 @@ const logoutaAllUsers = async (req, res) => {
 	}
 };
 
-export const methods = { postUser, getUsers, updateUser, deleteUser, logoutaAllUsers };
+// Desactivar el acceso de todos los usuarios
+const deactivateAllUsers = async (req, res) => {
+	try {
+		await desactivarAllUsers();
+		res.sendStatus(200);
+	} catch (error) {
+		console.error('Error: // Desactivar el acceso de todos los usuarios, ', error);
+		res.sendStatus(500);
+	}
+};
+
+// Activar el acceso de todos los usuarios
+const activateAllUsers = async (req, res) => {
+	try {
+		await activarAllUsers();
+		res.sendStatus(200);
+	} catch (error) {
+		console.error('Error: // Activar el acceso de todos los usuarios, ', error);
+		res.sendStatus(500);
+	}
+};
+
+export const methods = { postUser, getUsers, updateUser, deleteUser, logoutaAllUsers, deactivateAllUsers, activateAllUsers };

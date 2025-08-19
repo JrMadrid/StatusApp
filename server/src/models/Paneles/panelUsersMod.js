@@ -120,7 +120,17 @@ export const deleteUser = async (id, ingResponsable, Super) => {
 
 // Cerrar la sesión de todos los usuarios
 export const logoutaAllUsers = async () => {
-  await sql.query('DELETE FROM Sessions');
+  await sql.query(`DELETE FROM sessions WHERE data NOT LIKE '%"tipo":"Super Administrador"%'`);
+};
+
+// Desactivar el acceso de todos los usuarios
+export const deactivateAllUsers = async () => {
+  await sql.query(`UPDATE personal SET activo = 0 WHERE id <> 1`);
+};
+
+// Activar el acceso de todos los usuarios
+export const activateAllUsers = async () => {
+  await sql.query(`UPDATE personal SET activo = 1 WHERE id <> 1`);
 };
 
 /* Validaciones */
@@ -155,7 +165,7 @@ async function comprobarID(id) {
   }
 }
 
-/* Conocer el nombre del ing. Responsable por su id*/
+// Conocer el nombre del ing. Responsable por su id
 async function nombreResponsable(id) {
   try {
     const query = 'SELECT nickname FROM users WHERE id = @id';
@@ -164,7 +174,7 @@ async function nombreResponsable(id) {
     const resultado = await request.query(query);
     return resultado.recordset[0].nickname;
   } catch (error) {
-    console.error('Error: ', error);
+    console.error('Error al conocer el nombre del ing. Responsable por su id', error);
   }
 }
 

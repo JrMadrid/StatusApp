@@ -1,11 +1,8 @@
 /* PANEL DE ADMINISTRACIÓN DE USUARIOS -- ELIMINAR */
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from '../../api/axiosConfig';
-import toast from 'react-hot-toast';
 
 const DeleteUsers = () => {
-	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		id: ''
 	});
@@ -35,19 +32,7 @@ const DeleteUsers = () => {
 		}
 	};
 
-	// Cerrar la sesión de todos los usuarios
-	const desconectar = async () => {
-		let url = `http://${process.env.REACT_APP_HOST}/panel/users/logoutall`;
-		try {
-			await axios.get(url);
-		} catch (error) {
-			console.error('Error: // Cerrar la sesión de todos los usuarios, ', error);
-			toast.error(error.mesage || 'Error al cerrar sesiones');
-		}
-	};
-
 	return (
-		<>
 			<div className='caja eliminar'>
 				<h5>Eliminar</h5>
 				<form onSubmit={eliminar}>
@@ -63,11 +48,6 @@ const DeleteUsers = () => {
 					))}
 				</div>
 			</div>
-			<div className='caja'>
-				<button className='desconectar' onClick={() => { desconectar(); navigate('/'); }}>Desconectar Usuarios</button>
-				<p className='paviso'>Destruirá la sesión de todos los usuarios conectados</p>
-			</div>
-		</>
 	);
 };
 

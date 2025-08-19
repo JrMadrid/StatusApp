@@ -13,5 +13,7 @@ panelUserRou.post('/users/agregar', requireAdminSession, panelUsersCon.postUser)
 panelUserRou.post('/users/actualizar', requireAdminSession, panelUsersCon.updateUser); // Actualizar un usuario -- /panel/users/actualizar
 panelUserRou.post('/users/eliminar', requireAdminSession, panelUsersCon.deleteUser); // Eliminar un usuario -- /panel/users/eliminar
 panelUserRou.get('/users/logoutall', requireAdminSession, panelUsersCon.logoutaAllUsers); // Cerrar la sesion de todos los usuarios -- /panel/users/logoutall
+panelUserRou.get('/users/deactivateall', requireAdminSession, panelUsersCon.deactivateAllUsers); // Desactivar el acceso de todos los usuarios -- /panel/users/deactivateall
+panelUserRou.get('/users/activateall', requireAdminSession, panelUsersCon.activateAllUsers); // Activar el acceso de todos los usuarios -- /panel/users/activateall
 
 export default panelUserRou;

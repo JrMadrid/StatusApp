@@ -1,6 +1,6 @@
 /* SERVICIOS PARA VALIDAR DATOS DE USUARIOS */
 import bcrypt from 'bcryptjs'; // bcrypt para encriptar la contraseña
-import { IDdelAdmin, NicknameOcupado, comprobarID, nombreResponsable, getUsers, postUser, updateUser, deleteUser, logoutaAllUsers } from '../../models/Paneles/panelUsersMod.js';
+import { IDdelAdmin, NicknameOcupado, comprobarID, nombreResponsable, getUsers, postUser, updateUser, deleteUser, logoutaAllUsers, deactivateAllUsers, activateAllUsers } from '../../models/Paneles/panelUsersMod.js';
 
 // Pedir los datos de los usuarios
 export const obtenerUsers = async () => {
@@ -45,4 +45,14 @@ export const eliminarUser = async (id, Super) => {
 // Cerrar la sesión de todos los usuarios
 export const sacarAllUsers = async () => {
   await logoutaAllUsers();
+};
+
+// Desactivar el acceso de todos los usuarios
+export const desactivarAllUsers = async () => {
+  await deactivateAllUsers();
+};
+
+// Activar el acceso de todos los usuarios
+export const activarAllUsers = async () => {
+  await activateAllUsers();
 };
