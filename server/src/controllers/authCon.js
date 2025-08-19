@@ -5,14 +5,10 @@ import { loginService, definirTipoUsuario } from '../services/authSer.js';
 const login = async (req, res) => {
 	try {
 		const { nickname, psw } = req.body;
-		const { usuario, admon, tipo, error } = await loginService(nickname, psw);
+		const { usuario, admon, tipo } = await loginService(nickname, psw);
 
-		if (error) {
-			return res.status(401).json({ error });
-		}
-
-		req.session.admin = admon;
 		req.session.user = usuario;
+		req.session.admin = admon;
 		req.session.login = req.session.user ? true : false; // Se ha iniciado sesión correctamente		
 
 		req.session.tipo = tipo.trim();
@@ -23,14 +19,14 @@ const login = async (req, res) => {
 		req.session.save(err => {
 			if (err) {
 				console.error('Error al guardar la sesión:', err);
-				return res.status(500).json({ error: 'Error al guardar sesión' });
+				return res.status(500).json({ message: 'Error al guardar sesión' });
 			}
 			res.status(200).json({ admin: admon });
 		});
 
 	} catch (error) {
 		console.error('Error:  // Leer y comprobar el usuario, ', error);
-		res.status(500).json({ error: 'Error en login' });
+		res.status(error?.code || 500).json({ message: error?.message || 'Error en login' });
 	}
 };
 

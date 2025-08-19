@@ -1,9 +1,11 @@
 /* SERVICIOS DE AUTENTICACIÓN DE USUARIOS*/
-import { comprobarUsuario, comprobarActivo } from '../models/authMod.js';
+import { comprobarUsuario, usuarioExiste, comprobarActivo } from '../models/authMod.js';
 
 // Leer y comprobar el usuario
 export async function loginService(nickname, psw) {
-    if (!await comprobarActivo(nickname)) { throw { code: 403, message: "Su acceso es inválido" } }
+    if (!(await usuarioExiste(nickname))) { throw { code: 404, message: "El usuario no existe" } };
+    if (!(await comprobarActivo(nickname))) { throw { code: 403, message: "Su acceso es inválido" } };
+
     return await comprobarUsuario(nickname, psw);
 }
 

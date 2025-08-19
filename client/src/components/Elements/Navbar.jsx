@@ -4,7 +4,7 @@ import { UserContext } from '../../context/UserContext';
 import { NavLink } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';
-import { FaRegUserCircle } from "react-icons/fa";
+import { FaAddressCard } from "react-icons/fa";
 import '../css/navbar.css';
 
 /* Definir navbar según el tipo usuario */
@@ -71,9 +71,9 @@ export default function Navbar() {
 
                 {/* ADMINISTRADOR, APLICATIVO & GEOGRAFIA */}
                 {user && (user.id === 2 || user.id === 3 || user.id === 4) && (
-                    <li>
-                        <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/users">
-                            <FaRegUserCircle />
+                    <li style={{ paddingBottom: '0rem', paddingTop: '0.3rem' }} >
+                        <NavLink className={({ isActive }) => (isActive ? "active" : "")} style={{ fontSize: '1rem' }} to="/users">
+                            <FaAddressCard />
                         </NavLink>
                     </li>
                 )}

@@ -43,6 +43,7 @@ export default function InfoUsuario() {
 			};
 			listaUsuarios();
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// Pedir los datos del personal seleccionado
@@ -330,32 +331,37 @@ export default function InfoUsuario() {
 
 	return (
 		<>
-			<div className='sidebar'>
-				<h3 className='heading'>Personal</h3>
-				<ul className='list'>
-					{userslist.map((usuarios, index) => (
-						<li key={index} className='listItem'>
-							<div className={usuarios.nickname?.toString() !== nicknameGuardado ? 'ListItemA' : 'seleccionado'} style={{ marginLeft: '1.75vw' }} onClick={(e) => { e.preventDefault(); setNicknameGuardado(usuarios.nickname); seleccion(usuarios.nickname); seleccionFoto(usuarios.nickname); }} >
-								<a href={`#${index}`} className={usuarios.nickname?.toString() !== nicknameGuardado ? 'appi' : 'appiSeleccionado'}>
-									{usuarios.nickname}
-								</a>
-							</div>
-						</li>
-					))}
-				</ul>
-				<br />
-				<br />
-				<div className='logodiv'>
-					<img src={logoSoporte} className='logo' alt="Logo de Soporte" />
-				</div>
-			</div >
+			{user && (user.id === 1) && (
+				<div className='sidebar'>
+					<h3 className='heading'>Personal</h3>
+					<ul className='list'>
+						{userslist.map((usuarios, index) => (
+							<li key={index} className='listItem'>
+								<div className={usuarios.nickname?.toString() !== nicknameGuardado ? 'ListItemA' : 'seleccionado'} style={{ marginLeft: '1.75vw' }} onClick={(e) => { e.preventDefault(); setNicknameGuardado(usuarios.nickname); seleccion(usuarios.nickname); seleccionFoto(usuarios.nickname); }} >
+									<a href={`#${index}`} className={usuarios.nickname?.toString() !== nicknameGuardado ? 'appi' : 'appiSeleccionado'}>
+										{usuarios.nickname}
+									</a>
+								</div>
+							</li>
+						))}
+					</ul>
+					<br />
+					<br />
+					<div className='logodiv'>
+						<img src={logoSoporte} className='logo' alt="Logo de Soporte" />
+					</div>
+				</div >
+			)}
+
 			<div>
-				<h2 className='titulo'>Soporte Técnico Honduras</h2>
-				<div className='cajaInformacion' style={{ height: '58vh' }}>
-					<h4 className='principal'>{userDatosSeleccionado?.nickname || "Usuario"}</h4>
-					<div className='informacion' style={{ minHeight: '32vw', maxHeight: '34vw' }}>
+				<h2 className={user.id === 1 ? 'titulo' : 'titulono'}>Soporte Técnico Honduras</h2>
+				<div className={user.id === 1 ? 'cajaInformacion' : 'cajaInformacionno'} /* style={{ height: user.id === 1 ? '58vh' : '71vh' }} */>
+					{user && (user.id === 1) && (
+						<h4 className='principal'>{userDatosSeleccionado?.nickname || "Usuario"}</h4>
+					)}
+					<div className={`informacion ${user.id === 1 ? 'informacioncajasuper' : 'informacioncajano'}`}>
 						<div className='informacionesUsuario'>
-							<div className='inforPerfil'>
+							<div className={user.id === 1 ? 'inforPerfil' : 'inforPerfilno'}>
 								{renderCampo('foto', 'Foto')}
 								<div className='fotoPerfil'>
 									{imagenPerfil && (
@@ -363,19 +369,19 @@ export default function InfoUsuario() {
 									)}
 								</div>
 							</div>
-							<div className='inforPerfil'>
+							<div className={user.id === 1 ? 'inforPerfil' : 'inforPerfilno'}>
 								{renderCampo('nombre', 'Nombre')}
 								{renderCampo('cedula', 'Cédula')}
 								{renderCampo('localidad', 'Localidad')}
 								{renderCampo('telefono', 'Telefono')}
 							</div>
-							<div className='inforPerfil'>
+							<div className={user.id === 1 ? 'inforPerfil' : 'inforPerfilno'}>
 								{renderCampo('fecha_nacimiento', 'Nacimiento')}
 								<h5 className='edad' >Edad: <span style={{ color: 'whitesmoke' }}>{edad} años</span></h5>
 								{renderCampo('sexo', 'Sexo')}
 								{renderCampo('grado_academico', 'Grado Académico')}
 							</div>
-							<div className='inforPerfil'>
+							<div className={user.id === 1 ? 'inforPerfil' : 'inforPerfilno'}>
 								{renderCampo('fecha_contratacion', 'Contratación')}
 								{renderCampo('puesto', 'Puesto')}
 								{user && (user.id === 1 && userDatosSeleccionado?.id !== 1) && (
@@ -384,13 +390,13 @@ export default function InfoUsuario() {
 									</>
 								)}
 							</div>
-						</div>
-						<div className='inforDescripcion'>
+						</div >
+						<div className={user.id === 1 ? 'inforDescripcion' : 'inforDescripcionno'}>
 							{renderCampo('descripcion', 'Descripción')}
 						</div>
-					</div>
-				</div>
-			</div>
+					</div >
+				</div >
+			</div >
 			<Toaster toastOptions={{ className: 'noti', duration: 750 }} />
 		</>
 	);
