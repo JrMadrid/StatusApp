@@ -30,12 +30,21 @@ export default function InfoSucursal() {
 				const url = `http://${process.env.REACT_APP_HOST}/informe/status/aplicaciones`;
 				const response = await fetchData(url);
 				const lista = await response.json();
-				if (!response.ok) {
-					throw new Error(lista.message || 'Lo sentimos, ocurrió un problema');
-				}
+				if (!response.ok) { throw new Error(lista.message || 'Lo sentimos, ocurrió un problema'); }
+				if (!lista.length) { throw new Error("Sin dispositivos asignados"); }
+
+				// Función para contar dispositivos válidos
+				const contarDispositivosValidos = (lista) => {
+					return lista.filter(
+						(dispositivo) =>
+							!dispositivo.ip.startsWith("000.") && !dispositivo.ip.startsWith("001.")
+					).length;
+				};
 
 				setAppslist(lista);
 				setAppshead(lista[0])
+
+				if (contarDispositivosValidos(lista) === 0) { throw new Error("Sin dispositivos validos"); }
 
 			} catch (error) {
 				console.error('Error // Consultar y retornar los dispositivos registrados por número económico, ', error);
