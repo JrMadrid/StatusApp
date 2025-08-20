@@ -112,7 +112,6 @@ const Paginador = (props) => {
 		}
 		return false;
 	});
-
 	const cantidadPaginas = Math.ceil(filtrarDatos.length / itemsPorPagina);
 
 	const click = (selectedPage) => {
@@ -120,6 +119,7 @@ const Paginador = (props) => {
 	};
 
 	const desplazamiento = PaginaActual * itemsPorPagina;
+
 	const itemsActuales = filtrarDatos.slice(desplazamiento, desplazamiento + itemsPorPagina);
 
 	return (
@@ -146,63 +146,63 @@ const Paginador = (props) => {
 				{/* APLICATIVO & GEOGRAFIA - SUCURSALES */}
 				{user && (user.id === 3 || user.id === 4) && props.tipo === 'sucursal' && (
 					<>
-						<DataSucursales user={user} data={itemsActuales} eleccion={props.eleccion} seleccion={props.seleccion} cantidad={itemsActuales.length} />
+						<DataSucursales user={user} data={itemsActuales} eleccion={props.eleccion} seleccion={props.seleccion} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 
 				{/* APLICATIVO & GEOGRAFIA - DISPOSITIVOS */}
 				{user && (user.id === 3 || user.id === 4) && props.tipo === 'dispositivo' && (
 					<>
-						<DataDispositivos user={user} data={itemsActuales} listaDispositivos={props.listaDispositivos} eleccion={props.eleccion} cantidad={itemsActuales.length} />
+						<DataDispositivos user={user} data={itemsActuales} listaDispositivos={props.listaDispositivos} eleccion={props.eleccion} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 
 				{/* APLICATIVO & GEOGRAFIA - MANTENIMIENTOS */}
 				{user && (user.id === 3 || user.id === 4) && props.tipo === 'mantenimiento' && (
 					<>
-						<DataMantenimientos user={user} data={itemsActuales} eleccion={props.eleccion} cantidad={itemsActuales.length} />
+						<DataMantenimientos user={user} data={itemsActuales} eleccion={props.eleccion} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 
 				{/* TODOS - MANUALES */}
 				{user && (user.id === 1 || user.id === 2 || user.id === 3 || user.id === 4) && props.tipo === 'manuales' && (
 					<>
-						<TablaManuales data={itemsActuales} eleccion={props.eleccion} ver={props.ver} cantidad={itemsActuales.length} />
+						<TablaManuales data={itemsActuales} eleccion={props.eleccion} ver={props.ver} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 
 				{/* TODOS - INFORMES */}
 				{user && (user.id === 1 || user.id === 2 || user.id === 3 || user.id === 4) && props.tipo === 'informes' && (
 					<>
-						<TablaInformes user={user} data={itemsActuales} eleccion={props.eleccion} ver={props.ver} cantidad={itemsActuales.length} />
+						<TablaInformes user={user} data={itemsActuales} eleccion={props.eleccion} ver={props.ver} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 
 				{/* SUPER ADMINISTRADOR - USUARIOS */}
 				{user && user.id === 1 && props.tipo === 'usuarios' && (
 					<>
-						<TablaUsuarios data={itemsActuales} eleccion={props.eleccion} cantidad={itemsActuales.length} />
+						<TablaUsuarios data={itemsActuales} eleccion={props.eleccion} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 
 				{/* SUPER ADMINISTRADOR & ADMINISTRADOR - SUCURSALES */}
 				{user && (user.id === 1 || user.id === 2) && props.tipo === 'sucursales' && (
 					<>
-						<TablaSucursales data={itemsActuales} eleccion={props.eleccion} seleccion={props.seleccion} cantidad={itemsActuales.length} />
+						<TablaSucursales data={itemsActuales} eleccion={props.eleccion} seleccion={props.seleccion} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 
 				{/* SUPER ADMINISTRADOR & ADMINISTRADOR - DISPOSITIVOS */}
 				{user && (user.id === 1 || user.id === 2) && props.tipo === 'dispositivos' && (
 					<>
-						<TablaDispositivos data={itemsActuales} eleccion={props.eleccion} listaDispositivos={props.listaDispositivos} cantidad={itemsActuales.length} />
+						<TablaDispositivos data={itemsActuales} eleccion={props.eleccion} listaDispositivos={props.listaDispositivos} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 
 				{/* SUPER ADMINISTRADOR & ADMINISTRADOR - MANTENIMIENTOS */}
 				{user && (user.id === 1 || user.id === 2) && props.tipo === 'mantenimientos' && (
 					<>
-						<TablaMantenimientos data={itemsActuales} eleccion={props.eleccion} cantidad={itemsActuales.length} />
+						<TablaMantenimientos data={itemsActuales} eleccion={props.eleccion} cantidad={filtrarDatos.length} cantidadTotal={props.cantidad} />
 					</>
 				)}
 

@@ -2,7 +2,7 @@
 import { FormatearFechaTabla } from '../date.jsx';
 import { HiDocumentDownload, HiEye } from "react-icons/hi";
 
-const TablaInformes = ({ user, data, eleccion, ver, cantidad }) => {
+const TablaInformes = ({ user, data, eleccion, ver, cantidad, cantidadTotal }) => {
     return (
         <div className='cajahijo'>
             <table className='tablaData'>
@@ -41,7 +41,7 @@ const TablaInformes = ({ user, data, eleccion, ver, cantidad }) => {
                     ))}
                 </tbody>
             </table>
-            <p className='cantidad'>Informes: {cantidad}</p>
+            <p className='cantidad'>Informes: {cantidad} / {cantidadTotal}</p>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 /* COMPONENTE DE ELEMENTO DE PAGINACIÓN -- USUARIOS */
 import { FaAddressCard } from "react-icons/fa";
 
-const TablaUsuarios = ({ data, eleccion, cantidad }) => {
+const TablaUsuarios = ({ data, eleccion, cantidad, cantidadTotal }) => {
     return (
         <div className='cajahijo'>
             <table className='tablaData'>
@@ -30,7 +30,7 @@ const TablaUsuarios = ({ data, eleccion, cantidad }) => {
                     ))}
                 </tbody>
             </table>
-            <p className='cantidad'>Usuarios: {cantidad}</p>
+            <p className='cantidad'>Usuarios: {cantidad} / {cantidadTotal}</p>
         </div>
     );
 };

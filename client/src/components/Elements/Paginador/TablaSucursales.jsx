@@ -1,7 +1,7 @@
 /* COMPONENTE DE ELEMENTO DE PAGINACIÓN -- SUCURSALES */
 import { /* FaStoreAlt ,*/ FaRegListAlt, FaTools } from 'react-icons/fa';
 
-const TablaSucursales = ({ data, eleccion, seleccion, cantidad }) => {
+const TablaSucursales = ({ data, eleccion, seleccion, cantidad, cantidadTotal }) => {
     return (
         <div className='cajahijo'>
             <table className='tablaData'>
@@ -36,7 +36,7 @@ const TablaSucursales = ({ data, eleccion, seleccion, cantidad }) => {
                     ))}
                 </tbody>
             </table>
-            <p className='cantidad'>Sucursales: {cantidad}</p>
+            <p className='cantidad'>Sucursales: {cantidad} / {cantidadTotal}</p>
         </div>
     );
 };

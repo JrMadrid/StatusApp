@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ping from '../../../utils/ping.jsx';
 import { HiStatusOnline, HiExternalLink } from "react-icons/hi";
 
-const DataDispositivos = ({ user, data, listaDispositivos, eleccion, cantidad }) => {
+const DataDispositivos = ({ user, data, listaDispositivos, eleccion, cantidad, cantidadTotal }) => {
     const navigate = useNavigate();
     return (
         <>
@@ -48,7 +48,7 @@ const DataDispositivos = ({ user, data, listaDispositivos, eleccion, cantidad })
                         ))}
                     </tbody>
                 </table>
-                <p className='cantidad'>Dispositivos: {cantidad}</p>
+                <p className='cantidad'>Dispositivos: {cantidad} / {cantidadTotal}</p>
             </div>
             <div className='tablaLista'>
                 <table>

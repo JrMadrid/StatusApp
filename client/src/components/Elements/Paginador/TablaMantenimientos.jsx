@@ -2,7 +2,7 @@
 import { FormatearFechaTabla } from '../date.jsx';
 import { FaTools } from "react-icons/fa";
 
-const TablaMantenimientos = ({ data, eleccion, cantidad }) => {
+const TablaMantenimientos = ({ data, eleccion, cantidad, cantidadTotal }) => {
     return (
         <div className='cajahijo'>
             <table className='tablaData'>
@@ -47,7 +47,7 @@ const TablaMantenimientos = ({ data, eleccion, cantidad }) => {
                     ))}
                 </tbody>
             </table>
-            <p className='cantidad'>Mantenimientos: {cantidad}</p>
+            <p className='cantidad'>Mantenimientos: {cantidad} / {cantidadTotal}</p>
         </div>
     );
 };

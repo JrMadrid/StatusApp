@@ -1,7 +1,7 @@
 /* COMPONENTE DE ELEMENTO DE PAGINACIÓN -- MANUALES */
 import { HiDocumentDownload, HiEye } from "react-icons/hi";
 
-const TablaManuales = ({ data, eleccion, ver, cantidad }) => {
+const TablaManuales = ({ data, eleccion, ver, cantidad, cantidadTotal }) => {
     return (
         <div className='cajahijo'>
             <table className='tablaData'>
@@ -26,7 +26,7 @@ const TablaManuales = ({ data, eleccion, ver, cantidad }) => {
                     ))}
                 </tbody>
             </table>
-            <p className='cantidad'>Manuales: {cantidad}</p>
+            <p className='cantidad'>Manuales: {cantidad} / {cantidadTotal}</p>
         </div>
     );
 };
