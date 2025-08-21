@@ -62,7 +62,7 @@ const Informe = async (req, res) => {
         const id = req.params.id
 
         const documento = await archivoInforme(id);
-        if (documento.informe) {
+        if (!documento.informe) {
             return res.sendStatus(404);
         }
         res.set('Content-Type', 'application/pdf'); // Cambia el tipo de contenido a PDF
