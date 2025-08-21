@@ -1,6 +1,6 @@
 /* CONTROLADORES DE PANEL DE MANTENIMIENTOS */
-import { obtenerMantenimientos, publicarMantenimientos, eliminarMantenimiento } from '../../services/Paneles/panelMantenimientoSer.js';
-import { SchemaAgregarMantenimiento, SchemaEliminarMantenimiento } from '../../validators/Paneles/panelMantenimientoVal.js';
+import { obtenerMantenimientos, publicarMantenimiento, actualizarMantenimiento, eliminarMantenimiento } from '../../services/Paneles/panelMantenimientoSer.js';
+import { SchemaAgregarMantenimiento, SchemaActualizarMantenimiento, SchemaEliminarMantenimiento } from '../../validators/Paneles/panelMantenimientoVal.js';
 
 // Pedir los datos de los mantenimientos
 const getMantenimientos = async (req, res) => {
@@ -14,7 +14,7 @@ const getMantenimientos = async (req, res) => {
 };
 
 // Agregar un nuevo mantenimiento
-const postMantenimientos = async (req, res) => {
+const postMantenimiento = async (req, res) => {
 	try {
 		const { festimada, economico } = req.body;
 
@@ -23,14 +23,28 @@ const postMantenimientos = async (req, res) => {
 			const erroresUnidos = error.details.map(err => err.message).join('\n');
 			return res.status(400).json({ message: erroresUnidos });
 		}
-
-		await publicarMantenimientos(festimada, economico);
-
+		await publicarMantenimiento(festimada, economico);
 		res.status(200).json({ message: 'Mantenimiento agregado exitosamente' });
-
 	} catch (error) {
 		console.error('Error: // Agregar un nuevo mantenimiento, ', error);
 		res.status(500 || error?.code).json({ message: error?.message || 'Error agregando nuevo mantenimiento' });
+	}
+};
+
+// Actualizar un mantenimiento
+const updateMantenimiento = async (req, res) => {
+	try {
+		const { festimada, economico, id } = req.body;
+		const { error } = SchemaActualizarMantenimiento.validate(req.body, { abortEarly: false });
+		if (error) {
+			const erroresUnidos = error.details.map(err => err.message).join('\n');
+			return res.status(400).json({ message: erroresUnidos });
+		}
+		await actualizarMantenimiento(festimada, economico, id);
+		res.status(200).json({ message: 'Mantenimiento actualizado exitosamente' });
+	} catch (error) {
+		console.error('Error: // Actualizar un mantenimiento, ', error);
+		res.status(500 || error?.code).json({ message: error?.message || 'Error actualizando nuevo mantenimiento' });
 	}
 };
 
@@ -53,4 +67,4 @@ const deleteMantenimiento = async (req, res) => {
 	}
 };
 
-export const methods = { getMantenimientos, postMantenimientos, deleteMantenimiento };
+export const methods = { getMantenimientos, postMantenimiento, deleteMantenimiento, updateMantenimiento };

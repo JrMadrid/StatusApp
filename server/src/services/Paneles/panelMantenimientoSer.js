@@ -1,5 +1,5 @@
 /* SERVICIOS PARA VALIDAR DATOS DE MANTENIMIENTOS */
-import { getMantenimientos, comprobarFechaEstimada, comprobarID, SucursalExiste, postMantenimientos, deleteMantenimiento } from "../../models/Paneles/panelMantenimientoMod.js";
+import { getMantenimientos, comprobarFechaEstimada, comprobarID, SucursalExiste, postMantenimiento, updateMantenimiento, deleteMantenimiento } from "../../models/Paneles/panelMantenimientoMod.js";
 
 // Pedir los datos de los mantenimientos
 export const obtenerMantenimientos = async () => {
@@ -7,10 +7,22 @@ export const obtenerMantenimientos = async () => {
 };
 
 // Agregar un nuevo mantenimiento
-export const publicarMantenimientos = async (festimada, economico) => {
+export const publicarMantenimiento = async (festimada, economico) => {
   if (!(await comprobarFechaEstimada(festimada))) { throw { code: 400, message: 'Fecha estimada menor a 01/Enero/2024' }; }
   if (!(await SucursalExiste(economico))) { throw { code: 404, message: 'No se encontro la sucursal (economico no valido)' }; }
-  return await postMantenimientos(festimada, economico);
+  return await postMantenimiento(festimada, economico);
+};
+
+// Actualizar un mantenimiento
+export const actualizarMantenimiento = async (festimada, economico, id) => {
+  if (!(await comprobarID(id))) { throw { code: 404, message: 'No se encontro el ID' }; }
+  if (festimada.length !== 0) {
+    if (!(await comprobarFechaEstimada(festimada))) { throw { code: 400, message: 'Fecha estimada menor a 01/Enero/2024' }; }
+  }
+  if (economico.length !== 0) {
+    if (!(await SucursalExiste(economico))) { throw { code: 404, message: 'No se encontro la sucursal (economico no valido)' }; }
+  }
+  return await updateMantenimiento(festimada, economico, id);
 };
 
 // Eliminar un mantenimiento

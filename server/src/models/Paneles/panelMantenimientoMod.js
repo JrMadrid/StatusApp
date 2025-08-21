@@ -14,19 +14,38 @@ export const getMantenimientos = async () => {
 };
 
 // Agregar un nuevo mantenimiento
-export const postMantenimientos = async (festimada, economico) => {
+export const postMantenimiento = async (festimada, economico) => {
 	const request = new sql.Request();
 	request.input('fechaestimada', sql.Date, festimada);
 	request.input('economico', sql.VarChar, economico);
 	await request.query(`INSERT INTO mantenimiento(fechaestimada, economico) VALUES (@fechaestimada, @economico)`);
 };
 
+// Actualizar un  mantenimiento
+export const updateMantenimiento = async (festimada, economico, id) => {
+	const updates = [];
+	const request = new sql.Request();
+	if (festimada.length !== 0) {
+		updates.push('fechaestimada = @festimada');
+		request.input('festimada', sql.Date, festimada);
+	}
+	if (economico.length !== 0) {
+		updates.push('economico = @economico');
+		request.input('economico', sql.VarChar, economico);
+	}
+	if (updates.length === 0) {
+		throw { code: 400, message: 'No hay datos para actualizar' };
+	}
+	request.input('id', sql.Numeric, id);
+	const query = `UPDATE mantenimiento SET ${updates.join(', ')} WHERE id = @id`;
+	await request.query(query);
+};
+
 // Eliminar un mantenimiento
 export const deleteMantenimiento = async (id) => {
 	const request = new sql.Request();
 	request.input('id', sql.Numeric, id);
-	const query = 'DELETE FROM mantenimiento WHERE id = @id';
-	await request.query(query);
+	await request.query('DELETE FROM mantenimiento WHERE id = @id');
 };
 
 /* Validaciones */
