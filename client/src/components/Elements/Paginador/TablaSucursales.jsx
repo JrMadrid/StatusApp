@@ -18,22 +18,20 @@ const TablaSucursales = ({ data, eleccion, seleccion, cantidad, cantidadTotal })
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(item => (
-                        <>
-                            {!item.economico.startsWith('000000') && (
-                                <tr key={item.id}>
-                                    {/* <td></td> */}
-                                    <td className='tdData'><a href='/status' onClick={() => { eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
-                                    <td className='tdData'><a href='/mantes' onClick={() => { seleccion(item.economico, 0) }} className='link select'><button className='ir'></button></a></td>
-                                    <td className='tdData'>{item.economico}</td>
-                                    <td className='tdData long-data'>{item.canal}</td>
-                                    <td className='tdData long-data'>{item.nombre}</td>
-                                    <td className='tdData long-data'>{item.ingresponsable}</td>
-                                    <td className='tdData'>{item.id}</td>
-                                </tr>
-                            )}
-                        </>
-                    ))}
+                    {data
+                        .filter(item => !item.economico.startsWith('000000'))
+                        .map(item => (
+                            <tr key={item.id}>
+                                {/* <td></td> */}
+                                <td className='tdData'><a href='/status' onClick={() => { eleccion(item.economico) }} className='link select'><button className='ir'></button></a></td>
+                                <td className='tdData'><a href='/mantes' onClick={() => { seleccion(item.economico, 0) }} className='link select'><button className='ir'></button></a></td>
+                                <td className='tdData'>{item.economico}</td>
+                                <td className='tdData long-data'>{item.canal}</td>
+                                <td className='tdData long-data'>{item.nombre}</td>
+                                <td className='tdData long-data'>{item.ingresponsable}</td>
+                                <td className='tdData'>{item.id}</td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
             <p className='cantidad'>Sucursales: {cantidad} / {cantidadTotal}</p>

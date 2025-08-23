@@ -19,31 +19,28 @@ const TablaMantenimientos = ({ data, eleccion, cantidad, cantidadTotal }) => {
                 </thead>
                 <tbody>
                     {data.map(item => (
-                        <>
-                            {!item.economico.startsWith('000000') && (
-                                <tr key={item.id}>
-                                    <td className='tdData'>
-                                        {(item.frealizada && item.frealizada !== null && item.frealizada !== 'null' && item.frealizada !== 'Pendiente') && (
-                                            <a href='/mantes' onClick={() => { eleccion(item.economico, item.id) }} className='link select'><button className='ir'></button></a>
-                                        )}
-                                    </td>
-
-                                    <td className='tdData'>{item.economico}</td>
-                                    <td className='tdData long-data'>{item.ingresponsable}</td>
-                                    <td className='tdData'><FormatearFechaTabla fecha={item.festimada} /></td>
-                                    <td className='tdData'>
-                                        {(item.frealizada && item.frealizada !== null && item.frealizada !== 'null' && item.frealizada !== 'Pendiente') && (
-                                            <FormatearFechaTabla fecha={item.frealizada} />
-                                        )}
-                                        {(!item.frealizada || item.frealizada === null || item.frealizada === 'null' || item.frealizada === 'Pendiente') && (
-                                            <span>Pendiente</span>
-                                        )}
-                                    </td>
-                                    <td className='tdData long-data'>{item.descripcion}</td>
-                                    <td className='tdData'>{item.id}</td>
-                                </tr>
-                            )}
-                        </>
+                        !item.economico.startsWith('000000') && (
+                            <tr key={item.id}>
+                                <td className='tdData'>
+                                    {(item.frealizada && item.frealizada !== null && item.frealizada !== 'null' && item.frealizada !== 'Pendiente') && (
+                                        <a href='/mantes' onClick={() => { eleccion(item.economico, item.id) }} className='link select'><button className='ir'></button></a>
+                                    )}
+                                </td>
+                                <td className='tdData'>{item.economico}</td>
+                                <td className='tdData long-data'>{item.ingresponsable}</td>
+                                <td className='tdData'><FormatearFechaTabla fecha={item.festimada} /></td>
+                                <td className='tdData'>
+                                    {(item.frealizada && item.frealizada !== null && item.frealizada !== 'null' && item.frealizada !== 'Pendiente') && (
+                                        <FormatearFechaTabla fecha={item.frealizada} />
+                                    )}
+                                    {(!item.frealizada || item.frealizada === null || item.frealizada === 'null' || item.frealizada === 'Pendiente') && (
+                                        <span>Pendiente</span>
+                                    )}
+                                </td>
+                                <td className='tdData long-data'>{item.descripcion}</td>
+                                <td className='tdData'>{item.id}</td>
+                            </tr>
+                        )
                     ))}
                 </tbody>
             </table>

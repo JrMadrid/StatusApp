@@ -24,28 +24,35 @@ const DataDispositivos = ({ user, data, listaDispositivos, eleccion, cantidad, c
                         </tr>
                     </thead>
                     <tbody >
-                        {data.map(item => (
-                            <tr key={item.id}>
-                                <td className='tdData'>
-                                    {!item.ip.startsWith('Sin') && !item.ip.startsWith('No') && (
-                                        <button onClick={() => { ping(item.ip) }} className='ping'></button>
-                                    )}
-                                </td>
-                                <td className='tdData'>
-                                    {!item.ip.startsWith('Sin') && !item.ip.startsWith('No') && (
-                                        <a href={`https://${item.ip}`} target='_blank' rel="noreferrer" className='link select'><button className='ir'></button></a>
-                                    )}
-                                </td>
-                                <td className='tdData long-data'>{item.dispositivo}</td>
-                                <td className='tdData'>{item.ip}</td>
-                                <td className='tdData'>{item.economico}</td>
-                                <td className='tdData long-data'>{item.canal}</td>
-                                <td className='tdData long-data'>{item.sucursal}</td>
-                                {user && user.id === 3 && ( /* Solo para los de aplicativo */
-                                    <td className='tdData long-data'>{item.ingresponsable}</td>
-                                )}
-                            </tr>
-                        ))}
+                        {data.map((item) => {
+                            const ipValida = !item.ip.startsWith('Sin') && !item.ip.startsWith('No');
+                            return (
+                                <tr key={item.id}>
+                                    <>
+                                        <td className="tdData">
+                                            {ipValida && (
+                                                <button onClick={() => ping(item.ip)} className="ping" ></button>
+                                            )}
+                                        </td>
+                                        <td className="tdData">
+                                            {ipValida && (
+                                                <a href={`https://${item.ip}`} target="_blank" rel="noreferrer" className="link select"                                            >
+                                                    <button className="ir"></button>
+                                                </a>
+                                            )}
+                                        </td>
+                                        <td className='tdData long-data'>{item.dispositivo}</td>
+                                        <td className='tdData'>{item.ip}</td>
+                                        <td className='tdData'>{item.economico}</td>
+                                        <td className='tdData long-data'>{item.canal}</td>
+                                        <td className='tdData long-data'>{item.sucursal}</td>
+                                        {user && user.id === 3 && ( /* Solo para los de aplicativo */
+                                            <td className='tdData long-data'>{item.ingresponsable}</td>
+                                        )}
+                                    </>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
                 <p className='cantidad'>Dispositivos: {cantidad} / {cantidadTotal}</p>
@@ -55,11 +62,9 @@ const DataDispositivos = ({ user, data, listaDispositivos, eleccion, cantidad, c
                     <thead>
                         <tr>
                             {listaDispositivos.map(item => (
-                                <>
-                                    <th className='thLista' onClick={() => { eleccion(item.nombre); navigate('/devices'); }}>
-                                        <a href='/devices' onClick={() => { eleccion(item.nombre) }} className='linklista'>{item.nombre}</a>
-                                    </th>
-                                </>
+                                <th key={item.nombre} className='thLista' onClick={() => { eleccion(item.nombre); navigate('/devices'); }}>
+                                    <a href='/devices' onClick={() => { eleccion(item.nombre) }} className='linklista'>{item.nombre}</a>
+                                </th>
                             ))}
                         </tr>
                     </thead>
