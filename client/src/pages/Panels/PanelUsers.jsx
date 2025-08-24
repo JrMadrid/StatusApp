@@ -1,5 +1,5 @@
 /* PAGINA DE PANEL DE ADMINISTRACIÓN DE USUARIOS */
-import { React, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import SelectUsers from '../../components/Panel_Users/SelectUsers.jsx';
 import UsersPanel from '../../components/Panel_Users/UsersPanel.jsx';

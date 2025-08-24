@@ -1,6 +1,7 @@
 /* MODEL PARA VALIDAR DATOS DE INFORMES */
 import sql from 'mssql';
 
+// Pedir los datos de los informes
 export const getInformes = async (tipo, responsable) => {        
     let query;
     let request = new sql.Request();
@@ -24,6 +25,7 @@ export const getInformes = async (tipo, responsable) => {
     return result.recordset;
 };
 
+// Agregar un nuevo informe
 export const postInforme = async (descripcion, nombre, documento, frealizada, economico, informe) => {
     const request = new sql.Request();
     const query = 'INSERT INTO informes(nombre, descripcion, informe, fecharealizada, economico) VALUES (@nombre, @descripcion, CONVERT(VARBINARY(MAX), @informe), @fecharealizada, @economico)';
@@ -37,31 +39,31 @@ export const postInforme = async (descripcion, nombre, documento, frealizada, ec
     request.input('descripcion', sql.VarChar, descripcion);
     request.input('fecharealizada', sql.Date, frealizada);
     request.input('economico', sql.VarChar, economico);
-
     await request.query(query);
 };
 
+// Eliminar un informe
 export const deleteInforme = async (id) => {
     const request = new sql.Request();
     request.input('id', sql.Numeric, id);
     const query = 'DELETE FROM informes WHERE id = @id';
-
     await request.query(query);
 };
 
+// Pedir el informe en formato PDF
 export const informeArchivo = async (id) => {
     const request = new sql.Request();
     request.input('id', sql.VarChar, id);
     const query = 'SELECT informe FROM informes WHERE id = @id';
     const resultado = await request.query(query);
-    return resultado.recordset;
-}
+    return resultado.recordset[0];
+};
 
 /* Validaciones */
 /* Comprobar que existe la sucursal antes de cualquier operación con los informes */
 async function SucursalExiste(economico) {
     try {
-        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
+        
         const query = 'SELECT economico FROM sucursales WHERE economico = @economico';        
         const request = new sql.Request();
         request.input('economico', sql.VarChar, economico)
@@ -69,14 +71,13 @@ async function SucursalExiste(economico) {
         return resultado.recordset.length > 0;
     } catch (error) {
         console.error('Error al comprobar la sucursal:', error);
-        throw error;
     }
-}
+};
 
 /* Comprobar que existe la sucursal le pertenezca a ese usuario */
 async function SucursalPerteneciente(economico, ingeniero) {
     try {
-        // await dbConnection(); solo se inicia la conexion al arrancar el servidor;
+        
         const query = 'SELECT economico FROM sucursales WHERE economico = @economico AND ingresponsable = @usuario';
         const request = new sql.Request();
         request.input('economico', sql.VarChar, economico)
@@ -86,9 +87,8 @@ async function SucursalPerteneciente(economico, ingeniero) {
         return resultado.recordset.length > 0;
     } catch (error) {
         console.error('Error al comprobar la sucursal:', error);
-        throw error;
     }
-}
+};
 
 /* Comprobar que ID del informe existe para corrobar ejecución */
 async function comprobarID(id) {
@@ -101,8 +101,7 @@ async function comprobarID(id) {
         return resultado.recordset.length > 0;
     } catch (error) {
         console.error('Error al ejecutar:', error);
-        throw error;
     }
-}
+};
 
 export { SucursalExiste, comprobarID, SucursalPerteneciente };

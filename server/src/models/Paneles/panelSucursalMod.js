@@ -1,14 +1,14 @@
 /* MODEL PARA VALIDAR DATOS DE SUCURSALES */
 import sql from 'mssql';
 
-// Pedimos los datos de las sucursales
+// Pedir los datos de las sucursales
 export const getSucursales = async () => {
 	const request = new sql.Request()
 	const result = await request.query('SELECT id, economico, canal, nombre, ingresponsable FROM sucursales WHERE economico != 000000 ORDER BY canal ASC, nombre ASC');
 	return result.recordset;
 };
 
-// Agregamos una nueva sucursal
+// Agregar una nueva sucursal
 export const postSucursal = async (economico, canal, nombre, ingresponsable, rellenar) => {
 	function obtenerNumeroAleatorio() {
 		return Math.floor(Math.random() * 250) + 1;
@@ -33,7 +33,7 @@ export const postSucursal = async (economico, canal, nombre, ingresponsable, rel
 	};
 };
 
-// Actualizamos una sucursal
+// Actualizar una sucursal
 export const updateSucursal = async (economico, canal, nombre, id, ingresponsable, rellenar) => {
 	function obtenerNumeroAleatorio() {
 		return Math.floor(Math.random() * 250) + 1;
@@ -65,7 +65,7 @@ export const updateSucursal = async (economico, canal, nombre, id, ingresponsabl
 			updates.push('ingresponsable = @ingresponsable');
 		}
 		if (updates.length === 0 && rellenar !== 'yes') { // No hay cambios ni quiere rellenar
-			throw { status: 400, message: 'No hay datos para actualizar' };
+			throw { code: 400, message: 'No hay datos para actualizar' };
 		}
 
 		const numeroE = await Neconomico(id);
@@ -118,24 +118,23 @@ export const updateSucursal = async (economico, canal, nombre, id, ingresponsabl
 			for (let i = 0; i < disposFaltantes.length; i++) {
 				let ip = `000.${obtenerNumeroAleatorio()}.${obtenerNumeroAleatorio()}.${obtenerNumeroAleatorio()}`
 
-				await request.query(`INSERT INTO dispositivos ([ip],[economico],[nombre]) VALUES ('${ip}','${economicoRellenar}','${disposFaltantes[i].nombre}')`)
+				await request.query(`INSERT INTO dispositivos ([ip],[economico],[nombre]) VALUES ('${ip}','${economicoRellenar}','${disposFaltantes[i].nombre}')`);
 			}
 		};
 	} catch (error) {
 		if (transaction) {
 			try {
-
 				await transaction.rollback();
 			} catch (rollbackError) {
 				console.error('Error al revertir la transacción:', rollbackError);
 			}
 		}
 		console.error('Error actualizando datos:', error);
-		throw { status: 500, message: 'Error actualizando datos' };
+		throw { code: 500, message: `Error actualizando datos: ${error.message}` };
 	}
 };
 
-// Eliminamos una sucursal
+// Eliminar una sucursal
 export const deleteSucursal = async (id) => {
 	let transaction;
 	try {
@@ -168,13 +167,13 @@ export const deleteSucursal = async (id) => {
 			}
 		}
 	}
-}
+};
 
 /* Validaciones */
 /* Comprobar que el economico no esta ocupado */
 async function EconomicoOcupado(economico) {
 	try {
-		// await dbConnection(); solo se inicia la conexion al arrancar el servidor;
+
 		const query = 'SELECT economico FROM sucursales WHERE economico = @economico';
 		const request = new sql.Request();
 		request.input('economico', sql.VarChar, economico);
@@ -182,14 +181,12 @@ async function EconomicoOcupado(economico) {
 		return resultado.recordset.length > 0;
 	} catch (error) {
 		console.error('Error al comprobar el economico: ', error);
-		throw error;
 	}
-}
+};
 
 /* Comprobar que ID de la sucursal existe para corrobar ejecución */
 async function comprobarID(id) {
 	try {
-		// await dbConnection(); solo se inicia la conexion al arrancar el servidor;
 		const query = 'SELECT id FROM sucursales WHERE id = @id';
 		const request = new sql.Request();
 		request.input('id', sql.VarChar, id)
@@ -197,14 +194,12 @@ async function comprobarID(id) {
 		return resultado.recordset.length > 0;
 	} catch (error) {
 		console.error('Error al ejecutar: ', error);
-		throw error;
 	}
-}
+};
 
 /* Conseguir el economico para transacción */
 async function Neconomico(id) {
 	try {
-		// await dbConnection(); solo se inicia la conexion al arrancar el servidor
 		const query = 'SELECT economico FROM sucursales WHERE id = @id'
 		const request = new sql.Request();
 		request.input('id', sql.VarChar, id)
@@ -212,24 +207,20 @@ async function Neconomico(id) {
 		return resultado.recordset[0].economico;
 	} catch (error) {
 		console.error('Error al conseguir el economico: ', error);
-		throw error;
 	}
-}
+};
 
 /* Comprobar que existe el ingresponsable */
 async function IngResponsable(ingresponsable) {
 	try {
-		// await dbConnection(); solo se inicia la conexion al arrancar el servidor
 		const query = 'SELECT nickname FROM users WHERE nickname = @ingresponsable'
 		const request = new sql.Request();
 		request.input('ingresponsable', sql.VarChar, ingresponsable)
 		const resultado = await request.query(query);
-
 		return resultado.recordset.length > 0;
 	} catch (error) {
 		console.error('Error al conseguir el usuario: ', error);
-		throw error;
 	}
-}
+};
 
 export { EconomicoOcupado, comprobarID, Neconomico, IngResponsable };

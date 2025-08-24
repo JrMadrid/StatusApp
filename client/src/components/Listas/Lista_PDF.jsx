@@ -1,5 +1,5 @@
 /* COMPONENTE DE BOTON DESCARGAR LISTA EN PDF */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';

@@ -1,5 +1,5 @@
 /* PANEL DE ADMINISTRACIÓN DE INFORMES -- CREAR */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from '../../api/axiosConfig';
 
 const PostInforme = () => {
@@ -36,6 +36,7 @@ const PostInforme = () => {
         }
     };
 
+    // Agregar un nuevo informe
     const Agregar = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -70,6 +71,8 @@ const PostInforme = () => {
             window.location.reload(); // Recargar la página para ver el nuevo informe
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al agregar el informe');
+            console.error('Error: // Agregar un nuevo informe, ',error);
+            
         } finally {
             setLoading(false); // Desactivar el estado de carga después de la solicitud
         }

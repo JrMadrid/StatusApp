@@ -8,10 +8,10 @@ const panelAppsRou = express.Router(); // Crea un nuevo objeto Router que se pue
 panelAppsRou.use(express.urlencoded({ extended: true })); // Configura el middleware para analizar los datos de formulario URL-encoded
 // panelAppsRou.use(requireAdminSession); // Verifica que sea administrador -- ocasiona error con los manuales e informes
 
-panelAppsRou.get('/dispositivos', requireAdminSession, panelDispositivosCon.getDispositivos); // Pedimos los datos de los dispositivos -- /panel/dispositivos
-panelAppsRou.post('/dispositivos/agregar', requireAdminSession, panelDispositivosCon.postDispositivo); // Agregamos un nuevo dispositivo -- /panel/dispositivos/agregar
-panelAppsRou.post('/dispositivos/actualizar', requireAdminSession, panelDispositivosCon.updateDispositivo); // Actualizamos un dispositivo -- /panel/dispositivos/actualizar
-panelAppsRou.post('/dispositivos/eliminar', requireAdminSession, panelDispositivosCon.deleteDispositivo); // Eliminamos un dispositivo -- /panel/dispositivos/eliminar
-panelAppsRou.get('/ping/:ip', requireAdminSession, panelDispositivosCon.ping); // Hacemos un ping a la ip -- /apps/ping/:ip
+panelAppsRou.get('/dispositivos', requireAdminSession, panelDispositivosCon.getDatosDispositivos); // Pedir los datos de los dispositivos -- /panel/dispositivos
+panelAppsRou.post('/dispositivos/agregar', requireAdminSession, panelDispositivosCon.postDispositivo); // Agregar un nuevo dispositivo -- /panel/dispositivos/agregar
+panelAppsRou.post('/dispositivos/actualizar', requireAdminSession, panelDispositivosCon.updateDispositivo); // Actualizar un dispositivo -- /panel/dispositivos/actualizar
+panelAppsRou.post('/dispositivos/eliminar', requireAdminSession, panelDispositivosCon.deleteDispositivo); // Eliminar un dispositivo -- /panel/dispositivos/eliminar
+panelAppsRou.get('/ping/:ip', requireAdminSession, panelDispositivosCon.ping); // Hacer ping a la ip -- /panel/ping/:ip
 
 export default panelAppsRou;

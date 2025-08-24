@@ -1,9 +1,10 @@
 /* COMPONENTE DE ELEMENTO DE BARRA DE NAVEGACIÓN */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { NavLink } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 import fetchData from '../../api/connect.js';
+import { FaAddressCard } from "react-icons/fa";
 import '../css/navbar.css';
 
 /* Definir navbar según el tipo usuario */
@@ -12,7 +13,7 @@ export default function Navbar() {
 
     function capitalizartexto(text) { // Poner en mayuscula la primera letra de cada palabra
         const capitalizado = text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        return capitalizado
+        return capitalizado;
     }
 
     /* Función para cerrar sesión */
@@ -66,6 +67,15 @@ export default function Navbar() {
                             {capitalizartexto(user.username)}
                         </li>
                     </>
+                )}
+
+                {/* ADMINISTRADOR, APLICATIVO & GEOGRAFIA */}
+                {user && (user.id === 2 || user.id === 3 || user.id === 4) && (
+                    <li style={{ paddingBottom: '0rem', paddingTop: '0.3rem' }} >
+                        <NavLink className={({ isActive }) => (isActive ? "active" : "")} style={{ fontSize: '1rem' }} to="/users">
+                            <FaAddressCard />
+                        </NavLink>
+                    </li>
                 )}
 
                 {/* SUPER ADMINISTRADOR & ADMINISTRADOR */}

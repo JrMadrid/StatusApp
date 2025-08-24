@@ -1,7 +1,8 @@
 /* PANEL DE ADMINISTRACIÓN DE MATENIMIENTOS -- ELIMINAR */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from '../../api/axiosConfig';
 
+// Eliminar un mantenimiento
 const DeleteMantenimientos = () => {
     const [formData, setFormData] = useState({
         id: ''
@@ -25,6 +26,7 @@ const DeleteMantenimientos = () => {
             window.location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error al eliminar el mantenimiento');
+            console.error(error.message || "Error al eliminar mantenimiento");
         } finally {
             setLoading(false);
         }

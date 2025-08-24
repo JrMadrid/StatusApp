@@ -6,7 +6,8 @@ const dataMantenimientoRou = express.Router(); // Crea un nuevo objeto Router qu
 const upload = multer(); // Almacena los archivos en memoria
 
 dataMantenimientoRou.use(express.urlencoded({ extended: true })); // Middleware para parsear el cuerpo de las solicitudes 
-dataMantenimientoRou.get('/mantenimientos', panelConstanciaCon.getMantenimientos); // Pedimos los datos de los mantenimientos de las sucursales -- /api/mantenimientos
+
+dataMantenimientoRou.get('/mantenimientos', panelConstanciaCon.getMantenimientos); // Pedir los datos de los mantenimientos de las sucursales -- /api/mantenimientos
 dataMantenimientoRou.post('/mantenimientos/agregar', upload.single('imagen'), panelConstanciaCon.postConstancia); // Agregar constancia de mantenimiento -- /api/mantenimientos/agregar
 
 export default dataMantenimientoRou;

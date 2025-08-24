@@ -1,12 +1,13 @@
 /* SERVICIOS PARA VALIDAR DATOS DE USUARIOS */
 import bcrypt from 'bcryptjs'; // bcrypt para encriptar la contraseña
-import { IDdelAdmin, NicknameOcupado, comprobarID, nombreResponsable, getUsers, postUser, updateUser, deleteUser, logoutaAllUsers } from '../../models/Paneles/panelUsersMod.js';
+import { IDdelAdmin, NicknameOcupado, comprobarID, nombreResponsable, getUsers, postUser, updateUser, deleteUser, logoutaAllUsers, deactivateAllUsers, activateAllUsers } from '../../models/Paneles/panelUsersMod.js';
 
+// Pedir los datos de los usuarios
 export const obtenerUsers = async () => {
   return await getUsers();
 };
 
-// Agregamos un nuevo usuario
+// Agregar un nuevo usuario
 export const agregarUser = async (nickname, psw, tipo) => {
   psw = psw.trim(); // Eliminar espacios en blanco al inicio y al final
   psw = await bcrypt.hash(psw, 12); // Encriptar la contraseña, el hash funciona como un algoritmo de encriptación que genera un hash de la contraseña, el 12 indica la complejidad del algoritmo
@@ -15,47 +16,43 @@ export const agregarUser = async (nickname, psw, tipo) => {
   if (tipo === 'Administrador') {
     isAdmin = 1;
   };
-
-  const EsNicknameOcupado = await NicknameOcupado(nickname);
-  if (EsNicknameOcupado) {
-    throw { status: 409, message: 'El Nickname definido ya existe en la base de datos.' };
-  };
+  if (await NicknameOcupado(nickname)) { throw { code: 409, message: 'El Nickname definido ya existe en la base de datos.' }; };
 
   await postUser(nickname, psw, tipo, isAdmin);
 };
 
-// Actualizamos un usuario
+// Actualizar un usuario
 export const actualizarUser = async (nickname, psw, id, tipo) => {
   if (psw.length !== 0) {
     psw = await bcrypt.hash(psw, 12); // Encriptar la contraseña 
   }
-
-  const IdExiste = await comprobarID(id);
-  if (!IdExiste) {
-    throw { status: 404, message: 'No se encontró el ID' };
-  }
+  if (!(await comprobarID(id))) { throw { code: 404, message: 'No se encontró el ID' }; }
+  if (await NicknameOcupado(nickname)) { throw { code: 409, message: 'El Nickname definido ya existe en la base de datos.' }; };
 
   await updateUser(nickname, psw, id, tipo);
 };
 
-// Eliminamos un usuario
-export const eliminarUser = async (id) => {
+// Eliminar un usuario
+export const eliminarUser = async (id, Super) => {
+  if (!(await comprobarID(id))) { throw { code: 404, message: 'No se encontro el ID' }; }
+  if (await IDdelAdmin(id)) { throw { code: 403, message: 'No se puede eliminar al super administrador' }; }
 
-  const IdExiste = await comprobarID(id);
-  if (!IdExiste) {
-    throw { status: 404, message: 'No se encontro el ID' };
-  }
-
-  const Admin = await IDdelAdmin(id);
-  if (Admin) {
-    throw { status: 403, message: 'No se puede eliminar al super administrador' };
-  }
   const ingResponsable = await nombreResponsable(id);
 
-  await deleteUser(id, ingResponsable);
-}
+  await deleteUser(id, ingResponsable, Super);
+};
 
-// Cerramos la sesión de todos los usuarios
+// Cerrar la sesión de todos los usuarios
 export const sacarAllUsers = async () => {
   await logoutaAllUsers();
+};
+
+// Desactivar el acceso de todos los usuarios
+export const desactivarAllUsers = async () => {
+  await deactivateAllUsers();
+};
+
+// Activar el acceso de todos los usuarios
+export const activarAllUsers = async () => {
+  await activateAllUsers();
 };

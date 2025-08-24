@@ -1,4 +1,4 @@
-/* ESTILOS DE INFORME -- SUCURSALES */
+/* ESTILOS DE INFORMATIVA -- SUCURSAL */
 .titulo {
     position: fixed;
     top: 5%;
@@ -129,8 +129,8 @@
     min-height: 50vh;
     max-height: 50vh;
     overflow-y: auto;
-    min-width: 68.5vh;
-    max-width: 68.5vh;
+    /* min-width: 68.5vh;
+    max-width: 68.5vh; */
     overflow-x: auto;
 }
 
@@ -245,7 +245,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 13vw;
+    text-align: center !important;
+    width: 12.5vw;
     min-height: 40vh;
     max-height: 40vh;
     overflow-y: auto;
@@ -309,9 +310,10 @@
     border-radius: 5px;
     min-width: 9vw;
     max-width: 9vw;
-    max-height: 1.8rem;
+    max-height: 2rem;
+    padding-bottom: 0.2rem;
     overflow-x: auto;
-    overflow-y: auto;
+    overflow-y: hidden;
     margin-bottom: 1px;
 }
 
@@ -337,6 +339,38 @@
     background-color: rgb(0, 7, 22);
 }
 
+.seleccionado {
+    box-shadow: 0px 0px 5px #ffaf90 inset;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    min-width: 9vw;
+    max-width: 9vw;
+    max-height: 2rem;
+    padding-bottom: 0.2rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: 1px;
+}
+
+.seleccionado::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+.seleccionado::-webkit-scrollbar-thumb {
+    background-color: #ffaf90;
+    border-radius: 4px;
+}
+
+.seleccionado::-webkit-scrollbar-thumb:hover {
+    background-color: #ffaf90;
+}
+
+.seleccionado::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
 .pings {
     margin: 0;
     font-size: 1.1rem;
@@ -351,6 +385,12 @@
 
 .appi {
     color: rgb(175, 219, 246);
+    font-size: 0.8rem;
+    font-family: 'Segoe UI';
+}
+
+.appiSeleccionado {
+    color: #ffaf90;
     font-size: 0.8rem;
     font-family: 'Segoe UI';
 }
@@ -870,4 +910,203 @@
 
 .contenedorManual::-webkit-scrollbar-track {
     background-color: rgb(0, 7, 22);
+}
+
+/* INFORMACION USUARIO */
+.titulono {
+    position: fixed;
+    top: 5%;
+    left: 35.6%;
+    color: rgb(11, 23, 50);
+    text-shadow: 1px -1px 2px rgb(197, 229, 249);
+    font-size: 3.5vh;
+    font-family: Arial;
+}
+
+.cajaInformacionno {
+    margin: 0 0 0 20VW;
+    padding: 15px;
+    width: 94vw;
+    position: fixed;
+    top: 14%;
+    right: 2vw;
+    border-radius: 8px;
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.600);
+}
+
+.informacioncajasuper {
+    min-height: 34vw;
+    max-height: 34vw;
+}
+
+.informacioncajano {
+    min-height: 44vw;
+    max-height: 44vw;
+}
+
+.informacionesUsuario {
+    display: flex;
+}
+
+.inforPerfil {
+    flex: 1;
+    color: whitesmoke;
+    font-family: sans-serif;
+    max-height: 17vw;
+    width: 19vw;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.inforPerfilno {
+    flex: 1;
+    color: whitesmoke;
+    font-family: sans-serif;
+    max-height: 19vw;
+    width: 19vw;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.inforPerfil::-webkit-scrollbar,
+.inforPerfilno::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+.inforPerfil::-webkit-scrollbar-thumb,
+.inforPerfilno::-webkit-scrollbar-thumb {
+    background-color: #124885;
+    border-radius: 4px;
+}
+
+.inforPerfil::-webkit-scrollbar-thumb:hover,
+.inforPerfilno::-webkit-scrollbar-thumb:hover {
+    background-color: #ffaf90;
+}
+
+.inforPerfil::-webkit-scrollbar-track,
+.inforPerfil::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
+.fotoPerfil {
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.perfilFoto {
+    width: 13vw;
+    /* padding: 0.9vw 0vw; */
+    border-radius: 5%;
+}
+
+.editIcon {
+    color: #ffc9b4;
+    font-size: 0.9rem;
+}
+
+.editIcon:hover {
+    color: rgb(175, 219, 246);
+}
+
+.datosTipo {
+    color: rgb(175, 219, 246);
+    padding: 2px 0.4vw;
+}
+
+.datosPersonal {
+    font-size: 1.2rem;
+    text-align: left;
+    padding: 2px 0.4vw;
+}
+
+.inforDescripcion {
+    height: 17vw;
+    max-height: 17vw;
+    overflow: auto;
+}
+
+.inforDescripcionno {
+    height: 25vw;
+    max-height: 25vw;
+    overflow: auto;
+}
+
+.inforDescripcion::-webkit-scrollbar,
+.inforDescripcionno::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+.inforDescripcion::-webkit-scrollbar-thumb,
+.inforDescripcionno::-webkit-scrollbar-thumb {
+    background-color: #124885;
+    border-radius: 4px;
+}
+
+.inforDescripcion::-webkit-scrollbar-thumb:hover,
+.inforDescripcionno::-webkit-scrollbar-thumb:hover {
+    background-color: #ffaf90;
+}
+
+.inforDescripcion::-webkit-scrollbar-track,
+.inforDescripcionno::-webkit-scrollbar-track {
+    background-color: rgb(0, 7, 22);
+}
+
+.btnConfirmar {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btnConfirmar:hover {
+    background-color: #45a049;
+}
+
+.btnCancelar {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btnCancelar:hover {
+    background-color: #c0392b;
+}
+
+.subirFotoPerfil {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    width: 95%;
+    color: black;
+    font-weight: lighter;
+    padding: 0.2rem 1rem;
+    background-color: rgb(197, 229, 249);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.activoono {
+    vertical-align: middle;
+    padding-bottom: 0.3rem;
+}
+
+.edad {
+    color: rgb(175, 219, 246);
+    text-align: left;
+    padding-left: 2rem;
 }

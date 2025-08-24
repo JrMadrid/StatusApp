@@ -1,0 +1,17 @@
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    usuario_id INT NOT NULL,
+    cedula CHAR(15) NOT NULL UNIQUE,
+    localidad NVARCHAR(100),
+    foto VARBINARY(MAX),
+    fecha_nacimiento DATE,
+    sexo CHAR(1), -- 'M' o 'F'
+    fecha_contratacion DATE NOT NULL,
+    descripcion TEXT,
+    grado_academico NVARCHAR(100),
+    puesto NVARCHAR(100) NOT NULL,
+    activo BIT NOT NULL DEFAULT 1, -- 1 = activo, 0 = inactivo
+    CONSTRAINT FK_EmpleadoDetalles_Usuarios FOREIGN KEY (usuario_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);

@@ -1,7 +1,8 @@
 /* COMPONENTE DE PANEL DE ADMINISTRACIÓN DE MANTENIMIENTOS */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import PostMantenimientos from './PostMantenimientos';
+import UpdateMantenimientos from './UpdateMantenimiento';
 import DeleteMantenimientos from './DeleteMantenimientos';
 import './../css/panel.css';
 
@@ -15,6 +16,7 @@ const MantenimientosPanel = () => {
                     <h3>Administración</h3>
                     <div className='cajahija'>
                         <PostMantenimientos />
+                        <UpdateMantenimientos />
                         <DeleteMantenimientos /> 
                     </div>
                 </div>

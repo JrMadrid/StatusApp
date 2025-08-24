@@ -1,5 +1,5 @@
 /* COMPONENTE DE PANEL DE ADMINISTRACIÓN DE CONSTANCIAS */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import PostConstancia from './PostConstancia';
 import './../css/panel.css';

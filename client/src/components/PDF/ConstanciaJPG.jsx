@@ -1,5 +1,5 @@
 /* DESCARGAR IMAGEN DE LA CONSTANCIA */
-import React from 'react';
+
 import { Toaster, toast } from 'react-hot-toast';
 import { FormatearFecha } from '../Elements/date';
 import '../css/PDF.css';

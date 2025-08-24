@@ -1,4 +1,4 @@
-/* FUNCIÓN DAR FORMATO A LAS FECHAS */
+/* FUNCIÓN LA FECHA */
 const date = () => {
     const now = new Date();
     const seconds = String(now.getSeconds()).padStart(2, '0');

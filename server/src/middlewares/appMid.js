@@ -14,16 +14,16 @@ const host = config.APPhost || 'localhost'; // Define el host de la aplicación,
 
 export const appMiddlewares = (app) => {
   app.use(cors({
-    origin: '', // Permite solicitudes desde cualquier origen
-    // origin: 'http://localhost:3000', // Permite solicitudes desde cualquier origen ---devs
+    // origin: '', // Permite solicitudes desde cualquier origen ---prod
+    origin: 'http://localhost:3000', // Permite solicitudes desde cualquier origen ---devs
     credentials: true, // Permite el envío de cookies y encabezados de autorización
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
     allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos en las solicitudes
   }));
 
   // 
-  // app.use(morgan('dev')); // Middleware para registrar las solicitudes HTTP en la consola para modo de desarrollo
-  app.use(morgan('combined')); // Middleware para registrar las solicitudes HTTP en un formato combinado para modo de producción
+  app.use(morgan('dev')); // Middleware para registrar las solicitudes HTTP en la consola para modo de desarrollo
+  // app.use(morgan('combined')); // Middleware para registrar las solicitudes HTTP en un formato combinado para modo de producción
 
   app.use(express.json()); // Middleware para analizar el cuerpo de las solicitudes JSON
 
@@ -36,8 +36,8 @@ export const appMiddlewares = (app) => {
       secure: false, // Indica si la cookie debe ser transmitida solo a través de conexiones HTTPS. Al establecerlo en false, la cookie se puede transmitir a través de conexiones HTTP, lo que puede ser útil para entornos de desarrollo, pero no es seguro para producción.
       maxAge: 24 * 60 * 60 * 1000, // Establece la duración máxima de la cookie en milisegundos. En este caso, se establece en 24 horas (24 horas * 60 minutos * 60 segundos * 1000 milisegundos).
       httpOnly: true, // Indica si la cookie debe ser accesible solo a través de HTTP(S) y no a través de JavaScript en el lado del cliente. Al establecerlo en true, se protege la cookie de ataques XSS (Cross-Site Scripting), ya que no puede ser accedida por scripts del lado del cliente.
-      // sameSite: 'lax', // Configura la política SameSite de la cookie. Al establecerlo en 'strict', la cookie solo se enviará en solicitudes de origen cruzado si el sitio de origen es el mismo que el del servidor, lo que ayuda a prevenir ataques CSRF (Cross-Site Request Forgery). ---devs
-      sameSite: 'strict', // Configura la política SameSite de la cookie. Al establecerlo en 'strict', la cookie solo se enviará en solicitudes de origen cruzado si el sitio de origen es el mismo que el del servidor, lo que ayuda a prevenir ataques CSRF (Cross-Site Request Forgery). 
+      sameSite: 'lax', // Configura la política SameSite de la cookie. Al establecerlo en 'strict', la cookie solo se enviará en solicitudes de origen cruzado si el sitio de origen es el mismo que el del servidor, lo que ayuda a prevenir ataques CSRF (Cross-Site Request Forgery). ---devs
+      // sameSite: 'strict', // Configura la política SameSite de la cookie. Al establecerlo en 'strict', la cookie solo se enviará en solicitudes de origen cruzado si el sitio de origen es el mismo que el del servidor, lo que ayuda a prevenir ataques CSRF (Cross-Site Request Forgery). ---prod
       domain: host, // Dominio para el cual la cookie es válida. Esto puede ser útil para restringir el acceso a la cookie a un dominio específico. ---devs en desarrollo va comentado
       path: '/' // Ruta para la cual la cookie es válida. Al establecerlo en '/', la cookie será válida para todas las rutas del dominio especificado.
     },

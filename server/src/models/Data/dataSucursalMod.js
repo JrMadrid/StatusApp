@@ -1,6 +1,7 @@
 /* MODEL DE LA INFORMACIÓN DE LAS SUCURSALES */
 import sql from 'mssql';
 
+// Pedir los datos de las sucursales
 export const obtenerSucursales = async (responsable, tipo) => {
   const request = new sql.Request();
   let query;
@@ -12,13 +13,13 @@ export const obtenerSucursales = async (responsable, tipo) => {
         ORDER BY canal ASC, nombre ASC 
   `;
   } else {
+    query = `
+        SELECT economico, canal, nombre 
+        FROM sucursales 
+        WHERE ingresponsable = @responsable 
+        ORDER BY canal ASC, nombre ASC 
+    `;
     request.input('responsable', sql.VarChar, responsable);
-    query= `
-      SELECT economico, canal, nombre 
-      FROM sucursales 
-      WHERE ingresponsable = @responsable 
-      ORDER BY canal ASC, nombre ASC 
-      `;
   }
   return (await request.query(query)).recordset;
 };

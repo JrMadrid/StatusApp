@@ -1,5 +1,5 @@
 /* PAGINA DE PANEL DE ADMINISTRACIÓN DE SUCURSALES */
-import { React, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import SelectSucursales from '../../components/Panel_Sucursales/SelectSucursales.jsx';
 import SucursalesPanel from '../../components/Panel_Sucursales/SucursalesPanel.jsx';

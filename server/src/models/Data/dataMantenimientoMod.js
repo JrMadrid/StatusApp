@@ -1,6 +1,7 @@
 /* MODEL DE LA INFORMACIÓN DE LOS DISPOSITIVOS */
 import sql from 'mssql';
 
+// Pedir los datos de los mantenimientos de las sucursales
 export const obtenerMantenimientos = async (responsable, tipo) => {
 	const request = new sql.Request();
 	let query;
@@ -14,36 +15,36 @@ export const obtenerMantenimientos = async (responsable, tipo) => {
 				ORDER BY sucu.canal ASC, sucu.nombre ASC, mant.fechaestimada DESC 
       `;
 	} else {
-		request.input('responsable', sql.VarChar, responsable);
 		query = `
-				SELECT mant.id as id, sucu.economico as economico, sucu.canal as canal, sucu.nombre as sucursal, sucu.ingresponsable as ingresponsable, 
-								mant.fechaestimada as festimada, mant.fecharealizada as frealizada, mant.descripcion as descripcion 
+				SELECT sucu.economico as economico, sucu.canal as canal, sucu.nombre as sucursal, sucu.ingresponsable as ingresponsable, 
+								mant.id as id, mant.fechaestimada as festimada, mant.fecharealizada as frealizada, mant.descripcion as descripcion 
 				FROM sucursales sucu 
 				INNER JOIN mantenimiento mant ON sucu.economico = mant.economico 
 				WHERE sucu.economico != 000000 AND sucu.ingresponsable = @responsable 
 				ORDER BY sucu.canal ASC, sucu.nombre ASC, mant.fechaestimada DESC 
-      `;
+				`;
 	}
+	request.input('responsable', sql.VarChar, responsable);
 	return (await request.query(query)).recordset;
 };
 
+// Agregar constancia de mantenimiento
 export const actualizarMantenimientoConConstancia = async (datos) => {
 	const transaction = new sql.Transaction();
 	await transaction.begin();
 
 	try {
 		const request = new sql.Request(transaction);
-		const query = `
-		UPDATE mantenimiento 
-		SET fecharealizada = @fecharealizada, constancia = @imagen, descripcion = @descripcion 
-		WHERE id = @id
-		`;
 		request.input('fecharealizada', sql.Date, datos.frealizada);
 		request.input('imagen', sql.VarBinary(sql.MAX), datos.imagen);
 		request.input('descripcion', sql.VarChar, datos.descripcion);
 		request.input('id', sql.Numeric, datos.id);
-		await request.query(query);
-		
+		await request.query(`
+		UPDATE mantenimiento 
+		SET fecharealizada = @fecharealizada, constancia = @imagen, descripcion = @descripcion 
+		WHERE id = @id
+		`);
+
 		if (datos.yy > '2024') {
 			await insertarNuevaFechaEstimada(transaction, datos.siguiFEstimada, datos.suSucursal);
 		}
@@ -51,19 +52,18 @@ export const actualizarMantenimientoConConstancia = async (datos) => {
 		await transaction.commit();
 	} catch (error) {
 		await transaction.rollback();
-		throw error;
 	}
 };
 
+// Agregar fecha de constancia de mantenimiento
 export const insertarNuevaFechaEstimada = async (transaction, fechaestimada, economico) => {
 	const request = new sql.Request(transaction);
-	const query = `
-    INSERT INTO mantenimiento(fechaestimada, economico) 
-    VALUES (@fechaestimada, @economico)
-  `;
 	request.input('fechaestimada', sql.Date, fechaestimada);
 	request.input('economico', sql.VarChar, economico);
-	await request.query(query);
+	await request.query(`
+    INSERT INTO mantenimiento(fechaestimada, economico) 
+    VALUES (@fechaestimada, @economico)
+  `);
 };
 
 /* Validaciones */
@@ -78,7 +78,6 @@ async function comprobarID(id) {
 		return resultado.recordset.length > 0; // El ID exite
 	} catch (error) {
 		console.error('Error al ejecutar:', error);
-		throw error;
 	}
 }
 
@@ -95,7 +94,6 @@ async function comprobarFechaRealizada(frealizada, id) {
 		return fechaestimadacons < frealizada;
 	} catch (error) {
 		console.error('Error al ejecutar:', error);
-		throw error;
 	}
 }
 
@@ -109,7 +107,6 @@ async function ConstanciaExiste(id) {
 		return resultado.recordset[0].constancia !== null;// Ya tiene mantenimiento
 	} catch (error) {
 		console.error('Error al ejecutar:', error);
-		throw error;
 	}
 }
 
@@ -125,7 +122,6 @@ async function comprobarSuMantenimiento(id, responsable) {
 		return responsable.toLowerCase() === ingeniero.toLowerCase(); // Si es su mantenimiento
 	} catch (error) {
 		console.error('Error al ejecutar:', error);
-		throw error;
 	}
 }
 
@@ -140,7 +136,6 @@ async function ecoSucursal(id) {
 		return resultado.recordset[0].economico;
 	} catch (error) {
 		console.error('Error al ejecutar:', error);
-		throw error;
 	}
 }
 

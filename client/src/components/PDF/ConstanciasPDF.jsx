@@ -1,5 +1,5 @@
 /* COMPONENTE QUE GUARDA EN PDF TODAS LAS CONSTANCIAS */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import pdfMake from 'pdfmake/build/pdfmake';
 import { Toaster, toast } from 'react-hot-toast';
 import '../css/PDF.css';

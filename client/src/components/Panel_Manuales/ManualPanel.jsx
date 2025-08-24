@@ -1,5 +1,5 @@
 /* COMPONENTE DE PANEL DE ADMINISTRACIÓN DE MANUALES */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import PostManual from './PostManuales';
 import DeleteManuales from './DeleteManual';

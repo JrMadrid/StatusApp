@@ -1,0 +1,20 @@
+/* PAGINA DE INFORMATIVA -- USUARIO */
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext.jsx';
+import InfoUsuario from '../../components/Informativas/Infor_Usuario.jsx';
+
+const UsuarioInfo = () => {
+    const user = useContext(UserContext);
+
+    return (
+        <>
+            {user && (user.id !== 0) && (
+                <div>
+                    <InfoUsuario />
+                </div>
+            )}
+        </>
+    );
+};
+
+export default UsuarioInfo;

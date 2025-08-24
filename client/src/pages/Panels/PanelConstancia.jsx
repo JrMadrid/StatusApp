@@ -1,5 +1,5 @@
 /* PAGINA DE PANEL DE ADMINISTRACIÓN DE CONSTANCIAS */
-import { React, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext.jsx';
 import SelectMantenimientos from '../../components/Panel_Mantenimiento/SelectMantenimientos.jsx';
 import MantenimientosPanel from '../../components/Panel_Mantenimiento/MantenimientosPanel.jsx';

@@ -1,9 +1,10 @@
 /* COMPONENTE DE PANEL DE ADMINISTRACIÓN DE USUARIOS */
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import PostUsers from "./PostUsers";
 import UpdateUsers from "./UpdateUsers";
 import DeleteUsers from "./DeleteUsers";
+import ControlUsers from './controlUser';
 import './../css/panel.css';
 
 const UsersPanel = () => {
@@ -18,6 +19,7 @@ const UsersPanel = () => {
                         <PostUsers />
                         <UpdateUsers />
                         <DeleteUsers />
+                        <ControlUsers />
                     </div >
                 </div >
             )}
