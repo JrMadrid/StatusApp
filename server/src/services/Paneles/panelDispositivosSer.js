@@ -17,8 +17,7 @@ export async function agregarDispositivo(economico, ip, nombre, descripcion, gen
 
 // Actualizar un dispositivo
 export async function actualizarDispositivo(economico, ip, nombre, id, descripcion, general, reiniciar) {
-	const idExiste = await comprobarID(id);
-	if (!idExiste) throw { code: 404, message: 'ID no válido' };
+	if (!(await comprobarID(id))) throw { code: 404, message: 'ID no válido' };
 	if (economico?.length) {
 		if (!(await SucursalExiste(economico))) throw { code: 404, message: 'Sucursal no válida' };
 	}

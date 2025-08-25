@@ -10,10 +10,10 @@ const logPath = path.join(__dirname, '../logs/error.log'); // Ruta del archivo d
 const logsDir = path.resolve('src/logs'); // Ruta del directorio de logs
 const logFile = path.join(logsDir, 'error.log'); // Ruta del archivo de log de errores
 
-// const logDir = path.join(process.cwd(), 'src', 'logs'); // Crear directorio log
-// if (!fs.existsSync(logDir)) {
-//   fs.mkdirSync(logDir, { recursive: true });
-// };
+const logDir = path.join(process.cwd(), 'src', 'logs'); // Crear directorio log
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir, { recursive: true });
+};
 
 function logToFile(message) { // Archivo de log
   const timestamp = new Date().toISOString(); // Obtener la fecha y hora actual en formato ISO

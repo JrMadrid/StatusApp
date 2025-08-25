@@ -21,9 +21,8 @@ export const appMiddlewares = (app) => {
     allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos en las solicitudes
   }));
 
-  // 
-  app.use(morgan('dev')); // Middleware para registrar las solicitudes HTTP en la consola para modo de desarrollo
-  // app.use(morgan('combined')); // Middleware para registrar las solicitudes HTTP en un formato combinado para modo de producción
+  // app.use(morgan('dev')); // Middleware para registrar las solicitudes HTTP en la consola para modo de desarrollo
+  app.use(morgan('combined')); // Middleware para registrar las solicitudes HTTP en un formato combinado para modo de producción
 
   app.use(express.json()); // Middleware para analizar el cuerpo de las solicitudes JSON
 
