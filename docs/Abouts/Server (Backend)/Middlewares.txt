@@ -1,0 +1,7 @@
+# MIDDLEWARES
+
+Este directorio contiene los middleware de la aplicación y de las rutas.
+
+Descripción:
+- Funciones que se ejecutan antes para se ejecuten correctamente.
+- Verificar que los usuarios hayan ingresado y los distingue de normales o administradores.

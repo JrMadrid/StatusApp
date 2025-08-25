@@ -1,0 +1,9 @@
+# LOGS
+
+Este directorio contiene los logs (registros) de los errores de ejecución del sistema principal.
+
+Descripción:
+- Si no existe el directorio el propio sistema lo creo para almacenar el error.log.
+
+Notas: 
+- Cada tipo de error genera un mensaje distinto.

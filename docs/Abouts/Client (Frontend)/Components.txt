@@ -6,9 +6,26 @@ Propósito
 - Centralizar elementos de UI reutilizables como pantallas, formularios, tarjetas, paneles, entre otros.
 - Promover la reutilización de código y mantener una interfaz de usuario coherente en toda la aplicación.​
 
+/Data
+Alberga los componentes para usuarios de menor nivel.
+
+/Elements
+Elementos de código que conforman la interfaz.
+
+/Informativas
+Componentes de páginas informativas.
+
+/Listas
+Botones para guardar los datos de las tablas como documentos PDF o Excel.
+
+/Panel_
+Componentes que conforman los CRUD correspondientes de cada tabla.
+
+/PDF
+Formatos de datos para guardarlos en PDF.
+
 Características
-- Cada componente se encuentra en su propia carpeta, conteniendo archivos como .jsx.
-- Los componentes deben ser lo más independientes posible, evitando dependencias directas con el estado global o rutas específicas.
+- Cada componente se encuentra en su propio directorio, conteniendo archivos como .jsx.
 - Se pueden organizar en subcarpetas según su función o nivel de complejidad.​
 
 Notas

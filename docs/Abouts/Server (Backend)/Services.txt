@@ -2,11 +2,25 @@
 
 Este directorio contiene la lógica de negocio de la aplicación, encargándose de interactuar con la base de datos y procesar los datos necesarios para los controladores.
 
-## Descripción:
-- Ejecuta consultas SQL utilizando parámetros para prevenir inyecciones SQL.
+Descripción:
 - Contiene funciones que encapsulan la lógica de negocio, manteniendo los controladores delgados y enfocados en manejar las solicitudes y respuestas.
 - Facilita la reutilización de código y mejora la mantenibilidad del proyecto.
 
-## Notas:
+Notas:
 - Evita incluir lógica relacionada con la presentación o el manejo directo de las solicitudes HTTP.
-- Las funciones aquí deben ser independientes del framework utilizado, permitiendo su reutilización en diferentes contextos.
+- Se valida que los datos no corrompan la base de datos.
+
+Estructura:
+
+// Actualizar un dispositivo -- Comentario que describe su función
+export async function actualizarDispositivo(economico, ip, nombre, id, descripcion, general, reiniciar) {
+	if (!(await comprobarID(id))) throw { code: 404, message: 'ID no válido' };
+	if (economico?.length) {
+		if (!(await SucursalExiste(economico))) throw { code: 404, message: 'Sucursal no válida' };
+	}
+	if (ip?.length) {
+		if (await IpOcupada(ip)) throw { code: 409, message: 'IP ocupada' };
+	}
+
+	await updateDispositivo(economico, ip, nombre, id, descripcion, general, reiniciar); -- Si ya verifico los datos los manda a su model
+};

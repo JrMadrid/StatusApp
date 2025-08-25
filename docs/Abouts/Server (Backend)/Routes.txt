@@ -9,3 +9,8 @@ Descripción:
 Notas:
 - Mantener las rutas limpias y agrupadas por tipo de dispositivo o función.
 - Evitar lógica compleja en las rutas, solo manejar asignaciones.
+
+Estructura: 
+
+dataSucursalRou.get('/sucursales', getSucursales); // Pedir los datos de las sucursales -- /api/sucursales 
+// Comentario que describe su función -- la ruta definida en el frontend

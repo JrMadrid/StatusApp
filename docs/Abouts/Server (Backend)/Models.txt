@@ -9,3 +9,30 @@ Descripción:
 Notas:
 - Seguir una estructura clara para definir modelos.
 - Validar los datos antes de procesarlos o almacenarlos en la base de datos.
+
+Estructura: 
+
+// Pedir los datos de las sucursales    -- Comentario que describe su función
+export const obtenerSucursales = async (responsable, tipo) => {
+  const request = new sql.Request();
+  let query;
+  if (tipo === 'Aplicativo') {
+    query = `
+        SELECT economico, canal, nombre, ingresponsable 
+        FROM sucursales 
+        WHERE economico != 000000 
+        ORDER BY canal ASC, nombre ASC 
+  `;
+  } else {
+    query = `
+        SELECT economico, canal, nombre 
+        FROM sucursales 
+        WHERE ingresponsable = @responsable 
+        ORDER BY canal ASC, nombre ASC 
+    `;
+    request.input('responsable', sql.VarChar, responsable);
+  }
+  return (await request.query(query)).recordset;
+};
+
+- Los errores de manejan en tryCatch de su respectivo controller

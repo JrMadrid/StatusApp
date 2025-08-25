@@ -7,7 +7,7 @@ Propósito
 - Componer las páginas utilizando componentes reutilizables del directorio components.​
 
 Características
-- Cada página se encuentra en su propia carpeta, conteniendo archivos como .jsx.
+- Cada página se encuentra en su propio directorio, conteniendo archivos como .jsx.
 - Se recomienda mantener las páginas lo más limpias posible, delegando la mayor parte de la lógica a componentes hijos o hooks personalizados.​
 
 Notas

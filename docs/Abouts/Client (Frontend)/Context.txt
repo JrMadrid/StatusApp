@@ -12,4 +12,3 @@ Propósito general del directorio
 
 Notas
 - Actualmente solo se maneja el contexto del usuario, pero aquí pueden añadirse más contextos (tema, idioma, sesión, etc.) si el proyecto crece.
-- Se recomienda envolver la app en el UserProvider desde el nivel más alto posible, como en App.js o main.jsx.

@@ -4,8 +4,32 @@ Este directorio contiene los controladores de la aplicación.
 
 Descripción:
 - Define la lógica que maneja las solicitudes entrantes y las respuestas.
-- Cada controlador se comunica con los servicios y modelos correspondientes.
+- Cada controlador se comunica con los servicios, validaciones y modelos correspondientes.
 
 Notas:
-- Mantener la lógica de negocio en los servicios, no en los controladores.
-- Cada controlador debe ser modular.
+- Cumple la función principal de la ruta.
+- Verifica la estructura de cada dato en caso de recibirlos.
+- Manda el código de estado http.
+- Retorna el mensaje de error generado por su validator, service o model.
+
+Estructura: 
+
+// Actualizar un dispositivo -- Comentario que describe su función
+const updateDispositivo = async (req, res) => {
+	try {
+		// Validar el cuerpo del request con Joi
+		const { error } = SchemaActualizarDispositivo.validate(req.body, { abortEarly: false });
+
+		if (error) {
+			// Si hay errores, los unimos en un solo mensaje
+			const mensajes = error.details.map(err => err.message).join('\n');
+			return res.status(400).json({ message: mensajes });
+		}
+		const { economico, ip, nombre, id, descripcion, general, reiniciar } = req.body; 
+		await actualizarDispositivo(economico, ip, nombre, id, descripcion, general, reiniciar); -- Si ya valido los datos los manda a su service
+		res.status(200).json({ message: 'Dispositivo actualizado exitosamente' });
+	} catch (error) {
+		console.error('Error: // Actualizar un dispositivo, ', error);
+		res.status(error?.code || 500).json({ message: error?.message || 'Error actualizando los datos del dispositivo' });
+	}
+};

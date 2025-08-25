@@ -5,6 +5,3 @@ Este directorio maneja los servicios de extracción y procesamiento de datos.
 Descripción:
 - Extrae información de los dispositivos UPS, iLO y biométricos.
 - Procesa y transforma los datos para ser usados por los controladores.
-
-Notas:
-- Los servicios deben ser independientes y reutilizables.

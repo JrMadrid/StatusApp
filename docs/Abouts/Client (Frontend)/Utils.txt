@@ -11,5 +11,4 @@ Características
 - El contenido de este directorio debe ser lo más desacoplado posible, sin depender directamente del estado de la aplicación o del contexto.
 
 Notas
-- Se recomienda mantener este directorio limpio y organizado.
 - Nombrar las funciones/utilidades de forma clara y descriptiva.

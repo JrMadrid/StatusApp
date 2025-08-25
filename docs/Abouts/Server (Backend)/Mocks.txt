@@ -1,0 +1,9 @@
+# MOCKS
+
+Este directorio contiene funciones que simulan los datos entregados por los dispositivos.
+
+Descripción:
+- Se entregan los datos tal cual y como se esperan del dispositivo para agilizar el proceso de desarrollo.
+
+Notas: 
+- Una vez que ya se hayan usado los datos para ordenarlos o cambiarles el formato de presentación se deben dejar de usar por los verdaderos.

@@ -1,0 +1,6 @@
+# UTILS
+
+Este directorio contiene elementos útiles que mejoran el sistema.
+
+Descripción:
+- Define componentes que aseguran el correcto funcionamiento del sistema.
