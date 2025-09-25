@@ -17,7 +17,7 @@ if (!fs.existsSync(logDir)) {
 
 function logToFile(message) { // Archivo de log
   const timestamp = new Date().toISOString(); // Obtener la fecha y hora actual en formato ISO
-  const logEntry = `[${timestamp}] ${message}\n\n`; 
+  const logEntry = `[${timestamp}] ${message}\n\n`;
   fs.appendFileSync(logFile, logEntry, 'utf8'); // Escribir el mensaje en el archivo de log
 };
 

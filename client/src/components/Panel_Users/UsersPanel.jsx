@@ -8,23 +8,23 @@ import ControlUsers from './controlUser';
 import './../css/panel.css';
 
 const UsersPanel = () => {
-    const user = useContext(UserContext);
+  const user = useContext(UserContext);
 
-    return (
-        <>
-            {user && (user.id === 1) && ( // SUPER ADMINISTRADOR
-                <div className='cajamadre'>
-                    <h3>Administración</h3>
-                    <div className='cajahija'>
-                        <PostUsers />
-                        <UpdateUsers />
-                        <DeleteUsers />
-                        <ControlUsers />
-                    </div >
-                </div >
-            )}
-        </>
-    );
+  return (
+    <>
+      {user && (user.id === 1) && ( // SUPER ADMINISTRADOR
+        <div className='cajamadre'>
+          <h3>Administración</h3>
+          <div className='cajahija'>
+            <PostUsers />
+            <UpdateUsers />
+            <DeleteUsers />
+            <ControlUsers />
+          </div >
+        </div >
+      )}
+    </>
+  );
 };
 
 export default UsersPanel;

@@ -1,70 +1,70 @@
 /* ESTILOS DE BARRA DE NAVEGACIÓN */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    background-color: rgb(11, 23, 50);
-    padding: 0;
-    width: 100%;
-    font-size: 1rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	list-style-type: none;
+	background-color: rgb(11, 23, 50);
+	padding: 0;
+	width: 100%;
+	font-size: 1rem;
 }
 
 .navbar li {
-    padding: 0.2rem 1rem;
+	padding: 0.2rem 1rem;
 }
 
 .navbar li a {
-    color: rgb(197, 229, 249);
-    text-decoration: none;
-    padding: 0px 0px;
-    font-size: 1rem;
+	color: rgb(197, 229, 249);
+	text-decoration: none;
+	padding: 0px 0px;
+	font-size: 1rem;
 }
 
 .navbar li a:hover {
-    color: #67bdf2;
+	color: #67bdf2;
 }
 
 
 .navbar li a.active {
-    color: #c59e75;
+	color: #c59e75;
 }
 
 .usuario {
-    background-color: #0000008c;
-    color: #c59e75;
-    font-size: 1rem;
-    font-family: 'Franklin Gothic';
-    position: fixed;
-    left: 0;
-    max-width: 16vw;
-    overflow-x: hidden;
+	background-color: #0000008c;
+	color: #c59e75;
+	font-size: 1rem;
+	font-family: 'Franklin Gothic';
+	position: fixed;
+	left: 0;
+	max-width: 16vw;
+	overflow-x: hidden;
 }
 
 .tipo {
-    background-color: #0000008c;
-    color: #c59e75;
-    font-family: 'Franklin Gothic';
-    font-size: 1rem;
-    position: fixed;
-    right: 8vw;
+	background-color: #0000008c;
+	color: #c59e75;
+	font-family: 'Franklin Gothic';
+	font-size: 1rem;
+	position: fixed;
+	right: 8vw;
 }
 
 .close {
-    background-color: rgb(12, 100, 167);
-    font-size: 1rem;
-    min-width: 8vw;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    text-align: center;
-    position: fixed;
-    right: 0;
+	background-color: rgb(12, 100, 167);
+	font-size: 1rem;
+	min-width: 8vw;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	text-align: center;
+	position: fixed;
+	right: 0;
 }
 
 .close:hover {
-    background-color: black;
-    color: #c59e75;
+	background-color: black;
+	color: #c59e75;
 }

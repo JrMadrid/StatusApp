@@ -1,5 +1,4 @@
 /* PAGINA DE INICIO DE SESION */
-
 import LoginPanel from '../components/Elements/Login.jsx';
 import logo from '../imgs/LogoSoporte.png';
 import './css/login.css';

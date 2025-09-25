@@ -11,7 +11,7 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
   dialect: 'mssql', // Dialecto de la base de datos  
   dialectModule: tedious, // Módulo para la conexión a SQL Server
   logging: false, // Desactivar el logging de Sequelize  
-  port: 1433 
+  port: 1433
 });
 
 // Verifica la conexión a la base de datos

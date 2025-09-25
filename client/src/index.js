@@ -1,8 +1,8 @@
 /* PUNTO DE ENTRADA PARA RENDERIZADO */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.js';
-import reportWebVitals from './reportWebVitals'; 
+import App from './app.js';
+import reportWebVitals from './reportWebVitals';
 
 // React se conecta con el DOM del navegador y renderiza el componente raíz
 // (App) en el elemento con id 'root'.

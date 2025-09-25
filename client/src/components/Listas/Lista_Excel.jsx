@@ -1,7 +1,6 @@
 /* COMPONENTE DE BOTON DESCARGAR LISTA EN EXCEL */
-import { React } from 'react';
 import ExcelJS from 'exceljs';
-import { Toaster, toast } from 'react-hot-toast'; 
+import { Toaster, toast } from 'react-hot-toast';
 import '../css/listas.css'
 
 const ListExcel = (props) => {
@@ -23,7 +22,7 @@ const ListExcel = (props) => {
       }
     }
     function formatearFecha(fechaISO) {
-      const fechaSolo = fechaISO.split('T')[0]; 
+      const fechaSolo = fechaISO.split('T')[0];
       return `${fechaSolo}`;
     }
     if (props.tipo !== undefined) {
@@ -60,31 +59,31 @@ const ListExcel = (props) => {
     worksheet.columns = columns;
 
     worksheet.getRow(1).eachCell({ includeEmpty: true }, (cell) => {
-      cell.font = { bold: true, color: { argb: 'FFFFFF' } }; 
-      cell.alignment = { horizontal: 'center' }; 
+      cell.font = { bold: true, color: { argb: 'FFFFFF' } };
+      cell.alignment = { horizontal: 'center' };
       cell.fill = {
         type: 'pattern',
         pattern: 'solid',
-        fgColor: { argb: '227447' }, 
+        fgColor: { argb: '227447' },
       };
     });
 
     const columnIndex = worksheet.columns.findIndex(col => col.key === columnToHide);
     if (columnIndex !== -1) {
-      worksheet.getColumn(columnIndex + 1).hidden = true; 
+      worksheet.getColumn(columnIndex + 1).hidden = true;
     }
 
     props.data.forEach(item => {
       worksheet.addRow(item);
     });
 
-    const buffer = await workbook.xlsx.writeBuffer(); 
-    const url = window.URL.createObjectURL(new Blob([buffer])); 
-    const a = document.createElement('a'); 
+    const buffer = await workbook.xlsx.writeBuffer();
+    const url = window.URL.createObjectURL(new Blob([buffer]));
+    const a = document.createElement('a');
     a.href = url;
-    a.download = `${save}.xlsx`; 
-    a.click(); 
-    window.URL.revokeObjectURL(url); 
+    a.download = `${save}.xlsx`;
+    a.click();
+    window.URL.revokeObjectURL(url);
 
     let tostada = `${save}`
     toast(tostada, { position: 'bottom-right' });

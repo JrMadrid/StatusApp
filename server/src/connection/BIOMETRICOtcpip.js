@@ -14,35 +14,35 @@ const puerto = config.BIOMETRICOpuerto;
  * @returns {object} - Respuesta procesada o mensaje de error
  */
 export const BIOMETRICOtcpip = async (ip) => {
-    // Creo una instancia de ZK con la IP y el puerto configurado
-    let device = new ZK(ip, puerto, 10000, 4000); // Timeout de conexión y de lectura
-    
+  // Creo una instancia de ZK con la IP y el puerto configurado
+  let device = new ZK(ip, puerto, 10000, 4000); // Timeout de conexión y de lectura
+
+  try {
+    // Intento establecer la conexión TCP con el biométrico
     try {
-        // Intento establecer la conexión TCP con el biométrico
-        try {
-            await device.createSocket();
-        } catch (error) {
-            // Si falla la conexión, retorno mensaje indicando que no hay conexión
-            return { informacionimportante: 'Sin conexión TCP' };
-        }
-
-        // Obtengo información general del dispositivo
-        const deviceinfo = await device.getInfo();
-
-        // Proceso la información recibida con la función BiometricoData
-        const respuesta = await BiometricoData(deviceinfo);
-
-        return respuesta;
-
-    } catch (err) {
-        console.error('Error:', err);
-        return { informacionimportante: 'Sin conexión TCP' };
-    } finally {
-        // Cierro la conexión si está activa
-        if (device.connectionType !== null) {
-            await device.disconnect();
-        }
+      await device.createSocket();
+    } catch (error) {
+      // Si falla la conexión, retorno mensaje indicando que no hay conexión
+      return { informacionimportante: 'Sin conexión TCP' };
     }
+
+    // Obtengo información general del dispositivo
+    const deviceinfo = await device.getInfo();
+
+    // Proceso la información recibida con la función BiometricoData
+    const respuesta = await BiometricoData(deviceinfo);
+
+    return respuesta;
+
+  } catch (err) {
+    console.error('Error:', err);
+    return { informacionimportante: 'Sin conexión TCP' };
+  } finally {
+    // Cierro la conexión si está activa
+    if (device.connectionType !== null) {
+      await device.disconnect();
+    }
+  }
 };
 
 /**
@@ -51,29 +51,29 @@ export const BIOMETRICOtcpip = async (ip) => {
  * @returns {object} - Respuesta procesada con la información del hardware
  */
 export const BiometricoHardware = async (ip) => {
-    let device = new ZK(ip, puerto, 10000, 4000);
-    try {
-        // Establezco la conexión
-        await device.createSocket();
+  let device = new ZK(ip, puerto, 10000, 4000);
+  try {
+    // Establezco la conexión
+    await device.createSocket();
 
-        // Envío un comando hexadecimal (0x044C) específico al dispositivo para obtener datos del hardware
-        const buffer = await device.executeCmd(0x044C); 
-        
-        // Leo el código de respuesta desde el buffer recibido
-        const responseCode = buffer.readUInt16LE(0); 
+    // Envío un comando hexadecimal (0x044C) específico al dispositivo para obtener datos del hardware
+    const buffer = await device.executeCmd(0x044C);
 
-        // Proceso el buffer y el código de respuesta
-        const respuesta = await Biometricohardware(responseCode, buffer);
+    // Leo el código de respuesta desde el buffer recibido
+    const responseCode = buffer.readUInt16LE(0);
 
-        return respuesta;
+    // Proceso el buffer y el código de respuesta
+    const respuesta = await Biometricohardware(responseCode, buffer);
 
-    } catch (err) {
-        console.error('Error:', err);
-        return { informaciongeneral: '' };
-    } finally {
-        // Cierro la conexión si está activa
-        if (device.connectionType !== null) {
-            await device.disconnect();
-        }
+    return respuesta;
+
+  } catch (err) {
+    console.error('Error:', err);
+    return { informaciongeneral: '' };
+  } finally {
+    // Cierro la conexión si está activa
+    if (device.connectionType !== null) {
+      await device.disconnect();
     }
+  }
 };

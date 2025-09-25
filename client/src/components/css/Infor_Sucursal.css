@@ -1,1112 +1,1112 @@
 /* ESTILOS DE INFORMATIVA -- SUCURSAL */
 .titulo {
-    position: fixed;
-    top: 5%;
-    left: 45%;
-    color: rgb(11, 23, 50);
-    text-shadow: 1px -1px 2px rgb(197, 229, 249);
-    font-size: 3.5vh;
-    font-family: Arial;
+  position: fixed;
+  top: 5%;
+  left: 45%;
+  color: rgb(11, 23, 50);
+  text-shadow: 1px -1px 2px rgb(197, 229, 249);
+  font-size: 3.5vh;
+  font-family: Arial;
 }
 
 .principal {
-    text-align: center;
-    font-family: serif;
-    color: #ffaf90;
-    margin: 0 0 5px 0;
-    font-size: smaller;
-    max-width: 78.5vw;
-    overflow-x: auto;
+  text-align: center;
+  font-family: serif;
+  color: #ffaf90;
+  margin: 0 0 5px 0;
+  font-size: smaller;
+  max-width: 78.5vw;
+  overflow-x: auto;
 }
 
 .principal::-webkit-scrollbar {
-    height: 1px;
+  height: 1px;
 }
 
 .principal::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .principal::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .principal::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .descripcion {
-    min-height: 3vh;
-    max-height: 3vh;
-    max-width: 90vw;
-    overflow-x: auto;
+  min-height: 3vh;
+  max-height: 3vh;
+  max-width: 90vw;
+  overflow-x: auto;
 }
 
 .descripcion::-webkit-scrollbar {
-    height: 4px;
-    width: 4px;
+  height: 4px;
+  width: 4px;
 }
 
 .descripcion::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .descripcion::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(225, 166, 110);
+  background-color: rgb(225, 166, 110);
 }
 
 .descripcion::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .relevante {
-    min-height: 14vh;
-    max-height: 14vh;
-    overflow-y: auto;
-    box-shadow: 0px 0px 2.5px 1px black;
+  min-height: 14vh;
+  max-height: 14vh;
+  overflow-y: auto;
+  box-shadow: 0px 0px 2.5px 1px black;
 }
 
 .relevante::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+  width: 6px;
+  height: 6px;
 }
 
 .relevante::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .relevante::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(225, 166, 110);
+  background-color: rgb(225, 166, 110);
 }
 
 .relevante::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .relevanteData {
-    font-family: sans-serif;
-    font-size: medium;
-    color: rgb(210, 235, 250);
+  font-family: sans-serif;
+  font-size: medium;
+  color: rgb(210, 235, 250);
 }
 
 .importante {
-    display: flex;
+  display: flex;
 }
 
 .importanteData {
-    font-family: sans-serif;
-    font-size: medium;
-    color: rgb(253, 102, 85);
-    flex: 1;
+  font-family: sans-serif;
+  font-size: medium;
+  color: rgb(253, 102, 85);
+  flex: 1;
 }
 
 .importanteData2 {
-    font-family: sans-serif;
-    font-size: medium;
-    color: rgb(253, 102, 85);
-    flex: 1;
-    text-align: right;
+  font-family: sans-serif;
+  font-size: medium;
+  color: rgb(253, 102, 85);
+  flex: 1;
+  text-align: right;
 }
 
 .informaciones {
-    display: flex;
-    box-shadow: 0px 0px 5px 1px black;
-    padding-top: 10px;
+  display: flex;
+  box-shadow: 0px 0px 5px 1px black;
+  padding-top: 10px;
 }
 
 .infor {
-    font-family: sans-serif;
-    font-size: medium;
-    color: rgb(210, 235, 250);
-    flex: 1;
+  font-family: sans-serif;
+  font-size: medium;
+  color: rgb(210, 235, 250);
+  flex: 1;
 }
 
 .texto {
-    padding: 0 10px;
-    min-height: 50vh;
-    max-height: 50vh;
-    overflow-y: auto;
-    /* min-width: 68.5vh;
+  padding: 0 10px;
+  min-height: 50vh;
+  max-height: 50vh;
+  overflow-y: auto;
+  /* min-width: 68.5vh;
     max-width: 68.5vh; */
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 .texto::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+  width: 6px;
+  height: 6px;
 }
 
 .texto::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .texto::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(225, 166, 110);
+  background-color: rgb(225, 166, 110);
 }
 
 .texto::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .cajaInformacion {
-    margin: 0 0 0 20VW;
-    padding: 15px;
-    width: 80vw;
-    position: fixed;
-    top: 14%;
-    left: -4vw;
-    border-radius: 8px;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
-    background-color: rgba(0, 0, 0, 0.600);
+  margin: 0 0 0 20VW;
+  padding: 15px;
+  width: 80vw;
+  position: fixed;
+  top: 14%;
+  left: -4vw;
+  border-radius: 8px;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.600);
 }
 
 .informacion {
-    background-color: rgba(0, 0, 0, 0.700);
-    padding: 10px;
-    border-radius: 8px;
-    min-height: 78vh;
+  background-color: rgba(0, 0, 0, 0.700);
+  padding: 10px;
+  border-radius: 8px;
+  min-height: 78vh;
 }
 
 .copiar {
-    background-color: rgb(11, 23, 50);
-    position: fixed;
-    right: 32px;
-    width: 5%;
-    font-size: 33%;
-    padding: 5px 0 3px 0;
-    color: whitesmoke;
+  background-color: rgb(11, 23, 50);
+  position: fixed;
+  right: 32px;
+  width: 5%;
+  font-size: 33%;
+  padding: 5px 0 3px 0;
+  color: whitesmoke;
 }
 
 .sidebar {
-    width: 14.1vw;
-    height: 100vh;
-    background-color: rgb(0, 7, 22);
-    color: #fff;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 20px 10px;
-    box-Sizing: border-box;
-    z-index: 1000;
-    margin: 0;
+  width: 14.1vw;
+  height: 100vh;
+  background-color: rgb(0, 7, 22);
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px 10px;
+  box-Sizing: border-box;
+  z-index: 1000;
+  margin: 0;
 }
 
 .appi .ir {
-    background-color: #ffaf90;
-    position: absolute;
-    top: 9%;
-    right: 30%;
-    padding: 5px 5px 5px 5px;
-    width: 30%;
-    color: black;
-    font-size: 1rem;
+  background-color: #ffaf90;
+  position: absolute;
+  top: 9%;
+  right: 30%;
+  padding: 5px 5px 5px 5px;
+  width: 30%;
+  color: black;
+  font-size: 1rem;
 }
 
 .appi .ir:hover {
-    background-color: rgb(197, 229, 249);
-    color: black;
+  background-color: rgb(197, 229, 249);
+  color: black;
 }
 
 .heading {
-    color: #ffaf90;
-    margin-Top: 0px;
-    text-align: center;
-    font-size: 1.2vw;
-    max-width: 13vw;
-    max-height: 1.3rem;
-    overflow-x: auto;
-    overflow-y: auto;
+  color: #ffaf90;
+  margin-Top: 0px;
+  text-align: center;
+  font-size: 1.2vw;
+  max-width: 13vw;
+  max-height: 1.3rem;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .heading::-webkit-scrollbar {
-    width: 1px;
-    height: 1px;
+  width: 1px;
+  height: 1px;
 }
 
 .heading::-webkit-scrollbar-thumb {
-    background-color: rgb(225, 166, 110);
-    border-radius: 4px;
-    border: 2px solid #1d244120;
+  background-color: rgb(225, 166, 110);
+  border-radius: 4px;
+  border: 2px solid #1d244120;
 }
 
 .heading::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(197, 229, 249);
+  background-color: rgb(197, 229, 249);
 }
 
 .heading::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center !important;
-    width: 12.5vw;
-    min-height: 40vh;
-    max-height: 40vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center !important;
+  width: 12.5vw;
+  min-height: 40vh;
+  max-height: 40vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .list::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
 
 .list::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .list::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .list::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .listaElement {
-    max-height: 1.8rem;
-    max-width: 14vw;
-    overflow-x: auto;
+  max-height: 1.8rem;
+  max-width: 14vw;
+  overflow-x: auto;
 }
 
 .listaElement::-webkit-scrollbar {
-    height: 1px;
-    width: 1px;
+  height: 1px;
+  width: 1px;
 }
 
 .listaElement::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .listaElement::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .listaElement::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 
 .listItem {
-    margin: 0px 0px 1px 0px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    list-style: none;
+  margin: 0px 0px 1px 0px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  list-style: none;
 }
 
 .ListItemA {
-    box-shadow: 0px 0px 2px #0056b3 inset;
-    text-align: center;
-    align-items: center;
-    border-radius: 5px;
-    min-width: 9vw;
-    max-width: 9vw;
-    max-height: 2rem;
-    padding-bottom: 0.2rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin-bottom: 1px;
+  box-shadow: 0px 0px 2px #0056b3 inset;
+  text-align: center;
+  align-items: center;
+  border-radius: 5px;
+  min-width: 9vw;
+  max-width: 9vw;
+  max-height: 2rem;
+  padding-bottom: 0.2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: 1px;
 }
 
 .ListItemA:hover {
-    box-shadow: 0px 0px 2px #ffaf90 inset;
+  box-shadow: 0px 0px 2px #ffaf90 inset;
 }
 
 .ListItemA::-webkit-scrollbar {
-    width: 1px;
-    height: 1px;
+  width: 1px;
+  height: 1px;
 }
 
 .ListItemA::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .ListItemA::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .ListItemA::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .seleccionado {
-    box-shadow: 0px 0px 5px #ffaf90 inset;
-    text-align: center;
-    align-items: center;
-    border-radius: 5px;
-    min-width: 9vw;
-    max-width: 9vw;
-    max-height: 2rem;
-    padding-bottom: 0.2rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin-bottom: 1px;
+  box-shadow: 0px 0px 5px #ffaf90 inset;
+  text-align: center;
+  align-items: center;
+  border-radius: 5px;
+  min-width: 9vw;
+  max-width: 9vw;
+  max-height: 2rem;
+  padding-bottom: 0.2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: 1px;
 }
 
 .seleccionado::-webkit-scrollbar {
-    width: 1px;
-    height: 1px;
+  width: 1px;
+  height: 1px;
 }
 
 .seleccionado::-webkit-scrollbar-thumb {
-    background-color: #ffaf90;
-    border-radius: 4px;
+  background-color: #ffaf90;
+  border-radius: 4px;
 }
 
 .seleccionado::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .seleccionado::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .pings {
-    margin: 0;
-    font-size: 1.1rem;
-    color: rgb(175, 219, 246);
-    min-width: 1.5vw;
-    max-width: 1.5vw;
+  margin: 0;
+  font-size: 1.1rem;
+  color: rgb(175, 219, 246);
+  min-width: 1.5vw;
+  max-width: 1.5vw;
 }
 
 .pings:hover {
-    color: #ffaf90;
+  color: #ffaf90;
 }
 
 .appi {
-    color: rgb(175, 219, 246);
-    font-size: 0.8rem;
-    font-family: 'Segoe UI';
+  color: rgb(175, 219, 246);
+  font-size: 0.8rem;
+  font-family: 'Segoe UI';
 }
 
 .appiSeleccionado {
-    color: #ffaf90;
-    font-size: 0.8rem;
-    font-family: 'Segoe UI';
+  color: #ffaf90;
+  font-size: 0.8rem;
+  font-family: 'Segoe UI';
 }
 
 .ListItemA:hover .appi {
-    color: #ffaf90;
+  color: #ffaf90;
 }
 
 .logo {
-    width: 100%;
+  width: 100%;
 }
 
 .logodiv {
-    width: 10vw;
-    bottom: 0;
-    margin: 0 0 20px 2vw;
-    position: absolute;
-    left: 0;
+  width: 10vw;
+  bottom: 0;
+  margin: 0 0 20px 2vw;
+  position: absolute;
+  left: 0;
 }
 
 .solbiometrico {
-    text-align: center;
+  text-align: center;
 }
 
 .solicitud {
-    margin-left: 5px;
-    font-size: 1.3rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    padding: 0px 10px 0px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.700);
-    text-decoration: none;
-    background-color: rgb(197, 229, 249);
-    color: #000000;
+  margin-left: 5px;
+  font-size: 1.3rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 0px 10px 0px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.700);
+  text-decoration: none;
+  background-color: rgb(197, 229, 249);
+  color: #000000;
 }
 
 .solicitud:hover {
-    background-color: #c59e75;
-    border: 1px solid #c59e75;
-    color: black;
-    box-shadow: 0px 0px 10px rgb(0, 7, 22) inset;
+  background-color: #c59e75;
+  border: 1px solid #c59e75;
+  color: black;
+  box-shadow: 0px 0px 10px rgb(0, 7, 22) inset;
 }
 
 .avisos_solicitud {
-    background-color: rgba(0, 0, 0, 0.200);
-    border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.200);
+  border-radius: 5px;
 }
 
 .cajaInformacionmedium {
-    margin: 0 0 0 37VW;
-    padding: 10px 20px 20px 20px;
-    max-height: 80vh;
-    max-width: 40vw;
-    min-width: 40vw;
-    position: fixed;
-    top: 14%;
-    left: -2vw;
-    border-radius: 8px;
-    box-shadow: 0 1px 100px rgba(0, 0, 0, 0.9);
-    background-color: rgba(0, 0, 0, 0.600);
-    overflow-y: hidden;
+  margin: 0 0 0 37VW;
+  padding: 10px 20px 20px 20px;
+  max-height: 80vh;
+  max-width: 40vw;
+  min-width: 40vw;
+  position: fixed;
+  top: 14%;
+  left: -2vw;
+  border-radius: 8px;
+  box-shadow: 0 1px 100px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.600);
+  overflow-y: hidden;
 }
 
 .informacionmedium {
-    background-color: rgba(0, 0, 0, 0.700);
-    padding: 10px;
-    border-radius: 8px;
-    min-height: 76vh;
-    max-height: 76vh;
+  background-color: rgba(0, 0, 0, 0.700);
+  padding: 10px;
+  border-radius: 8px;
+  min-height: 76vh;
+  max-height: 76vh;
 }
 
 .informacionmedium::-webkit-scrollbar {
-    height: 10px;
-    width: 5px;
+  height: 10px;
+  width: 5px;
 }
 
 .informacionmedium::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .informacionmedium::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .informacionmedium::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .principalmedium {
-    text-align: center;
-    font-family: serif;
-    color: #ffaf90;
-    margin: 0px;
+  text-align: center;
+  font-family: serif;
+  color: #ffaf90;
+  margin: 0px;
 }
 
 .tablainfomedium {
-    text-align: left;
+  text-align: left;
 }
 
 .descripcionmedium {
-    color: rgb(221, 221, 221);
-    margin-bottom: 1vh;
-    min-height: 4vh;
-    max-height: 4vh;
-    min-width: 37.1vw;
-    max-width: 37.1vw;
-    overflow-y: auto;
-    overflow-x: auto;
+  color: rgb(221, 221, 221);
+  margin-bottom: 1vh;
+  min-height: 4vh;
+  max-height: 4vh;
+  min-width: 37.1vw;
+  max-width: 37.1vw;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .descripcionmedium::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
-    margin-left: 5px;
+  width: 2px;
+  height: 2px;
+  margin-left: 5px;
 }
 
 .descripcionmedium::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .descripcionmedium::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .descripcionmedium::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .logimportante {
-    font-family: sans-serif;
-    font-size: medium;
-    color: rgb(253, 102, 85);
-    max-height: 2.5vh;
-    max-height: 2.5vh;
+  font-family: sans-serif;
+  font-size: medium;
+  color: rgb(253, 102, 85);
+  max-height: 2.5vh;
+  max-height: 2.5vh;
 }
 
 .logmedium {
-    height: 100%;
-    max-height: 26.5vh;
-    min-height: 26.5vh;
-    overflow-y: auto;
-    overflow-x: auto;
-    color: rgb(173, 173, 173);
-    min-width: 37.1vw;
-    max-width: 37.1vw;
-    font-family: sans-serif;
-    font-size: medium;
-    color: rgb(210, 235, 250);
-    padding: 10px;
-    vertical-align: top;
-    border-radius: 6px;
-    margin: 0;
-    box-shadow: 0px 0px 8px 1px black;
-    border-right: 2px solid rgba(0, 0, 0, 0.100);
-    border-top: 2px solid rgba(0, 0, 0, 0.100);
+  height: 100%;
+  max-height: 26.5vh;
+  min-height: 26.5vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  color: rgb(173, 173, 173);
+  min-width: 37.1vw;
+  max-width: 37.1vw;
+  font-family: sans-serif;
+  font-size: medium;
+  color: rgb(210, 235, 250);
+  padding: 10px;
+  vertical-align: top;
+  border-radius: 6px;
+  margin: 0;
+  box-shadow: 0px 0px 8px 1px black;
+  border-right: 2px solid rgba(0, 0, 0, 0.100);
+  border-top: 2px solid rgba(0, 0, 0, 0.100);
 }
 
 .logmedium::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
-    margin-left: 5px;
+  width: 2px;
+  height: 2px;
+  margin-left: 5px;
 }
 
 .logmedium::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .logmedium::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .logmedium::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .accesomini {
-    margin-top: 3px;
-    width: 100%;
-    text-align: center;
+  margin-top: 3px;
+  width: 100%;
+  text-align: center;
 }
 
 .appimini .irmini {
-    background-color: #ffaf90;
-    padding: 5px 5px 5px 5px;
-    color: black;
-    font-size: 1.2rem;
-    align-items: center;
+  background-color: #ffaf90;
+  padding: 5px 5px 5px 5px;
+  color: black;
+  font-size: 1.2rem;
+  align-items: center;
 }
 
 .appimini .irmini:hover {
-    background-color: rgb(197, 229, 249);
-    color: black;
+  background-color: rgb(197, 229, 249);
+  color: black;
 }
 
 .cajaInformacionmini {
-    margin: 0 0 0 40.55VW;
-    padding: 10px 20px 5px 20px;
-    min-height: 36vh;
-    max-height: 36vh;
-    max-width: 33vw;
-    min-width: 33vw;
-    position: fixed;
-    top: 30%;
-    left: -2vw;
-    border-radius: 8px;
-    box-shadow: 0 1px 100px rgba(0, 0, 0, 0.9);
-    background-color: rgba(0, 0, 0, 0.600);
-    overflow-y: hidden;
+  margin: 0 0 0 40.55VW;
+  padding: 10px 20px 5px 20px;
+  min-height: 36vh;
+  max-height: 36vh;
+  max-width: 33vw;
+  min-width: 33vw;
+  position: fixed;
+  top: 30%;
+  left: -2vw;
+  border-radius: 8px;
+  box-shadow: 0 1px 100px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.600);
+  overflow-y: hidden;
 }
 
 .informacionmini {
-    background-color: rgba(0, 0, 0, 0.700);
-    padding: 10px;
-    border-radius: 8px;
-    min-height: 32vh;
-    max-height: 32vh;
+  background-color: rgba(0, 0, 0, 0.700);
+  padding: 10px;
+  border-radius: 8px;
+  min-height: 32vh;
+  max-height: 32vh;
 }
 
 .informacionmini::-webkit-scrollbar {
-    height: 10px;
-    width: 5px;
+  height: 10px;
+  width: 5px;
 }
 
 .informacionmini::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .informacionmini::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .informacionmini::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .principalmini {
-    text-align: center;
-    font-family: serif;
-    color: #ffaf90;
-    margin: 0px;
+  text-align: center;
+  font-family: serif;
+  color: #ffaf90;
+  margin: 0px;
 }
 
 .tablainfomini {
-    text-align: left;
+  text-align: left;
 }
 
 .descripcionmini {
-    color: rgb(221, 221, 221);
-    margin-bottom: 1vh;
-    min-height: 4vh;
-    max-height: 4vh;
-    min-width: 31.2vw;
-    max-width: 31.2vw;
-    overflow-y: auto;
-    overflow-x: auto;
+  color: rgb(221, 221, 221);
+  margin-bottom: 1vh;
+  min-height: 4vh;
+  max-height: 4vh;
+  min-width: 31.2vw;
+  max-width: 31.2vw;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .descripcionmini::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
-    margin-left: 5px;
+  width: 2px;
+  height: 2px;
+  margin-left: 5px;
 }
 
 .descripcionmini::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .descripcionmini::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .descripcionmini::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .logimportante {
-    font-family: sans-serif;
-    font-size: medium;
-    color: rgb(253, 102, 85);
-    max-height: 2.5vh;
-    max-height: 2.5vh;
+  font-family: sans-serif;
+  font-size: medium;
+  color: rgb(253, 102, 85);
+  max-height: 2.5vh;
+  max-height: 2.5vh;
 }
 
 .logmini {
-    height: 100%;
-    max-height: 10vh;
-    min-height: 10vh;
-    overflow-y: auto;
-    overflow-x: auto;
-    color: rgb(173, 173, 173);
-    min-width: 30vw;
-    max-width: 30vw;
-    font-family: sans-serif;
-    font-size: medium;
-    color: rgb(210, 235, 250);
-    padding: 10px;
-    vertical-align: top;
-    border-radius: 6px;
-    margin: 0;
-    box-shadow: 0px 0px 8px 1px black;
-    border-right: 2px solid rgba(0, 0, 0, 0.100);
-    border-top: 2px solid rgba(0, 0, 0, 0.100);
+  height: 100%;
+  max-height: 10vh;
+  min-height: 10vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  color: rgb(173, 173, 173);
+  min-width: 30vw;
+  max-width: 30vw;
+  font-family: sans-serif;
+  font-size: medium;
+  color: rgb(210, 235, 250);
+  padding: 10px;
+  vertical-align: top;
+  border-radius: 6px;
+  margin: 0;
+  box-shadow: 0px 0px 8px 1px black;
+  border-right: 2px solid rgba(0, 0, 0, 0.100);
+  border-top: 2px solid rgba(0, 0, 0, 0.100);
 }
 
 .logmini::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
-    margin-left: 5px;
+  width: 2px;
+  height: 2px;
+  margin-left: 5px;
 }
 
 .logmini::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .logmini::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .logmini::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .cajaInformacionmt {
-    margin: 0 0 0 40.55VW;
-    padding: 10px 20px 5px 20px;
-    min-height: 29vh;
-    max-height: 29vh;
-    max-width: 33vw;
-    min-width: 33vw;
-    position: fixed;
-    top: 30%;
-    left: -2vw;
-    border-radius: 8px;
-    box-shadow: 0 1px 100px rgba(0, 0, 0, 0.9);
-    background-color: rgba(0, 0, 0, 0.600);
-    overflow-y: hidden;
+  margin: 0 0 0 40.55VW;
+  padding: 10px 20px 5px 20px;
+  min-height: 29vh;
+  max-height: 29vh;
+  max-width: 33vw;
+  min-width: 33vw;
+  position: fixed;
+  top: 30%;
+  left: -2vw;
+  border-radius: 8px;
+  box-shadow: 0 1px 100px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.600);
+  overflow-y: hidden;
 }
 
 .informacionmt {
-    background-color: rgba(0, 0, 0, 0.700);
-    padding: 10px;
-    border-radius: 8px;
-    min-height: 25vh;
-    max-height: 25vh;
-    overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.700);
+  padding: 10px;
+  border-radius: 8px;
+  min-height: 25vh;
+  max-height: 25vh;
+  overflow-y: auto;
 }
 
 .informacionmt::-webkit-scrollbar {
-    height: 10px;
-    width: 5px;
+  height: 10px;
+  width: 5px;
 }
 
 .informacionmt::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .informacionmt::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .informacionmt::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .principalmt {
-    text-align: center;
-    font-family: serif;
-    color: #ffaf90;
-    margin: 0px;
+  text-align: center;
+  font-family: serif;
+  color: #ffaf90;
+  margin: 0px;
 }
 
 .listItemmt {
-    padding: 3px 5px 2px 5px;
-    display: flex;
-    list-style: none;
+  padding: 3px 5px 2px 5px;
+  display: flex;
+  list-style: none;
 }
 
 .externalmt {
-    font-size: 1.8rem;
-    align-items: center;
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
-    color: rgb(175, 219, 246);
+  font-size: 1.8rem;
+  align-items: center;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  color: rgb(175, 219, 246);
 }
 
 .externalmt:hover {
-    color: #ffaf90;
+  color: #ffaf90;
 }
 
 .contenedorConstancia {
-    min-height: 0vh;
-    max-height: 80vh;
-    min-width: 62vw;
-    max-width: 62vw;
-    overflow-y: auto;
-    padding: 15px;
-    position: fixed;
-    top: 13%;
-    left: 25vw;
-    border-radius: 8px;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
-    background-color: rgba(0, 0, 0, 0.600);
-    text-align: center;
+  min-height: 0vh;
+  max-height: 80vh;
+  min-width: 62vw;
+  max-width: 62vw;
+  overflow-y: auto;
+  padding: 15px;
+  position: fixed;
+  top: 13%;
+  left: 25vw;
+  border-radius: 8px;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.600);
+  text-align: center;
 }
 
 .contenedorConstancia::-webkit-scrollbar {
-    height: 5px;
-    width: 5px;
+  height: 5px;
+  width: 5px;
 }
 
 .contenedorConstancia::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .contenedorConstancia::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .contenedorConstancia::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .nombrelargo {
-    max-width: 13vw;
-    overflow-x: auto;
+  max-width: 13vw;
+  overflow-x: auto;
 }
 
 .nombrelargo::-webkit-scrollbar {
-    height: 2px;
-    width: 2px;
+  height: 2px;
+  width: 2px;
 }
 
 .nombrelargo::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .nombrelargo::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .nombrelargo::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .desccaja {
-    font-family: 'Segoe UI';
-    text-overflow: ellipsis;
-    min-height: 20vh;
-    max-height: 42vh;
-    box-shadow: 0px 0px 2px #0056b3 inset;
+  font-family: 'Segoe UI';
+  text-overflow: ellipsis;
+  min-height: 20vh;
+  max-height: 42vh;
+  box-shadow: 0px 0px 2px #0056b3 inset;
 }
 
 .descman {
-    font-size: medium;
-    color: rgb(175, 219, 246);
-    max-width: 13vw;
-    overflow-x: auto;
-    overflow-y: auto;
+  font-size: medium;
+  color: rgb(175, 219, 246);
+  max-width: 13vw;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .descman::-webkit-scrollbar {
-    height: 2px;
-    width: 2px;
+  height: 2px;
+  width: 2px;
 }
 
 .descman::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .descman::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .descman::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .contenedorManual {
-    position: fixed;
-    top: 11.5%;
-    left: 20%;
-    width: 72vw;
-    height: 82vh;
-    padding: 15px;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
-    background-color: rgba(0, 0, 0, 0.600);
-    display: flex;
+  position: fixed;
+  top: 11.5%;
+  left: 20%;
+  width: 72vw;
+  height: 82vh;
+  padding: 15px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.600);
+  display: flex;
 }
 
 
 .contenedorManual::-webkit-scrollbar {
-    height: 5px;
-    width: 5px;
+  height: 5px;
+  width: 5px;
 }
 
 .contenedorManual::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .contenedorManual::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .contenedorManual::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 /* INFORMACION USUARIO */
 .titulono {
-    position: fixed;
-    top: 5%;
-    left: 35.6%;
-    color: rgb(11, 23, 50);
-    text-shadow: 1px -1px 2px rgb(197, 229, 249);
-    font-size: 3.5vh;
-    font-family: Arial;
+  position: fixed;
+  top: 5%;
+  left: 35.6%;
+  color: rgb(11, 23, 50);
+  text-shadow: 1px -1px 2px rgb(197, 229, 249);
+  font-size: 3.5vh;
+  font-family: Arial;
 }
 
 .cajaInformacionno {
-    margin: 0 0 0 20VW;
-    padding: 15px;
-    width: 94vw;
-    position: fixed;
-    top: 14%;
-    right: 2vw;
-    border-radius: 8px;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
-    background-color: rgba(0, 0, 0, 0.600);
+  margin: 0 0 0 20VW;
+  padding: 15px;
+  width: 94vw;
+  position: fixed;
+  top: 14%;
+  right: 2vw;
+  border-radius: 8px;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.600);
 }
 
 .informacioncajasuper {
-    min-height: 34vw;
-    max-height: 34vw;
+  min-height: 34vw;
+  max-height: 34vw;
 }
 
 .informacioncajano {
-    min-height: 44vw;
-    max-height: 44vw;
+  min-height: 44vw;
+  max-height: 44vw;
 }
 
 .informacionesUsuario {
-    display: flex;
+  display: flex;
 }
 
 .inforPerfil {
-    flex: 1;
-    color: whitesmoke;
-    font-family: sans-serif;
-    max-height: 17vw;
-    width: 19vw;
-    overflow-x: auto;
-    overflow-y: auto;
+  flex: 1;
+  color: whitesmoke;
+  font-family: sans-serif;
+  max-height: 17vw;
+  width: 19vw;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .inforPerfilno {
-    flex: 1;
-    color: whitesmoke;
-    font-family: sans-serif;
-    max-height: 19vw;
-    width: 19vw;
-    overflow-x: auto;
-    overflow-y: auto;
+  flex: 1;
+  color: whitesmoke;
+  font-family: sans-serif;
+  max-height: 19vw;
+  width: 19vw;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .inforPerfil::-webkit-scrollbar,
 .inforPerfilno::-webkit-scrollbar {
-    height: 5px;
-    width: 5px;
+  height: 5px;
+  width: 5px;
 }
 
 .inforPerfil::-webkit-scrollbar-thumb,
 .inforPerfilno::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .inforPerfil::-webkit-scrollbar-thumb:hover,
 .inforPerfilno::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .inforPerfil::-webkit-scrollbar-track,
 .inforPerfil::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .fotoPerfil {
-    justify-content: center;
-    display: flex;
-    text-align: center;
-    overflow-x: hidden;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  overflow-x: hidden;
 }
 
 .perfilFoto {
-    width: 13vw;
-    /* padding: 0.9vw 0vw; */
-    border-radius: 5%;
+  width: 13vw;
+  /* padding: 0.9vw 0vw; */
+  border-radius: 5%;
 }
 
 .editIcon {
-    color: #ffc9b4;
-    font-size: 0.9rem;
+  color: #ffc9b4;
+  font-size: 0.9rem;
 }
 
 .editIcon:hover {
-    color: rgb(175, 219, 246);
+  color: rgb(175, 219, 246);
 }
 
 .datosTipo {
-    color: rgb(175, 219, 246);
-    padding: 2px 0.4vw;
+  color: rgb(175, 219, 246);
+  padding: 2px 0.4vw;
 }
 
 .datosPersonal {
-    font-size: 1.2rem;
-    text-align: left;
-    padding: 2px 0.4vw;
+  font-size: 1.2rem;
+  text-align: left;
+  padding: 2px 0.4vw;
 }
 
 .inforDescripcion {
-    height: 17vw;
-    max-height: 17vw;
-    overflow: auto;
+  height: 17vw;
+  max-height: 17vw;
+  overflow: auto;
 }
 
 .inforDescripcionno {
-    height: 25vw;
-    max-height: 25vw;
-    overflow: auto;
+  height: 25vw;
+  max-height: 25vw;
+  overflow: auto;
 }
 
 .inforDescripcion::-webkit-scrollbar,
 .inforDescripcionno::-webkit-scrollbar {
-    height: 5px;
-    width: 5px;
+  height: 5px;
+  width: 5px;
 }
 
 .inforDescripcion::-webkit-scrollbar-thumb,
 .inforDescripcionno::-webkit-scrollbar-thumb {
-    background-color: #124885;
-    border-radius: 4px;
+  background-color: #124885;
+  border-radius: 4px;
 }
 
 .inforDescripcion::-webkit-scrollbar-thumb:hover,
 .inforDescripcionno::-webkit-scrollbar-thumb:hover {
-    background-color: #ffaf90;
+  background-color: #ffaf90;
 }
 
 .inforDescripcion::-webkit-scrollbar-track,
 .inforDescripcionno::-webkit-scrollbar-track {
-    background-color: rgb(0, 7, 22);
+  background-color: rgb(0, 7, 22);
 }
 
 .btnConfirmar {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-    font-size: 0.8rem;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
 }
 
 .btnConfirmar:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 .btnCancelar {
-    background-color: #e74c3c;
-    border: none;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    margin-bottom: 0.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.8rem;
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
 }
 
 .btnCancelar:hover {
-    background-color: #c0392b;
+  background-color: #c0392b;
 }
 
 .subirFotoPerfil {
-    margin-bottom: 0.5rem;
-    text-align: center;
-    width: 95%;
-    color: black;
-    font-weight: lighter;
-    padding: 0.2rem 1rem;
-    background-color: rgb(197, 229, 249);
-    border: 1px solid black;
-    border-radius: 5px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  width: 95%;
+  color: black;
+  font-weight: lighter;
+  padding: 0.2rem 1rem;
+  background-color: rgb(197, 229, 249);
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .activoono {
-    vertical-align: middle;
-    padding-bottom: 0.3rem;
+  vertical-align: middle;
+  padding-bottom: 0.3rem;
 }
 
 .edad {
-    color: rgb(175, 219, 246);
-    text-align: left;
-    padding-left: 2rem;
+  color: rgb(175, 219, 246);
+  text-align: left;
+  padding-left: 2rem;
 }

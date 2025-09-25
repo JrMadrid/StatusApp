@@ -6,21 +6,21 @@ import MantenimientosPanel from '../../components/Panel_Mantenimiento/Mantenimie
 import '../css/section.css';
 
 const PanMantenimientos = () => {
-    const user = useContext(UserContext);
-    return (
-        <>
-            {user && (user.id === 1 || user.id === 2) && ( // SUPER ADMINISTRADOR Y ADMINISTRADOR
-                <div className='display'>
-                    <div className='section tabla'>
-                        <SelectMantenimientos />
-                    </div>
-                    <div className='section panel'>
-                        <MantenimientosPanel />
-                    </div>
-                </div>
-            )}
-        </>
-    );
+  const user = useContext(UserContext);
+  return (
+    <>
+      {user && (user.id === 1 || user.id === 2) && ( // SUPER ADMINISTRADOR Y ADMINISTRADOR
+        <div className='display'>
+          <div className='section tabla'>
+            <SelectMantenimientos />
+          </div>
+          <div className='section panel'>
+            <MantenimientosPanel />
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default PanMantenimientos;

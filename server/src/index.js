@@ -7,15 +7,15 @@ import debug from 'debug'; // Importamos la librería debug para el manejo de lo
 
 let server;
 const debugServer = debug('app:server'); // Creamos un objeto de depuración para el servidor
-const host = config.APPhost || 'localhost'; // Definimos el host del servidor, si no está definido en la configuración, usamos 'localhost' por defecto
-const port = config.APPport || 88; // Definimos el puerto del servidor, si no está definido en la configuración, usamos el puerto 88 por defecto
+const host = config.APPhost; // Definimos el host del servidor, si no está definido en la configuración, usamos 'localhost' por defecto
+const port = config.APPport; // Definimos el puerto del servidor, si no está definido en la configuración, usamos el puerto 88 por defecto
 
 // Configuramos el entorno de desarrollo para mostrar los logs de depuración definiendo los prefixos de los logs que queremos ver
 if (process.env.NODE_ENV === 'development') {
   debug.enable('app:*'); // Habilitamos los logs de depuración para el entorno de desarrollo
 } else {
   debug.disable(); // Deshabilitamos los logs de depuración para otros entornos
-}
+};
 
 // Función con reintentos
 const intentos = async (fn, retries, delay = 3000, name = 'operación') => {

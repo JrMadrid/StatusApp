@@ -1,6 +1,6 @@
 /* CONFIGURACIÓN A LA BASE DE DATOS */
 // Importo el módulo 'dotenv' para poder acceder a las variables de entorno definidas en el archivo .env
-import { config } from "dotenv" // Permite ejecutar la función config y cargar las variables de entorno en process.env
+import { config } from "dotenv"; // Permite ejecutar la función config y cargar las variables de entorno en process.env
 
 // Ejecuto la configuración para tener disponibles las variables de entorno en process.env
 config();

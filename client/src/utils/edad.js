@@ -12,7 +12,7 @@ function calcularEdad(fechaISO) {
   if (mesDiff < 0 || (mesDiff === 0 && diaDiff < 0)) {
     edad--;
   }
-  
+
   return edad;
 };
 

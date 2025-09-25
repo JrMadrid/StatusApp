@@ -92,7 +92,6 @@
   "description": "proyecto statusApps",
   "main": "index.js",
   "author": "",
-  "license": "MIT",
   "jest": {
     "roots": [
       "<rootDir>/src"

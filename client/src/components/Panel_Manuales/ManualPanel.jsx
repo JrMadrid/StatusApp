@@ -7,22 +7,22 @@ import UpdateManuales from './UpdateManual';
 import './../css/panel.css';
 
 const ManualPanel = () => {
-    const user = useContext(UserContext);
+  const user = useContext(UserContext);
 
-    return (
-        <>
-            {user && (user.id === 1) && ( // SUPER ADMINISTRADOR
-                <div className='cajamadre'>
-                    <h3>Administración</h3>
-                    <div className='cajahija'>
-                        <PostManual />
-                        <UpdateManuales />
-                        <DeleteManuales />
-                    </div>
-                </div>
-            )}
-        </>
-    );
+  return (
+    <>
+      {user && (user.id === 1) && ( // SUPER ADMINISTRADOR
+        <div className='cajamadre'>
+          <h3>Administración</h3>
+          <div className='cajahija'>
+            <PostManual />
+            <UpdateManuales />
+            <DeleteManuales />
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default ManualPanel;

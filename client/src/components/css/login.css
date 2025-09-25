@@ -1,56 +1,56 @@
 /* ESTILOS DEL LOGIN */
 .loginpanel {
-    background-color: rgba(0, 0, 0, 0.834);
-    border: 1px solid black;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 300px;
-    margin: auto;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    color: rgb(245, 136, 89);
+	background-color: rgba(0, 0, 0, 0.834);
+	border: 1px solid black;
+	padding: 20px;
+	border-radius: 8px;
+	max-width: 300px;
+	margin: auto;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	color: rgb(245, 136, 89);
 }
 
 h3 {
-    font-family: serif;
-    color: #67bdf2;
-    margin-bottom: 10px;
+	font-family: serif;
+	color: #67bdf2;
+	margin-bottom: 10px;
 }
 
 .form-group {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .datos {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 2ch;
+	display: block;
+	margin-bottom: 5px;
+	font-size: 2ch;
 }
 
 input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 2px;
 }
 
 .loginbutton {
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(12, 100, 167);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 5px;
+	width: 100%;
+	padding: 10px;
+	background-color: rgb(12, 100, 167);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-bottom: 5px;
 }
 
 button:hover {
-    background-color: #0056b3;
+	background-color: #0056b3;
 }
 
-.error{
-    color: rgb(255, 0, 0);
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    font-family: sans-serif;
+.error {
+	color: rgb(255, 0, 0);
+	font-size: 1.2rem;
+	margin-bottom: 10px;
+	font-family: sans-serif;
 }

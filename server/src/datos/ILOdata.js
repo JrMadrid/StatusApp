@@ -2,32 +2,32 @@
 // Arreglara los datos de las ilo
 export const ILOdata = async (showData) => {
 
-    const DataILO = {
-        informacionimportante: ``,
-        informacionimportante2: ``,
-        informacionrelevante: ``,
-        informaciontecnica: showData,
-    }
+  const DataILO = {
+    informacionimportante: ``,
+    informacionimportante2: ``,
+    informacionrelevante: ``,
+    informaciontecnica: showData,
+  }
 
-    return DataILO;
+  return DataILO;
 };
 
 // Arreglara los datos de hardware de las ilo
 export const ILOhardware = async () => {
 
-    const HardwareILO = {
-        informaciongeneral: ``
-    }
+  const HardwareILO = {
+    informaciongeneral: ``
+  }
 
-    return HardwareILO;
+  return HardwareILO;
 };
 
 // Arreglara los datos de descripción de las ilo
 export const ILOdescripcion = async () => {
-    let Modelo = '';
+  let Modelo = '';
 
-    const descripcionILO = {
-        descripcion: `${Modelo}`
-    }
-    return descripcionILO;
+  const descripcionILO = {
+    descripcion: `${Modelo}`
+  }
+  return descripcionILO;
 };
