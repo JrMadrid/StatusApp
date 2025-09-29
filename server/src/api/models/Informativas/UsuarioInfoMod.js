@@ -5,7 +5,7 @@ import sql from 'mssql';
 export const getListaUsuarios = async () => {
   const request = new sql.Request();
   const result = await request.query(`
-    SELECT u.nickname
+    SELECT u.nickname, p.telefono
     FROM users as u
     INNER JOIN personal p on u.nickname = p.nickname 
     ORDER BY u.id

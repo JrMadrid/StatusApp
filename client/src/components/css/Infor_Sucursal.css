@@ -1110,3 +1110,9 @@
   text-align: left;
   padding-left: 2rem;
 }
+
+.wspbutton {
+  color: rgb(108, 255, 108);
+  font-size: 0.9rem;
+  padding: 0.3rem;
+}

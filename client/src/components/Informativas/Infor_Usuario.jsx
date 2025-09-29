@@ -8,7 +8,7 @@ import axios from '../../api/axiosConfig';
 import fechaFomatoSQL from '../../utils/formatoFecha.js';
 import calcularEdad from '../../utils/edad.js';
 import '../css/Infor_Sucursal.css';
-import { FaRegEdit, FaCheck, FaTimes, FaUserCheck, FaUserTimes } from 'react-icons/fa';
+import { FaRegEdit, FaCheck, FaTimes, FaUserCheck, FaUserTimes, FaWhatsapp } from 'react-icons/fa';
 import logoSoporte from '../../imgs/LogoSoporte.png';
 import profile from '../../imgs/profile.png';
 
@@ -236,6 +236,65 @@ export default function InfoUsuario() {
     }
   };
 
+  // Mostrar el elemento con los datos
+  const renderCampo = (campo, label) => {
+    const valorActual = userDatosSeleccionado?.[campo];
+
+    let contenido = valorActual;
+    if (campo === 'activo') {
+      contenido = valorActual ? <><FaUserCheck className='activoono' style={{ color: 'green' }} /> </> : <><FaUserTimes className='activoono' style={{ color: 'red' }} /> </>;
+    } else if (campo.includes('fecha') && valorActual) {
+      contenido = fechaFomatoSQL(valorActual);
+    }
+    else if (valorActual && campo === 'sexo') {
+      contenido = (valorActual === 'F') ? 'Femenino' : 'Masculino';
+    }
+    else if (valorActual && campo === 'telefono') {
+      contenido = contenido.trim().replace(/\s+/g, "");
+    }
+    return (
+      <h5 className={`datosPersonal campo-${campo}`}>
+        <span className='datosTipo'>
+          <FaRegEdit className='editIcon' onClick={() => ediccion(campo)} />
+          {campo !== 'foto' && ` ${label}: `}
+        </span>
+
+        {/* ¿Se esta editando?  */}
+        {editar === campo ? (
+          <span style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            {renderInput(campo)}
+            <button onClick={guardarCambio} className='btnConfirmar'>
+              <FaCheck />
+            </button>
+            <button onClick={cancelarEdicion} className='btnCancelar'>
+              <FaTimes />
+            </button>
+          </span>
+        ) : (
+          <>
+            {campo === 'foto' ? (
+              <span></span>
+            ) : (
+              <>
+                {user.id === 1 && contenido && campo === 'telefono' ? (
+                  <>
+                    <span>{contenido}</span>
+                    <a href={`https://wa.me/${contenido}?text=${encodeURIComponent("Hola")}`} target="_blank" rel="noopener noreferrer" className="wspbutton" >
+                      <FaWhatsapp />
+                    </a>
+                  </>
+                ) : (
+                  <span>{contenido || `Sin registrar`}</span>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </h5>
+    );
+  };
+
+  // Mostrar el elemento para ingresar datos
   const renderInput = (campo) => {
     switch (campo) {
       case 'cedula':
@@ -247,7 +306,7 @@ export default function InfoUsuario() {
       case 'nombre':
         return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={200} autoFocus />;
       case 'telefono':
-        return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={20} autoFocus />;
+        return <input style={{ height: '0.5rem' }} value={valorTemporal} onChange={(e) => setValorTemporal(e.target.value)} maxLength={20} placeholder="504 1234 1234" autoFocus />;
       case 'descripcion':
         return <textarea value={valorTemporal} style={{ width: '100%', height: '12rem' }} onChange={(e) => setValorTemporal(e.target.value)} maxLength={3000} rows={4} autoFocus />;
       case 'fecha_nacimiento':
@@ -280,55 +339,6 @@ export default function InfoUsuario() {
     }
   };
 
-  const renderCampo = (campo, label) => {
-    const valorActual = userDatosSeleccionado?.[campo];
-    let contenido = valorActual;
-
-    if (campo === 'activo') {
-      contenido = valorActual ? <><FaUserCheck className='activoono' style={{ color: 'green' }} /> </> : <><FaUserTimes className='activoono' style={{ color: 'red' }} /> </>;
-    } else if (campo.includes('fecha') && valorActual) {
-      contenido = fechaFomatoSQL(valorActual);
-    }
-    else if (valorActual && campo === 'sexo') {
-      contenido = (valorActual === 'F') ? 'Femenino' : 'Masculino';
-    }
-    return (
-      <h5 className={`datosPersonal campo-${campo}`}>
-        <span className='datosTipo'>
-          {campo === 'foto' ? (
-            <>
-              <FaRegEdit className='editIcon' onClick={() => ediccion(campo)} />
-            </>
-          ) : (
-            <>
-              <FaRegEdit className='editIcon' onClick={() => ediccion(campo)} />
-              {` ${label}`}:{' '}
-            </>
-          )}
-        </span>
-        {editar === campo ? (
-          <span style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            {renderInput(campo)}
-            <button onClick={guardarCambio} className='btnConfirmar'>
-              <FaCheck />
-            </button>
-            <button onClick={cancelarEdicion} className='btnCancelar'>
-              <FaTimes />
-            </button>
-          </span>
-        ) : (
-          <>
-            {campo === 'foto' ? (
-              <span></span>
-            ) : (
-              <span>{contenido || `Sin registrar`}</span>
-            )}
-          </>
-        )}
-      </h5>
-    );
-  };
-
   return (
     <>
       {user && (user.id === 1) && (
@@ -342,6 +352,11 @@ export default function InfoUsuario() {
                     {usuarios.nickname}
                   </a>
                 </div>
+                {usuarios.telefono && (
+                  <a href={`https://wa.me/${usuarios.telefono}`} target="_blank" rel="noopener noreferrer" className="wspbutton" >
+                    <FaWhatsapp />
+                  </a>
+                )}
               </li>
             ))}
           </ul>
