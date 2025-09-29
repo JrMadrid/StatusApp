@@ -2,10 +2,12 @@
 import { useState, useEffect } from 'react';
 import axios from '../../api/axiosConfig'; // Importa la configuración personalizada
 import '../css/login.css';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPanel = () => {
   const [nickname, setNickname] = useState('');
   const [psw, setPsw] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
   // Verificar si ya tiene sesión activa
@@ -62,7 +64,7 @@ const LoginPanel = () => {
       <h3>Iniciar Sesión</h3>
       <form onSubmit={iniciarSesion}>
         <div className="form-group">
-          <label htmlFor="nickname">Usuario:</label>
+          <label htmlFor="nickname" className='labellogin'>Usuario</label>
           <input
             type="text"
             id="nickname"
@@ -73,10 +75,15 @@ const LoginPanel = () => {
             required
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="psw">Contraseña:</label>
+        <div className="form-group" style={{ position: "relative" }}>
+          <label htmlFor="psw" className='labellogin'>Contraseña</label>
+
+          {/* Botón para mostrar/ocultar */}
+          <span onClick={() => setShowPassword(!showPassword)} className='ojo' >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="psw"
             name="psw"
             maxLength="50"
@@ -85,10 +92,10 @@ const LoginPanel = () => {
             required
           />
         </div>
-        {error && <div className="error">{error}</div>} {/* Mostrar error si existe */}
         <button className="loginbutton" type="submit">
           Iniciar Sesión
         </button>
+        {error && <div className="error">{error}</div>} {/* Mostrar error si existe */}
       </form>
     </div>
   );
